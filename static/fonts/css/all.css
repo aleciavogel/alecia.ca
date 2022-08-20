@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Eksell Display Large";
+  src: local("Eksell Display Large"), url("../ekselldisplay-large-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: local("Silka Regular"), url("../silka-regular-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: local("Silka Italic"), url("../silka-regularitalic-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: local("Silka Bold"), url("../silka_bold-webfont.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
