@@ -7,6 +7,14 @@
 }
 
 @font-face {
+  font-family: "Eksell Display Small";
+  src: local("Eksell Display Small"), url("../ekselldisplay-small-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Silka";
   src: local("Silka Regular"), url("../silka-regular-webfont.woff2") format("woff2");
   font-weight: normal;
