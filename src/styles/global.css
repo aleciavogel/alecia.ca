@@ -1111,11 +1111,13 @@
     background-color: var(--accentBtnStaticHover);
   }
 
-  #site-brand {
+  #site-brand,
+  #site-menu-icon {
     @apply transition-colors ease-in-out duration-300 pointer-events-auto text-transparent;
   }
 
-  #site-brand:hover {
+  #site-brand:hover,
+  #site-menu-icon:hover {
     color: var(--primaryLight);
   }
 
@@ -1125,6 +1127,7 @@
     z-index: 101;
     backface-visibility: hidden;
     overflow: hidden;
+    opacity: 0.9;
   }
 
   #site-menu::before {
@@ -1138,8 +1141,8 @@
     padding-bottom: 100%;
   }
 
-  #site-brand:hover {
-    color: var(--primaryLight);
+  .menu-open #site-menu-icon {
+    color: white;
   }
 
   #site-wrapper {

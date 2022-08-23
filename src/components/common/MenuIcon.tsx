@@ -12,7 +12,7 @@ const MenuIcon: FC<Props> = ({ hover = false }) => {
 
   if (hover) {
     return (
-      <div id="site-brand" role="button" onClick={toggleMenu}>
+      <div id="site-menu-icon" role="button" onClick={toggleMenu}>
         {icon}
       </div>
     );
