@@ -30,6 +30,7 @@
   html,
   body {
     @apply text-base text-gray-700 h-full min-h-full w-full min-w-full font-sans-serif;
+    background-color: theme("colors.gray.900");
   }
 
   body {
