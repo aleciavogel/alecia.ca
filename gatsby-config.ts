@@ -81,7 +81,6 @@ const config: GatsbyConfig = {
           "gatsby-remark-external-links",
           "gatsby-remark-images",
           "gatsby-remark-numbered-footnotes",
-          "gatsby-remark-social-cards",
           "gatsby-remark-embedder",
           {
             resolve: `gatsby-remark-classes`,
