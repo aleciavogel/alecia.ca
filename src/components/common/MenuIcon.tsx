@@ -1,20 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
+import BrandIcon from "../icons/BrandIcon";
+import useMenuControl from "../features/menu/useMenuControl";
 
-const MenuIcon = () => (
-  <svg
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-8 md:h-10 w-auto pointer-events-auto"
-  >
-    <path
-      d="M4 6h16M4 12h16m-7 6h7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-    ></path>
-  </svg>
-);
+interface Props {
+  hover?: boolean;
+}
+
+const MenuIcon: FC<Props> = ({ hover = false }) => {
+  const { toggleMenu } = useMenuControl();
+  const icon = <BrandIcon className="h-8 md:h-10 w-auto pointer-events-auto" />;
+
+  if (hover) {
+    return (
+      <div id="site-brand" role="button" onClick={toggleMenu}>
+        {icon}
+      </div>
+    );
+  }
+
+  return icon;
+};
 
 export default MenuIcon;

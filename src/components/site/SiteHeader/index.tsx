@@ -19,7 +19,7 @@ const SiteHeader: FC<Props> = ({ hover = false, hasColor = false }) => {
     <header aria-hidden={!hover} className={className}>
       <SiteLogo hover={hover} />
       <HeaderRight>
-        <MenuIcon />
+        <MenuIcon hover={hover} />
         <ThemeSettings hover={hover} />
       </HeaderRight>
     </header>

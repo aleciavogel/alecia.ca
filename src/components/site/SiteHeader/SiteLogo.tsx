@@ -12,10 +12,7 @@ interface Props {
 const SiteLogo: FC<Props> = ({ hover, color = "indigo" }) => {
   if (hover) {
     return (
-      <Link
-        to="/"
-        className={`pointer-events-auto text-transparent hover:text-${color}-300 transition-colors ease-in-out duration-300`}
-      >
+      <Link id="site-brand" to="/">
         <span className="sr-only">Alecia Vogel</span>
         <Logo />
       </Link>
