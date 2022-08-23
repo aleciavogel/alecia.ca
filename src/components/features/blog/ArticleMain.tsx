@@ -21,11 +21,7 @@ const ArticleMain: FC<Props> = ({ data, children, timeToRead, location }) => {
       <div ref={articleBodyRef}>{children}</div>
 
       <div className="clipped-container">
-        <SiteHeader
-          primary_color={data.primary_color ?? "indigo"}
-          accent_color={data.accent_color ?? "pink"}
-          shade={600}
-        />
+        <SiteHeader hasColor={true} />
       </div>
     </div>
   );

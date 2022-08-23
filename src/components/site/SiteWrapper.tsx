@@ -4,6 +4,7 @@ import StaticMenu from "./StaticMenu";
 import SiteFooter from "./SiteFooter";
 import { DefaultColor } from "../../definitions/colors";
 import HireMeBanner from "./HireMeBanner";
+import { SettingsProvider } from "../features/settings/SettingsContext";
 
 interface Props {
   primary_color?: DefaultColor;
@@ -18,24 +19,21 @@ const SiteWrapper: FC<Props> = ({
   accent_color = "pink",
   text_color = "gray",
 }) => (
-  <div
-    className={`relative h-full min-h-full w-full primary-${primary_color} accent-${accent_color} text-${text_color}`}
-  >
-    <SiteHeader />
-    <SiteHeader
-      primary_color={primary_color}
-      accent_color={accent_color}
-      shade={300}
-      hover={true}
-    />
+  <SettingsProvider>
+    <div
+      className={`relative h-full min-h-full w-full primary-${primary_color} accent-${accent_color} text-${text_color}`}
+    >
+      <SiteHeader />
+      <SiteHeader hover={true} />
 
-    <StaticMenu />
+      <StaticMenu />
 
-    {children}
+      {children}
 
-    <HireMeBanner />
-    <SiteFooter accent_color={accent_color} primary_color={primary_color} />
-  </div>
+      <HireMeBanner />
+      <SiteFooter accent_color={accent_color} primary_color={primary_color} />
+    </div>
+  </SettingsProvider>
 );
 
 export default SiteWrapper;

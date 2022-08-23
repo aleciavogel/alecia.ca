@@ -39,7 +39,6 @@ const config: GatsbyConfig = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
-    "gatsby-plugin-dark-mode",
     "gatsby-plugin-netlify",
     {
       resolve: "gatsby-plugin-manifest",

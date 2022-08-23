@@ -28,6 +28,7 @@ export default function PageTemplate({ data, children, location }: any) {
   );
 }
 
+//language=GraphQL
 export const query = graphql`
   query ($id: String!, $previousPostId: String, $nextPostId: String) {
     site {
