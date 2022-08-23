@@ -1121,72 +1121,12 @@
     color: var(--primaryLight);
   }
 
-  #site-menu {
-    @apply fixed w-full h-full left-0 transform-gpu;
-    top: -100%;
-    z-index: 101;
-    backface-visibility: hidden;
-    overflow: hidden;
-    opacity: 0.9;
-  }
-
-  #site-menu::before {
-    @apply absolute w-full position-center transform-gpu;
-    content: "";
-    height: 0;
-    border-radius: 100%;
-    background-color: var(--accentLight);
-    transform: scale(0.04) translateY(9999px);
-    overflow: hidden;
-    padding-bottom: 100%;
-  }
-
   .menu-open #site-menu-icon {
     color: white;
   }
 
   #site-wrapper {
     @apply relative h-full min-h-full w-full;
-  }
-
-  .menu-open #site-menu {
-    top: 0;
-  }
-
-  .menu-open #site-menu::before {
-    animation: menu-animation 0.8s ease-out forwards;
-  }
-
-  @keyframes menu-animation {
-    0% {
-      opacity: 0;
-      transform: scale(0.04) translateY(300%);
-    }
-    40% {
-      transform: scale(0.04) translateY(0);
-      transition: ease-out;
-    }
-    40% {
-      transform: scale(0.04) translateY(0);
-    }
-    60% {
-      opacity: 1;
-      transform: scale(0.02) translateY(0px);
-    }
-    61% {
-      transform: scale(0.04);
-    }
-    99.9% {
-      height: 0;
-      padding-bottom: 100%;
-      border-radius: 100%;
-    }
-    100% {
-      transform: scale(2);
-      height: 100%;
-      padding-bottom: 0;
-      border-radius: 0;
-    }
   }
 
   /* Main site content styling */
@@ -1515,10 +1455,6 @@
 }
 
 @layer utilities {
-  .position-center {
-    @apply top-0 left-0 bottom-0 right-0 left-0 m-auto;
-  }
-
   .content-block {
     @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
   }

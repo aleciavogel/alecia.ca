@@ -4,7 +4,7 @@ import useMenuControl from "../../features/menu/useMenuControl";
 const SiteMenu: FC = () => {
   const { toggleMenu } = useMenuControl();
 
-  // Pressing the escape key should hide the menu
+  // Pressing the escape key hides the menu
   const escapeMenu = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === "Escape") {
