@@ -6,9 +6,14 @@ import { BlogPostFrontmatter } from "../../../definitions/blog";
 interface Props {
   timeToRead: string;
   data: BlogPostFrontmatter;
+  location: Location;
 }
 
-const PostInfo: FC<Props> = ({ data: { primary_color, accent_color, date }, timeToRead }) => {
+const PostInfo: FC<Props> = ({
+  data: { primary_color, accent_color, date },
+  timeToRead,
+  location,
+}) => {
   return (
     <aside className="author-card">
       <p>

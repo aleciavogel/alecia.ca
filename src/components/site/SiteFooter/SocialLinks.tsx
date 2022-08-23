@@ -8,19 +8,19 @@ const SocialLinks: FC = () => {
 
   return (
     <div id="footer-links">
-      <a href={`https://github.com/${github}`}>
+      <a href={`https://github.com/${github}`} target="_blank">
         <FontAwesomeIcon icon={faGithub} />
       </a>
 
-      <a href={`https://linkedin.com/in/${linkedIn}`}>
+      <a href={`https://linkedin.com/in/${linkedIn}`} target="_blank">
         <FontAwesomeIcon icon={faLinkedin} />
       </a>
 
-      <a href={`https://dribbble.com/${dribbble}`}>
+      <a href={`https://dribbble.com/${dribbble}`} target="_blank">
         <FontAwesomeIcon icon={faDribbble} />
       </a>
 
-      <a href={`https://twitter.com/${twitter}`}>
+      <a href={`https://twitter.com/${twitter}`} target="_blank">
         <FontAwesomeIcon icon={faTwitter} />
       </a>
     </div>

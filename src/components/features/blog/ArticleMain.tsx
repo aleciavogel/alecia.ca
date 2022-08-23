@@ -12,12 +12,12 @@ interface Props {
   children?: string | React.ReactNode;
 }
 
-const ArticleMain: FC<Props> = ({ data, children, timeToRead }) => {
+const ArticleMain: FC<Props> = ({ data, children, timeToRead, location }) => {
   const articleBodyRef = useRef<HTMLDivElement>(null);
   return (
     <div className="relative overflow-hidden pb-16 pt-48 mt-[-152px] z-40 leading-loose h-full">
       <ReadingProgress target={articleBodyRef} />
-      <PostInfo data={data} timeToRead={timeToRead} />
+      <PostInfo data={data} timeToRead={timeToRead} location={location} />
       <div ref={articleBodyRef}>{children}</div>
 
       <div className="clipped-container">
