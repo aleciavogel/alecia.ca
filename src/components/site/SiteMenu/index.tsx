@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useCallback } from "react";
 import useMenuControl from "../../features/menu/useMenuControl";
+import CloseButton from "./CloseButton";
 
 const SiteMenu: FC = () => {
   const { toggleMenu } = useMenuControl();
@@ -19,7 +20,11 @@ const SiteMenu: FC = () => {
     return () => document.removeEventListener("keydown", escapeMenu, false);
   }, [escapeMenu]);
 
-  return <nav id="site-menu" role="menu"></nav>;
+  return (
+    <nav id="site-menu" role="menu">
+      <CloseButton onClose={toggleMenu} />
+    </nav>
+  );
 };
 
 export default SiteMenu;

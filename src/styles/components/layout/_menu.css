@@ -21,10 +21,11 @@
 @layer components {
   #site-menu {
     @apply fixed transform-gpu overflow-hidden;
-    @apply w-full h-full left-0;
+    @apply w-full h-full left-0 py-4 px-3 md:py-6 md:px-6;
     top: -100%;
     z-index: 101;
     backface-visibility: hidden;
+    @apply transition-all delay-1000;
   }
 
   #site-menu::before {
@@ -37,6 +38,7 @@
     background-color: var(--accent-300);
     transform: scale(0.04) translateY(9999px);
     padding-bottom: 100%;
+    animation: menu-animation-out 0.3s ease-in-out forwards;
   }
   .dark #site-menu::before {
     background-color: var(--accent-800);
@@ -44,13 +46,14 @@
 
   .menu-open #site-menu {
     @apply top-0;
+    @apply transition-none;
   }
 
   .menu-open #site-menu::before {
-    animation: menu-animation 0.8s ease-out forwards;
+    animation: menu-animation-in 0.8s ease-out forwards;
   }
 
-  @keyframes menu-animation {
+  @keyframes menu-animation-in {
     0% {
       opacity: 0;
       transform: scale(0.04) translateY(300%);
@@ -80,5 +83,36 @@
       padding-bottom: 0;
       border-radius: 0;
     }
+  }
+
+  @keyframes menu-animation-out {
+    0% {
+      transform: scale(2);
+      height: 100%;
+      padding-bottom: 0;
+      border-radius: 0;
+      opacity: 1;
+    }
+    99.9% {
+      opacity: 0;
+      height: 100%;
+      transform: scale(2);
+    }
+    100% {
+      opacity: 0;
+      height: 0;
+    }
+  }
+
+  #site-menu .menu-toggle {
+    @apply absolute top-4 md:top-6 right-3 md:right-7 text-white text-6xl;
+    @apply opacity-0 transition-opacity duration-500;
+    line-height: 0.65;
+  }
+
+  .menu-open #site-menu .menu-toggle {
+    @apply opacity-100;
+    transform: translate3d(0, 0, 0) rotate(-360deg);
+    transition: transform 0.4s 1s ease-out, opacity 0.4s 1s ease-out;
   }
 }
