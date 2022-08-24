@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   onClose: () => void;
@@ -6,7 +8,7 @@ interface Props {
 
 const CloseButton: FC<Props> = ({ onClose }) => (
   <button className="menu-toggle" onClick={onClose}>
-    &times;
+    <FontAwesomeIcon icon={faXmark} />
   </button>
 );
 
