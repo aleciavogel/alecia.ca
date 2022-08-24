@@ -10,13 +10,13 @@
   .hero {
     @apply relative z-0 flex items-center justify-items-center px-14;
     @apply transition-colors duration-300 ease-in-out;
-    height: calc(100vh + 152px);
+    height: calc(100vh + var(--triangleHeight));
     background-color: var(--primaryBg);
   }
 
   .hero-wrapper {
     @apply mx-auto space-y-2 md:space-y-4 text-center lg:text-left sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg;
-    transform: translateY(calc(152px / -2));
+    transform: translateY(calc(var(--triangleHeight) / -2));
   }
 
   .hero .article-category {
@@ -32,12 +32,12 @@
     @apply text-sm md:text-2xl text-center;
   }
 
-  .read-more-arrow {
+  .hero .read-more-arrow {
     @apply absolute bottom-4 left-0 w-full text-white pointer-events-none;
-    transform: translateY(-152px);
+    transform: translateY(calc(var(--triangleHeight) * -1));
   }
 
-  .read-more-arrow svg {
+  .hero .read-more-arrow svg {
     @apply h-6 w-6 text-current mx-auto;
   }
 
