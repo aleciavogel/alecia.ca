@@ -1,0 +1,75 @@
+@layer components {
+  #reading-progress {
+    @apply fixed block top-0 right-full w-full transform-gpu transition-all duration-100 ease-linear;
+    z-index: 100;
+    height: 6px;
+    border-radius: 0 2px 0 0;
+    background: var(--accent);
+  }
+
+  .hero {
+    @apply relative z-0 flex items-center justify-items-center px-14;
+    @apply transition-colors duration-300 ease-in-out;
+    height: calc(100vh + 152px);
+    background-color: var(--primaryBg);
+  }
+
+  .hero-wrapper {
+    @apply mx-auto space-y-2 md:space-y-4 text-center lg:text-left sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg;
+    transform: translateY(calc(152px / -2));
+  }
+
+  .hero .article-category {
+    @apply uppercase font-bold tracking-wider text-sm sm:text-base md:text-xl;
+    color: var(--accentLight);
+  }
+
+  .hero h1 {
+    @apply font-serif text-xl capitalize text-white leading-snug md:text-5xl lg:text-7xl;
+  }
+
+  .hero p {
+    @apply text-sm md:text-2xl text-center;
+  }
+
+  .read-more-arrow {
+    @apply absolute bottom-4 left-0 w-full text-white pointer-events-none;
+    transform: translateY(-152px);
+  }
+
+  .read-more-arrow svg {
+    @apply h-6 w-6 text-current mx-auto;
+  }
+
+  .author-card {
+    @apply pointer-events-auto;
+    @apply px-16 mx-auto mb-12 w-full max-w-screen-md;
+    @apply text-center text-sm;
+    color: var(--textBody);
+  }
+
+  .author-card::after {
+    @apply block relative w-full max-w-[400px] zigzag-base mx-auto mt-12;
+    content: "";
+    background-image: var(--zigzag-primary-dark);
+  }
+
+  .author-card time {
+    color: var(--primary);
+  }
+
+  .share-links {
+    @apply mt-6 mb-16 text-xl space-x-6;
+  }
+
+  .share-links > a {
+    @apply inline-block text-current transition-colors duration-300 ease-in-out;
+  }
+
+  .clipped-container {
+    @apply absolute top-0 left-0 h-full w-full bg-white dark:bg-gray-900 pointer-events-none;
+    @apply transition-colors duration-300 ease-in-out;
+    clip-path: polygon(0 0, 100% var(--triangleHeight), 100% 100%, 0 100%);
+    z-index: -1;
+  }
+}
