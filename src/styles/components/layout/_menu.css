@@ -17,10 +17,13 @@
   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+  NOTE: I only used the animation that opens the menu as well as the spinning
+        transition of the close icon. Everything else is by me (Alecia).
 ********************************************************************************************************/
 @layer components {
   #site-menu {
-    @apply fixed transform-gpu overflow-hidden;
+    @apply fixed overflow-hidden;
     @apply w-full h-full left-0 py-4 px-3 md:py-6 md:px-6;
     top: -100%;
     z-index: 101;
@@ -31,7 +34,6 @@
   #site-menu::before {
     @apply absolute w-full overflow-hidden;
     @apply top-0 left-0 bottom-0 right-0 m-auto;
-    @apply transform-gpu;
     content: "";
     height: 0;
     border-radius: 100%;

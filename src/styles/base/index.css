@@ -3,6 +3,7 @@
 @import "_buttons.css";
 @import "_patterns.css";
 @import "_zigzag.css";
+@import "_vectors.css";
 
 @layer base {
   .dark {

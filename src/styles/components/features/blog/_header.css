@@ -1,6 +1,6 @@
 @layer components {
   #reading-progress {
-    @apply fixed block top-0 right-full w-full transform-gpu transition-all duration-100 ease-linear;
+    @apply fixed block top-0 right-full w-full transition-all duration-100 ease-linear;
     z-index: 100;
     height: 6px;
     border-radius: 0 2px 0 0;

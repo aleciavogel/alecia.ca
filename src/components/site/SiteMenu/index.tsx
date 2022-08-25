@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useCallback } from "react";
 import useMenuControl from "../../features/menu/useMenuControl";
 import CloseButton from "./CloseButton";
+import MenuIllustration from "./MenuIllustration";
 
 const SiteMenu: FC = () => {
   const { toggleMenu } = useMenuControl();
@@ -23,6 +24,8 @@ const SiteMenu: FC = () => {
   return (
     <nav id="site-menu" role="menu">
       <CloseButton onClose={toggleMenu} />
+
+      <MenuIllustration />
     </nav>
   );
 };
