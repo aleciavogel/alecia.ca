@@ -35,6 +35,6 @@
 
   #banner-hire-me {
     @apply text-white text-center pt-16 pb-20 bg-repeat;
-    background-color: var(--primaryBg);
+    background-color: var(--primary-800);
   }
 }

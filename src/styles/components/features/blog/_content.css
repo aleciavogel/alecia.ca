@@ -48,7 +48,7 @@
     @apply bg-transparent;
     @apply zigzag-base;
     top: calc(100% - 1px);
-    background-image: var(--zigzag-accent-dark);
+    background-image: var(--zigzag-accent-light);
   }
 
   .page-content h1,

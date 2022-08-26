@@ -1,2 +1,139 @@
 @layer base {
+  /************************************************************************
+                  oooo                             .o8
+                  `888                            "888
+       oo.ooooo.   888 .oo.    .ooooo.   .ooooo.   888oooo.   .ooooo.
+        888' `88b  888P"Y88b  d88' `88b d88' `88b  d88' `88b d88' `88b
+        888   888  888   888  888   888 888ooo888  888   888 888ooo888
+        888   888  888   888  888   888 888    .o  888   888 888    .o
+        888bod8P' o888o o888o `Y8bod8P' `Y8bod8P'  `Y8bod8P' `Y8bod8P'
+        888
+       o888o
+  ************************************************************************/
+  .phoebe-base-fill {
+    fill: theme("colors.gray.500");
+  }
+
+  .phoebe-base-shade {
+    fill: theme("colors.gray.700");
+  }
+
+  .phoebe-base-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.gray.700");
+  }
+
+  .phoebe-highlight-fill {
+    fill: theme("colors.gray.300");
+  }
+
+  .phoebe-highlight-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.gray.400");
+  }
+
+  .phoebe-ears-fill {
+    fill: theme("colors.pink.200");
+  }
+
+  .phoebe-mouth-outline {
+    @apply svg-rounded-small-outline no-fill;
+    stroke: #000;
+  }
+
+  /*************************************************************
+                oooo                       o8o
+                `888                       `"'
+       .oooo.    888   .ooooo.   .ooooo.  oooo   .oooo.
+      `P  )88b   888  d88' `88b d88' `"Y8 `888  `P  )88b
+       .oP"888   888  888ooo888 888        888   .oP"888
+      d8(  888   888  888    .o 888   .o8  888  d8(  888
+      `Y888""8o o888o `Y8bod8P' `Y8bod8P' o888o `Y888""8o
+
+  *************************************************************/
+  .alecia-shirt-fill {
+    fill: var(--primary-500);
+  }
+
+  .alecia-shirt-shade {
+    @apply svg-rounded-small-outline;
+    fill: var(--primary-600);
+    stroke: var(--primary-600);
+  }
+
+  .alecia-shirt-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: var(--primary-600);
+  }
+
+  .alecia-pants-fill {
+    fill: theme("colors.blue.700");
+  }
+
+  .alecia-pants-shade {
+    fill: theme("colors.blue.900");
+  }
+
+  .alecia-pants-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.blue.900");
+  }
+
+  .alecia-socks-light {
+    fill: var(--accent-50);
+  }
+
+  .alecia-socks-dark {
+    fill: var(--accent-300);
+  }
+
+  .alecia-hair-light-fill {
+    fill: theme("colors.yellow.700");
+  }
+
+  .alecia-hair-dark-fill {
+    fill: theme("colors.yellow.800");
+  }
+
+  .alecia-hair-outline {
+    fill: theme("colors.yellow.900");
+  }
+
+  .alecia-skin-fill {
+    fill: theme("colors.rose.200");
+  }
+
+  .alecia-arm-outline {
+    @apply svg-rounded-small-outline;
+    stroke: theme("colors.rose.400");
+  }
+
+  .alecia-skin-shade {
+    fill: theme("colors.rose.400");
+  }
+
+  .alecia-skin-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.rose.400");
+  }
+
+  .alecia-accessory {
+    fill: #000;
+  }
+
+  .alecia-laptop-fill {
+    fill: theme("colors.zinc.300");
+  }
+
+  .alecia-laptop-edge {
+    fill: theme("colors.zinc.300");
+  }
+
+  .alecia-laptop-shade {
+    fill: theme("colors.zinc.600");
+  }
+
+  .alecia-laptop-keyboard {
+    fill: theme("colors.zinc.400");
+  }
 }

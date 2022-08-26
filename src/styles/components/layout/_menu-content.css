@@ -16,7 +16,7 @@
   position: absolute;
   display: inline-block;
   height: 100%;
-  fill: var(--accent-300);
+  fill: var(--primary-300);
   opacity: 0.3;
   bottom: -150px;
   right: -70px;

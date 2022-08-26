@@ -22,10 +22,10 @@
   }
 
   .bg-static {
-    background-color: var(--accent-600);
+    background-color: var(--primary-600);
   }
 
   .bg-static-hover {
-    background-color: var(--accent-700);
+    background-color: var(--primary-500);
   }
 }

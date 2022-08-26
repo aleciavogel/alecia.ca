@@ -37,6 +37,8 @@
     --accent-800: theme("colors.pink.800");
     --accent-900: theme("colors.pink.900");
 
+    /* Vectors */
+
     /* For math reasons */
     --triangleHeight: 152px;
   }
