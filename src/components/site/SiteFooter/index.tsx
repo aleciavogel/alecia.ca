@@ -16,8 +16,6 @@ const SiteFooter: FC<Props> = ({ accent_color = "pink", primary_color = "indigo"
       <div className="mb-4 mx-auto sm:flex sm:items-center justify-between max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl">
         <div className="relative after:site-footer-svg-bg-cover z-50 -mt-28 -mb-24 mr-8">
           <AleciaSitSvg
-            accent_color={accent_color}
-            primary_color={primary_color}
             className="block h-80"
           />
         </div>

@@ -1,0 +1,25 @@
+@layer components {
+  .about-header {
+    @apply relative z-0 flex items-center justify-items-center px-20;
+    @apply transition-colors duration-300 ease-in-out;
+    height: calc(30vh);
+    min-height: 600px;
+    background-color: var(--primaryBg);
+  }
+
+  .about-header-wrapper {
+    @apply mx-auto space-y-2 md:space-y-4 text-left lg:text-left sm:max-w-screen-sm md:w-1/2 md:pl-4;
+  }
+
+  .about-header h1 {
+    @apply font-serif text-2xl capitalize text-white leading-snug md:text-5xl lg:text-8xl;
+  }
+
+  .about-header p {
+    @apply text-sm md:text-xl text-left max-w-[500px];
+  }
+
+  .about-header svg {
+    @apply w-1/2 mt-10;
+  }
+}
