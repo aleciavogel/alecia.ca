@@ -27,16 +27,19 @@
     fill: theme("colors.gray.300");
   }
 
-  .phoebe-highlight-outline {
+  .phoebe-highlight-outline,
+  .hammond-highlight-outline {
     @apply svg-rounded-outline no-fill;
     stroke: theme("colors.gray.400");
   }
 
+  .hammond-ears-fill,
   .phoebe-ears-fill {
     fill: theme("colors.pink.200");
   }
 
-  .phoebe-mouth-outline {
+  .phoebe-mouth-outline,
+  .cat-face-outline {
     @apply svg-rounded-small-outline no-fill;
     stroke: #000;
   }
@@ -79,6 +82,11 @@
     stroke: theme("colors.blue.900");
   }
 
+  .alecia-pants-outline-lighter {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.blue.800");
+  }
+
   .alecia-socks-light {
     fill: var(--accent-50);
   }
@@ -96,7 +104,8 @@
   }
 
   .alecia-hair-outline {
-    fill: theme("colors.yellow.900");
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.yellow.900");
   }
 
   .alecia-skin-fill {
@@ -118,7 +127,7 @@
   }
 
   .alecia-accessory {
-    fill: #000;
+    fill: var(--accent-500);
   }
 
   .alecia-laptop-fill {
@@ -136,4 +145,106 @@
   .alecia-laptop-keyboard {
     fill: theme("colors.zinc.400");
   }
+
+  .alecia-couch-light {
+    fill: theme("colors.blue.500");
+  }
+
+  .alecia-couch-dark {
+    fill: theme("colors.blue.600");
+  }
+
+  .alecia-couch-leg {
+    fill: theme("colors.yellow.500");
+  }
+
+  .alecia-eyes-light {
+    fill: #fff;
+  }
+
+  .couch-light {
+    fill: url(#couch-gradient);
+  }
+
+  /********************************************************
+                               .o8   o8o
+                              "888   `"'
+       .oooo.o  .oooo.    .oooo888  oooo   .ooooo.
+      d88(  "8 `P  )88b  d88' `888  `888  d88' `88b
+      `"Y88b.   .oP"888  888   888   888  888ooo888
+      o.  )88b d8(  888  888   888   888  888    .o
+      8""888P' `Y888""8o `Y8bod88P" o888o `Y8bod8P'
+
+  ********************************************************/
+  .sadie-body {
+    fill: theme("colors.zinc.600");
+  }
+
+  .sadie-head,
+  .sadie-tail {
+    fill: theme("colors.zinc.500");
+  }
+
+  .sadie-ears-and-nose {
+    fill: theme("colors.zinc.700");
+  }
+
+  .sadie-snout {
+    fill: theme("colors.zinc.600");
+  }
+
+  .sadie-paw {
+    fill: theme("colors.zinc.400");
+  }
+
+  .sadie-paw-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.zinc.500");
+  }
+
+  .sadie-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.zinc.700");
+  }
+
+  .sadie-tail-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.zinc.600");
+  }
+
+
+/**************************************************************************
+
+  oooo
+  `888
+   888 .oo.    .oooo.   ooo. .oo.  .oo.   ooo. .oo.  .oo.   oooo    ooo
+   888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888P"Y88bP"Y88b   `88.  .8'
+   888   888   .oP"888   888   888   888   888   888   888    `88..8'
+   888   888  d8(  888   888   888   888   888   888   888     `888'
+  o888o o888o `Y888""8o o888o o888o o888o o888o o888o o888o     .8'
+                                                            .o..P'
+                                                           `Y8P'
+ *************************************************************************/
+
+.hammond-base-fill {
+  fill: theme("colors.yellow.800")
 }
+
+.hammond-base-outline {
+  @apply svg-rounded-outline no-fill;
+  stroke: theme("colors.yellow.900");
+}
+
+.hammond-base-shade {
+  fill: theme("colors.zinc.800");
+}
+
+.hammond-stripe-fill {
+  fill: theme("colors.yellow.900");
+}
+
+.hammond-highlight-fill {
+  fill: theme("colors.slate.200");
+}
+}
+

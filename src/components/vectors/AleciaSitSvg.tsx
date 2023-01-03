@@ -16,10 +16,10 @@ const AleciaSitSvg: FC<Props> = ({ ...props }) => (
         {`.cls-21{fill:#888279;}` +
           `.cls-22{fill:#c7c7c9;}` +
           `.cls-27{fill:#fff;}` +
-          `.cls-33{fill:url(#radial-gradient);}`}
+          `.cls-33{fill:url(#radial-gradient-sit);}`}
       </style>
       <radialGradient
-        id="radial-gradient"
+        id="radial-gradient-sit"
         cx="823.81"
         cy="600.71"
         r="477.18"
