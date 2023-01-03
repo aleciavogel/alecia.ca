@@ -78,7 +78,6 @@ const AleciaCouchSvg: FC<Props> = (props) => {
           <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
         </radialGradient>
       </defs>
-      <title>illustration_04</title>
       <g className="cls-2">
         <g id="illustration_dark" data-name="illustration dark">
           <rect
