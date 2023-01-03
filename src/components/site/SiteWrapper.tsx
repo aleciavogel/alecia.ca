@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
 import { DefaultColor } from "../../definitions/colors";
-import { SettingsProvider } from "../features/settings/SettingsContext";
 import { MenuControlProvider } from "../features/menu/MenuControlContext";
 import SiteLayout from "./SiteLayout";
 
@@ -13,11 +12,9 @@ interface Props {
 }
 
 const SiteWrapper: FC<Props> = ({ children, ...colors }) => (
-  <SettingsProvider>
-    <MenuControlProvider>
-      <SiteLayout {...colors}>{children}</SiteLayout>
-    </MenuControlProvider>
-  </SettingsProvider>
+  <MenuControlProvider>
+    <SiteLayout {...colors}>{children}</SiteLayout>
+  </MenuControlProvider>
 );
 
 export default SiteWrapper;

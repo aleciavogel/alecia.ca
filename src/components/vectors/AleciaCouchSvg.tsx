@@ -74,8 +74,8 @@ const AleciaCouchSvg: FC<Props> = (props) => {
           r="224.84"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#ffebb7" />
-          <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0" stopColor="#ffebb7" />
+          <stop offset="0.95" stopColor="#fff" stopOpacity="0" />
         </radialGradient>
       </defs>
       <g className="cls-2">

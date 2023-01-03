@@ -1,0 +1,22 @@
+@layer components {
+  .blog-index-header {
+    @apply relative z-0 flex items-center justify-items-center px-20;
+    @apply transition-colors duration-300 ease-in-out;
+    height: calc(30vh + var(--triangleHeight));
+    min-height: calc(450px + var(--triangleHeight));
+    background-color: var(--primaryBg);
+  }
+
+  .blog-index-header-wrapper {
+    @apply mx-auto space-y-2 md:space-y-4 text-left lg:text-center sm:max-w-screen-sm;
+    transform: translateY(calc(var(--triangleHeight) / -2));
+  }
+
+  .blog-index-header h1 {
+    @apply font-serif text-2xl capitalize text-white leading-snug md:text-5xl lg:text-8xl;
+  }
+
+  .blog-index-header p {
+    @apply text-sm md:text-xl max-w-[500px];
+  }
+}

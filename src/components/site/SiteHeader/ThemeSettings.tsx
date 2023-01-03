@@ -1,30 +1,21 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC } from "react";
+import useDarkMode from "use-dark-mode";
 
 import DayIcon from "../../icons/DayIcon";
 import NightIcon from "../../icons/NightIcon";
-import useSettings from "../../features/settings/useSettings";
-import { SiteTheme } from "../../../types/settings";
 
 interface Props {
   hover: boolean;
 }
 
 const ThemeSettings: FC<Props> = ({ hover }) => {
-  const {
-    settings: { theme: currentTheme },
-    saveSettings,
-  } = useSettings();
-  const isDark = useMemo(() => currentTheme === SiteTheme.DARK, [currentTheme]);
-  const icon = isDark ? <DayIcon className="h-5" /> : <NightIcon className="h-4" />;
-
-  const toggleTheme = useCallback(() => {
-    saveSettings(isDark ? { theme: SiteTheme.LIGHT } : { theme: SiteTheme.DARK });
-  }, [saveSettings, isDark]);
+  const { toggle, value: isDark } = useDarkMode(undefined, { classNameDark: 'dark' });
+  const icon = isDark ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />;
 
   if (hover) {
     return (
       <div className="mt-6 flex flex-col items-end justify-end">
-        <div role="button" className="theme-button" onClick={toggleTheme}>
+        <div role="button" className="theme-button" onClick={toggle}>
           {icon}
         </div>
       </div>

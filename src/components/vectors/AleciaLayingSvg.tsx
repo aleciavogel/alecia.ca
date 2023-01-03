@@ -57,11 +57,11 @@ const AleciaLayingSvg: FC<Props> = (props) => {
           r="467.81"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#ffebb7" />
-          <stop offset="0.22" stop-color="#fff0c9" stop-opacity="0.75" />
-          <stop offset="0.58" stop-color="#fff8e6" stop-opacity="0.35" />
-          <stop offset="0.84" stop-color="#fffdf8" stop-opacity="0.1" />
-          <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0" stopColor="#ffebb7" />
+          <stop offset="0.22" stopColor="#fff0c9" stopOpacity="0.75" />
+          <stop offset="0.58" stopColor="#fff8e6" stopOpacity="0.35" />
+          <stop offset="0.84" stopColor="#fffdf8" stopOpacity="0.1" />
+          <stop offset="0.95" stopColor="#fff" stopOpacity="0" />
         </radialGradient>
       </defs>
       <g id="Layer_2" data-name="Layer 2">

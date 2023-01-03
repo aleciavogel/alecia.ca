@@ -89,6 +89,14 @@ const config: GatsbyConfig = {
       },
     },
 
+    // CSS Dark Mode
+    {
+      resolve: 'gatsby-plugin-use-dark-mode',
+      options: {
+        classNameDark: 'dark',
+      },
+    },
+
     // For creating an RSS feed
     {
       resolve: `gatsby-plugin-feed`,

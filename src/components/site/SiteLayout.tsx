@@ -26,7 +26,7 @@ const SiteLayout: FC<Props> = ({
   const menuClass = menuOpen ? "menu-open" : "";
 
   return (
-    <div id="site-wrapper" className={`${colorClasses} ${menuClass}`}>
+    <div id="site-wrapper" className={`${colorClasses} ${menuClass} `}>
       <SiteHeader />
       <SiteHeader hover={true} />
 
