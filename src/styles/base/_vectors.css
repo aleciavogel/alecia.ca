@@ -95,6 +95,11 @@
     fill: var(--accent-300);
   }
 
+  .alecia-socks-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: var(--accent-300);
+  }
+
   .alecia-hair-light-fill {
     fill: theme("colors.yellow.700");
   }
@@ -110,6 +115,12 @@
 
   .alecia-skin-fill {
     fill: theme("colors.rose.200");
+  }
+
+  .alecia-skin-fingers {
+    fill: theme("colors.rose.200");
+    stroke: theme("colors.rose.200");
+    stroke-width: 12px;
   }
 
   .alecia-arm-outline {
@@ -134,8 +145,21 @@
     fill: theme("colors.zinc.300");
   }
 
+  .alecia-laptop-screen {
+    fill: theme("colors.cyan.600");
+  }
+
   .alecia-laptop-edge {
     fill: theme("colors.zinc.300");
+  }
+
+  .alecia-laptop-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.zinc.500");
+  }
+
+  .alecia-laptop-highlight {
+    fill: theme("colors.zinc.100");
   }
 
   .alecia-laptop-shade {
