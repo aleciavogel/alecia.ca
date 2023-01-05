@@ -13,12 +13,6 @@ const AleciaLayingSvg: FC<Props> = (props) => {
       {...props}
     >
       <defs>
-        <style>{
-          `.clb-10,.clb-11,.clb-2,.clb-3,.clb-4,.clb-5,.clb-6,.clb-7,.clb-8,.clb-9{stroke:#510073;stroke-width:1.5px;}
-          .clb-10,.clb-11,.clb-13,.clb-16,.clb-19,.clb-2,.clb-24,.clb-26,.clb-27,.clb-28,.clb-29,.clb-3,.clb-39,.clb-4,.clb-40,.clb-41,.clb-5,.clb-6,.clb-7,.clb-8,.clb-9{stroke - linecap:round;stroke-linejoin:round;}
-          .clb-13,.clb-16,.clb-19,.clb-24,.clb-28,.clb-39,.clb-40,.clb-41{stroke - width:2px;}
-          .clb-43{fill:url(#Безымянный_градиент_52);
-          }`}</style>
         <clipPath id="clip-path">
           <path className="clb-4" d="M807.93,190.77c-2.13-10.23,42.25-30.63,75,25.65" />
         </clipPath>
@@ -56,7 +50,7 @@ const AleciaLayingSvg: FC<Props> = (props) => {
           />
         </clipPath>
         <radialGradient
-          id="Безымянный_градиент_52"
+          id="laying-gradient"
           cx="209.45"
           cy="224.09"
           r="467.81"
@@ -327,7 +321,8 @@ const AleciaLayingSvg: FC<Props> = (props) => {
           <path className="hammond-stripe-fill" d="M592.71,241s1.84,7.62,20.28,6.06c0,0-6.81,8.75-18.43,2.81Z" />
           <path className="hammond-highlight-outline" d="M623.94,263.21l.44,32.79s17.09.62,16.64,15.37" />
           <path
-            className="clb-43 invisible dark:visible"
+            id="light"
+            className="lying-light"
             d="M388.85,113.31,696.05,18S875.9,224.36,648.37,340l-351.4-22,9.52-140Z"
           />
         </g>

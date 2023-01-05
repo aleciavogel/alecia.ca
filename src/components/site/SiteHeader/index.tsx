@@ -16,7 +16,7 @@ const SiteHeader: FC<Props> = ({ hover = false, hasColor = false }) => {
   const className = `site-header ${colorClass} ${hoverClass}`;
 
   return (
-    <header aria-hidden={!hover} className={className}>
+    <header data-scroll data-scroll-sticky data-scroll-target="#site-wrapper" aria-hidden={!hover} className={className}>
       <SiteLogo hover={hover} />
       <HeaderRight>
         <MenuIcon hover={hover} />

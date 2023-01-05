@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
+import { useLocation } from "@reach/router"
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 import { DefaultColor } from "../../definitions/colors";
 import { MenuControlProvider } from "../features/menu/MenuControlContext";
@@ -11,10 +13,27 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const SiteWrapper: FC<Props> = ({ children, ...colors }) => (
-  <MenuControlProvider>
-    <SiteLayout {...colors}>{children}</SiteLayout>
-  </MenuControlProvider>
-);
+const SiteWrapper: FC<Props> = ({ children, ...colors }) => {
+  const containerRef = useRef(null)
+  const location = useLocation();
 
+  return (
+    <LocomotiveScrollProvider
+      options={
+        {
+          smooth: true,
+        }
+      }
+      ref={containerRef}
+      location={location.pathname}
+      onLocationChange={ (scroll: any) => scroll.scrollTo(0, { duration: 0, disableLerp: true }) } // If you want to reset the scroll position to 0 for example
+    >
+      <div data-scroll-container ref={containerRef}>
+        <MenuControlProvider>
+          <SiteLayout {...colors}>{children}</SiteLayout>
+        </MenuControlProvider>
+      </div>
+    </LocomotiveScrollProvider>
+  );
+}
 export default SiteWrapper;

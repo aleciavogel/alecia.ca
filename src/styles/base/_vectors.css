@@ -190,6 +190,10 @@
     fill: url(#couch-gradient);
   }
 
+  .lying-light {
+    fill:url(#laying-gradient)
+  }
+
   /********************************************************
                                .o8   o8o
                               "888   `"'
@@ -237,38 +241,38 @@
   }
 
 
-/**************************************************************************
+  /**************************************************************************
 
-  oooo
-  `888
-   888 .oo.    .oooo.   ooo. .oo.  .oo.   ooo. .oo.  .oo.   oooo    ooo
-   888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888P"Y88bP"Y88b   `88.  .8'
-   888   888   .oP"888   888   888   888   888   888   888    `88..8'
-   888   888  d8(  888   888   888   888   888   888   888     `888'
-  o888o o888o `Y888""8o o888o o888o o888o o888o o888o o888o     .8'
-                                                            .o..P'
-                                                           `Y8P'
- *************************************************************************/
+    oooo
+    `888
+     888 .oo.    .oooo.   ooo. .oo.  .oo.   ooo. .oo.  .oo.   oooo    ooo
+     888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888P"Y88bP"Y88b   `88.  .8'
+     888   888   .oP"888   888   888   888   888   888   888    `88..8'
+     888   888  d8(  888   888   888   888   888   888   888     `888'
+    o888o o888o `Y888""8o o888o o888o o888o o888o o888o o888o     .8'
+                                                              .o..P'
+                                                             `Y8P'
+  *************************************************************************/
 
-.hammond-base-fill {
-  fill: theme("colors.yellow.800")
-}
+  .hammond-base-fill {
+    fill: theme("colors.yellow.800")
+  }
 
-.hammond-base-outline {
-  @apply svg-rounded-outline no-fill;
-  stroke: theme("colors.yellow.900");
-}
+  .hammond-base-outline {
+    @apply svg-rounded-outline no-fill;
+    stroke: theme("colors.yellow.900");
+  }
 
-.hammond-base-shade {
-  fill: theme("colors.zinc.800");
-}
+  .hammond-base-shade {
+    fill: theme("colors.zinc.800");
+  }
 
-.hammond-stripe-fill {
-  fill: theme("colors.yellow.900");
-}
+  .hammond-stripe-fill {
+    fill: theme("colors.yellow.900");
+  }
 
-.hammond-highlight-fill {
-  fill: theme("colors.slate.200");
-}
+  .hammond-highlight-fill {
+    fill: theme("colors.slate.200");
+  }
 }
 
