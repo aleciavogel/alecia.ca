@@ -11,7 +11,6 @@ const AleciaCouchSvg: FC<Props> = (props) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 967.04 677.98"
       data-scroll
-      data-scroll-speed="2"
       {...props}
     >
       <defs>

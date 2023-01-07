@@ -22,7 +22,7 @@ const SiteMenu: FC = () => {
   }, [escapeMenu]);
 
   return (
-    <nav id="site-menu" role="menu">
+    <nav data-scroll data-scroll-sticky data-scroll-target="#site-wrapper" id="site-menu" role="menu" >
       <CloseButton onClose={toggleMenu} />
 
       <MenuIllustration />
