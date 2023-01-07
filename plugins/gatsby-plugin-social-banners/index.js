@@ -28,8 +28,8 @@ const AVATAR_X = PADDING + BORDER_WIDTH;
 const AVATAR_Y = CIRCLE_Y + BORDER_WIDTH;
 const AUTHOR_X = AVATAR_X + AVATAR_SIZE + PADDING;
 const AUTHOR_Y = AVATAR_Y + 5;
-const JOB_X = AUTHOR_X;
-const JOB_Y = AUTHOR_Y + 70;
+const JOB_X = AUTHOR_X - 3;
+const JOB_Y = AUTHOR_Y + 60;
 
 const renderLogo = async (fill_color) => {
   /* Update fill color of logo to match theme of this article */
@@ -80,7 +80,7 @@ module.exports = async ({ markdownNode }) => {
     title_font,
     brand_font,
     author_font,
-    author_title_font
+    job_font
   ]) => {
     let banner = new jimp(WIDTH, HEIGHT, colors[primary_color][700], (err) => {
       if (err) throw err
@@ -106,7 +106,7 @@ module.exports = async ({ markdownNode }) => {
 
     /* Add author's name & title */
     banner.print(author_font, AUTHOR_X, AUTHOR_Y, "Alecia Vogel");
-    banner.print(author_title_font, AUTHOR_X, JOB_Y, "Full Stack Developer");
+    banner.print(job_font, JOB_X, JOB_Y, "Full Stack Developer");
 
     return banner.write(dest);
   });
