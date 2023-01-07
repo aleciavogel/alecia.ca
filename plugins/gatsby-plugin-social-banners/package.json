@@ -14,7 +14,9 @@
   "author": "Alecia Vogel <hello@alecia.ca>",
   "license": "0BSD",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "jimp": "^0.16.2",
+    "sharp": "^0.31.3",
     "tailwindcss": "^3.2.4"
   }
 }

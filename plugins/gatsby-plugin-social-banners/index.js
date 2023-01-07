@@ -1,14 +1,28 @@
+const fs = require('fs');
 const path = require('path');
+const cheerio = require('cheerio');
 const jimp = require('jimp');
+const sharp = require('sharp');
 const colors = require('tailwindcss/colors')
 
-module.exports = ({ markdownNode }) => {
+const renderLogo = async (fill_color) => {
+  const $ = cheerio.load(fs.readFileSync(path.join(__dirname, "assets/logo.svg")));
+  $('path').css("fill", colors[fill_color][400]);
+  const svg = $('body').html();
+
+  const png = await sharp(Buffer.from(svg)).png().toBuffer();
+
+  return jimp.read(png).then((img) => img?.resize(50, 50));
+}
+
+module.exports = async ({ markdownNode }) => {
   const {
     frontmatter,
     fields
   } = markdownNode;
-  const { primary_color } = frontmatter;
-  const output = path.join('./public/seo', fields.slug, 'social-banner.jpg');
+  const { primary_color, accent_color } = frontmatter;
+  const dest = path.join('./public/page-data/blog', fields.slug, 'social-banner.jpg');
+  const logo = await renderLogo(accent_color);
 
   const WIDTH = 1200;
   const HEIGHT = 630;
@@ -18,9 +32,7 @@ module.exports = ({ markdownNode }) => {
     if (err) throw err
   })
 
-  banner.write(output);
-
-  console.log(output, primary_color, colors[primary_color][600]);
+  banner.composite(logo, 100, 100).write(dest);
 
 
 };
