@@ -23,9 +23,13 @@ const BRAND_Y = (RECTANGLE_SIZE - BRAND_FONT_SIZE) / 2;
 const CIRCLE_SIZE = HEIGHT / 5;
 const CIRCLE_Y = HEIGHT - PADDING - CIRCLE_SIZE;
 const BORDER_WIDTH = 6;
-const AUTHOR_SIZE = CIRCLE_SIZE - (BORDER_WIDTH * 2);
-const AUTHOR_X = PADDING + BORDER_WIDTH;
-const AUTHOR_Y = CIRCLE_Y + BORDER_WIDTH;
+const AVATAR_SIZE = CIRCLE_SIZE - (BORDER_WIDTH * 2);
+const AVATAR_X = PADDING + BORDER_WIDTH;
+const AVATAR_Y = CIRCLE_Y + BORDER_WIDTH;
+const AUTHOR_X = AVATAR_X + AVATAR_SIZE + PADDING;
+const AUTHOR_Y = AVATAR_Y + 5;
+const JOB_X = AUTHOR_X;
+const JOB_Y = AUTHOR_Y + 70;
 
 const renderLogo = async (fill_color) => {
   /* Update fill color of logo to match theme of this article */
@@ -65,16 +69,18 @@ module.exports = async ({ markdownNode }) => {
   const logo = await renderLogo(accent_color);
   const circle = await renderCircle(accent_color);
 
-  return Promise.all([
+  Promise.all([
     jimp.read(path.join(__dirname, 'assets/alecia_author.png')),
     jimp.loadFont(path.join(__dirname, 'assets/fonts/eksell/eksell.fnt')),
     jimp.loadFont(path.join(__dirname, 'assets/fonts/silka-bold/silka-bold.fnt')),
-    jimp.loadFont(path.join(__dirname, 'assets/fonts/silka/silka.fnt')),
+    jimp.loadFont(path.join(__dirname, 'assets/fonts/silka-bold-small/silka-bold-small.fnt')),
+    jimp.loadFont(path.join(__dirname, 'assets/fonts/silka-small/silka-small.fnt')),
   ]).then(([
     avatar,
     title_font,
     brand_font,
-    author_font
+    author_font,
+    author_title_font
   ]) => {
     let banner = new jimp(WIDTH, HEIGHT, colors[primary_color][700], (err) => {
       if (err) throw err
@@ -92,12 +98,16 @@ module.exports = async ({ markdownNode }) => {
     banner.composite(circle, PADDING, CIRCLE_Y);
 
     /* Add author image */
-    avatar?.resize(AUTHOR_SIZE, AUTHOR_SIZE);
-    banner.composite(avatar, AUTHOR_X, AUTHOR_Y);
+    avatar?.resize(AVATAR_SIZE, AVATAR_SIZE);
+    banner.composite(avatar, AVATAR_X, AVATAR_Y);
 
     /* Add blog title text */
     banner.print(title_font, PADDING, TITLE_Y, title, WIDTH - PADDING * 4);
 
-    banner.write(dest);
+    /* Add author's name & title */
+    banner.print(author_font, AUTHOR_X, AUTHOR_Y, "Alecia Vogel");
+    banner.print(author_title_font, AUTHOR_X, JOB_Y, "Full Stack Developer");
+
+    return banner.write(dest);
   });
 };
