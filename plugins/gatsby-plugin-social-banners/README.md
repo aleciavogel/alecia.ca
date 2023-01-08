@@ -22,7 +22,8 @@ for your blog posts. That way, you can easily grab the file path of the banner i
 ## Initial configuration
 
 Since this package is currently unpublished, you will need to copy this directory's files into
-your own gatsby site's `/plugins` directory.
+your own gatsby site's `/plugins` directory. Then, run `yarn` from within the directory to install
+its dependencies.
 
 Add it to your `gatsby-plugin-mdx` plugins in the `gatsby-config.js` file, like so:
 
