@@ -140,4 +140,17 @@
     width: 50px;
     background-image: var(--zigzag-primary-dark);
   }
+
+  .page-content .gatsby-highlight {
+    @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
+    @apply mb-6 md:mb-10;
+  }
+
+  .page-content > p > div:has(> code[class*="language-"]) {
+    @apply inline-block;
+  }
+
+  .page-content > p > div > code[class*="language-"] {
+    @apply px-1;
+  }
 }

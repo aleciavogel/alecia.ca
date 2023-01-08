@@ -92,7 +92,11 @@ const config: GatsbyConfig = {
           },
           {
             resolve: `gatsby-remark-classes`,
-            options: {},
+            options: {
+              classMap: {
+                inlineCode: "inline-code",
+              },
+            },
           },
         ],
       },
