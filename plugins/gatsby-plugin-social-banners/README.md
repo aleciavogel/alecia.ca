@@ -16,8 +16,8 @@ My plugin includes three things that the two articles above do not cover:
 2. The use of `pluginOptions` to allow customizations on the fly and enable external assets to be included in the banner
 3. Programmatically updating the colors of an `SVG` image and then compositing the image over top of the banner
 
-And, as a bonus, I've added some configuration to automatically create a new `banner` field for your blog posts so that
-you can easily grab the file path of the banner image whenever you want.
+And, as a bonus, I've added some configuration documentation below, so you can automatically create a new `banner` field 
+for your blog posts. That way, you can easily grab the file path of the banner image whenever you want.
 
 ## Initial configuration
 
