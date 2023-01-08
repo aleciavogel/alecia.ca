@@ -5,6 +5,20 @@ logo, etc, depending on what has been predefined in a blog post's frontmatter co
 
 I use the [tailwindcss color palette](https://tailwindcss.com/docs/customizing-colors).
 
+I'll write a blog article about how I made this plugin (once I've finished my blog, that is!). For now,
+feel free to check out [this article](https://antran.app/2022/gatsby_seo_banner/) as well as 
+[this one](https://tkplaceholder.io/how-to-automate-social-cards-for-your-gatsby-blog/), which I used as a starting point
+for this plugin.
+
+My plugin includes three things that the two articles above do not cover:
+
+1. Generating the *entire banner* from scratch, rather than simply adding text to a base image
+2. The use of `pluginOptions` to allow customizations on the fly and enable external assets to be included in the banner
+3. Programmatically updating the colors of an `SVG` image and then compositing the image over top of the banner
+
+And, as a bonus, I've added some configuration to automatically create a new `banner` field for your blog posts so that
+you can easily grab the file path of the banner image whenever you want.
+
 ## Initial configuration
 
 Since this package is currently unpublished, you will need to copy this directory's files into
