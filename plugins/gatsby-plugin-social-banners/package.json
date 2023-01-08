@@ -13,6 +13,9 @@
     "gatsby",
     "gatsby-plugin"
   ],
+  "peerDependencies": {
+    "gatsby-plugin-mdx": "^4.0.0"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "jimp": "^0.16.2",

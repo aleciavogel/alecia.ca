@@ -17,9 +17,8 @@ const {
  * @returns {Promise<string>} - Destination of the social banner that was generated
  */
 exports.generateBanner = async (node, reporter, pluginOptions) => {
-  console.log(node);
   const { primary_color, accent_color, title } = node.frontmatter;
-  const dest = path.join(pluginOptions.destination, "/blog", node.fields.slug, "social-banner.jpg");
+  const dest = path.join(pluginOptions.destination, node.path, "social-banner.jpg");
   const sizing = generateSizing(pluginOptions);
   const logo = await renderLogo(accent_color, pluginOptions, sizing);
   const circle = await renderCircle(accent_color, sizing);
