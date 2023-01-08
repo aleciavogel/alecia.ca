@@ -11,7 +11,7 @@ Stay tuned for updates.
 
 ### Running the project locally
 
-You will need to have [Yarn](https://yarnpkg.com/) installed before beginning.
+Install [Yarn](https://yarnpkg.com/) if you haven't already.
 
 ```bash
 # Clone the repository
