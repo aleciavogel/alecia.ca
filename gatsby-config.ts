@@ -18,19 +18,6 @@ const config: GatsbyConfig = {
       linkedIn: `alecia-vogel`,
       github: `aleciavogel`,
     },
-    vectorColors: {
-      alecia: {
-        hair: "yellow",
-        skin: "rose",
-        pants: "indigo",
-        shirt: "pink",
-      },
-      phoebe: {
-        base: "gray",
-        highlight: "gray",
-        ears: "pink",
-      },
-    },
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

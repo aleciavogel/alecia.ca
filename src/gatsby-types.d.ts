@@ -610,6 +610,7 @@ type FileFieldsEnum =
   | 'childMdx.fields.timeToRead.time'
   | 'childMdx.fields.timeToRead.words'
   | 'childMdx.frontmatter.accent_color'
+  | 'childMdx.frontmatter.authorTwitter'
   | 'childMdx.frontmatter.category'
   | 'childMdx.frontmatter.date'
   | 'childMdx.frontmatter.description'
@@ -670,6 +671,7 @@ type FileFieldsEnum =
   | 'childrenMdx.fields.timeToRead.time'
   | 'childrenMdx.fields.timeToRead.words'
   | 'childrenMdx.frontmatter.accent_color'
+  | 'childrenMdx.frontmatter.authorTwitter'
   | 'childrenMdx.frontmatter.category'
   | 'childrenMdx.frontmatter.date'
   | 'childrenMdx.frontmatter.description'
@@ -921,6 +923,7 @@ type FloatQueryOperatorInput = {
 
 type Frontmatter = {
   readonly accent_color: Maybe<Scalars['String']>;
+  readonly authorTwitter: Maybe<Scalars['String']>;
   readonly category: Maybe<Scalars['String']>;
   readonly date: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
@@ -940,6 +943,7 @@ type Frontmatter_dateArgs = {
 
 type FrontmatterFilterInput = {
   readonly accent_color: InputMaybe<StringQueryOperatorInput>;
+  readonly authorTwitter: InputMaybe<StringQueryOperatorInput>;
   readonly category: InputMaybe<StringQueryOperatorInput>;
   readonly date: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
@@ -1112,6 +1116,7 @@ type MdxFieldsEnum =
   | 'fields.timeToRead.time'
   | 'fields.timeToRead.words'
   | 'frontmatter.accent_color'
+  | 'frontmatter.authorTwitter'
   | 'frontmatter.category'
   | 'frontmatter.date'
   | 'frontmatter.description'
@@ -1925,13 +1930,6 @@ type SiteFieldsEnum =
   | 'siteMetadata.social.mail'
   | 'siteMetadata.social.twitter'
   | 'siteMetadata.title'
-  | 'siteMetadata.vectorColors.alecia.hair'
-  | 'siteMetadata.vectorColors.alecia.pants'
-  | 'siteMetadata.vectorColors.alecia.shirt'
-  | 'siteMetadata.vectorColors.alecia.skin'
-  | 'siteMetadata.vectorColors.phoebe.base'
-  | 'siteMetadata.vectorColors.phoebe.ears'
-  | 'siteMetadata.vectorColors.phoebe.highlight'
   | 'trailingSlash';
 
 type SiteFilterInput = {
@@ -2723,7 +2721,6 @@ type SiteSiteMetadata = {
   readonly siteUrl: Maybe<Scalars['String']>;
   readonly social: Maybe<Social>;
   readonly title: Maybe<Scalars['String']>;
-  readonly vectorColors: Maybe<SiteSiteMetadataVectorColors>;
 };
 
 type SiteSiteMetadataFilterInput = {
@@ -2732,43 +2729,6 @@ type SiteSiteMetadataFilterInput = {
   readonly siteUrl: InputMaybe<StringQueryOperatorInput>;
   readonly social: InputMaybe<SocialFilterInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
-  readonly vectorColors: InputMaybe<SiteSiteMetadataVectorColorsFilterInput>;
-};
-
-type SiteSiteMetadataVectorColors = {
-  readonly alecia: Maybe<SiteSiteMetadataVectorColorsAlecia>;
-  readonly phoebe: Maybe<SiteSiteMetadataVectorColorsPhoebe>;
-};
-
-type SiteSiteMetadataVectorColorsAlecia = {
-  readonly hair: Maybe<Scalars['String']>;
-  readonly pants: Maybe<Scalars['String']>;
-  readonly shirt: Maybe<Scalars['String']>;
-  readonly skin: Maybe<Scalars['String']>;
-};
-
-type SiteSiteMetadataVectorColorsAleciaFilterInput = {
-  readonly hair: InputMaybe<StringQueryOperatorInput>;
-  readonly pants: InputMaybe<StringQueryOperatorInput>;
-  readonly shirt: InputMaybe<StringQueryOperatorInput>;
-  readonly skin: InputMaybe<StringQueryOperatorInput>;
-};
-
-type SiteSiteMetadataVectorColorsFilterInput = {
-  readonly alecia: InputMaybe<SiteSiteMetadataVectorColorsAleciaFilterInput>;
-  readonly phoebe: InputMaybe<SiteSiteMetadataVectorColorsPhoebeFilterInput>;
-};
-
-type SiteSiteMetadataVectorColorsPhoebe = {
-  readonly base: Maybe<Scalars['String']>;
-  readonly ears: Maybe<Scalars['String']>;
-  readonly highlight: Maybe<Scalars['String']>;
-};
-
-type SiteSiteMetadataVectorColorsPhoebeFilterInput = {
-  readonly base: InputMaybe<StringQueryOperatorInput>;
-  readonly ears: InputMaybe<StringQueryOperatorInput>;
-  readonly highlight: InputMaybe<StringQueryOperatorInput>;
 };
 
 type SiteSortInput = {
@@ -2809,15 +2769,15 @@ type StringQueryOperatorInput = {
   readonly regex: InputMaybe<Scalars['String']>;
 };
 
+type SiteMetadataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteMetadataQueryQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly siteUrl: string | null, readonly description: string | null, readonly author: { readonly name: string | null, readonly title: string | null, readonly email: string | null, readonly summary: string | null } | null, readonly social: { readonly twitter: string | null, readonly linkedIn: string | null, readonly github: string | null, readonly dribbble: string | null } | null } | null } | null };
+
 type SocialLinksQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SocialLinksQueryQuery = { readonly site: { readonly siteMetadata: { readonly social: { readonly twitter: string | null, readonly linkedIn: string | null, readonly github: string | null, readonly dribbble: string | null } | null } | null } | null };
-
-type VectorColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type VectorColorsQueryQuery = { readonly site: { readonly siteMetadata: { readonly vectorColors: { readonly alecia: { readonly hair: string | null, readonly skin: string | null, readonly shirt: string | null, readonly pants: string | null } | null, readonly phoebe: { readonly base: string | null, readonly highlight: string | null, readonly ears: string | null } | null } | null } | null } | null };
+type SocialLinksQueryQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly social: { readonly twitter: string | null, readonly linkedIn: string | null, readonly github: string | null, readonly dribbble: string | null } | null } | null } | null };
 
 
 }

@@ -15,6 +15,8 @@ interface BlogPost {
   body: string;
   fields: {
     slug: string;
+    timeToRead: TimeToRead;
+    banner: string;
   };
   frontmatter: BlogPostFrontmatter;
 }
@@ -28,6 +30,8 @@ interface BlogPostFrontmatter {
   accent_color?: DefaultColor;
   text_color?: DefaultColor;
   category: string;
+  banner?: string;
+  authorTwitter?: string;
 }
 
 interface TimeToRead {
@@ -59,19 +63,6 @@ interface ISite {
       linkedIn: string;
       github: string;
       dribbble: string;
-    };
-    vectorColors: {
-      alecia: {
-        hair: DefaultColor;
-        skin: DefaultColor;
-        pants: DefaultColor;
-        shirt: DefaultColor;
-      };
-      phoebe: {
-        base: DefaultColor;
-        highlight: DefaultColor;
-        ears: DefaultColor;
-      };
     };
   };
 }

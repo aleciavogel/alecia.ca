@@ -4,6 +4,7 @@ import { MDXProvider } from "@mdx-js/react";
 import SiteWrapper from "../components/site/SiteWrapper";
 import ArticleHeader from "../components/features/blog/ArticleHeader";
 import ArticleMain from "../components/features/blog/ArticleMain";
+import ArticleSEO from "../components/features/blog/ArticleSEO";
 import components from "../components/mdx";
 
 const shortcodes = { Link, ...components }; // Provide common components here
@@ -16,6 +17,7 @@ export default function PageTemplate({ data, children, location }: any) {
 
   return (
     <SiteWrapper {...colors}>
+      <ArticleSEO frontmatter={frontmatter} banner={fields.banner} />
       <article>
         <ArticleHeader data={frontmatter} />
         <ArticleMain location={location} data={frontmatter} timeToRead={fields.timeToRead.text}>
@@ -54,6 +56,7 @@ export const query = graphql`
         accent_color
         text_color
         category
+        authorTwitter
       }
     }
     previous: mdx(id: { eq: $previousPostId }) {

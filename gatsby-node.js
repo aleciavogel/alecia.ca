@@ -75,7 +75,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `banner`,
       node,
-      value: node.frontmatter.banner ?? `/seo/blog${node.fields.slug}social-banner.jpg`
+      value: node.frontmatter.banner ?? `/seo/blog${node.fields.slug}social-banner.jpg`,
     });
   }
 };
@@ -126,6 +126,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       accent_color: String
       text_color: String
       category: String
+      authorTwitter: String
     }
 
     type Fields {

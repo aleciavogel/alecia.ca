@@ -3,10 +3,18 @@ import { ISite } from "../definitions/blog";
 
 const useSocialLinks = () => {
   const data: { site: ISite } = useStaticQuery(graphql`
-    query SocialLinksQuery {
+    query SiteMetadataQuery {
       site {
         siteMetadata {
           title
+          siteUrl
+          description
+          author {
+            name
+            title
+            email
+            summary
+          }
           social {
             twitter
             linkedIn
@@ -19,7 +27,7 @@ const useSocialLinks = () => {
   `);
 
   return {
-    ...data.site.siteMetadata?.social,
+    ...data.site.siteMetadata,
   };
 };
 
