@@ -3,7 +3,7 @@
  *
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
-
+const { generateBanner } = require("./src/social-banner");
 const {
   WIDTH,
   HEIGHT,
@@ -158,4 +158,4 @@ exports.pluginOptionsSchema = ({ Joi }) => {
   });
 }
 
-exports.onPostBuild = ({ reporter }) => reporter.success("Finished generating social banners")
+exports.onPostBuild = ({ reporter }) => reporter.info("Finished generating social banners")

@@ -413,11 +413,13 @@ type DirectorySortInput = {
 };
 
 type Fields = {
+  readonly banner: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly timeToRead: Maybe<MdxFieldsTimeToRead>;
 };
 
 type FieldsFilterInput = {
+  readonly banner: InputMaybe<StringQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly timeToRead: InputMaybe<MdxFieldsTimeToReadFilterInput>;
 };
@@ -601,6 +603,7 @@ type FileFieldsEnum =
   | 'childMdx.children.parent.children'
   | 'childMdx.children.parent.id'
   | 'childMdx.excerpt'
+  | 'childMdx.fields.banner'
   | 'childMdx.fields.slug'
   | 'childMdx.fields.timeToRead.minutes'
   | 'childMdx.fields.timeToRead.text'
@@ -660,6 +663,7 @@ type FileFieldsEnum =
   | 'childrenMdx.children.parent.children'
   | 'childrenMdx.children.parent.id'
   | 'childrenMdx.excerpt'
+  | 'childrenMdx.fields.banner'
   | 'childrenMdx.fields.slug'
   | 'childrenMdx.fields.timeToRead.minutes'
   | 'childrenMdx.fields.timeToRead.text'
@@ -1101,6 +1105,7 @@ type MdxFieldsEnum =
   | 'children.parent.parent.children'
   | 'children.parent.parent.id'
   | 'excerpt'
+  | 'fields.banner'
   | 'fields.slug'
   | 'fields.timeToRead.minutes'
   | 'fields.timeToRead.text'

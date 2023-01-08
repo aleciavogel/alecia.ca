@@ -41,6 +41,7 @@ export const query = graphql`
       excerpt(pruneLength: 160)
       body
       fields {
+        banner
         timeToRead {
           text
         }

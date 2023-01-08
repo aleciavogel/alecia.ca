@@ -67,9 +67,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
 
     createNodeField({
-      node,
       name: `timeToRead`,
+      node,
       value: readingTime(node.body),
+    });
+
+    createNodeField({
+      name: `banner`,
+      node,
+      value: node.frontmatter.banner ?? `/seo/blog${node.fields.slug}social-banner.jpg`
     });
   }
 };
@@ -124,6 +130,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Fields {
       slug: String
+      banner: String
     }
   `);
 };
