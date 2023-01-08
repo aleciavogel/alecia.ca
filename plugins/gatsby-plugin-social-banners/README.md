@@ -37,19 +37,19 @@ Add it to your `gatsby-plugin-mdx` plugins in the `gatsby-config.js` file, like 
             // Custom plugin can be found in `plugins/gatsby-plugin-social-banners`
             resolve: "gatsby-plugin-social-banners",
             options: {
-              logoSvg: `${__dirname}/static/images/logo.svg`,
+              logoSvg: `${__dirname}/content/assets/images/logo.svg`,
               siteName: "alecia.ca",
               destination: `${__dirname}/public/seo`,
               default: {
                 author: "Alecia Vogel",
                 description: "Full Stack Developer",
-                avatar: `${__dirname}/static/images/alecia_author.png`,
+                avatar: `${__dirname}/content/assets/images/alecia_author.png`,
               },
               fonts: {
-                title: `${__dirname}/static/fonts/bitmap/eksell/eksell.fnt`,
-                brand: `${__dirname}/static/fonts/bitmap/silka-bold/silka-bold.fnt`,
-                author: `${__dirname}/static/fonts/bitmap/silka-bold-small/silka-bold-small.fnt`,
-                job: `${__dirname}/static/fonts/bitmap/silka-small/silka-small.fnt`
+                title: `${__dirname}/content/assets/fonts/bitmap/eksell/eksell.fnt`,
+                brand: `${__dirname}/content/assets/fonts/bitmap/silka-bold/silka-bold.fnt`,
+                author: `${__dirname}/content/assets/fonts/bitmap/silka-bold-small/silka-bold-small.fnt`,
+                job: `${__dirname}/content/assets/fonts/bitmap/silka-small/silka-small.fnt`
               },
               custom: {},
             }

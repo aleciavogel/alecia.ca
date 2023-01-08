@@ -2,12 +2,7 @@ const path = require("path");
 const jimp = require("jimp");
 const colors = require("tailwindcss/colors");
 
-const {
-  verifyFiles,
-  renderLogo,
-  renderCircle,
-  generateSizing
-} = require("./helpers");
+const { verifyFiles, renderLogo, renderCircle, generateSizing } = require("./helpers");
 
 /**
  * Generate the social banner file and return the destination file path
@@ -18,14 +13,14 @@ const {
  */
 exports.generateBanner = async (node, reporter, pluginOptions) => {
   const { primary_color, accent_color, title } = node.frontmatter;
-  const dest = path.join(pluginOptions.destination, node.path, "social-banner.jpg");
+  const dest = path.join(pluginOptions.destination, "/blog", node.fields.slug, "social-banner.jpg");
   const sizing = generateSizing(pluginOptions);
   const logo = await renderLogo(accent_color, pluginOptions, sizing);
   const circle = await renderCircle(accent_color, sizing);
 
   const errorHandler = (err) => {
     if (err) throw err;
-  }
+  };
   const files = verifyFiles(reporter, pluginOptions);
 
   return Promise.all([
@@ -34,35 +29,19 @@ exports.generateBanner = async (node, reporter, pluginOptions) => {
     jimp.loadFont(files.brandFont),
     jimp.loadFont(files.authorFont),
     jimp.loadFont(files.jobFont),
-  ]).then(([
-             avatar,
-             title_font,
-             brand_font,
-             author_font,
-             job_font
-           ]) => {
-    let banner = new jimp(
-      sizing.width,
-      sizing.height,
-      colors[primary_color][700],
-      errorHandler
-    )
+  ]).then(([avatar, title_font, brand_font, author_font, job_font]) => {
+    let banner = new jimp(sizing.width, sizing.height, colors[primary_color][700], errorHandler);
 
     /* Create url box at the top */
     let rectangle = new jimp(
       sizing.width,
       sizing.titleBar.size,
       colors[accent_color][400],
-      errorHandler
+      errorHandler,
     );
 
     /* Add site name */
-    rectangle.print(
-      brand_font,
-      sizing.brand.x,
-      sizing.brand.y,
-      pluginOptions.siteName
-    );
+    rectangle.print(brand_font, sizing.brand.x, sizing.brand.y, pluginOptions.siteName);
     banner.composite(rectangle, 0, 0);
 
     /* Add SVG shapes into the banner */
@@ -79,7 +58,7 @@ exports.generateBanner = async (node, reporter, pluginOptions) => {
       sizing.postTitle.x,
       sizing.postTitle.y,
       title,
-      sizing.width - sizing.padding * 4
+      sizing.width - sizing.padding * 4,
     );
 
     /* Add author's name & title */
@@ -87,16 +66,16 @@ exports.generateBanner = async (node, reporter, pluginOptions) => {
       author_font,
       sizing.authorName.x,
       sizing.authorName.y,
-      pluginOptions.default.author // TODO: retrieve from blog post
+      pluginOptions.default.author, // TODO: retrieve from blog post
     );
     banner.print(
       job_font,
       sizing.authorJob.x,
       sizing.authorJob.y,
-      pluginOptions.default.description // TODO: retrieve from blog post
+      pluginOptions.default.description, // TODO: retrieve from blog post
     );
 
     banner.write(dest);
     return dest;
   });
-}
+};
