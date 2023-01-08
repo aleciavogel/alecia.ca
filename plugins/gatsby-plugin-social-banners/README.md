@@ -47,10 +47,11 @@ Add it to your `gatsby-plugin-mdx` plugins in the `gatsby-config.js` file, like 
 ### gatsby-node.js Configuration
 
 To automatically create a field with the banner path in it, add the following to your site's
-`gatsby-node.js` file.
+`gatsby-node.js` file. Adding this logic to the plugin itself didn't work, so you have to do it
+manually.
 
-The logic below only generates a banner if your blog post doesn't have a `banner` property
-set already.
+I've chosen to have my plugin generate a banner if the blog post does not have a `banner` property set in the frontmatter.
+This allows more flexibility since you don't have to always use a default generated banner.
 
 ```javascript
 exports.onCreateNode = ({ node, actions, getNode }) => {
