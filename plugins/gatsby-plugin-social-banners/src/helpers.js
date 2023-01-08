@@ -40,7 +40,6 @@ exports.renderCircle = async (fill_color, sizing) => {
 };
 
 exports.verifyFiles = (reporter, pluginOptions) => {
-  console.log("I am verifying files...");
   const filePaths = {
     avatar: pluginOptions.default.avatar, // TODO: get avatar from blog post
     logoSvg: pluginOptions.logoSvg,
@@ -49,8 +48,6 @@ exports.verifyFiles = (reporter, pluginOptions) => {
     authorFont: pluginOptions.fonts?.author,
     jobFont: pluginOptions.fonts?.job,
   };
-
-  console.log("The files are...", Object.values(filePaths).join("\n"));
 
   Object.keys(filePaths).forEach((key, index) => {
     if (!fs.existsSync(filePaths[key])) {
