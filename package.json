@@ -90,6 +90,7 @@
     "json5": "^2.2.2",
     "parse-url": "^8.1.0",
     "minimatch": "^3.0.5",
-    "engine.io": "^6.2.1"
+    "engine.io": "^6.2.1",
+    "decode-uri-component": "^0.2.1"
   }
 }
