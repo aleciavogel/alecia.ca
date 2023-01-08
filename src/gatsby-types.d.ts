@@ -32,6 +32,7 @@ type Author = {
   readonly name: Maybe<Scalars['String']>;
   readonly selfIntroduction: Maybe<Scalars['String']>;
   readonly summary: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
 };
 
 type AuthorFilterInput = {
@@ -39,6 +40,7 @@ type AuthorFilterInput = {
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly selfIntroduction: InputMaybe<StringQueryOperatorInput>;
   readonly summary: InputMaybe<StringQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
 type BooleanQueryOperatorInput = {
@@ -1907,6 +1909,7 @@ type SiteFieldsEnum =
   | 'siteMetadata.author.name'
   | 'siteMetadata.author.selfIntroduction'
   | 'siteMetadata.author.summary'
+  | 'siteMetadata.author.title'
   | 'siteMetadata.description'
   | 'siteMetadata.siteUrl'
   | 'siteMetadata.social.dribbble'

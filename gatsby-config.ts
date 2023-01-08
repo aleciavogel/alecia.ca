@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import path from "path";
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -7,6 +8,7 @@ const config: GatsbyConfig = {
     description: `Alecia Vogel is a full stack developer and digital product designer living in downtown Edmonton.`,
     author: {
       name: "Alecia Vogel",
+      title: "Full Stack Developer",
       email: "hello@alecia.ca",
       summary:
         "Alecia Vogel is a full stack developer and digital product designer living in downtown Edmonton.",
@@ -81,6 +83,27 @@ const config: GatsbyConfig = {
           "gatsby-remark-images",
           "gatsby-remark-numbered-footnotes",
           "gatsby-remark-embedder",
+          {
+            // Custom plugin can be found in `plugins/gatsby-plugin-social-banners`
+            resolve: "gatsby-plugin-social-banners",
+            options: {
+              logoSvg: `${__dirname}/static/images/logo.svg`,
+              siteName: "alecia.ca",
+              destination: `${__dirname}/public/seo`,
+              default: {
+                author: "Alecia Vogel",
+                description: "Full Stack Developer",
+                avatar: `${__dirname}/static/images/alecia_author.png`,
+              },
+              fonts: {
+                title: `${__dirname}/static/fonts/bitmap/eksell/eksell.fnt`,
+                brand: `${__dirname}/static/fonts/bitmap/silka-bold/silka-bold.fnt`,
+                author: `${__dirname}/static/fonts/bitmap/silka-bold-small/silka-bold-small.fnt`,
+                job: `${__dirname}/static/fonts/bitmap/silka-small/silka-small.fnt`
+              },
+              custom: {},
+            }
+          },
           {
             resolve: `gatsby-remark-classes`,
             options: {},

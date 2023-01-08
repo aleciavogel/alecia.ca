@@ -2,6 +2,8 @@
   "name": "gatsby-plugin-social-banners",
   "version": "1.0.0",
   "description": "Generates banner images for social media",
+  "license": "MIT",
+  "author": "Alecia Vogel <hello@alecia.ca>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,8 +13,6 @@
     "gatsby",
     "gatsby-plugin"
   ],
-  "author": "Alecia Vogel <hello@alecia.ca>",
-  "license": "0BSD",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "jimp": "^0.16.2",

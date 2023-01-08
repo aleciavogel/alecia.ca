@@ -1,80 +1,39 @@
-const fs = require('fs');
 const path = require('path');
-const cheerio = require('cheerio');
 const jimp = require('jimp');
-const sharp = require('sharp');
 const colors = require('tailwindcss/colors');
 
-const WIDTH = 1200;
-const HEIGHT = 630;
-const PADDING = 40;
+const {
+  verifyFiles,
+  renderLogo,
+  renderCircle,
+  generateSizing
+} = require("./src/helpers");
 
-const RECTANGLE_SIZE = HEIGHT / 5;
 
-const LOGO_SIZE = HEIGHT / 8;
-const LOGO_Y = (RECTANGLE_SIZE - LOGO_SIZE) / 2;
-
-const TITLE_Y = PADDING + (HEIGHT / 5);
-
-const BRAND_X = (PADDING * 2) + LOGO_SIZE - 10;
-const BRAND_FONT_SIZE = 60;
-const BRAND_Y = (RECTANGLE_SIZE - BRAND_FONT_SIZE) / 2;
-
-const CIRCLE_SIZE = HEIGHT / 5;
-const CIRCLE_Y = HEIGHT - PADDING - CIRCLE_SIZE;
-const BORDER_WIDTH = 6;
-const AVATAR_SIZE = CIRCLE_SIZE - (BORDER_WIDTH * 2);
-const AVATAR_X = PADDING + BORDER_WIDTH;
-const AVATAR_Y = CIRCLE_Y + BORDER_WIDTH;
-const AUTHOR_X = AVATAR_X + AVATAR_SIZE + PADDING;
-const AUTHOR_Y = AVATAR_Y + 5;
-const JOB_X = AUTHOR_X - 3;
-const JOB_Y = AUTHOR_Y + 60;
-
-const renderLogo = async (fill_color) => {
-  /* Update fill color of logo to match theme of this article */
-  const $ = cheerio.load(fs.readFileSync(path.join(__dirname, "assets/logo.svg")));
-  const logoColor = "white";
-  $('path').css("fill", logoColor);
-
-  /* Convert SVG to PNG so that it can be read by Jimp */
-  const svg = $('body').html();
-  const png = await sharp(Buffer.from(svg)).png().toBuffer();
-
-  /* Read PNG and resize */
-  return jimp.read(png).then((img) => img?.resize(LOGO_SIZE, LOGO_SIZE));
-}
-
-const renderCircle = async (fill_color) => {
-  /* Update fill color of circle to match theme of this article */
-  const $ = cheerio.load(fs.readFileSync(path.join(__dirname, "assets/circle.svg")));
-  const circleColor = colors[fill_color][400]; // colors[fill_color][300];
-  $('circle').css("fill", circleColor);
-
-  /* Convert SVG to PNG so that it can be read by Jimp */
-  const svg = $('body').html();
-  const png = await sharp(Buffer.from(svg)).png().toBuffer();
-
-  /* Read PNG and resize */
-  return jimp.read(png).then((img) => img?.resize(CIRCLE_SIZE, CIRCLE_SIZE));
-}
-
-module.exports = async ({ markdownNode }) => {
+module.exports = async ({ markdownNode, reporter, ...rest }, pluginOptions) => {
   const {
     frontmatter,
     fields
   } = markdownNode;
+  const context = {};
+
   const { primary_color, accent_color, title } = frontmatter;
-  const dest = path.join('./public/page-data/blog', fields.slug, 'social-banner.jpg');
-  const logo = await renderLogo(accent_color);
-  const circle = await renderCircle(accent_color);
+  const dest = path.join(pluginOptions.destination, "/blog", fields.slug, "social-banner.jpg");
+  const sizing = generateSizing(pluginOptions);
+  const logo = await renderLogo(accent_color, pluginOptions, sizing);
+  const circle = await renderCircle(accent_color, sizing);
+
+  const errorHandler = (err) => {
+    if (err) throw err;
+  }
+  const files = verifyFiles(reporter, pluginOptions, context);
 
   Promise.all([
-    jimp.read(path.join(__dirname, 'assets/alecia_author.png')),
-    jimp.loadFont(path.join(__dirname, 'assets/fonts/eksell/eksell.fnt')),
-    jimp.loadFont(path.join(__dirname, 'assets/fonts/silka-bold/silka-bold.fnt')),
-    jimp.loadFont(path.join(__dirname, 'assets/fonts/silka-bold-small/silka-bold-small.fnt')),
-    jimp.loadFont(path.join(__dirname, 'assets/fonts/silka-small/silka-small.fnt')),
+    jimp.read(files.avatar),
+    jimp.loadFont(files.titleFont),
+    jimp.loadFont(files.brandFont),
+    jimp.loadFont(files.authorFont),
+    jimp.loadFont(files.jobFont),
   ]).then(([
     avatar,
     title_font,
@@ -82,32 +41,61 @@ module.exports = async ({ markdownNode }) => {
     author_font,
     job_font
   ]) => {
-    let banner = new jimp(WIDTH, HEIGHT, colors[primary_color][700], (err) => {
-      if (err) throw err
-    })
+    let banner = new jimp(
+      sizing.width,
+      sizing.height,
+      colors[primary_color][700],
+      errorHandler
+    )
 
     /* Create url box at the top */
-    let rectangle = new jimp(WIDTH, RECTANGLE_SIZE, colors[accent_color][400], (err) => {
-      if (err) throw err
-    });
-    rectangle.print(brand_font, BRAND_X, BRAND_Y, "alecia.ca", WIDTH - PADDING * 4);
+    let rectangle = new jimp(
+      sizing.width,
+      sizing.titleBar.size,
+      colors[accent_color][400],
+      errorHandler
+    );
+
+    /* Add site name */
+    rectangle.print(
+      brand_font,
+      sizing.brand.x,
+      sizing.brand.y,
+      pluginOptions.siteName
+    );
     banner.composite(rectangle, 0, 0);
 
     /* Add SVG shapes into the banner */
-    banner.composite(logo, PADDING, LOGO_Y);
-    banner.composite(circle, PADDING, CIRCLE_Y);
+    banner.composite(logo, sizing.logo.x, sizing.logo.y);
+    banner.composite(circle, sizing.avatar.x, sizing.avatar.y);
 
     /* Add author image */
-    avatar?.resize(AVATAR_SIZE, AVATAR_SIZE);
-    banner.composite(avatar, AVATAR_X, AVATAR_Y);
+    avatar?.resize(sizing.avatar.img.size, sizing.avatar.img.size);
+    banner.composite(avatar, sizing.avatar.img.x, sizing.avatar.img.y);
 
     /* Add blog title text */
-    banner.print(title_font, PADDING, TITLE_Y, title, WIDTH - PADDING * 4);
+    banner.print(
+      title_font,
+      sizing.postTitle.x,
+      sizing.postTitle.y,
+      title,
+      sizing.width - sizing.padding * 4
+    );
 
     /* Add author's name & title */
-    banner.print(author_font, AUTHOR_X, AUTHOR_Y, "Alecia Vogel");
-    banner.print(job_font, JOB_X, JOB_Y, "Full Stack Developer");
+    banner.print(
+      author_font,
+      sizing.authorName.x,
+      sizing.authorName.y,
+      pluginOptions.default.author // TODO: retrieve from blog post
+    );
+    banner.print(
+      job_font,
+      sizing.authorJob.x,
+      sizing.authorJob.y,
+      pluginOptions.default.description // TODO: retrieve from blog post
+    );
 
-    return banner.write(dest);
+    banner.write(dest);
   });
 };
