@@ -74,7 +74,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 To your blog posts, you will need to assign `primary_color`, `accent_color`, and a `title` value for
 your frontmatter. The colors need to be the name of a color from the 
 [tailwindcss color palette](https://tailwindcss.com/docs/customizing-colors) (banner doesn't work with custom colors 
-at this time). For instance, `indigo`.
+at this time).
+
+As an example, here is some frontmatter settings from a blog post:
+
+```markdown
+---
+title: "UX Lessons from the Hawaiian Missile Crisis"
+primary_color: "teal"
+accent_color: "pink"
+---
+```
+
+And here is how it turned out:
+
+![](./docs/example.png)
+
 
 ## Fonts
 
