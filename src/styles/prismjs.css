@@ -1,12 +1,13 @@
 code[class*="language-"],
 pre[class*="language-"] {
+  transition: background-color 0.2s ease-in-out;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
   color: #c3cee3;
-  background: #263238;
+  background: #1e293b;
   font-family: Roboto Mono, monospace;
   font-size: 1em;
   line-height: 1.5em;
@@ -19,6 +20,11 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+}
+
+.dark code[class*="language-"],
+.dark pre[class*="language-"] {
+  background: #334155;
 }
 
 code[class*="language-"]::-moz-selection,
@@ -211,14 +217,14 @@ pre[class*="language-"] {
 
 /* Adjust the position of the line numbers for line-highlighting */
 .gatsby-highlight pre[class*="language-"].line-numbers {
-  padding-left: 3em;
+  padding-left: 3.25em;
 }
 
 .gatsby-highlight pre[class*="language-"].line-numbers span.line-numbers-rows {
   padding-top: 1.25em;
   padding-bottom: 1.25em;
-  padding-left: 0.66em;
-  border-right-color: rgba(255, 255, 255, 0.2);
+  padding-left: 1em;
+  border-right: none;
 }
 
 .gatsby-highlight pre[class*="language-"].line-numbers span.line-numbers-rows > span::before {
@@ -257,21 +263,33 @@ pre[class*="language-"] {
 .gatsby-code-title {
   display: block;
   position: relative;
-  background: #272822;
+  background: #334155;
+  color: white;
+  font-size: 0.9em;
   width: 100%;
   top: 10px;
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
+  text-align: center;
+  overflow: hidden;
+  padding: 1px 1em;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.gatsby-code-title span {
-  display: inline;
-  position: relative;
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  color: #eee;
-  background: #777;
-  border-top-left-radius: 0.3em;
-  border-bottom-right-radius: 0.3em;
-  padding: 3px;
-  top: 1px;
+.gatsby-code-title::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  background: #ff605c; /* Mac sunset red */
+  box-shadow: #ffbd44 20px 0 0, /* Mac Pastel Orange */ #00ca4e 40px 0 0; /* Mac Malachite */
+}
+
+.dark .gatsby-code-title {
+  background: #1e293b;
 }
