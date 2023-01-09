@@ -70,6 +70,12 @@ const config: GatsbyConfig = {
           "gatsby-remark-numbered-footnotes",
           "gatsby-remark-embedder",
           {
+            resolve: `gatsby-remark-classes`,
+            options: {
+              classMap: {},
+            },
+          },
+          {
             // Custom plugin can be found in `plugins/gatsby-plugin-social-banners`
             resolve: "gatsby-plugin-social-banners",
             options: {
@@ -88,14 +94,6 @@ const config: GatsbyConfig = {
                 job: `${__dirname}/content/assets/fonts/bitmap/silka-small/silka-small.fnt`,
               },
               custom: {},
-            },
-          },
-          {
-            resolve: `gatsby-remark-classes`,
-            options: {
-              classMap: {
-                inlineCode: "inline-code",
-              },
             },
           },
         ],
