@@ -13,6 +13,7 @@ module.exports = (language) => {
     let promptUserLocal;
     let promptHostLocal;
     let codeTitle;
+    let ghSource;
     // Options can be given in any order and are optional
 
     options.forEach((option) => {
@@ -48,6 +49,9 @@ module.exports = (language) => {
       if (splitOption.length === 2 && splitOption[0] === `title`) {
         codeTitle = splitOption[1];
       }
+      if (splitOption.length === 2 && splitOption[0] === `github`) {
+        ghSource = splitOption[1];
+      }
     });
 
     return {
@@ -59,6 +63,7 @@ module.exports = (language) => {
       promptUserLocal,
       promptHostLocal,
       codeTitle,
+      ghSource,
     };
   }
 

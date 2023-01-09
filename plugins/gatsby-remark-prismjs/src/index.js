@@ -46,6 +46,7 @@ module.exports = (
       promptUserLocal,
       promptHostLocal,
       codeTitle,
+      ghSource,
     } = parseOptions(language);
     const showLineNumbers = showLineNumbersLocal || showLineNumbersGlobal;
     const promptUser = promptUserLocal || prompt.user;
@@ -126,6 +127,7 @@ module.exports = (
     +     `</code>`
     +     `${numLinesNumber}`
     +   `</pre>`
+    +   `${ghSource ? `<a class="gatsby-code-source" href="https://${ghSource}">View full file on GitHub</a>` : ``}`
     + `</div>`
   });
 
