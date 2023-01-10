@@ -4,7 +4,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-import CodeSnippetCopy from "../../features/blog/partials/CodeSnippetCopy";
+import CodeSnippetCopy from "./CodeSnippetCopy";
 import { preToCodeBlock } from "./utils";
 
 interface Props {

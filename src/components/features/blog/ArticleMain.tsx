@@ -1,7 +1,7 @@
 import React, { FC, useRef } from "react";
 
 import PostInfo from "./PostInfo";
-import SiteHeader from "../../site/SiteHeader";
+import SiteHeader from "../site/SiteHeader";
 import ReadingProgress from "./ReadingProgress";
 import { BlogPostFrontmatter } from "../../../definitions/blog";
 

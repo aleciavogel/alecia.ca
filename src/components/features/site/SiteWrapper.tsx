@@ -2,8 +2,8 @@ import React, { FC, useRef } from "react";
 import { useLocation } from "@reach/router";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
-import { DefaultColor } from "../../definitions/colors";
-import { MenuControlProvider } from "../features/menu/MenuControlContext";
+import { DefaultColor } from "../../../definitions/colors";
+import { MenuControlProvider } from "./SiteMenu/MenuControlContext";
 import SiteLayout from "./SiteLayout";
 import SEO from "./SEO";
 

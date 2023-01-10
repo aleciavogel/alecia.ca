@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { HeadFC } from "gatsby";
 
-import SiteWrapper from "../components/site/SiteWrapper";
+import SiteWrapper from "../components/features/site/SiteWrapper";
 
 const pageStyles = {
   color: "#232129",

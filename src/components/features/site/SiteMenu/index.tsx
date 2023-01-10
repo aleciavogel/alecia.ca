@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useCallback } from "react";
-import useMenuControl from "../../features/menu/useMenuControl";
+import useMenuControl from "./useMenuControl";
 import CloseButton from "./CloseButton";
 import MenuIllustration from "./MenuIllustration";
 
@@ -22,7 +22,13 @@ const SiteMenu: FC = () => {
   }, [escapeMenu]);
 
   return (
-    <nav data-scroll data-scroll-sticky data-scroll-target="#site-wrapper" id="site-menu" role="menu" >
+    <nav
+      data-scroll
+      data-scroll-sticky
+      data-scroll-target="#site-wrapper"
+      id="site-menu"
+      role="menu"
+    >
       <CloseButton onClose={toggleMenu} />
 
       <MenuIllustration />

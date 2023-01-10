@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import useDarkMode from "use-dark-mode";
 
-import DayIcon from "../../icons/DayIcon";
-import NightIcon from "../../icons/NightIcon";
+import DayIcon from "../../../icons/DayIcon";
+import NightIcon from "../../../icons/NightIcon";
 
 interface Props {
   hover: boolean;
 }
 
 const ThemeSettings: FC<Props> = ({ hover }) => {
-  const { toggle, value: isDark } = useDarkMode(undefined, { classNameDark: 'dark' });
+  const { toggle, value: isDark } = useDarkMode(undefined, { classNameDark: "dark" });
   const icon = isDark ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />;
 
   if (hover) {

@@ -1,6 +1,6 @@
 import React, { FC, useRef } from "react";
 
-import SiteHeader from "../../site/SiteHeader";
+import SiteHeader from "../site/SiteHeader";
 
 const BlogIndexMain: FC = () => {
   const aboutBodyRef = useRef<HTMLDivElement>(null);

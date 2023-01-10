@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { faTwitter, faGithub, faDribbble, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useSocialLinks from "../../../hooks/useSocialLinks";
+import useSocialLinks from "../../../../hooks/useSocialLinks";
 
 const SocialLinks: FC = () => {
   const { twitter, linkedIn, github, dribbble } = useSocialLinks();

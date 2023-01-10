@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { Link } from "gatsby";
 
-import Logo from "../../vectors/Logo";
-import { DefaultColor } from "../../../definitions/colors";
+import Logo from "../../../vectors/Logo";
+import { DefaultColor } from "../../../../definitions/colors";
 
 interface Props {
   hover: boolean;

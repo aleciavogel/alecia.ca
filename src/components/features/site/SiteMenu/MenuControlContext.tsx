@@ -1,5 +1,5 @@
 import React, { createContext, FC, useState, useCallback, useEffect } from "react";
-import {useLocomotiveScroll} from "react-locomotive-scroll";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 type MenuControlContextType = {
   menuOpen: boolean;
@@ -27,13 +27,13 @@ export const MenuControlProvider: FC<Props> = ({ children }) => {
     if (scroll === null) {
       return;
     }
-    
+
     if (menuOpen) {
       scroll.stop();
     } else {
       scroll.start();
     }
-  }, [scroll, menuOpen])
+  }, [scroll, menuOpen]);
 
   return (
     <MenuControlContext.Provider

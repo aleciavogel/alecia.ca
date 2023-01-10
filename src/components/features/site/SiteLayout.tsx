@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 
-import { DefaultColor } from "../../definitions/colors";
+import { DefaultColor } from "../../../definitions/colors";
 import SiteMenu from "./SiteMenu";
+import useMenuControl from "./SiteMenu/useMenuControl";
 import SiteHeader from "./SiteHeader";
 import StaticMenu from "./StaticMenu";
-import HireMeBanner from "./HireMeBanner";
+import HireMeBanner from "./banners/HireMe";
 import SiteFooter from "./SiteFooter";
-import useMenuControl from "../features/menu/useMenuControl";
 
 interface Props {
   primary_color?: DefaultColor;

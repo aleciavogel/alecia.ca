@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Link } from "gatsby";
 
-import AleciaSitSvg from "../../vectors/AleciaSitSvg";
+import AleciaSitSvg from "../../../vectors/AleciaSitSvg";
 import SocialLinks from "./SocialLinks";
-import { DefaultColor } from "../../../definitions/colors";
+import { DefaultColor } from "../../../../definitions/colors";
 
 interface Props {
   accent_color?: DefaultColor;
@@ -15,9 +15,7 @@ const SiteFooter: FC<Props> = ({ accent_color = "pink", primary_color = "indigo"
     <footer id="site-footer">
       <div className="mb-4 mx-auto sm:flex sm:items-center justify-between max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl">
         <div className="relative after:site-footer-svg-bg-cover z-50 -mt-28 -mb-24 mr-8">
-          <AleciaSitSvg
-            className="block h-80"
-          />
+          <AleciaSitSvg className="block h-80" />
         </div>
         <div className="py-5 mr-12">
           <h2 className={`font-serif text-5xl mb-2`}>Alecia Vogel</h2>

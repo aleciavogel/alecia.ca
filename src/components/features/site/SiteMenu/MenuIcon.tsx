@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import BrandIcon from "../icons/BrandIcon";
-import useMenuControl from "../features/menu/useMenuControl";
+import BrandIcon from "../../../icons/BrandIcon";
+import useMenuControl from "./useMenuControl";
 
 interface Props {
   hover?: boolean;

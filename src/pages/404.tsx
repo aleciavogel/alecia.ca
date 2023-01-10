@@ -1,49 +1,15 @@
-import * as React from "react"
-import { Link, HeadFC } from "gatsby"
+import React, { FC } from "react";
+import SiteWrapper from "../components/features/site/SiteWrapper";
+import SEO from "../components/features/site/SEO";
+import NotFoundHeader from "../components/features/not-found/NotFoundHeader";
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage = () => {
+const NotFound: FC = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
+    <SiteWrapper>
+      <SEO title="Page Not Found" />
+      <NotFoundHeader />
+    </SiteWrapper>
+  );
+};
 
-export default NotFoundPage
-
-export const Head: HeadFC = () => <title>Not found</title>
+export default NotFound;

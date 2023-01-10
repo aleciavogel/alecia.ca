@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { graphql } from "gatsby";
-import MDXWrapper from "../components/mdx";
-import SiteWrapper from "../components/site/SiteWrapper";
+import MDXWrapper from "../components/features/mdx";
+import SiteWrapper from "../components/features/site/SiteWrapper";
 import ArticleHeader from "../components/features/blog/ArticleHeader";
 import ArticleMain from "../components/features/blog/ArticleMain";
 import ArticleSEO from "../components/features/blog/ArticleSEO";
