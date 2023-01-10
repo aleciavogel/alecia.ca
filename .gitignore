@@ -132,3 +132,4 @@ dist
 # Additional things
 .idea/
 public/
+.DS_STORE/
