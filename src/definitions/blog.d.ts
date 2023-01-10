@@ -10,13 +10,22 @@ interface BlogProps {
   location: Location;
 }
 
+interface IBlogListItem {
+  id: string;
+  fields: {
+    slug: string;
+    timeToRead: TimeToRead;
+    banner: string;
+  };
+  frontmatter: BlogPostFrontmatter;
+}
+
 interface BlogPost {
   excerpt: string;
   body: string;
   fields: {
     slug: string;
     timeToRead: TimeToRead;
-    banner: string;
   };
   frontmatter: BlogPostFrontmatter;
 }
@@ -36,6 +45,7 @@ interface BlogPostFrontmatter {
 
 interface TimeToRead {
   minutes: number;
+  text: string;
 }
 
 interface PreviousPost {

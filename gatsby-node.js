@@ -1,7 +1,8 @@
 const path = require(`path`);
 const readingTime = require(`reading-time`);
-const postTemplate = path.resolve(`./src/templates/blog.tsx`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+
+const postTemplate = path.resolve(`./src/templates/blog.tsx`);
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;

@@ -1,4 +1,4 @@
-export const preToCodeBlock = (preProps: any) => {
+export const preToCodeSnippetProps = (preProps: any) => {
   if (
     // if MDXTag is going to render a <code>
     preProps.children.type === "code"

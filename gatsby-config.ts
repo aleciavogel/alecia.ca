@@ -61,6 +61,12 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        mdxOptions: {
+          remarkPlugins: [
+            // Add GitHub Flavored Markdown (GFM) support
+            require(`remark-gfm`),
+          ],
+        },
         gatsbyRemarkPlugins: [
           "gatsby-remark-autolink-headers",
           "gatsby-remark-copy-linked-files",

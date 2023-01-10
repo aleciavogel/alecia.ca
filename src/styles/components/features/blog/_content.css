@@ -106,6 +106,7 @@
     text-shadow: 2px 4px 0 var(--bg), 4px 7px 0 var(--dropcapShadow);
     border-color: var(--primary);
     color: var(--primary);
+    transition: text-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
   @media only screen and (min-width: 768px) {
@@ -113,6 +114,7 @@
       font-size: 138px;
       padding: 14px;
       margin-right: 18px;
+      transition: text-shadow 0.3s ease-in-out;
     }
   }
 
@@ -152,5 +154,10 @@
 
   .page-content > p > div > code[class*="language-"] {
     @apply px-1;
+  }
+
+  .page-content > p del {
+    color: var(--accent);
+    transition: color 0.2s ease-in-out;
   }
 }

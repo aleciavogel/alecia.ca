@@ -2772,6 +2772,11 @@ type StringQueryOperatorInput = {
   readonly regex: InputMaybe<Scalars['String']>;
 };
 
+type BlogListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BlogListQuery = { readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly frontmatter: { readonly title: string | null, readonly date: string | null, readonly description: string | null, readonly primary_color: string | null, readonly accent_color: string | null, readonly text_color: string | null, readonly category: string | null } | null, readonly fields: { readonly slug: string | null, readonly timeToRead: { readonly text: string | null } | null } | null } }> } };
+
 type SiteMetadataQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 

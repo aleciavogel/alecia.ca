@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import CodeSnippetCopy from "./CodeSnippetCopy";
-import { preToCodeBlock } from "./utils";
+import { preToCodeSnippetProps } from "./utils";
 
 interface Props {
   codeString: string;
@@ -15,7 +15,7 @@ interface Props {
   codeTitle?: string;
 }
 
-const Index: FC<Props> = ({ codeString, language, isLive = false, codeTitle, ghSource }) => {
+const CodeSnippet: FC<Props> = ({ codeString, language, isLive = false, codeTitle, ghSource }) => {
   if (isLive) {
     return (
       <LiveProvider code={codeString} noInline={true}>
@@ -89,13 +89,13 @@ const Index: FC<Props> = ({ codeString, language, isLive = false, codeTitle, ghS
   }
 };
 
-export const parseCodeBlock = (preProps: any) => {
-  const props = preToCodeBlock(preProps);
+export const parsePreBlock = (preProps: any) => {
+  const props = preToCodeSnippetProps(preProps);
   if (props) {
-    return <Index {...props} />;
+    return <CodeSnippet {...props} />;
   } else {
     return <pre {...preProps} />;
   }
 };
 
-export default Index;
+export default CodeSnippet;

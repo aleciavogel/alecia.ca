@@ -19,4 +19,59 @@
   .blog-index-header p {
     @apply text-sm md:text-xl max-w-[500px];
   }
+
+  /* Article Cards */
+
+  .blog-item {
+    @apply space-y-2;
+    width: 45%;
+  }
+
+  .blog-item__thumbnail {
+    @apply w-full h-64 mb-5;
+    background-color: var(--primary-700);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .blog-item__meta {
+    @apply pb-2;
+    display: flex;
+    align-items: center;
+  }
+
+  .blog-item__category {
+    @apply py-1 px-3 mr-3;
+    @apply inline-block;
+    @apply text-xs;
+    background-color: var(--primary-600);
+    border-radius: 15px;
+    color: white;
+  }
+
+  .blog-item__reading-estimate {
+    @apply text-xs text-white-rgba;
+  }
+
+  .blog-item__reading-estimate span {
+    @apply inline-block;
+  }
+
+  .blog-item h2 {
+    @apply text-3xl text-white mb-0;
+  }
+
+  .blog-item p {
+    @apply text-sm text-white-rgba pb-2;
+  }
+
+  .blog-item__read-more {
+    @apply space-x-2;
+    @apply text-white font-semibold text-sm;
+  }
+
+  .blog-list {
+    @apply mx-auto max-w-screen-lg;
+    @apply flex justify-between;
+  }
 }
