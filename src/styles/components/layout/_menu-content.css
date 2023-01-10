@@ -16,8 +16,8 @@
   position: absolute;
   display: inline-block;
   height: 100%;
-  fill: var(--primary-300);
-  opacity: 0.3;
+  fill: var(--accent-200);
+  opacity: 0.4;
   bottom: -150px;
   right: -70px;
 }

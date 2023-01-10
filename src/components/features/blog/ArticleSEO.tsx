@@ -14,17 +14,15 @@ const ArticleSEO: FC<Props> = ({
   banner: socialCard,
 }) => {
   const metadata = useSiteMetadata();
-  const metaDescription = description || metadata.description;
-  const defaultTitle = metadata.title;
 
   return (
     <Helmet
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : "%s"}
+      titleTemplate={`%s | ${metadata.title}`}
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: description,
         },
         {
           property: `og:title`,
@@ -32,11 +30,11 @@ const ArticleSEO: FC<Props> = ({
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: description,
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: `article`,
         },
         {
           property: "og:image",
@@ -56,7 +54,7 @@ const ArticleSEO: FC<Props> = ({
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: description,
         },
         {
           name: "twitter:image",
