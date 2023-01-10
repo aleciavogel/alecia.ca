@@ -380,6 +380,12 @@ pre[class*="language-"] {
   font-size: 0.75em;
 }
 
+.gatsby-highlight .copy-code-block.still-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0s ease-in-out;
+}
+
 .gatsby-highlight:hover .copy-code-block {
   pointer-events: auto;
   opacity: 1;

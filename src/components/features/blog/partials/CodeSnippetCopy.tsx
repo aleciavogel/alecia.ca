@@ -13,11 +13,12 @@ const CONFETTI_CONFIG = {
 
 interface Props {
   isCopied: boolean;
+  showCopied: boolean;
   onCopy: () => void;
 }
 
-const CodeSnippetCopy: FC<Props> = ({ isCopied, onCopy }) => (
-  <div className="copy-code-block">
+const CodeSnippetCopy: FC<Props> = ({ isCopied, onCopy, showCopied }) => (
+  <div className={`copy-code-block${showCopied ? " still-visible" : ""}`}>
     <button onClick={onCopy}>
       <span>{isCopied ? "🎉 Copied!" : "Copy"}</span>
     </button>

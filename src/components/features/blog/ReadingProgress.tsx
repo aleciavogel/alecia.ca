@@ -1,19 +1,16 @@
 import React, { FC, useState, useEffect } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 interface Props {
   target: React.RefObject<HTMLDivElement>;
 }
 
-const ReadingProgress: FC<Props> = ({ target }) => {
-  const [readingProgress, setReadingProgress] = useState(0);
-  const scrollListener = () => {
-    if (!target.current) {
-      return;
-    }
-    const element = target.current;
-    const windowScrollTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const progress = windowScrollTop - window.innerHeight - 152;
-    const percent = (progress / element.clientHeight) * 100;
+const ReadingProgress: FC<Props> = () => {
+  const { scroll } = useLocomotiveScroll();
+  const [readingProgress, setReadingProgress] = useState(100);
+  const scrollListener = (windowScrollTop: number) => {
+    const progress = windowScrollTop - window.innerHeight - 300;
+    const percent = (progress / document.body.scrollHeight) * 100;
 
     if (progress <= 0) {
       return setReadingProgress(0);
@@ -25,17 +22,23 @@ const ReadingProgress: FC<Props> = ({ target }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollListener);
-    return () => window.removeEventListener("scroll", scrollListener);
-  }, [scrollListener]);
+    if (scroll) {
+      scroll.on("scroll", (event: any) => {
+        scrollListener(event.scroll.y);
+      });
+    }
+  }, [scroll]);
+
   return (
     <div
-      data-scrolldata-scroll
+      data-scroll
       data-scroll-sticky
-      data-scroll-target="#page-content"
-      style={{ transform: `translateX(${readingProgress}%)` }}
+      data-scroll-target="#site-wrapper"
+      data-scroll-speed="1"
       id="reading-progress"
-    ></div>
+    >
+      <div style={{ transform: `translateX(${readingProgress}%)` }}></div>
+    </div>
   );
 };
 
