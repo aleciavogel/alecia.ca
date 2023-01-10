@@ -1,6 +1,6 @@
 # alecia.ca
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5c18e29e-3502-4cc3-ae85-a814223d0953/deploy-status)](https://app.netlify.com/sites/alecia-portfolio/deploys)
-![build](https://github.com/aleciavogel/alecia.ca/blob/main/.github/workflows/e2e-tests.yml/badge.svg)
+![build](https://github.com/aleciavogel/alecia.ca/actions/workflows/e2e-tests.yml/badge.svg)
 
 ## 🚧 Under Construction 🚧
 
