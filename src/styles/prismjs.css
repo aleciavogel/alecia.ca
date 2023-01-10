@@ -26,6 +26,10 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
+:not(pre) code {
+  background: #2d3c54;
+}
+
 :not(pre) code::-moz-selection,
 pre[class*="language-"]::-moz-selection,
 :not(pre) code ::-moz-selection,

@@ -60,6 +60,10 @@
     transform: translateZ(0);
   }
 
+  .static-menu {
+    @apply hidden md:block;
+  }
+
   .static-menu a.active {
     @apply text-white;
   }

@@ -21,10 +21,25 @@
   }
 
   /* Article Cards */
+  .blog-list {
+    @apply md:mx-auto mb-10 px-20;
+    @apply flex justify-between flex-wrap;
+    @apply md:max-w-screen-md lg:max-w-screen-lg;
+  }
 
   .blog-item {
     @apply space-y-2;
-    width: 45%;
+    flex: 0 1 100%;
+    margin-bottom: 3em;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .blog-item {
+      @apply p-3 pb-1;
+      flex: 0 1 calc(50% - 1.5em);
+      border: solid 1px var(--primary);
+      border-radius: 10px;
+    }
   }
 
   .blog-item__thumbnail {
@@ -35,7 +50,7 @@
   }
 
   .blog-item__meta {
-    @apply pb-2;
+    @apply pb-1;
     display: flex;
     align-items: center;
   }
@@ -47,31 +62,67 @@
     background-color: var(--primary-600);
     border-radius: 15px;
     color: white;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .blog-item__category:hover {
+    background-color: var(--primary-500);
   }
 
   .blog-item__reading-estimate {
-    @apply text-xs text-white-rgba;
+    @apply text-xs;
   }
 
   .blog-item__reading-estimate span {
     @apply inline-block;
+    color: var(--textBody);
   }
 
   .blog-item h2 {
-    @apply text-3xl text-white mb-0;
+    @apply text-3xl pt-2 mb-0;
+    color: #666;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .dark .blog-item h2 {
+    color: white;
+  }
+
+  .blog-item h2:hover {
+    color: var(--accent);
   }
 
   .blog-item p {
-    @apply text-sm text-white-rgba pb-2;
+    @apply text-sm pb-2;
+    color: var(--textBody);
+    transition: color 0.2s ease-in-out;
+  }
+
+  .dark .blog-item p {
+    @apply text-white-rgba;
   }
 
   .blog-item__read-more {
-    @apply space-x-2;
-    @apply text-white font-semibold text-sm;
+    @apply space-x-2 py-2 mb-0;
+    @apply font-semibold text-sm;
+    color: #666;
+    transition: color 0.2s ease-in-out;
   }
 
-  .blog-list {
-    @apply mx-auto max-w-screen-lg;
-    @apply flex justify-between;
+  .dark .blog-item__read-more {
+    color: white;
+  }
+
+  .blog-item__read-more:hover {
+    color: var(--accent);
+  }
+
+  .blog-item__read-more svg {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .blog-item__read-more:hover svg {
+    transform: translate3d(3px, 0, 0);
   }
 }
