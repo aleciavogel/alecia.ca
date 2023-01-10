@@ -1,4 +1,5 @@
 # alecia.ca
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5c18e29e-3502-4cc3-ae85-a814223d0953/deploy-status)](https://app.netlify.com/sites/alecia-portfolio/deploys)
 
 ## 🚧 Under Construction 🚧
 
