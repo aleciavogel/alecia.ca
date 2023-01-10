@@ -11,7 +11,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "plugins:install": "cd plugins/gatsby-plugin-social-banners && yarn install & ../../",
+    "plugins:install": "cd plugins/gatsby-plugin-social-banners && yarn install & cd ../../",
     "build": "yarn plugins:install && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
