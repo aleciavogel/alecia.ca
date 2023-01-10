@@ -29,19 +29,17 @@ const BlogIndex: FC<Props> = ({ data }) => {
     <SiteWrapper>
       <SEO title="Blog" />
       <BlogIndexHeader />
-      <div className="relative overflow-hidden pb-16 pt-48 mt-[-152px] z-40 leading-loose h-full">
-        <div>
-          <div className="blog-list">
-            {articles.map(({ node }, index) => (
-              <BlogListItem article={node} index={index} key={`blog-item-${node.id}`} />
-            ))}
-          </div>
+      <main className="relative overflow-hidden pb-16 pt-48 mt-[-152px] z-40 leading-loose h-full">
+        <div className="blog-list">
+          {articles.map(({ node }, index) => (
+            <BlogListItem article={node} index={index} key={`blog-item-${node.id}`} />
+          ))}
         </div>
 
         <div className="clipped-container">
           <SiteHeader hasColor={true} />
         </div>
-      </div>
+      </main>
     </SiteWrapper>
   );
 };

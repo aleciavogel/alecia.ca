@@ -1,0 +1,103 @@
+name: E2E Testing [Cypress]
+
+on:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)
+        required: false
+      upload-artifacts:
+        description: Upload Artifacts (yes, no)
+        required: true
+        default: 'no'
+
+  push:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    environment: main_build_environment
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
+    steps:
+      - name: Checkout (Latest)
+        if: github.event.inputs.git-ref == ''
+        uses: actions/checkout@v2.3.4
+
+      - name: Checkout (Custom Ref)
+        if: github.event.inputs.git-ref != ''
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.inputs.git-ref }}
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: yarn ci
+
+#      Jest Tests
+#      - name: Test
+#        run: npm test
+#
+#      - name: Upload Test Artifacts - coverage/
+#        if: github.event.inputs.upload-artifacts == 'yes'
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: coverage-${{ matrix.node-version }}
+#          path: ${{ github.workspace }}/coverage/
+#          retention-days: 1
+#
+
+      - name: Build
+        run: yarn build
+
+      - name: Test E2E
+        run: yarn test:e2e:ci
+
+      - name: Upload Test E2E Artifacts - cypress/videos/
+        if: github.event.inputs.upload-artifacts == 'yes'
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-videos-${{ matrix.node-version }}
+          path: ${{ github.workspace }}/cypress/videos/
+          retention-days: 1
+
+      - name: Upload Test E2E Artifacts - cypress/screenshots/
+        if: github.event.inputs.upload-artifacts == 'yes'
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-screenshots-${{ matrix.node-version }}
+          path: ${{ github.workspace }}/cypress/screenshots/
+          retention-days: 1
+
+#      - name: Test Visual
+#        run: npm run test:visual:docker
+#      - name: Compress Test Visual Artifacts
+#        if: ${{ always() }}
+#        run: |
+#          find . -name '__diff_output__' | tar -cvjf tests-visual-job-artifacts.tar.bz2 --files-from -
+#
+#      - name: Upload Test Visual Artifacts - tests-visual-job-artifacts.tar.bz2
+#        if: github.event.inputs.upload-artifacts == 'yes'
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: tests-visual-job-artifacts-${{ matrix.node-version }}.tar.bz2
+#          path: ${{ github.workspace }}/tests-visual-job-artifacts.tar.bz2
+#          retention-days: 1
+#
+#      - name: Upload Build Artifacts - public/
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: public-${{ matrix.node-version }}
+#          path: ${{ github.workspace }}/public/
+#          retention-days: 1
