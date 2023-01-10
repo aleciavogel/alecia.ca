@@ -13,7 +13,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "plugins:install": "cd plugins/gatsby-plugin-social-banners && yarn install & cd ../../",
+    "plugins:install": "cd plugins/gatsby-plugin-social-banners && yarn install && cd ../../",
     "build": "yarn plugins:install && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -21,7 +21,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run -q",
     "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open",
-    "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run"
+    "test:e2e:ci": "start-server-and-test develop http://localhost:8000 && yarn cy:run"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

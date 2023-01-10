@@ -23,7 +23,7 @@ defaults:
 jobs:
   build-and-test:
     name: Build and Test
-    environment: main_build_environment
+    environment: main_build
     runs-on: ubuntu-latest
     strategy:
       matrix:
