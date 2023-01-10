@@ -19,9 +19,6 @@ const ArticleSEO: FC<Props> = ({
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang: "en",
-      }}
       title={title}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : "%s"}
       meta={[

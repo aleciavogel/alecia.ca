@@ -23,7 +23,7 @@ const ArticleMain: FC<Props> = ({ data, children, timeToRead, location }) => {
       <PostInfo data={data} timeToRead={timeToRead} location={location} />
       <div ref={articleBodyRef}>{children}</div>
 
-      <div id="clipped-container">
+      <div className="clipped-container">
         <SiteHeader hasColor={true} />
       </div>
     </div>

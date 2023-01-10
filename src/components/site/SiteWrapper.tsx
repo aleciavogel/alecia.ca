@@ -5,6 +5,7 @@ import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { DefaultColor } from "../../definitions/colors";
 import { MenuControlProvider } from "../features/menu/MenuControlContext";
 import SiteLayout from "./SiteLayout";
+import SEO from "./SEO";
 
 interface Props {
   primary_color?: DefaultColor;
@@ -28,6 +29,7 @@ const SiteWrapper: FC<Props> = ({ children, ...colors }) => {
     >
       <div data-scroll-container ref={containerRef}>
         <MenuControlProvider>
+          <SEO />
           <SiteLayout {...colors}>{children}</SiteLayout>
         </MenuControlProvider>
       </div>
