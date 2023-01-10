@@ -63,7 +63,6 @@ const config: GatsbyConfig = {
         extensions: [`.md`, `.mdx`],
         gatsbyRemarkPlugins: [
           "gatsby-remark-autolink-headers",
-          "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-external-links",
           "gatsby-remark-images",

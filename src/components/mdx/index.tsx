@@ -1,5 +1,6 @@
-import Headings from "./Headings";
+import Code from "./Code";
+import MDXWrapper from "./MDXWrapper";
 
-export default {
-  Headings,
-};
+export { Code };
+
+export default MDXWrapper;

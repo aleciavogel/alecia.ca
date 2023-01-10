@@ -28,7 +28,15 @@ const ReadingProgress: FC<Props> = ({ target }) => {
     window.addEventListener("scroll", scrollListener);
     return () => window.removeEventListener("scroll", scrollListener);
   }, [scrollListener]);
-  return <div style={{ transform: `translateX(${readingProgress}%)` }} id="reading-progress"></div>;
+  return (
+    <div
+      data-scrolldata-scroll
+      data-scroll-sticky
+      data-scroll-target="#page-content"
+      style={{ transform: `translateX(${readingProgress}%)` }}
+      id="reading-progress"
+    ></div>
+  );
 };
 
 export default ReadingProgress;
