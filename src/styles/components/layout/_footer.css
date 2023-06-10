@@ -1,0 +1,40 @@
+@layer components {
+  #site-footer {
+    @apply bg-gray-900 px-4 pt-8 pb-4 w-full z-50 overflow-visible;
+  }
+
+  #site-footer h2 {
+    color: var(--primaryLight);
+  }
+
+  #site-footer nav a {
+    @apply hover:text-white-rgba transition-colors duration-300 ease-in-out;
+  }
+
+  #footer-links {
+    @apply space-x-6 text-2xl text-center sm:text-right;
+  }
+
+  #footer-links a {
+    @apply text-gray-500 transition-colors duration-300 ease-in-out;
+  }
+
+  #footer-links a:hover {
+    color: var(--accentLight);
+  }
+
+  .site-footer-svg-bg-cover {
+    @apply bg-gray-900 absolute block left-0 w-1/2;
+    display: block;
+    content: "";
+    position: absolute;
+    height: 100px;
+    bottom: 30px;
+    z-index: -1;
+  }
+
+  #banner-hire-me {
+    @apply text-white text-center pt-16 pb-20 bg-repeat;
+    background-color: var(--primary-800);
+  }
+}

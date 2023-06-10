@@ -1,5 +1,5 @@
 import SiteWrapper from "@/components/site/SiteWrapper";
-import "./globals.css";
+import "@/styles/global.css";
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
 
 export const metadata = {

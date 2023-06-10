@@ -1,0 +1,89 @@
+@layer components {
+  .about-header {
+    @apply relative z-0 flex items-center justify-items-center px-20;
+    @apply transition-colors duration-300 ease-in-out;
+    height: calc(30vh + var(--triangleHeight));
+    min-height: calc(570px + var(--triangleHeight));
+    background-color: var(--primaryBg);
+  }
+
+  .about-header-wrapper {
+    @apply mx-auto space-y-2 md:space-y-4 text-left lg:text-left sm:max-w-screen-sm md:w-1/2 md:pl-4;
+    transform: translateY(calc(var(--triangleHeight) / -2));
+  }
+
+  .about-header h1 {
+    @apply font-serif text-2xl capitalize text-white leading-snug md:text-5xl lg:text-8xl;
+  }
+
+  .about-header p {
+    @apply text-sm md:text-xl text-left max-w-[500px];
+  }
+
+  .about-header svg {
+    @apply w-1/2 mt-10;
+    transform: translateY(calc(var(--triangleHeight) / -2));
+  }
+
+  .about-content .about-intro > p {
+    @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
+    @apply mb-6 md:mb-10;
+    color: var(--textBody);
+  }
+
+  .about-content h1,
+  .about-content h2,
+  .about-content h3,
+  .about-content h4,
+  .about-content h5,
+  .about-content h6 {
+    @apply font-serif font-normal leading-snug content-block;
+    color: var(--primary);
+  }
+
+  .about-content h1,
+  .about-content h2,
+  .about-content h3 {
+    @apply mb-6 md:mb-8;
+  }
+
+  .about-content h2 {
+    @apply text-2xl md:text-5xl;
+  }
+
+  .about-content p a {
+    @apply relative overflow-hidden no-underline;
+    color: var(--primary-600);
+  }
+
+  .dark .about-content p a {
+    color: var(--primary-400);
+  }
+
+  .about-content p a {
+    @apply font-extrabold;
+  }
+
+  .about-content p a::after {
+    @apply absolute w-full left-0 pointer-events-none;
+    @apply opacity-30 bg-current;
+    content: "";
+    height: 2px;
+    top: calc(100% + 1px);
+  }
+
+  .about-content p a:hover {
+    color: var(--accent-600);
+  }
+
+  .dark .about-content p a:hover {
+    color: var(--accent-400);
+  }
+
+  .about-content p a:hover::after {
+    @apply bg-transparent;
+    @apply zigzag-base;
+    top: calc(100% - 1px);
+    background-image: var(--zigzag-accent-light);
+  }
+}

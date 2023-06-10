@@ -1,0 +1,29 @@
+#menu-illustration {
+  @apply absolute;
+  height: 80vh;
+  width: 30vw;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.menu-open #menu-illustration {
+  opacity: 1;
+  transition: opacity 0.4s 1s ease-out;
+}
+
+#menu-illustration > .menu-blob {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  fill: var(--accent-200);
+  opacity: 0.4;
+  bottom: -150px;
+  right: -70px;
+}
+
+#menu-illustration .alecia-laying-svg {
+  @apply right-6 bottom-16;
+  position: absolute;
+  height: 35vh;
+}

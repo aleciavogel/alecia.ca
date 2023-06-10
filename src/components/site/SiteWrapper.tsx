@@ -31,6 +31,7 @@ export default function SiteWrapper({ primary_color, accent_color, text_color, c
       }}
       containerRef={containerRef}
       location={pathname}
+      watch={[]}
       onLocationChange={(scroll: any) => scroll.scrollTo(0, { duration: 0, disableLerp: true })} // If you want to reset the scroll position to 0 for example
     >
       <div data-scroll-container ref={containerRef}>
