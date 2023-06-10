@@ -1,3 +1,4 @@
+import SiteWrapper from "@/components/site/SiteWrapper";
 import "./globals.css";
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
 
@@ -12,7 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${(eksellLarge.variable, eksellSmall.variable, silka.variable)} font-sans-serif`}
     >
-      <body>{children}</body>
+      <body>
+        <SiteWrapper>{children}</SiteWrapper>
+      </body>
     </html>
   );
 }
