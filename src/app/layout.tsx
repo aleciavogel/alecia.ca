@@ -5,7 +5,6 @@ import "prismjs/plugins/command-line/prism-command-line.css";
 import "@/styles/prismjs.css";
 import "@/styles/global.css";
 
-import SiteWrapper from "@/components/site/SiteWrapper";
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
 
 export const metadata = {
@@ -19,9 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${(eksellLarge.variable, eksellSmall.variable, silka.variable)} font-sans-serif`}
     >
-      <body>
-        <SiteWrapper>{children}</SiteWrapper>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

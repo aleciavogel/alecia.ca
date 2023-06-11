@@ -6,17 +6,24 @@ import readingTime from "reading-time";
 import MDXWrapper from "@/components/mdx";
 import ArticleMain from "@/components/blog/ArticleMain";
 import ArticleHeader from "@/components/blog/ArticleHeader";
+import SiteWrapper from "@/components/site/SiteWrapper";
 
 export default function Post({ params }: any) {
   const props = getPost(params);
 
   return (
-    <article>
-      <ArticleHeader data={props.frontMatter} />
-      <ArticleMain timeToRead={readingTime(props.content).text} data={props.frontMatter}>
-        <MDXWrapper source={props.content} />
-      </ArticleMain>
-    </article>
+    <SiteWrapper
+      text_color={props.frontMatter.text_color}
+      primary_color={props.frontMatter.primary_color}
+      accent_color={props.frontMatter.accent_color}
+    >
+      <article>
+        <ArticleHeader data={props.frontMatter} />
+        <ArticleMain timeToRead={readingTime(props.content).text} data={props.frontMatter}>
+          <MDXWrapper source={props.content} />
+        </ArticleMain>
+      </article>
+    </SiteWrapper>
   );
 }
 

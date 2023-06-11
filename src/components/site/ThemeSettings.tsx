@@ -13,7 +13,7 @@ export default function ThemeSettings({ hover }: Props) {
 
   if (hover) {
     return (
-      <div className="mt-6 flex flex-col items-end justify-end">
+      <div>
         <div
           role="button"
           aria-label="Toggle dark mode"
@@ -28,7 +28,7 @@ export default function ThemeSettings({ hover }: Props) {
   }
 
   return (
-    <div className="flex flex-col items-end justify-end">
+    <div>
       <div className="theme-button">{icon}</div>
     </div>
   );
