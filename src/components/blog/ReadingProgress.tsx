@@ -3,7 +3,7 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 export default function ReadingProgress({ target }: { target: RefObject<HTMLDivElement> }) {
   const { scroll } = useLocomotiveScroll();
-  const [readingProgress, setReadingProgress] = useState(100);
+  const [readingProgress, setReadingProgress] = useState(0);
   const scrollListener = (windowScrollTop: number) => {
     const progress = windowScrollTop - window.innerHeight - 300;
     const percent = (progress / document.body.scrollHeight) * 100;
