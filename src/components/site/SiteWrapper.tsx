@@ -7,6 +7,7 @@ import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { DefaultColor } from "@/definitions/colors";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
+import HireMeBanner from "@/components/banners/HireMe";
 
 interface Props {
   primary_color?: DefaultColor;
@@ -44,7 +45,7 @@ export default function SiteWrapper({ primary_color, accent_color, text_color, c
 
           {children}
 
-          {/* <HireMeBanner /> */}
+          <HireMeBanner />
           <SiteFooter accent_color={accent_color} primary_color={primary_color} />
         </div>
       </div>

@@ -1,5 +1,11 @@
-import SiteWrapper from "@/components/site/SiteWrapper";
+// CSS to import
+import "locomotive-scroll/dist/locomotive-scroll.min.css";
+import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import "prismjs/plugins/command-line/prism-command-line.css";
+import "@/styles/prismjs.css";
 import "@/styles/global.css";
+
+import SiteWrapper from "@/components/site/SiteWrapper";
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
 
 export const metadata = {

@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { MDXProvider } from "@mdx-js/react";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { parsePreBlock } from "./Code";
 import Link from "./Link";
@@ -9,12 +8,6 @@ const components = {
   a: Link,
 };
 
-interface Props {
-  children: string | React.ReactNode;
+export default function MDXWrapper({ source }: { source: any }) {
+  return <MDXRemote source={source} components={components} />;
 }
-
-const MDXWrapper: FC<Props> = ({ children }) => (
-  <MDXProvider components={components}>{children}</MDXProvider>
-);
-
-export default MDXWrapper;

@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { DefaultColor } from "@/definitions/colors";
 import ShareLinks from "./ShareLinks";
 
 interface Props {
   timeToRead: string;
-  location: Location;
   data: {
     primary_color?: DefaultColor;
     accent_color?: DefaultColor;
@@ -16,8 +16,9 @@ interface Props {
 export default function PostInfo({
   data: { primary_color, accent_color, date },
   timeToRead,
-  location,
 }: Props) {
+  const pathname = usePathname();
+
   return (
     <aside className="author-card">
       <p>
@@ -30,11 +31,7 @@ export default function PostInfo({
         {timeToRead}
       </p>
 
-      <ShareLinks
-        accent_color={accent_color ?? "pink"}
-        primary_color={primary_color ?? "indigo"}
-        location={location}
-      />
+      <ShareLinks accent_color={accent_color ?? "pink"} primary_color={primary_color ?? "indigo"} />
     </aside>
   );
 }
