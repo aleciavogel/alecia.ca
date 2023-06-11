@@ -5,6 +5,8 @@
     height: 736px;
     max-height: 800px;
     background-color: var(--primaryBg);
+    pointer-events: none;
+    overflow: none;
   }
 
   .about-header .spinning-text svg {
@@ -64,6 +66,7 @@
   .about-content .about-intro > p {
     @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
     @apply mb-6 md:mb-10;
+    font-family: var(--font-serif);
     color: var(--textBody);
   }
 
