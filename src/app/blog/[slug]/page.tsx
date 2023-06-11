@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import { Metadata, ResolvingMetadata } from "next";
 
 import MDXWrapper from "@/components/mdx";
 import ArticleMain from "@/components/blog/ArticleMain";
@@ -36,6 +37,13 @@ function getPost({ slug }: { slug: string }) {
     frontMatter,
     slug,
     content,
+  };
+}
+
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const props = getPost(params);
+  return {
+    title: `${props.frontMatter.title} | Alecia.ca`,
   };
 }
 
