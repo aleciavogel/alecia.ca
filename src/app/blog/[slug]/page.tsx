@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 import MDXWrapper from "@/components/mdx";
 import ArticleMain from "@/components/blog/ArticleMain";
