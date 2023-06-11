@@ -31,14 +31,14 @@ export default function AboutHeader() {
   }, [scroll]);
 
   return (
-    <section className={`about-header`}>
+    <section className="about-header">
       <div
         style={{ opacity: 1 - scrollPercent }}
         className="transition-opacity duration-300 ease-out"
       >
         <RotatingText className="spinning-text" />
       </div>
-      <div className="w-full couch-svg">
+      <div className="couch-svg">
         <AleciaCouch />
       </div>
     </section>

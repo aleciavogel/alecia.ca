@@ -2,25 +2,32 @@ export default function RotatingText({ className }: { className?: string }) {
   return (
     <div className={className}>
       <svg
-        version="1.1"
+        viewBox="74.7 43.303 148.243 148.12"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 300 300"
+        className={className}
       >
         <defs>
-          <path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 " />
+          <path id="a" d="M-60 0A60 60 0 0160 0 60 60 0 01-60 0" shapeRendering="crispEdges" />
         </defs>
-        <circle cx="150" cy="100" r="75" fill="none" />
-        <g>
-          <use xlinkHref="#circlePath" fill="none" />
-          <text>
-            <textPath xlinkHref="#circlePath" className="font-sans-serif">
-              developer • designer • dreamer • problem solver • self-starter • doer •
-            </textPath>
-          </text>
-        </g>
+        <path
+          d="M-60 0A60 60 0 0160 0 60 60 0 01-60 0"
+          shapeRendering="crispEdges"
+          fill="none"
+          transform="translate(148.821 117.411)"
+        />
+        <text
+          style={{
+            whiteSpace: "pre",
+          }}
+          transform="translate(148.821 117.411)"
+        >
+          <textPath shapeRendering="crispEdges" xlinkHref="#a">
+            {
+              "developer \u2022 designer \u2022 dreamer \u2022 problem solver \u2022 self-starter \u2022 doer \u2022"
+            }
+          </textPath>
+        </text>
       </svg>
     </div>
   );

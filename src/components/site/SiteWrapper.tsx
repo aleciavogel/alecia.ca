@@ -24,9 +24,9 @@ export default function SiteWrapper({ primary_color, accent_color, text_color, c
   return (
     <LocomotiveScrollProvider
       options={{
-        smooth: true,
+        smooth: false,
         tablet: {
-          smooth: true,
+          smooth: false,
           breakpoint: 768,
         },
       }}

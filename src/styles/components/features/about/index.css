@@ -1,43 +1,57 @@
 @layer components {
   .about-header {
-    @apply relative z-0 px-20 pt-20;
+    @apply relative z-0;
     @apply transition-colors duration-300 ease-in-out;
-    height: 736px;
     max-height: 800px;
     background-color: var(--primaryBg);
     pointer-events: none;
-    overflow: none;
+    overflow: hidden;
   }
 
-  .about-header .spinning-text svg {
-    @apply inline-block;
+  .spinning-text {
+    @apply absolute left-1/2 transform -translate-x-1/2;
+    max-width: 1250px;
     width: 100%;
+  }
+
+  .spinning-text svg text {
+    fill: var(--primary-400);
+    font-size: 10.75px;
+    font-weight: bold;
+  }
+
+  .spinning-text svg {
+    @apply absolute left-0;
+    width: 100%;
+    display: inline-block;
+    transform-origin: center center;
     animation-name: rotate-circle;
     animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
 
-  .about-header .spinning-text svg text {
-    fill: var(--primary-400);
-    font-size: 10.75px;
-    font-weight: bold;
-  }
-
-  .about-header .spinning-text {
-    @apply absolute top-0 left-1/2 block mx-auto text-center transform-gpu;
-    width: calc(2 * 1140px);
-    transform: translate(-50%, -410px);
-    transform-origin: center center;
-  }
-
   @keyframes rotate-circle {
     from {
-      -webkit-transform: translateY(-20vh) rotate(360deg);
+      transform: rotate(360deg);
     }
     to {
-      -webkit-transform: translateY(-20vh) rotate(0deg);
+      transform: rotate(0deg);
     }
+  }
+
+  .couch-svg {
+    @apply mx-auto px-12 md:px-20;
+    padding-top: 12vw;
+    position: relative;
+  }
+
+  .couch-svg svg {
+    @apply mx-auto;
+    padding-bottom: calc(var(--triangleHeight));
+    width: 640px;
+    max-width: 100%;
+    display: block;
   }
 
   .about-header-wrapper {
@@ -50,17 +64,6 @@
 
   .about-header p {
     @apply text-sm md:text-xl text-left max-w-[500px];
-  }
-
-  .couch-svg {
-    width: 640px;
-    position: relative;
-  }
-  .couch-svg svg {
-    @apply mt-20 mx-auto;
-    width: 640px;
-    display: block;
-    /* transform: translateY(calc(var(--triangleHeight) / -2)); */
   }
 
   .about-content .about-intro > p {
