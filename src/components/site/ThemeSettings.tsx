@@ -1,3 +1,5 @@
+"use client";
+
 import useDarkMode from "use-dark-mode";
 
 import DayIcon from "@/components/icons/DayIcon";

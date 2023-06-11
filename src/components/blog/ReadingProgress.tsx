@@ -1,9 +1,10 @@
-import { useState, useEffect, RefObject } from "react";
+"use client";
+import { useState, useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-export default function ReadingProgress({ target }: { target: RefObject<HTMLDivElement> }) {
+export default function ReadingProgress() {
   const { scroll } = useLocomotiveScroll();
-  const [readingProgress, setReadingProgress] = useState(100);
+  const [readingProgress, setReadingProgress] = useState(0);
 
   const scrollListener = (windowScrollTop: number) => {
     const progress = windowScrollTop - window.innerHeight;

@@ -1,15 +1,45 @@
 @layer components {
   .about-header {
-    @apply relative z-0 flex items-center justify-items-center px-20;
+    @apply relative z-0 px-20 pt-20;
     @apply transition-colors duration-300 ease-in-out;
-    height: calc(30vh + var(--triangleHeight));
-    min-height: calc(570px + var(--triangleHeight));
+    height: 736px;
+    max-height: 800px;
     background-color: var(--primaryBg);
   }
 
+  .about-header .spinning-text svg {
+    @apply inline-block;
+    width: 100%;
+    animation-name: rotate-circle;
+    animation-duration: 120s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .about-header .spinning-text svg text {
+    fill: var(--primary-400);
+    font-size: 10.75px;
+    font-weight: bold;
+  }
+
+  .about-header .spinning-text {
+    @apply absolute top-0 left-1/2 block mx-auto text-center transform-gpu;
+    width: calc(2 * 1140px);
+    transform: translate(-50%, -410px);
+    transform-origin: center center;
+  }
+
+  @keyframes rotate-circle {
+    from {
+      -webkit-transform: translateY(-20vh) rotate(360deg);
+    }
+    to {
+      -webkit-transform: translateY(-20vh) rotate(0deg);
+    }
+  }
+
   .about-header-wrapper {
-    @apply mx-auto space-y-2 md:space-y-4 text-left lg:text-left sm:max-w-screen-sm md:w-1/2 md:pl-4;
-    transform: translateY(calc(var(--triangleHeight) / -2));
+    @apply mx-auto text-left lg:text-left sm:max-w-screen-sm md:w-1/2 md:pl-4;
   }
 
   .about-header h1 {
@@ -20,9 +50,15 @@
     @apply text-sm md:text-xl text-left max-w-[500px];
   }
 
-  .about-header svg {
-    @apply w-1/2 mt-10;
-    transform: translateY(calc(var(--triangleHeight) / -2));
+  .couch-svg {
+    width: 640px;
+    position: relative;
+  }
+  .couch-svg svg {
+    @apply mt-20 mx-auto;
+    width: 640px;
+    display: block;
+    /* transform: translateY(calc(var(--triangleHeight) / -2)); */
   }
 
   .about-content .about-intro > p {

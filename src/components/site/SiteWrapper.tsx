@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 import { DefaultColor } from "@/definitions/colors";
@@ -32,7 +32,7 @@ export default function SiteWrapper({ primary_color, accent_color, text_color, c
       }}
       containerRef={containerRef}
       location={pathname}
-      watch={[]}
+      watch={[pathname]}
       onLocationChange={(scroll: any) => scroll.scrollTo(0, { duration: 0, disableLerp: true })} // If you want to reset the scroll position to 0 for example
     >
       <div data-scroll-container ref={containerRef}>

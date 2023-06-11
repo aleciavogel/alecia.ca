@@ -285,6 +285,11 @@
     picocolors "^1.0.0"
     tslib "^2.5.0"
 
+"@rbnd/react-dark-mode@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@rbnd/react-dark-mode/-/react-dark-mode-2.0.1.tgz#e694824cba3e0bfb49f99355ca94e09334dca598"
+  integrity sha512-C8Lswd6Z3CVE1L/8uQWq6LJoZHeoa8JUuzSAUXXeIDKZfuqU5YheBT8e5xTxmlsm3M7XyKrB5+Lh5nJB2+f9kQ==
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.3.1.tgz#edbb85ff95f3be41eaa70c6d6ad6d8ba0a9c7e46"

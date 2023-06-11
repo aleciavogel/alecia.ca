@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import { DefaultColor } from "@/definitions/colors";
 import ShareLinks from "./ShareLinks";
@@ -17,8 +16,6 @@ export default function PostInfo({
   data: { primary_color, accent_color, date },
   timeToRead,
 }: Props) {
-  const pathname = usePathname();
-
   return (
     <aside className="author-card">
       <p>

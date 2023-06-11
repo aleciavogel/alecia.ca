@@ -18,7 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${(eksellLarge.variable, eksellSmall.variable, silka.variable)} font-sans-serif`}
     >
-      <body>{children}</body>
+      <body>
+        <script src="/noflash.js" />
+        {children}
+      </body>
     </html>
   );
 }
