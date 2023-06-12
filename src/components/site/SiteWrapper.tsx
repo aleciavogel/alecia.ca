@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 import { DefaultColor } from "@/definitions/colors";
+import StaticMenu from "./StaticMenu";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import HireMeBanner from "@/components/banners/HireMe";
@@ -40,7 +41,7 @@ export default function SiteWrapper({ primary_color, accent_color, text_color, c
           <SiteHeader />
           <SiteHeader hover={true} />
 
-          {/* <StaticMenu /> */}
+          <StaticMenu />
           {/* <SiteMenu /> */}
 
           {children}

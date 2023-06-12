@@ -32,14 +32,16 @@ export default function AboutHeader() {
 
   return (
     <section className="about-header">
-      <div
-        style={{ opacity: 1 - scrollPercent }}
-        className="transition-opacity duration-300 ease-out"
-      >
-        <RotatingText className="spinning-text" />
-      </div>
-      <div className="couch-svg">
-        <AleciaCouch />
+      <div className="couch-wrapper">
+        <div
+          style={{ opacity: 1 - scrollPercent }}
+          className="transition-opacity duration-300 ease-out"
+        >
+          <RotatingText className="spinning-text" />
+        </div>
+        <div className="couch-svg">
+          <AleciaCouch />
+        </div>
       </div>
     </section>
   );

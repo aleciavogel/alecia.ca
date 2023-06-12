@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${(eksellLarge.variable, eksellSmall.variable, silka.variable)} font-sans-serif`}
+      className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${silka.className}`}
     >
       <body>
         <script src="/noflash.js" />

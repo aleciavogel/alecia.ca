@@ -24,7 +24,7 @@ export default function RotatingText({ className }: { className?: string }) {
         >
           <textPath shapeRendering="crispEdges" xlinkHref="#a">
             {
-              "developer \u2022 designer \u2022 dreamer \u2022 problem solver \u2022 self-starter \u2022 doer \u2022"
+              "developer \u2022 designer \u2022 dreamer \u2022 problem-solver \u2022 comedian \u2022 creator \u2022"
             }
           </textPath>
         </text>

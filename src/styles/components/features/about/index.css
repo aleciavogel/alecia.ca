@@ -1,11 +1,18 @@
 @layer components {
   .about-header {
-    @apply relative z-0;
+    @apply relative z-0 pt-20;
     @apply transition-colors duration-300 ease-in-out;
-    max-height: 800px;
     background-color: var(--primaryBg);
     pointer-events: none;
     overflow: hidden;
+  }
+
+  .about-header h1 {
+    @apply text-center pt-16;
+  }
+
+  .couch-wrapper {
+    @apply relative;
   }
 
   .spinning-text {
@@ -16,7 +23,7 @@
 
   .spinning-text svg text {
     fill: var(--primary-400);
-    font-size: 10.75px;
+    font-size: 10.55px;
     font-weight: bold;
   }
 
@@ -43,6 +50,7 @@
   .couch-svg {
     @apply mx-auto px-12 md:px-20;
     padding-top: 12vw;
+    padding-bottom: 20px;
     position: relative;
   }
 
@@ -59,7 +67,7 @@
   }
 
   .about-header h1 {
-    @apply font-serif text-2xl capitalize text-white leading-snug md:text-5xl lg:text-8xl;
+    @apply font-bold text-2xl capitalize text-white leading-snug md:text-5xl lg:text-8xl;
   }
 
   .about-header p {
