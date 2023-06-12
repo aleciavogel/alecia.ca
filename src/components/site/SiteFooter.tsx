@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { DefaultColor } from "@/definitions/colors";
 import AleciaSitSvg from "@/components/vectors/AleciaSitSvg";
-import SocialLinks from "./SocialLinks";
+import SocialLinks from "@/components/site/SocialLinks";
 
 interface Props {
   accent_color?: DefaultColor;
@@ -13,7 +13,7 @@ interface Props {
 export default function SiteFooter({ accent_color = "pink", primary_color = "indigo" }: Props) {
   return (
     <footer id="site-footer" role="contentinfo">
-      <div className="mb-4 mx-auto sm:flex sm:items-center sm:justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl">
+      <div className="mb-4 mx-auto flex-wrap md:flex-nowrap sm:flex sm:items-center sm:justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl">
         <div
           className={
             "relative md:after:site-footer-svg-bg-cover z-50 " +
@@ -29,15 +29,15 @@ export default function SiteFooter({ accent_color = "pink", primary_color = "ind
           <h2 className="font-serif text-4xl lg:text-5xl mb-2 text-center md:text-left">
             Alecia Vogel
           </h2>
-          <p className="text-white text-sm lg:text-lg leading-relaxed mb-3 max-md:text-center max-sm:px-10 sm:max-md:px-16">
+          <p className="text-white text-sm lg:text-lg leading-relaxed md:mb-3 max-md:text-center max-sm:px-10 sm:max-md:px-16 w-full sm:w-3/4 mx-auto md:mx-0">
             is a <strong className="font-bold">full stack web developer</strong> and{" "}
             <strong className="font-bold">digital product designer</strong> living in downtown
             Edmonton.
           </p>
         </div>
-        <div className="md:grid md:grid-cols-2 md:w-3/4 md:-mt-4">
+        <div className="md:grid md:grid-cols-2 w-full md:w-3/4 md:-mt-4">
           <div className="text-white max-md:mb-8">
-            <h2 className="mb-3 font-bold text-md lg:text-xl max-md:text-center">Get To Know Me</h2>
+            {/* <h2 className="mb-3 font-bold text-md lg:text-xl max-md:text-center">Get To Know Me</h2>
             <ul className="space-y-2 md:space-y-3 text-xs lg:text-sm max-md:text-center">
               <li>
                 <Link href="/about">About</Link>
@@ -48,21 +48,24 @@ export default function SiteFooter({ accent_color = "pink", primary_color = "ind
               <li>
                 <Link href="/contact">Contact</Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
-          <div className="text-white">
-            <h2 className="mb-3 font-bold text-md lg:text-xl max-md:text-center">Take A Gander</h2>
-            <ul className="space-y-2 md:space-y-3 text-xs lg:text-sm max-md:text-center">
+          <div className="text-white pb-5 md:pb-0">
+            <h2 className="mb-3 font-bold text-lg lg:text-xl max-md:text-center">Get To Know Me</h2>
+            <ul className="space-y-2 md:space-y-3 text-sm max-md:text-center">
+              <li>
+                <Link href="/">About Me</Link>
+              </li>
               <li>
                 <Link href="/blog">Blog Articles</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/tutorials">Coding Tutorials</Link>
               </li>
               <li>
                 <Link href="/virtual-interview">Talks & Presentations</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

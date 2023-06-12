@@ -9,6 +9,7 @@ import ArticleMain from "@/components/blog/ArticleMain";
 import ArticleHeader from "@/components/blog/ArticleHeader";
 import SiteWrapper from "@/components/site/SiteWrapper";
 import { getPostBySlug } from "@/lib/posts";
+import Link from "next/link";
 
 export default function Post({ params }: any) {
   const props = getPostBySlug(params?.slug);
@@ -23,6 +24,11 @@ export default function Post({ params }: any) {
         <ArticleHeader data={props.frontMatter} />
         <ArticleMain timeToRead={readingTime(props.content).text} data={props.frontMatter}>
           <MDXWrapper source={props.content} />
+          <p className="mt-8 content-block">
+            <Link href="/" className="">
+              <span>← Back to homepage</span>
+            </Link>
+          </p>
         </ArticleMain>
       </article>
     </SiteWrapper>

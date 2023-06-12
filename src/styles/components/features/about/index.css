@@ -92,6 +92,10 @@
     color: var(--primary);
   }
 
+  .about-content ul {
+    @apply content-block;
+  }
+
   .about-content h1,
   .about-content h2,
   .about-content h3 {

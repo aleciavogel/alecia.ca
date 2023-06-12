@@ -11,9 +11,8 @@ export function getPostSlugs() {
   return fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
 }
 
-export function getPostBySlug(slug: string, fields: string[] = []) {
+export function getPostBySlug(slug: string) {
   const realSlug = slug.replace(/\.mdx$/, "");
-  console.log("realSlug", realSlug);
   const fullPath = path.join(postsDirectory, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data: frontMatter, content } = matter(fileContents);
@@ -31,13 +30,9 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
   };
 }
 
-export function getSortedPostsData(fields: string[] = []) {
-  // Get file names under /_posts
+export function getSortedPostsData() {
   const fileNames = getPostSlugs();
-  const initialFields = ["title", "data", "author", "content"];
-  const targetFields = [...new Set([...initialFields, ...fields])];
-
-  const allPostsData = fileNames.map((slug) => getPostBySlug(slug, targetFields));
+  const allPostsData = fileNames.map((slug) => getPostBySlug(slug));
 
   // Sort posts by date
   return allPostsData.sort((a, b) => {
@@ -47,31 +42,6 @@ export function getSortedPostsData(fields: string[] = []) {
     } else {
       return -1;
     }
-  });
-}
-
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
-
-  // Returns an array that looks like this:
-  // [
-  //   {
-  //     params: {
-  //       id: 'ssg-ssr'
-  //     }
-  //   },
-  //   {
-  //     params: {
-  //       id: 'pre-rendering'
-  //     }
-  //   }
-  // ]
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.mdx$/, ""),
-      },
-    };
   });
 }
 

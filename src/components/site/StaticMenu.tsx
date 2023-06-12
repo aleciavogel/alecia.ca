@@ -14,8 +14,9 @@ export function NavLink({ to, children, srOnly = false }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = useMemo(() => {
     const samePath = pathname === to;
-    const isSubPath = pathname.includes(to);
-    return samePath || isSubPath;
+    const isAboutPage = pathname === "/" && to === "/";
+    const isSubPath = to !== "/" && pathname.includes(to);
+    return samePath || isAboutPage || isSubPath;
   }, [pathname, to]);
 
   return (
@@ -40,11 +41,11 @@ export default function StaticMenu() {
         <NavLink to="/" srOnly={true}>
           Home
         </NavLink>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/">About</NavLink>
         <NavLink to="/blog">Blog</NavLink>
-        <NavLink to="/portfolio">Portfolio</NavLink>
+        {/* <NavLink to="/portfolio">Portfolio</NavLink>
         <NavLink to="/speaking">Speaking</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/contact">Contact</NavLink> */}
       </ul>
     </nav>
   );

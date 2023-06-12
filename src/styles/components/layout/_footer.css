@@ -12,7 +12,7 @@
   }
 
   #footer-links {
-    @apply space-x-6 text-2xl text-center sm:text-right;
+    @apply space-x-6 text-2xl text-center md:text-right;
   }
 
   #footer-links a {
@@ -33,7 +33,8 @@
     z-index: -1;
   }
 
-  #banner-hire-me {
+  #banner-hire-me,
+  .bottom-banner {
     @apply text-white text-center pt-16 pb-20 bg-repeat;
     background-color: var(--primary-800);
   }
