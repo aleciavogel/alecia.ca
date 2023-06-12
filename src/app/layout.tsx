@@ -4,9 +4,9 @@ import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "prismjs/plugins/command-line/prism-command-line.css";
 import "@/styles/prismjs.css";
 import "@/styles/global.css";
-import "@/noflash";
 
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
+import Script from "next/script";
 
 export const metadata = {
   title: "Alecia.ca",
@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${silka.className}`}
     >
+      <Script src="/noflash.js" strategy="beforeInteractive" />
       <body>{children}</body>
     </html>
   );
