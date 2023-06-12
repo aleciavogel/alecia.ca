@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { DefaultColor } from "@/definitions/colors";
 import ShareLinks from "./ShareLinks";
+import Date from "../Date";
 
 interface Props {
   timeToRead: string;
@@ -24,7 +25,7 @@ export default function PostInfo({
         <Link href="/">Alecia Vogel</Link>
       </p>
       <p className="mt-3">
-        <time dateTime={date}>{date}</time>
+        <Date dateString={date} />
         <span className="mx-3">&#xB7;</span>
         {timeToRead}
       </p>
