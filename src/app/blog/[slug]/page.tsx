@@ -8,9 +8,10 @@ import MDXWrapper from "@/components/mdx";
 import ArticleMain from "@/components/blog/ArticleMain";
 import ArticleHeader from "@/components/blog/ArticleHeader";
 import SiteWrapper from "@/components/site/SiteWrapper";
+import { getPostBySlug } from "@/lib/posts";
 
 export default function Post({ params }: any) {
-  const props = getPost(params);
+  const props = getPostBySlug(params?.slug);
 
   return (
     <SiteWrapper
@@ -28,27 +29,15 @@ export default function Post({ params }: any) {
   );
 }
 
-function getPost({ slug }: { slug: string }) {
-  const markdownFile = fs.readFileSync(path.join("posts", slug + ".mdx"), "utf-8");
-
-  const { data: frontMatter, content } = matter(markdownFile);
-
-  return {
-    frontMatter,
-    slug,
-    content,
-  };
-}
-
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const props = getPost(params);
+  const props = getPostBySlug(params?.slug);
   return {
     title: `${props.frontMatter.title} | Alecia.ca`,
   };
 }
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("posts"));
+  const files = fs.readdirSync(path.join("_posts"));
 
   const paths = files.map((filename) => ({
     slug: filename.replace(".mdx", ""),

@@ -99,7 +99,7 @@
   }
 
   .about-content h2 {
-    @apply text-2xl md:text-5xl;
+    @apply text-2xl md:text-6xl;
   }
 
   .about-content p a {
