@@ -9,11 +9,12 @@ interface Props {
     primary_color?: DefaultColor;
     accent_color?: DefaultColor;
     date: string;
+    title: string;
   };
 }
 
 export default function PostInfo({
-  data: { primary_color, accent_color, date },
+  data: { primary_color, accent_color, date, title },
   timeToRead,
 }: Props) {
   return (
@@ -28,7 +29,11 @@ export default function PostInfo({
         {timeToRead}
       </p>
 
-      <ShareLinks accent_color={accent_color ?? "pink"} primary_color={primary_color ?? "indigo"} />
+      <ShareLinks
+        accent_color={accent_color ?? "pink"}
+        primary_color={primary_color ?? "indigo"}
+        title={title}
+      />
     </aside>
   );
 }
