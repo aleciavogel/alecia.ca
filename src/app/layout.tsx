@@ -6,7 +6,6 @@ import "@/styles/prismjs.css";
 import "@/styles/global.css";
 
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
-import { getCookie } from "cookies-next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
 export const metadata = {
@@ -15,14 +14,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const theme = getCookie("theme") ?? "dark";
-
   return (
     <html
       lang="en"
-      className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${
-        silka.className
-      } ${theme === "dark" ? "dark" : ""}}`}
+      className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${silka.className}`}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
