@@ -2,16 +2,18 @@ import fs from "fs";
 import path from "path";
 import readingTime from "reading-time";
 import { Metadata } from "next";
+import Link from "next/link";
 
 import MDXWrapper from "@/components/mdx";
 import ArticleMain from "@/components/blog/ArticleMain";
 import ArticleHeader from "@/components/blog/ArticleHeader";
 import SiteWrapper from "@/components/site/SiteWrapper";
 import { getPostBySlug } from "@/lib/posts";
-import Link from "next/link";
 
 export default function Post({ params }: any) {
   const props = getPostBySlug(params?.slug);
+
+  console.log(props);
 
   return (
     <SiteWrapper

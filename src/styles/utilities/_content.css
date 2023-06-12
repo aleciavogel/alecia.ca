@@ -2,4 +2,91 @@
   .content-block {
     @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
   }
+
+  /**
+   * Colors
+   */
+  .text-primary-50 {
+    color: var(--primary-50);
+  }
+
+  .text-primary-100 {
+    color: var(--primary-100);
+  }
+
+  .text-primary-200 {
+    color: var(--primary-200);
+  }
+
+  .text-primary-300 {
+    color: var(--primary-300);
+  }
+
+  .text-primary-400 {
+    color: var(--primary-400);
+  }
+
+  .text-primary-500 {
+    color: var(--primary-500);
+  }
+
+  .text-primary-600 {
+    color: var(--primary-600);
+  }
+
+  .text-primary-700 {
+    color: var(--primary-700);
+  }
+
+  .text-primary-800 {
+    color: var(--primary-800);
+  }
+
+  .text-primary-900 {
+    color: var(--primary-900);
+  }
+
+  .text-accent-50 {
+    color: var(--accent-50);
+  }
+
+  .text-accent-100 {
+    color: var(--accent-100);
+  }
+
+  .text-accent-200 {
+    color: var(--accent-200);
+  }
+
+  .text-accent-300 {
+    color: var(--accent-300);
+  }
+
+  .text-accent-400 {
+    color: var(--accent-400);
+  }
+
+  .text-accent-500 {
+    color: var(--accent-500);
+  }
+
+  .text-accent-600 {
+    color: var(--accent-600);
+  }
+
+  .text-accent-700 {
+    color: var(--accent-700);
+  }
+
+  .text-accent-800 {
+    color: var(--accent-800);
+  }
+
+  .text-accent-900 {
+    color: var(--accent-900);
+  }
+
+  .text-body {
+    color: var(--textBody);
+  }
 }

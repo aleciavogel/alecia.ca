@@ -89,11 +89,12 @@
   .about-content h5,
   .about-content h6 {
     @apply font-serif font-normal leading-snug content-block;
-    color: var(--primary);
+    @apply text-primary-600 dark:text-primary-400;
   }
 
   .about-content ul {
     @apply content-block;
+    @apply text-body;
   }
 
   .about-content h1,

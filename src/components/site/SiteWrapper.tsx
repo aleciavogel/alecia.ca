@@ -18,7 +18,12 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export default function SiteWrapper({ primary_color, accent_color, text_color, children }: Props) {
+export default function SiteWrapper({
+  primary_color = "indigo",
+  accent_color = "pink",
+  text_color = "gray",
+  children,
+}: Props) {
   const pathname = usePathname();
   const containerRef = useRef(null);
   const colorClasses = `primary-${primary_color} accent-${accent_color} body-${text_color}`;

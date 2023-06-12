@@ -21,7 +21,7 @@ export default function PostInfo({
     <aside className="author-card">
       <p>
         {"By "}
-        <Link href="/about">Alecia Vogel</Link>
+        <Link href="/">Alecia Vogel</Link>
       </p>
       <p className="mt-3">
         <time dateTime={date}>{date}</time>
