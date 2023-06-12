@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import DayIcon from "@/components/icons/DayIcon";
 import NightIcon from "@/components/icons/NightIcon";
