@@ -5,6 +5,7 @@
     background-color: var(--primaryBg);
     pointer-events: none;
     overflow: hidden;
+    min-height: calc(100vh + var(--triangleHeight));
   }
 
   .about-header h1 {
@@ -12,7 +13,7 @@
   }
 
   .couch-wrapper {
-    @apply relative;
+    @apply absolute bottom-0 w-full;
   }
 
   .spinning-text {
