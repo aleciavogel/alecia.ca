@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
 import readingTime from "reading-time";
 import { Metadata } from "next";
 
@@ -39,6 +38,12 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   const props = getPostBySlug(params?.slug);
   return {
     title: `${props.frontMatter.title} | Alecia.ca`,
+    authors: [
+      {
+        name: "Alecia Vogel",
+        url: "https://alecia.ca",
+      },
+    ],
   };
 }
 
