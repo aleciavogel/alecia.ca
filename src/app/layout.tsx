@@ -4,6 +4,7 @@ import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "prismjs/plugins/command-line/prism-command-line.css";
 import "@/styles/prismjs.css";
 import "@/styles/global.css";
+import "@/noflash";
 
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
 
@@ -18,10 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${silka.className}`}
     >
-      <body>
-        <script src="/noflash.js" />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

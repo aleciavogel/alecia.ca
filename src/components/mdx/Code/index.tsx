@@ -24,6 +24,26 @@ export default function CodeSnippet({
   codeTitle,
   ghSource,
 }: Props) {
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const [keepShowingCopy, setKeepShowingCopy] = useState<boolean>(false);
+
+  const handleClipboard = useCallback(() => {
+    const type = "text/plain";
+    const blob = new Blob([codeString], { type });
+    const data = [new ClipboardItem({ [type]: blob })];
+    navigator.clipboard.write(data).then(
+      () => {
+        setIsCopied(true);
+        setKeepShowingCopy(true);
+        setTimeout(() => setKeepShowingCopy(false), 3000);
+        setTimeout(() => setIsCopied(false), 3300); // Change text after it hides again
+      },
+      () => {
+        console.warn("Clipboard failed to copy code snippet :(");
+      },
+    );
+  }, [setIsCopied, setKeepShowingCopy, codeString]);
+
   if (isLive) {
     return (
       <LiveProvider code={codeString} noInline={true}>
@@ -34,8 +54,6 @@ export default function CodeSnippet({
     );
   } else {
     const classNames: string[] = ["gatsby-highlight"];
-    const [isCopied, setIsCopied] = useState<boolean>(false);
-    const [keepShowingCopy, setKeepShowingCopy] = useState<boolean>(false);
 
     if (codeTitle) {
       classNames.push("has-code-title");
@@ -47,23 +65,6 @@ export default function CodeSnippet({
         <FontAwesomeIcon icon={faGithub} />
       </a>
     );
-
-    const handleClipboard = useCallback(() => {
-      const type = "text/plain";
-      const blob = new Blob([codeString], { type });
-      const data = [new ClipboardItem({ [type]: blob })];
-      navigator.clipboard.write(data).then(
-        () => {
-          setIsCopied(true);
-          setKeepShowingCopy(true);
-          setTimeout(() => setKeepShowingCopy(false), 3000);
-          setTimeout(() => setIsCopied(false), 3300); // Change text after it hides again
-        },
-        () => {
-          console.warn("Clipboard failed to copy code snippet :(");
-        },
-      );
-    }, [setIsCopied, setKeepShowingCopy, codeString]);
 
     return (
       <Highlight {...defaultProps} code={codeString} language={language}>
@@ -82,9 +83,9 @@ export default function CodeSnippet({
             />
             <pre className={className} style={style}>
               {tokens.map((line, i) => (
-                <div {...getLineProps({ line, key: i })}>
+                <div key={i} {...getLineProps({ line, key: i })}>
                   {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
+                    <span key={key} {...getTokenProps({ token, key })} />
                   ))}
                 </div>
               ))}

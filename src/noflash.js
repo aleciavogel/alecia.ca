@@ -1,18 +1,18 @@
 // Insert this script in your index.html right after the <body> tag.
 // This will help to prevent a flash if dark mode is the default.
 
-(function() {
+(function () {
   // Change these if you use something different in your hook.
-  var storageKey = 'darkMode';
-  var classNameDark = 'dark';
-  var classNameLight = 'light-mode';
+  var storageKey = "darkMode";
+  var classNameDark = "dark";
+  var classNameLight = "light-mode";
 
   function setClassOnDocumentBody(darkMode) {
     document.body.classList.add(darkMode ? classNameDark : classNameLight);
     document.body.classList.remove(darkMode ? classNameLight : classNameDark);
   }
-  
-  var preferDarkQuery = '(prefers-color-scheme: dark)';
+
+  var preferDarkQuery = "(prefers-color-scheme: dark)";
   var mql = window.matchMedia(preferDarkQuery);
   var supportsColorSchemeQuery = mql.media === preferDarkQuery;
   var localStorageTheme = null;

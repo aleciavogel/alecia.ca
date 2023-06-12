@@ -10,7 +10,7 @@ export default function HireMeBanner() {
           Need an extra hand?
         </h3>
         <p className="max-sm:px-6 text-sm sm:text-lg md:text-xl leading-relaxed mb-8 w-3/4 mx-auto">
-          Well, I just so happen to have two of 'em.
+          Well, I just so happen to have two of $apos;em.
         </p>
         <Link
           href="/work-with-me"
