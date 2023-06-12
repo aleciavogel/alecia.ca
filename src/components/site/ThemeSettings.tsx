@@ -9,15 +9,8 @@ interface Props {
 }
 
 export default function ThemeSettings({ hover }: Props) {
-  const [mounted, setMounted] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();
   const icon = theme === "dark" ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   if (hover) {
     return (
