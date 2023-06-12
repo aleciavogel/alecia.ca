@@ -6,7 +6,7 @@ import "@/styles/prismjs.css";
 import "@/styles/global.css";
 
 import { eksellLarge, eksellSmall, silka } from "@/fonts";
-import { ThemeProvider } from "@/contexts/ThemeContext";
+import Providers from "@/components/Providers";
 
 export const metadata = {
   title: "Alecia.ca",
@@ -15,12 +15,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${silka.className}`}
-    >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en">
+      <body
+        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${silka.className}`}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

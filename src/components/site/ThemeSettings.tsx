@@ -1,6 +1,6 @@
 "use client";
-
-import useThemeContext from "@/hooks/useTheme";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import DayIcon from "@/components/icons/DayIcon";
 import NightIcon from "@/components/icons/NightIcon";
 
@@ -9,8 +9,15 @@ interface Props {
 }
 
 export default function ThemeSettings({ hover }: Props) {
-  const { theme, toggleTheme } = useThemeContext();
+  const [mounted, setMounted] = useState<boolean>(false);
+  const { theme, setTheme } = useTheme();
   const icon = theme === "dark" ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   if (hover) {
     return (
@@ -20,7 +27,7 @@ export default function ThemeSettings({ hover }: Props) {
           aria-label="Toggle dark mode"
           id="theme-toggle"
           className="theme-button pointer-events-auto"
-          onClick={toggleTheme}
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {icon}
         </div>
