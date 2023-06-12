@@ -30,23 +30,10 @@ export function ThemeProvider({ children }: Props) {
   const [theme, setTheme] = useState<string>(initialTheme);
 
   const toggleTheme = useCallback(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.remove("dark");
-      setTheme("light");
-    } else {
-      document.documentElement.classList.add("dark");
-      setTheme("dark");
-    }
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    setCookie("theme", newTheme);
   }, [setTheme, theme]);
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    setCookie("theme", theme);
-  }, [setCookie, theme]);
 
   return (
     <ThemeContext.Provider
@@ -55,7 +42,7 @@ export function ThemeProvider({ children }: Props) {
         toggleTheme,
       }}
     >
-      {children}
+      <div className={theme}>{children}</div>
     </ThemeContext.Provider>
   );
 }
