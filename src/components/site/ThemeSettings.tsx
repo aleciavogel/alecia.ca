@@ -1,7 +1,6 @@
 "use client";
 
-import useDarkMode from "use-dark-mode";
-
+import useThemeContext from "@/hooks/useTheme";
 import DayIcon from "@/components/icons/DayIcon";
 import NightIcon from "@/components/icons/NightIcon";
 
@@ -10,8 +9,8 @@ interface Props {
 }
 
 export default function ThemeSettings({ hover }: Props) {
-  const { toggle, value: isDark } = useDarkMode(undefined, { classNameDark: "dark" });
-  const icon = isDark ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />;
+  const { theme, toggleTheme } = useThemeContext();
+  const icon = theme === "dark" ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />;
 
   if (hover) {
     return (
@@ -21,7 +20,7 @@ export default function ThemeSettings({ hover }: Props) {
           aria-label="Toggle dark mode"
           id="theme-toggle"
           className="theme-button pointer-events-auto"
-          onClick={toggle}
+          onClick={toggleTheme}
         >
           {icon}
         </div>
