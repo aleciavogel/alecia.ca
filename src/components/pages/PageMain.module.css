@@ -1,0 +1,8 @@
+.container {
+  @apply relative overflow-hidden pb-16 pt-48 mt-[-152px] z-40 h-full;
+}
+
+.wrapper {
+  @apply w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg;
+  @apply mx-auto;
+}

@@ -1,20 +1,21 @@
 import { Metadata } from "next";
 
 import SiteWrapper from "@/components/pages/shared/layout/SiteWrapper";
-import BlogIndexHeader from "@/components/pages/blog/index/BlogIndexHeader";
-import AboutMain from "@/components/pages/about/AboutMain";
+import ResumeHeader from "@/components/pages/resume/ResumeHeader";
+
+import ResumeMain from "@/components/pages/resume/ResumeMain";
 
 export default function BlogIndexPage() {
   return (
     <SiteWrapper>
-      <BlogIndexHeader />
-      <AboutMain />
+      <ResumeHeader />
+      <ResumeMain />
     </SiteWrapper>
   );
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   return {
-    title: `Blog | Alecia.ca`,
+    title: `Resume Playground | Alecia.ca`,
   };
 }

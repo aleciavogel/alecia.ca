@@ -1,17 +1,10 @@
 @layer components {
-  #site-brand,
   #site-menu-icon {
     @apply transition-colors ease-in-out duration-300 pointer-events-auto text-transparent;
   }
 
-  #site-brand:hover,
   #site-menu-icon:hover {
-    color: var(--primary-500);
-  }
-
-  .dark #site-brand:hover,
-  .dark #site-menu-icon:hover {
-    color: var(--primary-600);
+    @apply text-primary-500 dark:text-primary-600;
   }
 
   .site-header-color {

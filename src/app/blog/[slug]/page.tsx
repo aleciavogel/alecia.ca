@@ -4,16 +4,14 @@ import readingTime from "reading-time";
 import { Metadata } from "next";
 import Link from "next/link";
 
-import MDXWrapper from "@/components/mdx";
-import ArticleMain from "@/components/blog/ArticleMain";
-import ArticleHeader from "@/components/blog/ArticleHeader";
-import SiteWrapper from "@/components/site/SiteWrapper";
+import MDXWrapper from "@/components/features/mdx";
+import ArticleMain from "@/components/pages/blog/ArticleMain";
+import ArticleHeader from "@/components/pages/blog/ArticleHeader";
+import SiteWrapper from "@/components/pages/shared/layout/SiteWrapper";
 import { getPostBySlug } from "@/lib/posts";
 
 export default function Post({ params }: any) {
   const props = getPostBySlug(params?.slug);
-
-  console.log(props);
 
   return (
     <SiteWrapper

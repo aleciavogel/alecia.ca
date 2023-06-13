@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-import AleciaCouch from "@/components/vectors/AleciaCouchSvg";
+import AleciaCouch from "@/components/images/vectors/AleciaCouchSvg";
 import RotatingText from "./RotatingText";
 
 export default function AboutHeader() {
