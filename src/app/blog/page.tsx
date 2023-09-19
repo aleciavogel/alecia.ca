@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import SiteWrapper from '@/components/pages/shared/layout/SiteWrapper'
+import SiteWrapper from '@/components/layout/SiteWrapper'
 import BlogIndexHeader from '@/components/pages/blog/index/BlogIndexHeader'
 import AboutMain from '@/components/pages/about/AboutMain'
 

@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import type { DefaultColor } from '@/types/colors'
 
 const postsDirectory = path.join(process.cwd(), '_posts')
 
@@ -11,11 +12,17 @@ export function getPostSlugs(): string[] {
   return fileNames.map((fileName) => fileName.replace(/\.mdx$/, ''))
 }
 
+interface PostFrontMatter extends Record<string, string> {
+  primaryColor: DefaultColor
+  accentColor: DefaultColor
+  textColor: DefaultColor
+}
+
 interface PostContent {
   id?: string
   slug: string
   content: string
-  frontMatter: Record<string, string>
+  frontMatter: PostFrontMatter
 }
 
 export function getPostBySlug(slug: string): PostContent {
@@ -27,7 +34,7 @@ export function getPostBySlug(slug: string): PostContent {
   return {
     slug,
     content,
-    frontMatter,
+    frontMatter: frontMatter as PostFrontMatter,
   }
 }
 

@@ -9,8 +9,9 @@ import Link from 'next/link'
 import MDXWrapper from '@/components/features/mdx'
 import ArticleMain from '@/components/pages/blog/ArticleMain'
 import ArticleHeader from '@/components/pages/blog/ArticleHeader'
-import SiteWrapper from '@/components/pages/shared/layout/SiteWrapper'
+import SiteWrapper from '@/components/layout/SiteWrapper'
 import { getPostBySlug } from '@/lib/posts'
+import type { DefaultColor } from '@/types/colors'
 
 interface PostProps {
   params: {
@@ -19,9 +20,9 @@ interface PostProps {
       description: string
       date: string
       slug: string
-      textColor: string
-      primaryColor: string
-      accentColor: string
+      textColor: DefaultColor
+      primaryColor: DefaultColor
+      accentColor: DefaultColor
     }
   }
 }

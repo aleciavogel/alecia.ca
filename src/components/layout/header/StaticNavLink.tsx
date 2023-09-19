@@ -8,7 +8,7 @@ interface NavLinkProps {
   children?: React.ReactNode | string
 }
 
-export const NavLink: FC<NavLinkProps> = ({ to, children, srOnly = false }) => {
+const StaticNavLink: FC<NavLinkProps> = ({ to, children, srOnly = false }) => {
   const LINK_CLASSES =
     'text-white-rgba hover:text-white text-base pointer-events-auto relative transition-color duration-300 ease-in-out nextDiv:text-transparent'
   const pathname = usePathname()
@@ -31,24 +31,4 @@ export const NavLink: FC<NavLinkProps> = ({ to, children, srOnly = false }) => {
   )
 }
 
-const StaticMenu: FC = () => {
-  return (
-    <nav
-      aria-label="Main"
-      className="static-menu absolute top-0 left-1/2 transform -translate-x-1/2 z-10 py-4 pointer-events-none md:py-6"
-    >
-      <ul className="space-x-10 text-base h-10 flex justify-center items-center last:mr-10">
-        <NavLink to="/" srOnly={true}>
-          Home
-        </NavLink>
-        <NavLink to="/">About Alecia</NavLink>
-        <NavLink to="/blog">Blog</NavLink>
-        {/* <NavLink to="/portfolio">Portfolio</NavLink>
-        <NavLink to="/speaking">Speaking</NavLink>
-        <NavLink to="/contact">Contact</NavLink> */}
-      </ul>
-    </nav>
-  )
-}
-
-export default StaticMenu
+export default StaticNavLink

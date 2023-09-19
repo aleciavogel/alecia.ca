@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 
 import AboutHeader from '@/components/pages/about/AboutHeader'
 import AboutMain from '@/components/pages/about/AboutMain'
-import SiteWrapper from '@/components/pages/shared/layout/SiteWrapper'
+import SiteWrapper from '@/components/layout/SiteWrapper'
 import { type FC } from 'react'
 
 const Home: FC = () => {

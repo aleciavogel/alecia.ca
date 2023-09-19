@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import styles from './PageMain.module.css'
-import SiteHeader from '@/components/pages/shared/layout/SiteHeader'
+import SiteHeader from '@/components/layout/SiteHeader'
 
 interface Props {
   children: React.ReactNode

@@ -4,7 +4,7 @@ import { type FC, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
 
-import { type DefaultColor } from '@/definitions/colors'
+import { type DefaultColor } from '@/types/colors'
 import StaticMenu from './StaticMenu'
 import SiteHeader from './SiteHeader'
 import SiteFooter from './SiteFooter'

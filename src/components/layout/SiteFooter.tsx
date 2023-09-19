@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 import Link from 'next/link'
 
-import { type DefaultColor } from '@/definitions/colors'
+import { type DefaultColor } from '@/types/colors'
 import AleciaSitSvg from '@/components/images/vectors/AleciaSitSvg'
 import SocialLinks from '@/components/pages/shared/SocialLinks'
 

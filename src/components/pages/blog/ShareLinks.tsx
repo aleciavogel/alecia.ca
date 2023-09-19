@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
-import { type DefaultColor } from '@/definitions/colors'
+import { type DefaultColor } from '@/types/colors'
 
 const FB_BASE = 'https://www.facebook.com/sharer/sharer.php?u='
 const TW_BASE = 'https://twitter.com/intent/tweet?url='

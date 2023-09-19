@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import PostInfo from './ArticleInfo'
-import SiteHeader from '@/components/pages/shared/layout/SiteHeader'
+import SiteHeader from '@/components/layout/SiteHeader'
 import ReadingProgress from './ReadingProgress'
 
 interface Props {
