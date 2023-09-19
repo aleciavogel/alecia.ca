@@ -1,23 +1,39 @@
-import fs from "fs";
-import path from "path";
-import readingTime from "reading-time";
-import { Metadata } from "next";
-import Link from "next/link";
+import type { FC } from 'react'
+import type { Metadata } from 'next'
 
-import MDXWrapper from "@/components/features/mdx";
-import ArticleMain from "@/components/pages/blog/ArticleMain";
-import ArticleHeader from "@/components/pages/blog/ArticleHeader";
-import SiteWrapper from "@/components/pages/shared/layout/SiteWrapper";
-import { getPostBySlug } from "@/lib/posts";
+import fs from 'fs'
+import path from 'path'
+import readingTime from 'reading-time'
+import Link from 'next/link'
 
-export default function Post({ params }: any) {
-  const props = getPostBySlug(params?.slug);
+import MDXWrapper from '@/components/features/mdx'
+import ArticleMain from '@/components/pages/blog/ArticleMain'
+import ArticleHeader from '@/components/pages/blog/ArticleHeader'
+import SiteWrapper from '@/components/pages/shared/layout/SiteWrapper'
+import { getPostBySlug } from '@/lib/posts'
+
+interface PostProps {
+  params: {
+    frontMatter: {
+      title: string
+      description: string
+      date: string
+      slug: string
+      textColor: string
+      primaryColor: string
+      accentColor: string
+    }
+  }
+}
+
+const Post: FC<PostProps> = ({ params }: any) => {
+  const props = getPostBySlug(params?.slug)
 
   return (
     <SiteWrapper
-      text_color={props.frontMatter.text_color}
-      primary_color={props.frontMatter.primary_color}
-      accent_color={props.frontMatter.accent_color}
+      textColor={props.frontMatter.textColor}
+      primaryColor={props.frontMatter.primaryColor}
+      accentColor={props.frontMatter.accentColor}
     >
       <article>
         <ArticleHeader data={props.frontMatter} />
@@ -31,28 +47,34 @@ export default function Post({ params }: any) {
         </ArticleMain>
       </article>
     </SiteWrapper>
-  );
+  )
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const props = getPostBySlug(params?.slug);
+  const props = getPostBySlug(params?.slug)
   return {
     title: `${props.frontMatter.title} | Alecia.ca`,
     authors: [
       {
-        name: "Alecia Vogel",
-        url: "https://alecia.ca",
+        name: 'Alecia Vogel',
+        url: 'https://alecia.ca',
       },
     ],
-  };
+  }
 }
 
-export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("_posts"));
+interface PathParams {
+  slug: string
+}
+
+export const generateStaticParams = async (): Promise<PathParams[]> => {
+  const files = fs.readdirSync(path.join('_posts'))
 
   const paths = files.map((filename) => ({
-    slug: filename.replace(".mdx", ""),
-  }));
+    slug: filename.replace('.mdx', ''),
+  }))
 
-  return paths;
+  return paths
 }
+
+export default Post

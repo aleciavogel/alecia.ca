@@ -1,4 +1,6 @@
-export default function BlogIndexHeader() {
+import { type FC } from 'react'
+
+const BlogIndexHeader: FC = () => {
   return (
     <section className={`blog-index-header`} role="banner" aria-labelledby="page-title">
       <div className={`blog-index-header-wrapper`}>
@@ -8,5 +10,7 @@ export default function BlogIndexHeader() {
         </p>
       </div>
     </section>
-  );
+  )
 }
+
+export default BlogIndexHeader

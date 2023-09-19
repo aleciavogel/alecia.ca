@@ -1,35 +1,36 @@
-"use client";
+'use client'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { type FC } from 'react'
+import { usePathname } from 'next/navigation'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
-import { DefaultColor } from "@/definitions/colors";
-import { usePathname } from "next/navigation";
+import { type DefaultColor } from '@/definitions/colors'
 
-const FB_BASE = "https://www.facebook.com/sharer/sharer.php?u=";
-const TW_BASE = "https://twitter.com/intent/tweet?url=";
+const FB_BASE = 'https://www.facebook.com/sharer/sharer.php?u='
+const TW_BASE = 'https://twitter.com/intent/tweet?url='
 
 interface Props {
-  accent_color: DefaultColor;
-  primary_color: DefaultColor;
-  title: string;
+  accentColor: DefaultColor
+  primaryColor: DefaultColor
+  title: string
 }
 
-export default function ShareLinks({ primary_color, accent_color, title }: Props) {
+const ShareLinks: FC<Props> = ({ primaryColor, accentColor, title }) => {
   // Retrieve the current absolute url of the page for nextjs
-  const pathname = usePathname();
-  const encoded = encodeURIComponent(process.env.NEXT_PUBLIC_BASE_URL + pathname);
+  const pathname = usePathname()
+  const encoded = encodeURIComponent(process.env.NEXT_PUBLIC_BASE_URL + pathname)
   const emailBody = encodeURIComponent(
-    "Hey! Check out this article on Alecia.ca: " + process.env.NEXT_PUBLIC_BASE_URL + pathname,
-  );
-  const emailSubject = encodeURIComponent(title);
+    'Hey! Check out this article on Alecia.ca: ' + process.env.NEXT_PUBLIC_BASE_URL + pathname,
+  )
+  const emailSubject = encodeURIComponent(title)
 
   return (
-    <div className={`share-links text-${primary_color}-600`}>
+    <div className={`share-links text-${primaryColor}-600`}>
       <a
         href={FB_BASE + encoded} // TODO: fix
-        className={`dark:text-${primary_color}-400 hover:text-${accent_color}-600 dark:hover:text-${accent_color}-400`}
+        className={`dark:text-${primaryColor}-400 hover:text-${accentColor}-600 dark:hover:text-${accentColor}-400`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -38,7 +39,7 @@ export default function ShareLinks({ primary_color, accent_color, title }: Props
 
       <a
         href={TW_BASE + encoded}
-        className={`dark:text-${primary_color}-400 hover:text-${accent_color}-600 dark:hover:text-${accent_color}-400`}
+        className={`dark:text-${primaryColor}-400 hover:text-${accentColor}-600 dark:hover:text-${accentColor}-400`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -47,10 +48,12 @@ export default function ShareLinks({ primary_color, accent_color, title }: Props
 
       <a
         href={`mailto:?subject=${emailSubject}&body=${emailBody}`}
-        className={`dark:text-${primary_color}-400 hover:text-${accent_color}-600 dark:hover:text-${accent_color}-400`}
+        className={`dark:text-${primaryColor}-400 hover:text-${accentColor}-600 dark:hover:text-${accentColor}-400`}
       >
         <FontAwesomeIcon icon={faEnvelope} />
       </a>
     </div>
-  );
+  )
 }
+
+export default ShareLinks

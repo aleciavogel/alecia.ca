@@ -1,8 +1,10 @@
+import { type FC } from 'react'
+
 interface Props {
-  className?: string;
+  className?: string
 }
 
-export default function BrandIcon(props: Props) {
+const BrandIcon: FC<Props> = (props) => {
   return (
     <svg
       fill="none"
@@ -18,5 +20,7 @@ export default function BrandIcon(props: Props) {
         strokeWidth="2"
       ></path>
     </svg>
-  );
+  )
 }
+
+export default BrandIcon

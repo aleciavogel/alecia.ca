@@ -1,4 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
+# Run `bunx` if bun installed, if run `npmx` instead
+if command -v bun >/dev/null 2>&1; then
+  echo "Using bun..."
+  bunx lint-staged
+else
+  echo "Using npm..."
+  npx lint-staged
+fi

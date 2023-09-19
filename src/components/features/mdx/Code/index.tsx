@@ -1,48 +1,46 @@
-"use client";
+'use client'
 
-import { useCallback, useState } from "react";
-import Highlight, { defaultProps, Language } from "prism-react-renderer";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { type FC, useCallback, useState } from 'react'
+import Highlight, { defaultProps, type Language } from 'prism-react-renderer'
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import CodeSnippetCopy from "./CodeSnippetCopy";
-import { preToCodeSnippetProps } from "./utils";
+import CodeSnippetCopy from './CodeSnippetCopy'
+import { preToCodeSnippetProps } from './utils'
 
 interface Props {
-  codeString: string;
-  language: Language;
-  isLive?: boolean;
-  ghSource?: string;
-  codeTitle?: string;
+  codeString: string
+  language: Language
+  isLive?: boolean
+  ghSource?: string
+  codeTitle?: string
 }
 
-export default function CodeSnippet({
-  codeString,
-  language,
-  isLive = false,
-  codeTitle,
-  ghSource,
-}: Props) {
-  const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [keepShowingCopy, setKeepShowingCopy] = useState<boolean>(false);
+const CodeSnippet: FC<Props> = ({ codeString, language, isLive = false, codeTitle, ghSource }) => {
+  const [isCopied, setIsCopied] = useState<boolean>(false)
+  const [keepShowingCopy, setKeepShowingCopy] = useState<boolean>(false)
 
   const handleClipboard = useCallback(() => {
-    const type = "text/plain";
-    const blob = new Blob([codeString], { type });
-    const data = [new ClipboardItem({ [type]: blob })];
+    const type = 'text/plain'
+    const blob = new Blob([codeString], { type })
+    const data = [new ClipboardItem({ [type]: blob })]
     navigator.clipboard.write(data).then(
       () => {
-        setIsCopied(true);
-        setKeepShowingCopy(true);
-        setTimeout(() => setKeepShowingCopy(false), 3000);
-        setTimeout(() => setIsCopied(false), 3300); // Change text after it hides again
+        setIsCopied(true)
+        setKeepShowingCopy(true)
+        setTimeout(() => {
+          setKeepShowingCopy(false)
+        }, 3000)
+        setTimeout(() => {
+          setIsCopied(false)
+        }, 3300) // Change text after it hides again
       },
       () => {
-        console.warn("Clipboard failed to copy code snippet :(");
+        console.warn('Clipboard failed to copy code snippet :(')
       },
-    );
-  }, [setIsCopied, setKeepShowingCopy, codeString]);
+    )
+  }, [setIsCopied, setKeepShowingCopy, codeString])
 
   if (isLive) {
     return (
@@ -51,12 +49,12 @@ export default function CodeSnippet({
         <LiveError />
         <LivePreview />
       </LiveProvider>
-    );
+    )
   } else {
-    const classNames: string[] = ["gatsby-highlight"];
+    const classNames: string[] = ['gatsby-highlight']
 
-    if (codeTitle) {
-      classNames.push("has-code-title");
+    if (codeTitle !== undefined) {
+      classNames.push('has-code-title')
     }
 
     const codeSourceComponent = (
@@ -64,12 +62,12 @@ export default function CodeSnippet({
         <span>View on GitHub</span>
         <FontAwesomeIcon icon={faGithub} />
       </a>
-    );
+    )
 
     return (
       <Highlight {...defaultProps} code={codeString} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <div className={classNames.join(" ")}>
+          <div className={classNames.join(' ')}>
             {Boolean(codeTitle) && (
               <div className="gatsby-code-title">
                 {codeTitle}
@@ -90,19 +88,19 @@ export default function CodeSnippet({
                 </div>
               ))}
             </pre>
-            {Boolean(ghSource) && !codeTitle && codeSourceComponent}
+            {Boolean(ghSource) && codeTitle === undefined && codeSourceComponent}
           </div>
         )}
       </Highlight>
-    );
+    )
   }
 }
 
-export const parsePreBlock = (preProps: any) => {
-  const props = preToCodeSnippetProps(preProps);
-  if (props) {
-    return <CodeSnippet {...props} />;
+export const parsePreBlock = (preProps: any): JSX.Element => {
+  const props = preToCodeSnippetProps(preProps)
+  if (props !== undefined) {
+    return <CodeSnippet {...props} />
   } else {
-    return <pre {...preProps} />;
+    return <pre {...preProps} />
   }
-};
+}

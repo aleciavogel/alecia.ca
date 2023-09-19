@@ -1,19 +1,25 @@
-import SiteLogo from "@/components/pages/shared/Brand";
-import ThemeSettings from "@/components/pages/shared/ThemeSettings";
+import { type FC } from 'react'
 
-function HeaderRight({ children }: { children: React.ReactNode }) {
-  return <div className="visibleChild:mt-6 visibleChild:mb-0">{children}</div>;
+import SiteLogo from '@/components/pages/shared/Brand'
+import ThemeSettings from '@/components/pages/shared/ThemeSettings'
+
+interface HeaderRightProps {
+  children: React.ReactNode
 }
 
-interface Props {
-  hasColor?: boolean;
-  hover?: boolean;
+const HeaderRight: FC<HeaderRightProps> = ({ children }) => {
+  return <div className="visibleChild:mt-6 visibleChild:mb-0">{children}</div>
 }
 
-export default function SiteHeader({ hover = false, hasColor = false }: Props) {
-  const hoverClass = hover ? "site-header-hover" : "";
-  const colorClass = hasColor ? "site-header-color" : hover ? "text-transparent" : "text-white";
-  const className = `site-header ${colorClass} ${hoverClass}`;
+interface SiteHeaderProps {
+  hasColor?: boolean
+  hover?: boolean
+}
+
+const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) => {
+  const hoverClass = hover ? 'site-header-hover' : ''
+  const colorClass = hasColor ? 'site-header-color' : hover ? 'text-transparent' : 'text-white'
+  const className = `site-header ${colorClass} ${hoverClass}`
 
   if (hover) {
     return (
@@ -30,7 +36,7 @@ export default function SiteHeader({ hover = false, hasColor = false }: Props) {
           <ThemeSettings hover={hover} />
         </HeaderRight>
       </div>
-    );
+    )
   }
 
   return (
@@ -47,5 +53,7 @@ export default function SiteHeader({ hover = false, hasColor = false }: Props) {
         <ThemeSettings hover={hover} />
       </HeaderRight>
     </div>
-  );
+  )
 }
+
+export default SiteHeader

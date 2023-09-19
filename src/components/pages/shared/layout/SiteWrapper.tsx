@@ -1,32 +1,32 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { usePathname } from "next/navigation";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import { type FC, useRef } from 'react'
+import { usePathname } from 'next/navigation'
+import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
 
-import { DefaultColor } from "@/definitions/colors";
-import StaticMenu from "./StaticMenu";
-import SiteHeader from "./SiteHeader";
-import SiteFooter from "./SiteFooter";
+import { type DefaultColor } from '@/definitions/colors'
+import StaticMenu from './StaticMenu'
+import SiteHeader from './SiteHeader'
+import SiteFooter from './SiteFooter'
 // import HireMeBanner from "@/components/banners/HireMe";
-import UnderConstructionBanner from "../banners/UnderConstruction";
+import UnderConstructionBanner from '../banners/UnderConstruction'
 
 interface Props {
-  primary_color?: DefaultColor;
-  accent_color?: DefaultColor;
-  text_color?: DefaultColor;
-  children?: React.ReactNode;
+  primaryColor?: DefaultColor
+  accentColor?: DefaultColor
+  textColor?: DefaultColor
+  children?: React.ReactNode
 }
 
-export default function SiteWrapper({
-  primary_color = "indigo",
-  accent_color = "pink",
-  text_color = "gray",
+const SiteWrapper: FC<Props> = ({
+  primaryColor = 'indigo',
+  accentColor = 'pink',
+  textColor = 'gray',
   children,
-}: Props) {
-  const pathname = usePathname();
-  const containerRef = useRef(null);
-  const colorClasses = `primary-${primary_color} accent-${accent_color} body-${text_color}`;
+}) => {
+  const pathname = usePathname()
+  const containerRef = useRef(null)
+  const colorClasses = `primary-${primaryColor} accent-${accentColor} body-${textColor}`
 
   return (
     <LocomotiveScrollProvider
@@ -54,9 +54,11 @@ export default function SiteWrapper({
 
           {/* <HireMeBanner /> */}
           <UnderConstructionBanner />
-          <SiteFooter accent_color={accent_color} primary_color={primary_color} />
+          <SiteFooter accentColor={accentColor} primaryColor={primaryColor} />
         </div>
       </div>
     </LocomotiveScrollProvider>
-  );
+  )
 }
+
+export default SiteWrapper

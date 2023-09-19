@@ -1,8 +1,10 @@
+import { type FC } from 'react'
+
 interface Props {
-  className?: string;
+  className?: string
 }
 
-export default function DayIcon(props: Props) {
+const DayIcon: FC<Props> = (props) => {
   return (
     <svg
       fill="none"
@@ -18,5 +20,7 @@ export default function DayIcon(props: Props) {
         strokeWidth="2"
       ></path>
     </svg>
-  );
+  )
 }
+
+export default DayIcon

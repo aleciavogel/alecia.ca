@@ -1,58 +1,78 @@
-export const preToCodeSnippetProps = (preProps: any) => {
+import { type Language } from 'prism-react-renderer'
+
+interface CodeSnippetProps {
+  codeString: string
+  language: Language
+  codeTitle?: string
+  ghSource?: string
+}
+
+export const preToCodeSnippetProps = (preProps: any): CodeSnippetProps | undefined => {
   if (
     // if MDXTag is going to render a <code>
-    preProps.children.type === "code"
+    preProps.children.type === 'code'
   ) {
     // we have a <pre><code> situation
-    const { className, children: codeString, ...props } = preProps.children.props;
+    const { className, children: codeString, ...props } = preProps.children.props
 
-    const { splitLanguage, ...otherProps } = parseOptions(className);
+    const { splitLanguage, ...otherProps } = parseOptions(className)
 
     return {
-      codeString: codeString.trim(),
-      language: splitLanguage,
       ...props,
       ...otherProps,
-    };
+      codeString: codeString.trim(),
+      language: splitLanguage as Language,
+    }
   }
-  return undefined;
-};
+  return undefined
+}
 
-export const parseOptions = (language: string) => {
-  if (!language) {
-    return { splitLanguage: `` };
+interface Options {
+  splitLanguage: string
+  codeTitle?: string
+  ghSource?: string
+}
+
+export const parseOptions = (language: string): Options => {
+  let codeTitle: string | undefined
+  let ghSource: string | undefined
+
+  if (language === ``) {
+    return {
+      splitLanguage: ``,
+      codeTitle,
+      ghSource,
+    }
   }
 
-  const [className, ...options] = language.split(`{`);
-  const splitLanguage = className.split("-")[1];
+  const [className, ...options] = language.split(`{`)
+  const splitLanguage = className.split('-')[1]
 
-  if (options.length) {
-    let codeTitle;
-    let ghSource;
+  if (options.length > 0) {
     // Options can be given in any order and are optional
 
     options.forEach((option) => {
-      option = option.slice(0, -1);
-      const [optionName, ...optionValues] = option.replace(/ /g, ``).split(`:`);
+      option = option.slice(0, -1)
+      const [optionName, ...optionValues] = option.replace(/ /g, ``).split(`:`)
 
       switch (optionName) {
         case `title`:
-          codeTitle = optionValues[0];
-          break;
+          codeTitle = optionValues[0]
+          break
         case `github`:
-          ghSource = optionValues.join(":");
-          break;
+          ghSource = optionValues.join(':')
+          break
         default:
-          break;
+          break
       }
-    });
+    })
 
     return {
-      splitLanguage,
+      splitLanguage: splitLanguage as Language,
       codeTitle,
       ghSource,
-    };
+    }
   }
 
-  return { splitLanguage };
-};
+  return { splitLanguage }
+}

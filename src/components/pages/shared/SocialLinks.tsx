@@ -1,7 +1,8 @@
-import { faTwitter, faGithub, faDribbble, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { type FC } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter, faGithub, faDribbble, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
-export default function SocialLinks() {
+const SocialLinks: FC = () => {
   return (
     <div id="footer-links">
       <a
@@ -40,5 +41,7 @@ export default function SocialLinks() {
         <FontAwesomeIcon icon={faTwitter} />
       </a>
     </div>
-  );
+  )
 }
+
+export default SocialLinks

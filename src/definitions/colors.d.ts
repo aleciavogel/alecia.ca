@@ -1,3 +1,3 @@
-import colors from "tailwindcss/colors";
+import type colors from 'tailwindcss/colors'
 
-type DefaultColor = keyof typeof colors;
+type DefaultColor = keyof typeof colors

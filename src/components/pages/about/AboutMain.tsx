@@ -1,12 +1,13 @@
-import Link from "next/link";
+import { type FC } from 'react'
+import Link from 'next/link'
 
-import Date from "@/components/Date";
-import { getSortedPostsData } from "@/lib/posts";
-import PageMain from "../PageMain";
+import Date from '@/components/Date'
+import { getSortedPostsData } from '@/lib/posts'
+import PageMain from '../PageMain'
 
-export default function AboutMain({ params }: any) {
-  const posts = getSortedPostsData();
-  const allPostsData = posts.slice(0, 3);
+const AboutMain: FC<any> = ({ params }) => {
+  const posts = getSortedPostsData()
+  const allPostsData = posts.slice(0, 3)
   return (
     <PageMain>
       <div className="about-intro">
@@ -25,5 +26,7 @@ export default function AboutMain({ params }: any) {
         </ul>
       </div>
     </PageMain>
-  );
+  )
 }
+
+export default AboutMain

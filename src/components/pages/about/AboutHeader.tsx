@@ -1,34 +1,37 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
+'use client'
 
-import AleciaCouch from "@/components/images/vectors/AleciaCouchSvg";
-import RotatingText from "./RotatingText";
+import { type FC, useState, useEffect } from 'react'
+import { useLocomotiveScroll } from 'react-locomotive-scroll'
 
-export default function AboutHeader() {
-  const { scroll } = useLocomotiveScroll();
-  const [scrollPercent, setScrollPercent] = useState(0);
+import AleciaCouch from '@/components/images/vectors/AleciaCouchSvg'
+import RotatingText from './RotatingText'
 
-  const scrollListener = (windowScrollTop: number) => {
-    const progress = windowScrollTop;
-    const percent = (progress / window.innerHeight) * 1.1;
+const AboutHeader: FC = () => {
+  const { scroll } = useLocomotiveScroll()
+  const [scrollPercent, setScrollPercent] = useState(0)
+
+  const scrollListener = (windowScrollTop: number): void => {
+    const progress = windowScrollTop
+    const percent = (progress / window.innerHeight) * 1.1
 
     if (percent <= 0) {
-      return setScrollPercent(0);
+      setScrollPercent(0)
+      return
     }
     if (percent >= 100) {
-      return setScrollPercent(100);
+      setScrollPercent(100)
+      return
     }
-    setScrollPercent(percent);
-  };
+    setScrollPercent(percent)
+  }
 
   useEffect(() => {
-    if (scroll) {
-      scroll.on("scroll", (event: any) => {
-        scrollListener(event.scroll.y);
-      });
+    if (scroll !== undefined) {
+      scroll.on('scroll', (event: any) => {
+        scrollListener(event.scroll.y)
+      })
     }
-  }, [scroll]);
+  }, [scroll])
 
   return (
     <section className="about-header">
@@ -44,5 +47,7 @@ export default function AboutHeader() {
         </div>
       </div>
     </section>
-  );
+  )
 }
+
+export default AboutHeader

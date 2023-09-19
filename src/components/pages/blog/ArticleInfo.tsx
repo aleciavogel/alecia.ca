@@ -1,27 +1,28 @@
-import Link from "next/link";
+import { type FC } from 'react'
+import Link from 'next/link'
 
-import { DefaultColor } from "@/definitions/colors";
-import ShareLinks from "./ShareLinks";
-import Date from "../../Date";
+import { type DefaultColor } from '@/definitions/colors'
+import ShareLinks from './ShareLinks'
+import Date from '../../Date'
 
 interface Props {
-  timeToRead: string;
+  timeToRead: string
   data: {
-    primary_color?: DefaultColor;
-    accent_color?: DefaultColor;
-    date: string;
-    title: string;
-  };
+    primaryColor?: DefaultColor
+    accentColor?: DefaultColor
+    date: string
+    title: string
+  }
 }
 
-export default function PostInfo({
-  data: { primary_color, accent_color, date, title },
+const ArticleInfo: FC<Props> = ({
+  data: { primaryColor, accentColor, date, title },
   timeToRead,
-}: Props) {
+}) => {
   return (
     <aside className="author-card">
       <p>
-        {"By "}
+        {'By '}
         <Link href="/">Alecia Vogel</Link>
       </p>
       <p className="mt-3">
@@ -31,10 +32,12 @@ export default function PostInfo({
       </p>
 
       <ShareLinks
-        accent_color={accent_color ?? "pink"}
-        primary_color={primary_color ?? "indigo"}
+        accentColor={accentColor ?? 'pink'}
+        primaryColor={primaryColor ?? 'indigo'}
         title={title}
       />
     </aside>
-  );
+  )
 }
+
+export default ArticleInfo

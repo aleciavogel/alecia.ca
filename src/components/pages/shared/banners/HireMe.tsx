@@ -1,8 +1,9 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons'
+import { type FC } from 'react'
 
-export default function HireMeBanner() {
+const HireMeBanner: FC = () => {
   return (
     <section id="banner-hire-me" className={`hero-pattern-circuit-board`} role="complementary">
       <div className="sm:content-block">
@@ -21,5 +22,7 @@ export default function HireMeBanner() {
         </Link>
       </div>
     </section>
-  );
+  )
 }
+
+export default HireMeBanner

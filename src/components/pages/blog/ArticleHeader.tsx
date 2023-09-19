@@ -1,11 +1,13 @@
-import ReadMoreArrowIcon from "@/components/images/icons/ReadMoreIcon";
+import { type FC } from 'react'
+
+import ReadMoreArrowIcon from '@/components/images/icons/ReadMoreIcon'
 
 interface Props {
-  data: any;
+  data: any
 }
 
-export default function ArticleHeader({ data }: Props) {
-  const { title, category, description } = data;
+const ArticleHeader: FC<Props> = ({ data }) => {
+  const { title, category, description } = data
 
   return (
     <section className={`hero`}>
@@ -17,5 +19,7 @@ export default function ArticleHeader({ data }: Props) {
 
       <ReadMoreArrowIcon />
     </section>
-  );
+  )
 }
+
+export default ArticleHeader

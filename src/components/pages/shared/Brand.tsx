@@ -1,24 +1,26 @@
-import Link from "next/link";
+import { type FC } from 'react'
+import Link from 'next/link'
 
-import Logo from "@/components/images/vectors/Logo";
-import styles from "./Brand.module.css";
+import Logo from '@/components/images/vectors/Logo'
 
 interface Props {
-  hover: boolean;
+  hover: boolean
 }
 
-export default function SiteLogo({ hover }: Props) {
+const SiteLogo: FC<Props> = ({ hover }) => {
   if (hover) {
     return (
-      <Link id="site-brand" className={styles.headerIcon} href="/" title="Home">
+      <Link id="site-brand" href="/" title="Home">
         <Logo />
       </Link>
-    );
+    )
   }
 
   return (
     <div className="pointer-events-none text-current">
       <Logo />
     </div>
-  );
+  )
 }
+
+export default SiteLogo

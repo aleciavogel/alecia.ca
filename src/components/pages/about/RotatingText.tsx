@@ -1,4 +1,10 @@
-export default function RotatingText({ className }: { className?: string }) {
+import { type FC } from 'react'
+
+interface Props {
+  className?: string
+}
+
+const RotatingText: FC<Props> = ({ className }) => {
   return (
     <div className={className}>
       <svg
@@ -18,17 +24,19 @@ export default function RotatingText({ className }: { className?: string }) {
         />
         <text
           style={{
-            whiteSpace: "pre",
+            whiteSpace: 'pre',
           }}
           transform="translate(148.821 117.411)"
         >
           <textPath shapeRendering="crispEdges" xlinkHref="#a">
             {
-              "developer \u2022 designer \u2022 dreamer \u2022 problem-solver \u2022 comedian \u2022 creator \u2022"
+              'developer \u2022 designer \u2022 dreamer \u2022 problem-solver \u2022 comedian \u2022 creator \u2022'
             }
           </textPath>
         </text>
       </svg>
     </div>
-  );
+  )
 }
+
+export default RotatingText

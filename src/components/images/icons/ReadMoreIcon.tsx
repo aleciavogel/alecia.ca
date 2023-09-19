@@ -1,4 +1,6 @@
-export default function ReadMoreArrowIcon() {
+import { type FC } from 'react'
+
+const ReadMoreArrowIcon: FC = () => {
   return (
     <div className="read-more-arrow">
       <svg
@@ -16,5 +18,7 @@ export default function ReadMoreArrowIcon() {
         ></path>
       </svg>
     </div>
-  );
+  )
 }
+
+export default ReadMoreArrowIcon

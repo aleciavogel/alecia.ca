@@ -1,4 +1,5 @@
 public
 node_modules
 .cache
-/src/gatsby-types.d.ts
+.husky
+build

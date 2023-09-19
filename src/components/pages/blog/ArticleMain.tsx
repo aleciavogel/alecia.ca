@@ -1,14 +1,16 @@
-import PostInfo from "./ArticleInfo";
-import SiteHeader from "@/components/pages/shared/layout/SiteHeader";
-import ReadingProgress from "./ReadingProgress";
+import { type FC } from 'react'
+
+import PostInfo from './ArticleInfo'
+import SiteHeader from '@/components/pages/shared/layout/SiteHeader'
+import ReadingProgress from './ReadingProgress'
 
 interface Props {
-  timeToRead: string;
-  data: any;
-  children?: string | React.ReactNode;
+  timeToRead: string
+  data: any
+  children?: string | React.ReactNode
 }
 
-export default function ArticleMain({ data, children, timeToRead }: Props) {
+const ArticleMain: FC<Props> = ({ data, children, timeToRead }) => {
   return (
     <div
       id="article-main"
@@ -24,5 +26,7 @@ export default function ArticleMain({ data, children, timeToRead }: Props) {
         <SiteHeader hasColor={true} />
       </div>
     </div>
-  );
+  )
 }
+
+export default ArticleMain

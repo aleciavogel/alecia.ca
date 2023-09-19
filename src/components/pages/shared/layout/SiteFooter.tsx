@@ -1,26 +1,26 @@
-import React, { FC } from "react";
-import Link from "next/link";
+import React, { type FC } from 'react'
+import Link from 'next/link'
 
-import { DefaultColor } from "@/definitions/colors";
-import AleciaSitSvg from "@/components/images/vectors/AleciaSitSvg";
-import SocialLinks from "@/components/pages/shared/SocialLinks";
+import { type DefaultColor } from '@/definitions/colors'
+import AleciaSitSvg from '@/components/images/vectors/AleciaSitSvg'
+import SocialLinks from '@/components/pages/shared/SocialLinks'
 
 interface Props {
-  accent_color?: DefaultColor;
-  primary_color?: DefaultColor;
+  accentColor?: DefaultColor
+  primaryColor?: DefaultColor
 }
 
-export default function SiteFooter({ accent_color = "pink", primary_color = "indigo" }: Props) {
+const SiteFooter: FC<Props> = ({ accentColor = 'pink', primaryColor = 'indigo' }) => {
   return (
     <footer id="site-footer" role="contentinfo">
       <div className="mb-4 mx-auto flex-wrap md:flex-nowrap sm:flex sm:items-center sm:justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl">
         <div
           className={
-            "relative md:after:site-footer-svg-bg-cover z-50 " +
-            "max-lg:mx-auto max-lg:w-48 " +
-            "-mt-16 md:-mt-28 lg:-mt-28 " +
-            "md:-mb-24 lg:-mb-24 " +
-            "md:mr-6 lg:mr-8"
+            'relative md:after:site-footer-svg-bg-cover z-50 ' +
+            'max-lg:mx-auto max-lg:w-48 ' +
+            '-mt-16 md:-mt-28 lg:-mt-28 ' +
+            'md:-mb-24 lg:-mb-24 ' +
+            'md:mr-6 lg:mr-8'
           }
         >
           <AleciaSitSvg className="block h-48 lg:h-80" />
@@ -30,7 +30,7 @@ export default function SiteFooter({ accent_color = "pink", primary_color = "ind
             Alecia Vogel
           </h2>
           <p className="text-white text-sm lg:text-lg leading-relaxed md:mb-3 max-md:text-center max-sm:px-10 sm:max-md:px-16 w-full sm:w-3/4 mx-auto md:mx-0">
-            is a <strong className="font-bold">full stack web developer</strong> and{" "}
+            is a <strong className="font-bold">full stack web developer</strong> and{' '}
             <strong className="font-bold">digital product designer</strong> living in downtown
             Edmonton.
           </p>
@@ -79,5 +79,7 @@ export default function SiteFooter({ accent_color = "pink", primary_color = "ind
         <SocialLinks />
       </div>
     </footer>
-  );
+  )
 }
+
+export default SiteFooter

@@ -1,8 +1,10 @@
+import { type FC } from 'react'
+
 interface Props {
-  className?: string;
+  className?: string
 }
 
-export default function AleciaIdeaSvg(props: Props) {
+const AleciaIdeaSvg: FC<Props> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +15,7 @@ export default function AleciaIdeaSvg(props: Props) {
       <defs>
         <style>
           {
-            ".cls-1{isolation:isolate;}.cls-2{fill:#961091;}.cls-10,.cls-16,.cls-18,.cls-21,.cls-22,.cls-23,.cls-25,.cls-27,.cls-28,.cls-3,.cls-31,.cls-6{fill:none;stroke-width:2px;}.cls-3{stroke:#510073;}.cls-16,.cls-18,.cls-21,.cls-22,.cls-23,.cls-25,.cls-27,.cls-28,.cls-3,.cls-31,.cls-6{stroke - linecap:round;stroke-linejoin:round;}.cls-4{fill:#ffafaa;}.cls-5{fill:#897c7c;}.cls-6{stroke:#685a5a;}.cls-7{fill:#746363;}.cls-8{fill:#28292b;}.cls-9{fill:#ab9a9a;}.cls-10{stroke:#961091;stroke-miterlimit:10;}.cls-11{fill:#ee5da0;}.cls-12{fill:#dccffe;}.cls-13{fill:#5f75ff;}.cls-14{fill:#fab73f;}.cls-15{fill:#fff;}.cls-16{stroke:#fab73f;}.cls-17{fill:#e5e4eb;}.cls-18{stroke:#746363;}.cls-19{fill:#1d3ba8;}.cls-20{fill:#ae9ddd;}.cls-21{stroke:#1d3ba8;}.cls-22{stroke:#c95757;}.cls-23{stroke:#c6327c;}.cls-24{fill:#666158;}.cls-25{stroke:#28292b;}.cls-26{fill:#dbc7c7;}.cls-27{stroke:#ab9a9a;}.cls-28{stroke:#a09e9c;}.cls-29{fill:#e3e6ef;}.cls-30{fill:#544747;}.cls-31{stroke:#544747;}.cls-32{fill:#c95757;}.cls-33{fill:#011230;}.cls-34{fill:#000100;}.cls-35{fill:url(#Безымянный_градиент_60);}.cls-36{opacity:0.9;mix-blend-mode:screen;}"
+            '.cls-1{isolation:isolate;}.cls-2{fill:#961091;}.cls-10,.cls-16,.cls-18,.cls-21,.cls-22,.cls-23,.cls-25,.cls-27,.cls-28,.cls-3,.cls-31,.cls-6{fill:none;stroke-width:2px;}.cls-3{stroke:#510073;}.cls-16,.cls-18,.cls-21,.cls-22,.cls-23,.cls-25,.cls-27,.cls-28,.cls-3,.cls-31,.cls-6{stroke - linecap:round;stroke-linejoin:round;}.cls-4{fill:#ffafaa;}.cls-5{fill:#897c7c;}.cls-6{stroke:#685a5a;}.cls-7{fill:#746363;}.cls-8{fill:#28292b;}.cls-9{fill:#ab9a9a;}.cls-10{stroke:#961091;stroke-miterlimit:10;}.cls-11{fill:#ee5da0;}.cls-12{fill:#dccffe;}.cls-13{fill:#5f75ff;}.cls-14{fill:#fab73f;}.cls-15{fill:#fff;}.cls-16{stroke:#fab73f;}.cls-17{fill:#e5e4eb;}.cls-18{stroke:#746363;}.cls-19{fill:#1d3ba8;}.cls-20{fill:#ae9ddd;}.cls-21{stroke:#1d3ba8;}.cls-22{stroke:#c95757;}.cls-23{stroke:#c6327c;}.cls-24{fill:#666158;}.cls-25{stroke:#28292b;}.cls-26{fill:#dbc7c7;}.cls-27{stroke:#ab9a9a;}.cls-28{stroke:#a09e9c;}.cls-29{fill:#e3e6ef;}.cls-30{fill:#544747;}.cls-31{stroke:#544747;}.cls-32{fill:#c95757;}.cls-33{fill:#011230;}.cls-34{fill:#000100;}.cls-35{fill:url(#Безымянный_градиент_60);}.cls-36{opacity:0.9;mix-blend-mode:screen;}'
           }
         </style>
         <radialGradient
@@ -315,5 +317,7 @@ export default function AleciaIdeaSvg(props: Props) {
         </g>
       </g>
     </svg>
-  );
+  )
 }
+
+export default AleciaIdeaSvg

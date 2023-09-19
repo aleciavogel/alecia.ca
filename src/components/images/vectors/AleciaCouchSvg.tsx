@@ -1,8 +1,10 @@
+import { type FC } from 'react'
+
 interface Props {
-  className?: string;
+  className?: string
 }
 
-export default function AleciaCouchSvg(props: Props) {
+const AleciaCouchSvg: FC<Props> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -501,5 +503,7 @@ export default function AleciaCouchSvg(props: Props) {
         </g>
       </g>
     </svg>
-  );
+  )
 }
+
+export default AleciaCouchSvg

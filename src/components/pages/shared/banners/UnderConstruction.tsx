@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
+import { type FC } from 'react'
 
-export default function UnderConstructionBanner() {
+const UnderConstructionBanner: FC = () => {
   return (
     <section
       id="banner-under-construction"
@@ -18,5 +16,7 @@ export default function UnderConstructionBanner() {
         </p>
       </div>
     </section>
-  );
+  )
 }
+
+export default UnderConstructionBanner
