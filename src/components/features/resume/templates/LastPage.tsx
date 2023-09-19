@@ -21,21 +21,24 @@ export default function ResumeLastPage() {
           </Text>
         </View>
 
-        <View style={[tw("mt-10"), { width: 400 }]}>
-          <Text style={[tw("text-white text-lg"), { lineHeight: 1.5 }]}>
-            I appreciate the time and consideration you've devoted to reviewing my resume. Your
-            commitment to finding the right fit for your company speaks volumes, and I'm grateful to
-            be part of this process.{"\n\n"}
+        <View style={[tw("mt-10 text-white "), { width: 400 }]}>
+          <Text style={[tw("text-lg"), { lineHeight: 1.5 }]}>
+            I appreciate the time and care you've put into reviewing my resume. Your commitment to
+            finding the right fit for Resourcely speaks volumes, and I'm grateful to be part of this
+            process.{"\n\n"}
             If you have any feedback to share about my application, I'd greatly appreciate the
             opportunity to learn and improve.{"\n\n"}
-            Looking forward to the potential of contributing to your team's success.{"\n\n"}
+            Looking forward to hearing from you soon.{"\n\n"}
             Warm regards,{"\n"}
-            <Text style={[tw("text-2xl"), styles.fontBold]}>Alecia Vogel</Text>
-            {"\n"}
-            <Text style={tw("text-base")}>
-              <Text style={[styles.fontBold]}>PS - </Text>
-              Interested in discussing how we can collaborate? Let's find a time that works for both
-              of us:{" "}
+          </Text>
+          <Text style={[tw("text-2xl"), styles.fontBold]}>Alecia Vogel</Text>
+
+          <View style={[tw("text-base mt-6 flex flex-row"), { lineHeight: 1.5 }]}>
+            <Text style={[styles.fontBold, tw("mr-2")]}>PS</Text>
+            <Text style={[tw("px-2")]}>-</Text>
+            <Text>
+              Ready to explore my fit for the Founding Engineer role at Resourcely? You can book a
+              mutually convenient time for us to chat at{" "}
               <Link
                 src="https://calendly.com/aleciavogel"
                 style={[styles.fontBold, tw("no-underline"), { color: COLORS.lightPink }]}
@@ -43,7 +46,7 @@ export default function ResumeLastPage() {
                 calendly.com/aleciavogel
               </Link>
             </Text>
-          </Text>
+          </View>
         </View>
       </View>
     </Page>

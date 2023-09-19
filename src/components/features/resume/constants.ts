@@ -3,18 +3,10 @@ import { StyleSheet } from "@react-pdf/renderer";
 import { createTw } from "react-pdf-tailwind";
 import { ExperienceItem, Skills } from "./types";
 
-export const COMPANY = "Dropbox";
-export const COVER_LETTER_CONTENT = `I was excited to discover the Senior Frontend Engineer opportunity at Roofr. With over 7 years of experience in web development and a passion for building user-centric platforms, I was immediately drawn to your mission of providing every family access to an affordable roof. I'm particularly enthusiastic about contributing to an early-stage, high-growth company like Roofr, which aligns well with my past experience.
-
-My career has been rooted in web development, emphasizing user-centric design and functionality. At both Onlea and Gather Town, I was instrumental in building and refining platforms that prioritized user experience. Although unforeseen market conditions led to layoffs at both companies, these experiences have shaped my resilience and deepened my commitment to crafting reliable, user-friendly software solutions.
-
-Your emphasis on agile methodologies resonates with me. I'm passionate about delivering code with both efficiency and confidence, and I believe in the power of iterative solutions to complex problems. Furthermore, I have a track record of working collaboratively in cross-functional teams, ensuring technical requirements are met while upholding high engineering standards.`;
-
 export const COLORS = {
   pink: "#f472b6",
-  indigo: "#6366f1",
-  darkIndigo: "#1e1b4b",
   lightPink: "#f9a8d4",
+  indigo: "#6366f1",
   bgGrey: "rgb(226, 226, 226)",
 };
 
@@ -161,7 +153,7 @@ export const WORK_EXPERIENCES: ExperienceItem[] = [
   },
   {
     title: "Software Developer (Data Science)",
-    company: "Cybera Inc.",
+    company: "Cybera",
     location: "Edmonton, AB [Remote]",
     dateRange: "Nov 2018 - May 2021",
     description: [
@@ -244,7 +236,6 @@ export const WORK_EXPERIENCES_CONTINUED: ExperienceItem[] = [
     description: [
       "Stepped in to redesign the entire Video Game Design camp curriculum within a week, transitioning from Project Spark to Unity 3D due to unexpected discontinuation of the former platform.",
       "Delivered a comprehensive educational experience, teaching computer programming fundamentals in C# including algorithms and data structures. Topics covered ranged from game design, story and character development, to advanced programming techniques like procedural generation.",
-      "Devised a file-sharing solution to navigate Unity 3D's then-limited real-time collaboration features, enabling seamless team-based student projects.",
     ],
     skills: ["Curriculum Development", "Unity 3D", "C#", "Team Collaboration"],
   },

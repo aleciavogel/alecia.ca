@@ -1,0 +1,2 @@
+[install]
+registry = { url = "https://npm.fontawesome.com/", token = "$FONTAWESOME_NPM_AUTH_TOKEN", npmAlwaysAuth = true }

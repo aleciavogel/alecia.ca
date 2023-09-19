@@ -6,12 +6,12 @@ import { faBrowser, faPhoneRotary } from "@fortawesome/pro-regular-svg-icons";
 import { COLORS, styles, tw } from "../constants";
 import FontAwesomeIcon from "./FontAwesomeIcon";
 
-const IMG_WIDTH = 630;
+const IMG_WIDTH = 580;
 
 export default function ResumeFrontPage() {
   return (
     <Page size="A4" style={styles.frontPage}>
-      <View style={[{ width: IMG_WIDTH, position: "absolute", bottom: 0, right: -170 }]}>
+      <View style={[{ position: "absolute", bottom: 0, right: -170 }]}>
         <Image src="/alecia_duotone.png" style={[{ zIndex: 1, marginTop: -3, width: IMG_WIDTH }]} />
       </View>
 

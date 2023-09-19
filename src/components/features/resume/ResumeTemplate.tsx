@@ -72,7 +72,6 @@ export default function ResumeTemplate() {
         <ResumeBackground color={COLORS.bgGrey} />
         <ResumeWrapper>
           <VolunteeringSection experiences={VOLUNTEERING} showBorder={true} />
-          <ConferencesSection />
           <BrandsSection />
         </ResumeWrapper>
       </Page>

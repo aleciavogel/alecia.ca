@@ -12,7 +12,7 @@ export default function ExperienceItem({
   skills,
 }: ExperienceItem) {
   return (
-    <View style={tw("flex flex-row text-sm mb-6")}>
+    <View style={tw("flex flex-row text-sm not:last:mb-6")}>
       <View style={tw("w-1/4")}>
         <Text
           style={{
