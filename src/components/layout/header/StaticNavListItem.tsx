@@ -11,7 +11,7 @@ const StaticNavListItem = forwardRef<React.ElementRef<'a'>, React.ComponentProps
           <a
             ref={ref}
             className={cn(
-              'text-white/70 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-indigo-700/40 hover:text-white focus:yellow-600 focus:text-white',
+              'text-white/70 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary-700 dark:hover:bg-primary-800 hover:bg-opacity-40 hover:text-white focus:primary-700 focus:text-white',
               className,
             )}
             {...props}

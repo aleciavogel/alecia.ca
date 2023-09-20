@@ -8,7 +8,7 @@
   }
 
   #site-footer nav a {
-    @apply hover:text-white-rgba transition-colors duration-300 ease-in-out;
+    @apply hover:text-white hover:text-opacity-60 transition-colors duration-300 ease-in-out;
   }
 
   #footer-links {
@@ -26,7 +26,7 @@
   .site-footer-svg-bg-cover {
     @apply bg-gray-900 absolute block left-0 w-1/2;
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     height: 100px;
     bottom: 30px;

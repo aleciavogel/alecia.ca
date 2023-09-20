@@ -11,7 +11,7 @@ const NavigationMenu = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Root
     ref={ref}
-    className={cn('relative z-[1000] flex max-w-max flex-1 items-center justify-center', className)}
+    className={cn('relative flex max-w-max flex-1 items-center justify-center', className)}
     {...props}
   >
     {children}
@@ -20,6 +20,9 @@ const NavigationMenu = React.forwardRef<
 ))
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
 
+/**
+ * This is the list that appears as the group of links at the top of the page
+ */
 const NavigationMenuList = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
@@ -35,7 +38,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 const NavigationMenuItem = NavigationMenuPrimitive.Item
 
 const navigationMenuTriggerStyle = cva(
-  'text-white/70 group z-[1000] inline-flex h-9 w-max items-center justify-center rounded-md bg-primary-800 dark:bg-primary-900 px-4 py-2 text-sm font-medium transition-colors hover:bg-primary-700 dark:hover:bg-primary-800 hover:text-white focus:bg-primary-600 dark:focus:bg-primary-700 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary-600 dark:data-[active]:bg-primary-700 data-[state=open]:bg-primary-600 dark:data-[state=open]:bg-primary-700',
+  'text-white/70 group inline-flex h-9 w-max items-center justify-center rounded-md bg-primary-800 dark:bg-primary-900 px-4 py-2 text-sm font-medium transition-colors hover:bg-primary-700 dark:hover:bg-primary-800 hover:text-white focus:bg-primary-600 dark:focus:bg-primary-700 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary-600 dark:data-[active]:bg-primary-700 data-[state=open]:bg-primary-600 dark:data-[state=open]:bg-primary-700',
 )
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -80,7 +83,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn('absolute left-0 top-full flex justify-center')}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-white/40 bg-primary-800 dark:bg-primary-900 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]',
+        'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-white border-opacity-100 bg-primary-800 dark:bg-primary-900 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]',
         className,
       )}
       ref={ref}
@@ -97,7 +100,7 @@ const NavigationMenuIndicator = React.forwardRef<
   <NavigationMenuPrimitive.Indicator
     ref={ref}
     className={cn(
-      'top-full z-[150] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in',
+      'top-full flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in',
       className,
     )}
     {...props}

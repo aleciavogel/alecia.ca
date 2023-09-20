@@ -23,7 +23,7 @@ const ReadingProgress: FC = () => {
   }
 
   useEffect(() => {
-    if (scroll !== undefined) {
+    if (scroll !== undefined && scroll !== null) {
       scroll.on('scroll', (event: any) => {
         scrollListener(event.scroll.y)
       })

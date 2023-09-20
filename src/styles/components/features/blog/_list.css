@@ -99,7 +99,7 @@
   }
 
   .dark .blog-item p {
-    @apply text-white-rgba;
+    @apply text-white text-opacity-60;
   }
 
   .blog-item__read-more {

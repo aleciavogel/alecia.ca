@@ -3,12 +3,13 @@ import {
   faComputerClassic,
   faPaintBrush,
   faCode,
-  faComments,
+  faBriefcase,
   faLightbulb,
 } from '@fortawesome/pro-solid-svg-icons'
 
 import AboutDropdownContent from '@/components/layout/header/AboutDropdown'
 import type { MainNavItem, SidebarNavItem } from '@/types/nav'
+import LearnToCodeDropdownContent from '@/components/layout/header/LearnToCodeDropdown'
 
 export const MAIN_NAV: MainNavItem[] = [
   {
@@ -19,22 +20,24 @@ export const MAIN_NAV: MainNavItem[] = [
   {
     title: 'About',
     href: '/about',
-    DropdownContent: AboutDropdownContent,
+    DropdownContent: {
+      Left: AboutDropdownContent,
+    },
     items: [
       {
-        title: 'About Me',
-        href: '/about/me',
-        description: 'Learn more about me and my background.',
+        title: 'About Alecia',
+        href: '/about/alecia',
+        description: 'Learn more about me and my career journey.',
       },
       {
         title: 'Projects (12 📂)',
         href: '/about/projects',
-        description: "See what I've been working on for the past few years.",
+        description: 'A showcase of my past and present work.',
       },
       {
         title: 'Resumé ↗',
         href: '/about/cv',
-        description: 'Download a copy of my CV',
+        description: 'Download a personalized copy of my CV.',
       },
     ],
   },
@@ -45,47 +48,48 @@ export const MAIN_NAV: MainNavItem[] = [
       {
         title: 'All Posts',
         href: '/blog',
-        description: 'See all of my blog posts in one convenient place.',
+        description: "Every article I've written, all in one place.",
         icon: faRss,
       },
       {
         title: 'UX & Design',
         href: '/blog/ux-design',
-        description: 'The art and science of building beautiful sites.',
+        description: 'Marrying form and function in digital product development.',
         icon: faPaintBrush,
       },
       {
         title: 'Tech History',
         href: '/blog/tech-history',
-        description: 'Discover where we came from and where we are going.',
+        description: "Unearth tech's past to predict its future.",
         icon: faComputerClassic,
       },
       {
         title: 'Coding',
         href: '/blog/coding',
-        description: 'Quick tips and tricks for building better software.',
+        description: 'Real-world tips and tricks plus emerging tools for developers.',
         icon: faCode,
       },
       {
         title: 'Career Advice',
         href: '/blog/career-advice',
-        description: 'Learn how to navigate the tech industry.',
+        description: 'Become a stand-out candidate and get the job you want.',
         icon: faLightbulb,
       },
       {
         title: 'Hiring Devs',
         href: '/blog/hiring-devs',
-        description: 'Thoughts on recruiting in the tech sector.',
-        icon: faComments,
+        description: 'Attract better talent and build a stronger team.',
+        icon: faBriefcase,
       },
     ],
   },
   {
-    title: 'Tutorials',
-    href: '/tutorials',
+    title: 'Learn To Code',
+    href: '/learn-to-code',
+    DropdownContent: LearnToCodeDropdownContent,
   },
   {
-    title: 'Contact',
+    title: 'Get In Touch',
     href: '/contact',
   },
 ]

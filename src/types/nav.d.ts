@@ -17,7 +17,12 @@ export interface NavItemWithChildren extends NavItem {
 }
 
 export interface MainNavItem extends NavItemWithChildren {
-  DropdownContent?: FunctionComponent<any>
+  DropdownContent?:
+    | FunctionComponent<any>
+    | {
+        Left?: FunctionComponent<any>
+        Right?: FunctionComponent<any>
+      }
 }
 
 export interface SidebarNavItem extends NavItemWithChildren {}

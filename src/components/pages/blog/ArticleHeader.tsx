@@ -14,7 +14,7 @@ const ArticleHeader: FC<Props> = ({ data }) => {
       <div className={`hero-wrapper`}>
         <span className={`article-category`}>{category}</span>
         <h1>{title}</h1>
-        <p className="text-white-rgba">{description}</p>
+        <p className="text-white/60">{description}</p>
       </div>
 
       <ReadMoreArrowIcon />

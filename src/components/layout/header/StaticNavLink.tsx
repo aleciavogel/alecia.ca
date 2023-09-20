@@ -18,11 +18,16 @@ const StaticNavLink: FC<MainNavItem> = ({
   href,
   items,
   DropdownContent,
-  icon,
 }) => {
+  const hasMainDropdownComponent = typeof DropdownContent === 'function'
+  const hasLeftComponent =
+    typeof DropdownContent === 'object' && typeof DropdownContent.Left === 'function'
+  const hasRightComponent =
+    typeof DropdownContent === 'object' && typeof DropdownContent.Right === 'function'
+
   return (
     <NavigationMenuItem>
-      {items === undefined ? (
+      {items === undefined && DropdownContent === undefined ? (
         <Link href={href} legacyBehavior passHref>
           <NavigationMenuLink className={`${srOnly ? 'sr-only' : navigationMenuTriggerStyle()}`}>
             {title}
@@ -31,7 +36,7 @@ const StaticNavLink: FC<MainNavItem> = ({
       ) : (
         <>
           <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
-          <NavigationMenuContent className="bg-primary-800 dark:bg-primary-900 z-100">
+          <NavigationMenuContent className="bg-primary-800 dark:bg-primary-900">
             <ul
               className={`grid gap-3 p-4 ${
                 DropdownContent !== undefined
@@ -39,7 +44,8 @@ const StaticNavLink: FC<MainNavItem> = ({
                   : 'md:w-[500px] lg:w-[600px] md:grid-cols-2'
               }`}
             >
-              {DropdownContent !== undefined && <DropdownContent />}
+              {hasMainDropdownComponent && <DropdownContent />}
+              {hasLeftComponent && DropdownContent.Left !== undefined && <DropdownContent.Left />}
               {items?.map((item, index) => (
                 <StaticNavListItem
                   key={`${encodeURIComponent(title)}-dropdown-${index}`}
@@ -57,6 +63,9 @@ const StaticNavLink: FC<MainNavItem> = ({
                   </p>
                 </StaticNavListItem>
               ))}
+              {hasRightComponent && DropdownContent.Right !== undefined && (
+                <DropdownContent.Right />
+              )}
             </ul>
           </NavigationMenuContent>
         </>

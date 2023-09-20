@@ -104,3 +104,5 @@ export const parsePreBlock = (preProps: any): JSX.Element => {
     return <pre {...preProps} />
   }
 }
+
+export default CodeSnippet
