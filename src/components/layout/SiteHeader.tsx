@@ -50,7 +50,7 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
     >
       <SiteLogo hover={hover} />
       <HeaderRight>
-        {/* <MenuIcon hover={hover} /> */}
+        <MenuIcon hover={hover} />
         <ThemeSettings hover={hover} />
       </HeaderRight>
     </div>
