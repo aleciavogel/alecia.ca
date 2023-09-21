@@ -9,40 +9,47 @@
   .page-content > p strike {
   }
 
+  .zigzag-link,
   .author-card > p a,
   .page-content > p a {
     @apply relative overflow-hidden no-underline;
     color: var(--primary-600);
   }
 
+  .dark .zigzag-link,
   .dark .author-card > p a,
   .dark .page-content > p a {
     color: var(--primary-400);
   }
 
+  .zigzag-link,
   .page-content > p a {
     @apply font-extrabold;
   }
 
+  .zigzag-link::after,
   .author-card > p a::after,
   .page-content > p a::after {
     @apply absolute w-full left-0 pointer-events-none;
     @apply opacity-30 bg-current;
-    content: "";
+    content: '';
     height: 2px;
     top: calc(100% + 1px);
   }
 
+  .zigzag-link:hover,
   .author-card > p a:hover,
   .page-content > p a:hover {
     color: var(--accent-600);
   }
 
+  .dark .zigzag-link:hover,
   .dark .author-card > p a:hover,
   .dark .page-content > p a:hover {
     color: var(--accent-400);
   }
 
+  .zigzag-link:hover::after,
   .author-card > p a:hover::after,
   .page-content > p a:hover::after {
     @apply bg-transparent;
@@ -128,7 +135,7 @@
   .page-content > blockquote::after,
   .page-content > blockquote::before {
     @apply block relative mx-auto zigzag-base;
-    content: "";
+    content: '';
     max-width: 400px;
     background-image: var(--zigzag-primary-dark);
   }
@@ -148,11 +155,11 @@
     @apply mb-6 md:mb-10;
   }
 
-  .page-content > p > div:has(> code[class*="language-"]) {
+  .page-content > p > div:has(> code[class*='language-']) {
     @apply inline-block;
   }
 
-  .page-content > p > div > code[class*="language-"] {
+  .page-content > p > div > code[class*='language-'] {
     @apply px-1;
   }
 

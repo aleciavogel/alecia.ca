@@ -22,7 +22,7 @@ const ArticleMain: FC<Props> = ({ data, children, timeToRead }) => {
         <div className="page-content">{children}</div>
       </div>
 
-      <div className="clipped-container">
+      <div className="clipped-container-angled">
         <SiteHeader hasColor={true} />
       </div>
     </div>

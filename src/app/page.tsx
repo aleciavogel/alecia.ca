@@ -1,22 +1,20 @@
+import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import AboutHeader from '@/components/pages/about/AboutHeader'
-import AboutMain from '@/components/pages/about/AboutMain'
+import HomePage from '@/components/pages/home'
 import SiteWrapper from '@/components/layout/SiteWrapper'
-import { type FC } from 'react'
 
 const Home: FC = () => {
   return (
     <SiteWrapper>
-      <AboutHeader />
-      <AboutMain />
+      <HomePage />
     </SiteWrapper>
   )
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   return {
-    title: `About Me | Alecia.ca`,
+    title: `Senior Full-Stack Software Developer | Alecia.ca`,
   }
 }
 

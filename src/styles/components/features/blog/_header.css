@@ -55,7 +55,7 @@
 
   .author-card::after {
     @apply block relative w-full max-w-[400px] zigzag-base mx-auto mt-12;
-    content: "";
+    content: '';
     background-image: var(--zigzag-primary-dark);
   }
 
@@ -74,11 +74,18 @@
   .clipped-container {
     @apply absolute top-0 left-0 h-full w-full bg-white dark:bg-gray-900 pointer-events-none;
     @apply transition-colors duration-300 ease-in-out;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    z-index: -1;
+  }
+
+  .clipped-container-angled {
+    @apply absolute top-0 left-0 h-full w-full bg-white dark:bg-gray-900 pointer-events-none;
+    @apply transition-colors duration-300 ease-in-out;
     clip-path: polygon(0 0, 100% var(--triangleHeight), 100% 100%, 0 100%);
     z-index: -1;
   }
 
-  .clipped-container-opposite {
+  .clipped-container-angled-opposite {
     @apply absolute top-0 left-0 h-full w-full bg-white dark:bg-gray-900 pointer-events-none;
     @apply transition-colors duration-300 ease-in-out;
     clip-path: polygon(0 0, 0 var(--triangleHeight), 100% 0, 100% 100%, 0 100%);

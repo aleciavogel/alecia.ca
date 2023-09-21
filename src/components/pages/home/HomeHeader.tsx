@@ -4,9 +4,9 @@ import { type FC, useState, useEffect } from 'react'
 import { useLocomotiveScroll } from 'react-locomotive-scroll'
 
 import AleciaCouch from '@/components/images/vectors/AleciaCouchSvg'
-import RotatingText from './RotatingText'
+import RotatingText from '../about/RotatingText'
 
-const AboutHeader: FC = () => {
+const HomeHeader: FC = () => {
   const { scroll } = useLocomotiveScroll()
   const [scrollPercent, setScrollPercent] = useState(0)
 
@@ -50,4 +50,4 @@ const AboutHeader: FC = () => {
   )
 }
 
-export default AboutHeader
+export default HomeHeader

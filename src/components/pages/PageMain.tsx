@@ -12,7 +12,7 @@ const PageMain: FC<Props> = ({ children }) => {
     <div className={styles.container}>
       <div className={styles.wrapper}>{children}</div>
 
-      <div className="clipped-container-chevron">
+      <div className="clipped-container">
         <SiteHeader hasColor={true} />
       </div>
     </div>
