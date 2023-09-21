@@ -1,5 +1,6 @@
 import { type FC } from 'react'
 import { SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import MenuIllustration from './MenuIllustration'
 
 const SidebarContents: FC = () => {
   return (
@@ -11,6 +12,9 @@ const SidebarContents: FC = () => {
         </SheetDescription>
       </SheetHeader>
       <div className="grid gap-4 py-4">This is a test</div>
+      <div className="absolute w-full bottom-0 left-0">
+        <MenuIllustration />
+      </div>
     </SheetContent>
   )
 }
