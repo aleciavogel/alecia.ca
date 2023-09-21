@@ -1,29 +1,47 @@
 const tailwindColors = require('./node_modules/tailwindcss/colors')
-import { hexToRGB } from './src/lib/utils'
+const safelist = []
 
 // Skip these to avoid a load of deprecated warnings when tailwind starts up
 const deprecated = ['lightBlue', 'warmGray', 'trueGray', 'coolGray', 'blueGray']
 
-const convertedColors = Object.keys(tailwindColors).reduce((acc, color) => {
-  if (deprecated.includes(color)) {
-    return
+for (const colorName in tailwindColors) {
+  if (deprecated.includes(colorName)) {
+    continue
   }
 
-  const colorValue = tailwindColors[color]
-  if (typeof colorValue === 'string') {
-    acc[color] = hexToRGB(colorValue, color)
-  } else {
-    acc[color] = {}
-    Object.keys(colorValue).forEach((shade) => {
-      acc[color][shade] = hexToRGB(colorValue[shade], color)
+  const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
+
+  const palette = tailwindColors[colorName]
+
+  if (typeof palette === 'object') {
+    shades.forEach((shade) => {
+      if (shade in palette) {
+        safelist.push(`text-${colorName}-${shade}`)
+        safelist.push(`child:text-${colorName}-${shade}`)
+        safelist.push(`hover:text-${colorName}-${shade}`)
+        safelist.push(`dark:hover:text-${colorName}-${shade}`)
+        safelist.push(`dark:text-${colorName}-${shade}`)
+        safelist.push(`bg-${colorName}-${shade}`)
+        safelist.push(`hover:bg-${colorName}-${shade}`)
+        safelist.push(`nextDiv:text-${colorName}-300`)
+        safelist.push(`zigzag-${colorName}-400`)
+        safelist.push(`zigzag-${colorName}-600`)
+        safelist.push(`hover:zigzag-${colorName}-400`)
+        safelist.push(`hover:zigzag-${colorName}-600`)
+        safelist.push(`text-${colorName}`)
+        safelist.push(`primary-${colorName}`)
+        safelist.push(`accent-${colorName}`)
+      }
     })
   }
-  return acc
-}, {})
+}
+
+safelist.push('page-content')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
+  safelist,
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -71,7 +89,6 @@ module.exports = {
           DEFAULT: 'red',
           foreground: 'hsl(var(--card-foreground))',
         },
-        ...convertedColors,
         primary: {
           DEFAULT: 'var(--primary-600)',
           50: 'rgb(var(--primary-50)',
@@ -118,11 +135,6 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-      },
-    },
-    variables: {
-      DEFAULT: {
-        colors: convertedColors,
       },
     },
   },

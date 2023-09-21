@@ -1,30 +1,44 @@
-import { type FC } from 'react'
+import React, { forwardRef } from 'react'
 
 import { faBars } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-interface MenuIconProps {
+interface MenuIconProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean
   hover?: boolean
 }
 
-const MenuIcon: FC<MenuIconProps> = ({ hover = false }) => {
-  const icon = <FontAwesomeIcon icon={faBars} className="h-8 md:h-10 w-auto pointer-events-auto" />
+const MenuIcon = forwardRef<HTMLDivElement, MenuIconProps>(
+  ({ className, asChild = false, hover = false, ...props }, ref) => {
+    const icon = (
+      <FontAwesomeIcon icon={faBars} className="h-8 md:h-10 w-auto pointer-events-auto" />
+    )
 
-  if (hover) {
+    if (hover) {
+      return (
+        <div
+          id="site-menu-icon"
+          role="button"
+          aria-label="Site Menu"
+          // variant="link"
+          // onClick={toggleMenu}
+          aria-controls={'site-menu'}
+          ref={ref}
+          {...props}
+        >
+          {icon}
+        </div>
+      )
+    }
+
     return (
-      <div
-        id="site-menu-icon"
-        role="button"
-        aria-label="Site Menu"
-        // onClick={toggleMenu}
-        aria-controls={'site-menu'}
-      >
+      <div ref={ref} {...props}>
         {icon}
       </div>
     )
-  }
+  },
+)
 
-  return icon
-}
+MenuIcon.displayName = 'MenuIcon'
 
 export default MenuIcon

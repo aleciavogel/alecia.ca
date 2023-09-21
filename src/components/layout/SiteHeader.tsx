@@ -3,6 +3,7 @@ import { type FC } from 'react'
 import SiteLogo from '@/components/pages/shared/Brand'
 import ThemeSettings from '@/components/pages/shared/ThemeSettings'
 import MenuIcon from './header/MenuIcon'
+import SiteSidebar from './sidebar/SiteSidebar'
 
 interface HeaderRightProps {
   children: React.ReactNode
@@ -33,7 +34,9 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
       >
         <SiteLogo hover={hover} />
         <HeaderRight>
-          <MenuIcon hover={hover} />
+          <SiteSidebar>
+            <MenuIcon hover={hover} />
+          </SiteSidebar>
           <ThemeSettings hover={hover} />
         </HeaderRight>
       </div>
