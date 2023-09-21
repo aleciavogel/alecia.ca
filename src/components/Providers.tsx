@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from 'next-themes'
 import { type FC, useEffect, useState } from 'react'
+import ScrollProvider from './features/scroll/ScrollProvider'
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -20,7 +21,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      {children}
+      <ScrollProvider>{children}</ScrollProvider>
     </ThemeProvider>
   )
 }

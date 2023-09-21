@@ -1,8 +1,6 @@
 'use client'
 
-import { type FC, useRef } from 'react'
-import { usePathname } from 'next/navigation'
-import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
+import { type FC } from 'react'
 
 import { type DefaultColor } from '@/types/colors'
 import StaticMenu from './StaticMenu'
@@ -24,40 +22,22 @@ const SiteWrapper: FC<Props> = ({
   textColor = 'gray',
   children,
 }) => {
-  const pathname = usePathname()
-  const containerRef = useRef(null)
   const colorClasses = `primary-${primaryColor} accent-${accentColor} body-${textColor}`
 
   return (
-    <LocomotiveScrollProvider
-      options={{
-        smooth: true,
-        tablet: {
-          smooth: false,
-          breakpoint: 768,
-        },
-      }}
-      containerRef={containerRef}
-      location={pathname}
-      watch={[pathname]}
-      onLocationChange={(scroll: any) => scroll.scrollTo(0, { duration: 0, disableLerp: true })} // If you want to reset the scroll position to 0 for example
-    >
-      <div data-scroll-container ref={containerRef}>
-        <div id="site-wrapper" className={`${colorClasses}`}>
-          <SiteHeader />
-          <SiteHeader hover={true} />
+    <div id="site-wrapper" className={`${colorClasses}`}>
+      <SiteHeader />
+      <SiteHeader hover={true} />
 
-          <StaticMenu />
-          {/* <SiteMenu /> */}
+      <StaticMenu />
+      {/* <SiteMenu /> */}
 
-          {children}
+      {children}
 
-          {/* <HireMeBanner /> */}
-          <UnderConstructionBanner />
-          <SiteFooter accentColor={accentColor} primaryColor={primaryColor} />
-        </div>
-      </div>
-    </LocomotiveScrollProvider>
+      {/* <HireMeBanner /> */}
+      <UnderConstructionBanner />
+      <SiteFooter accentColor={accentColor} primaryColor={primaryColor} />
+    </div>
   )
 }
 

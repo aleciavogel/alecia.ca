@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { type DefaultColor } from '@/types/colors'
 import ShareLinks from './ShareLinks'
-import Date from '../../Date'
+import Date from '@/components/FormattedDate'
 
 interface Props {
   timeToRead: string

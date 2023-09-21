@@ -10,6 +10,7 @@
   }
 
   .zigzag-link,
+  .zigzag-link-no-pseudo,
   .author-card > p a,
   .page-content > p a {
     @apply relative overflow-hidden no-underline;
@@ -17,17 +18,20 @@
   }
 
   .dark .zigzag-link,
+  .dark .zigzag-link-no-pseudo,
   .dark .author-card > p a,
   .dark .page-content > p a {
     color: var(--primary-400);
   }
 
   .zigzag-link,
+  .zigzag-link-no-pseudo,
   .page-content > p a {
     @apply font-extrabold;
   }
 
   .zigzag-link::after,
+  .zigzag-link-no-pseudo > div,
   .author-card > p a::after,
   .page-content > p a::after {
     @apply absolute w-full left-0 pointer-events-none;
@@ -38,18 +42,21 @@
   }
 
   .zigzag-link:hover,
+  .zigzag-link-no-pseudo:hover,
   .author-card > p a:hover,
   .page-content > p a:hover {
     color: var(--accent-600);
   }
 
   .dark .zigzag-link:hover,
+  .dark .zigzag-link-no-pseudo:hover,
   .dark .author-card > p a:hover,
   .dark .page-content > p a:hover {
     color: var(--accent-400);
   }
 
   .zigzag-link:hover::after,
+  .zigzag-link-no-pseudo:hover > div,
   .author-card > p a:hover::after,
   .page-content > p a:hover::after {
     @apply bg-transparent;
