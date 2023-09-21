@@ -8,13 +8,13 @@ interface Props {
   hover: boolean
 }
 
-const ThemeSettings: FC<Props> = ({ hover }) => {
+const DarkModeToggle: FC<Props> = ({ hover }) => {
   const { theme, setTheme } = useTheme()
   const icon = theme === 'dark' ? <NightIcon className="h-4" /> : <DayIcon className="h-5" />
 
   if (hover) {
     return (
-      <div>
+      <div className="text-right">
         <div
           role="button"
           aria-label="Toggle dark mode"
@@ -31,10 +31,10 @@ const ThemeSettings: FC<Props> = ({ hover }) => {
   }
 
   return (
-    <div>
+    <div className="text-right">
       <div className="theme-button">{icon}</div>
     </div>
   )
 }
 
-export default ThemeSettings
+export default DarkModeToggle

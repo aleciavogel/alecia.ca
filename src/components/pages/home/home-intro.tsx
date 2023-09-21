@@ -39,7 +39,7 @@ const HomeIntro: FC = () => {
             </Link>
           </div>
         </div>
-        <div className="col-span-3" data-scroll data-scroll-speed="2">
+        <div className="col-span-3" data-scroll data-scroll-speed="1.5">
           <Image src={AleciaPic} alt="Alecia" />
         </div>
       </div>

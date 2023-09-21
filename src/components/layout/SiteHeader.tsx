@@ -1,9 +1,10 @@
 import { type FC } from 'react'
 
-import SiteLogo from '@/components/pages/shared/Brand'
-import ThemeSettings from '@/components/pages/shared/ThemeSettings'
-import MenuIcon from './header/MenuIcon'
-import SiteSidebar from './sidebar/SiteSidebar'
+import SiteLogo from '@/components/layout/Brand'
+import DarkModeToggle from '@/components/layout/DarkModeToggle'
+import MenuToggle from '@/components/layout/header/MenuToggle'
+import SiteSidebar from '@/components/layout/sidebar/SiteSidebar'
+import { cn } from '@/lib/utils'
 
 interface HeaderRightProps {
   children: React.ReactNode
@@ -21,7 +22,6 @@ interface SiteHeaderProps {
 const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) => {
   const hoverClass = hover ? 'site-header-hover' : ''
   const colorClass = hasColor ? 'site-header-color' : hover ? 'text-transparent' : 'text-white'
-  const className = `site-header ${colorClass} ${hoverClass}`
 
   if (hover) {
     return (
@@ -30,14 +30,14 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
         data-scroll-sticky
         data-scroll-target="#site-wrapper"
         aria-hidden={!hover}
-        className={className}
+        className={cn('site-header', colorClass, hoverClass)}
       >
         <SiteLogo hover={hover} />
         <HeaderRight>
           <SiteSidebar>
-            <MenuIcon hover={hover} />
+            <MenuToggle hover={hover} />
           </SiteSidebar>
-          <ThemeSettings hover={hover} />
+          <DarkModeToggle hover={hover} />
         </HeaderRight>
       </div>
     )
@@ -49,12 +49,12 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
       data-scroll-sticky
       data-scroll-target="#site-wrapper"
       aria-hidden={false}
-      className={className}
+      className={cn('site-header', colorClass, hoverClass)}
     >
       <SiteLogo hover={hover} />
       <HeaderRight>
-        <MenuIcon hover={hover} />
-        <ThemeSettings hover={hover} />
+        <MenuToggle hover={hover} />
+        <DarkModeToggle hover={hover} />
       </HeaderRight>
     </div>
   )

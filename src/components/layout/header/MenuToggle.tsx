@@ -8,7 +8,7 @@ interface MenuIconProps extends React.HTMLAttributes<HTMLDivElement> {
   hover?: boolean
 }
 
-const MenuIcon = forwardRef<HTMLDivElement, MenuIconProps>(
+const MenuToggle = forwardRef<HTMLDivElement, MenuIconProps>(
   ({ className, asChild = false, hover = false, ...props }, ref) => {
     const icon = (
       <FontAwesomeIcon icon={faBars} className="h-8 md:h-10 w-auto pointer-events-auto" />
@@ -39,6 +39,6 @@ const MenuIcon = forwardRef<HTMLDivElement, MenuIconProps>(
   },
 )
 
-MenuIcon.displayName = 'MenuIcon'
+MenuToggle.displayName = 'MenuToggle'
 
-export default MenuIcon
+export default MenuToggle

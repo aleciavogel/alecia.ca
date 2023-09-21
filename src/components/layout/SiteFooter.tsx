@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { type DefaultColor } from '@/types/colors'
 import AleciaSitSvg from '@/components/images/vectors/AleciaSitSvg'
-import SocialLinks from '@/components/pages/shared/SocialLinks'
+import SocialLinks from '@/components/layout/SocialLinks'
 
 interface Props {
   accentColor?: DefaultColor
