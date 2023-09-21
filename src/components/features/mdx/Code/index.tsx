@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import CodeSnippetCopy from './CodeSnippetCopy'
-import { preToCodeSnippetProps } from './utils'
 
 interface Props {
   codeString: string
@@ -93,15 +92,6 @@ const CodeSnippet: FC<Props> = ({ codeString, language, isLive = false, codeTitl
         )}
       </Highlight>
     )
-  }
-}
-
-export const parsePreBlock = (preProps: any): JSX.Element => {
-  const props = preToCodeSnippetProps(preProps)
-  if (props !== undefined) {
-    return <CodeSnippet {...props} />
-  } else {
-    return <pre {...preProps} />
   }
 }
 

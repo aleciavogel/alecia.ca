@@ -33,7 +33,7 @@
   }
 
   .theme-button {
-    @apply opacity-60 pointer-events-none;
+    @apply opacity-70 pointer-events-none;
   }
 
   .theme-button > svg {
@@ -43,7 +43,11 @@
 
   .theme-button[role='button'] {
     @apply opacity-0 transition-opacity ease-in-out duration-300;
-    color: var(--primaryLight);
+    color: var(--accent-500);
+  }
+
+  .dark .theme-button[role='button'] {
+    color: var(--accent-300);
   }
 
   .theme-button[role='button']:hover {

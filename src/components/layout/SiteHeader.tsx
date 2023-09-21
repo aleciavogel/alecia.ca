@@ -11,7 +11,7 @@ interface HeaderRightProps {
 }
 
 const HeaderRight: FC<HeaderRightProps> = ({ children }) => {
-  return <div className="visibleChild:mt-6 visibleChild:mb-0">{children}</div>
+  return <div className="visibleChild:mt-4 visibleChild:mb-0">{children}</div>
 }
 
 interface SiteHeaderProps {

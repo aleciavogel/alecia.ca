@@ -15,6 +15,7 @@ import type { DefaultColor } from '@/types/colors'
 
 interface PostProps {
   params: {
+    category: string
     frontMatter: {
       title: string
       description: string
@@ -28,7 +29,8 @@ interface PostProps {
 }
 
 const Post: FC<PostProps> = ({ params }: any) => {
-  const props = getPostBySlug(params?.slug)
+  const { category, slug } = params
+  const props = getPostBySlug(category !== undefined ? `${category}/${slug}` : slug)
 
   return (
     <SiteWrapper
@@ -52,7 +54,8 @@ const Post: FC<PostProps> = ({ params }: any) => {
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const props = getPostBySlug(params?.slug)
+  const { category, slug } = params
+  const props = getPostBySlug(category !== undefined ? `${category}/${slug}` : slug)
   return {
     title: `${props.frontMatter.title} | Alecia.ca`,
     authors: [

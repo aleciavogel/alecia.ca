@@ -3,13 +3,15 @@ import Link from 'next/link'
 
 import FormattedDate from '@/components/FormattedDate'
 import { getSortedPostsData } from '@/lib/posts'
-import PageMain from '../PageMain'
+import PageMain from '../../PageMain'
 
-const AboutMain: FC<any> = ({ params }) => {
-  const posts = getSortedPostsData()
+const BlogCategoryMain: FC<any> = ({ params }) => {
+  const { category } = params
+  const posts = getSortedPostsData(category as string)
   const allPostsData = posts.slice(0, 3)
+
   return (
-    <PageMain>
+    <PageMain variant="chevron">
       <div className="about-intro">
         <h2 className="font-serif">Latest Posts</h2>
 
@@ -29,4 +31,4 @@ const AboutMain: FC<any> = ({ params }) => {
   )
 }
 
-export default AboutMain
+export default BlogCategoryMain

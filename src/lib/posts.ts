@@ -3,13 +3,29 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+
 import type { DefaultColor } from '@/types/colors'
 
 const postsDirectory = path.join(process.cwd(), '_posts')
 
-export function getPostSlugs(): string[] {
-  const fileNames = fs.readdirSync(postsDirectory)
-  return fileNames.map((fileName) => fileName.replace(/\.mdx$/, ''))
+function* walkSync(dir: string): Generator<string> {
+  const files = fs.readdirSync(dir, { withFileTypes: true })
+  for (const file of files) {
+    if (file.isDirectory()) {
+      yield* walkSync(path.join(dir, file.name))
+    } else {
+      yield path.join(dir, file.name)
+    }
+  }
+}
+
+export function getPostSlugs(category?: string): string[] {
+  const targetDir = category !== undefined ? path.join(postsDirectory, category) : postsDirectory
+  const fileNames = walkSync(targetDir)
+  return [...fileNames].map((fileName) => {
+    const filePath = fileName.split('_posts/')[1]
+    return filePath.replace(/\.mdx$/, '') // Remove the file extension from the path
+  })
 }
 
 interface PostFrontMatter extends Record<string, string> {
@@ -27,6 +43,7 @@ interface PostContent {
 
 export function getPostBySlug(slug: string): PostContent {
   const realSlug = slug.replace(/\.mdx$/, '')
+
   const fullPath = path.join(postsDirectory, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data: frontMatter, content } = matter(fileContents)
@@ -38,8 +55,8 @@ export function getPostBySlug(slug: string): PostContent {
   }
 }
 
-export function getSortedPostsData(): PostContent[] {
-  const fileNames = getPostSlugs()
+export function getSortedPostsData(category?: string): PostContent[] {
+  const fileNames = getPostSlugs(category)
   const allPostsData = fileNames.map((slug) => getPostBySlug(slug))
 
   // Sort posts by date
