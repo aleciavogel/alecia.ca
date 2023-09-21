@@ -31,7 +31,7 @@ const SiteWrapper: FC<Props> = ({
   return (
     <LocomotiveScrollProvider
       options={{
-        smooth: false,
+        smooth: true,
         tablet: {
           smooth: false,
           breakpoint: 768,
