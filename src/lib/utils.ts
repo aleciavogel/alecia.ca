@@ -22,5 +22,5 @@ export const hexToRGB = (hex: string): string => {
   const g = parseInt(color.slice(3, 5), 16)
   const b = parseInt(color.slice(5, 7), 16)
 
-  return [r, g, b].join(', ') + ';'
+  return [r, g, b].join(' ')
 }

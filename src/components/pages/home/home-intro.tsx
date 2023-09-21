@@ -11,7 +11,9 @@ const HomeIntro: FC = () => {
     <section className="w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg mx-auto">
       <div className="home-intro grid grid-cols-6 gap-10 pb-16 text-gray-700 dark:text-[var(--textBody)]">
         <div className="col-span-3 -mt-12" data-scroll>
-          <div className="text-5xl mb-6">👋</div>
+          <div className="text-5xl mb-6 in-view:wave" data-scroll>
+            <span>👋</span>
+          </div>
           <h2 className="font-serif-small text-4xl leading-10">
             Hey there,
             <br />

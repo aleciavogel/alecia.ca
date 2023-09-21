@@ -5,11 +5,14 @@ import {
   faCode,
   faBriefcase,
   faLightbulb,
+  faChain,
+  faFlask,
 } from '@fortawesome/pro-solid-svg-icons'
 
 import AboutDropdownContent from '@/components/layout/header/AboutDropdown'
 import type { MainNavItem, SidebarNavItem } from '@/types/nav'
 import LearnToCodeDropdownContent from '@/components/layout/header/LearnToCodeDropdown'
+import PlaygroundDropdown from '@/components/layout/header/PlaygroundDropdown'
 
 export const MAIN_NAV: MainNavItem[] = [
   {
@@ -87,6 +90,27 @@ export const MAIN_NAV: MainNavItem[] = [
     title: 'Learn To Code',
     href: '/learn-to-code',
     DropdownContent: LearnToCodeDropdownContent,
+  },
+  {
+    title: 'Playground',
+    href: '/playground',
+    DropdownContent: {
+      Left: PlaygroundDropdown,
+    },
+    items: [
+      {
+        title: 'Experiments',
+        href: '/playground/experiments',
+        icon: faFlask,
+        description: 'My personal sandbox for trying out new ideas.',
+      },
+      {
+        title: 'Resources',
+        href: '/playground/resources',
+        icon: faChain,
+        description: 'A collection of useful links for developers.',
+      },
+    ],
   },
   {
     title: 'Get In Touch',

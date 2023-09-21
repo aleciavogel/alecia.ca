@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/navigation-menu'
 import type { MainNavItem } from '@/types/nav'
 import StaticNavListItem from './StaticNavListItem'
+import { cn } from '@/lib/utils'
 
 const StaticNavLink: FC<MainNavItem> = ({
   title,
@@ -38,11 +39,12 @@ const StaticNavLink: FC<MainNavItem> = ({
           <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
           <NavigationMenuContent className="bg-primary-800 dark:bg-primary-900">
             <ul
-              className={`grid gap-3 p-4 ${
+              className={cn(
+                'grid gap-3 p-4',
                 DropdownContent !== undefined
-                  ? ' md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]'
-                  : 'md:w-[500px] lg:w-[600px] md:grid-cols-2'
-              }`}
+                  ? 'md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]'
+                  : 'md:w-[500px] lg:w-[600px] md:grid-cols-2',
+              )}
             >
               {hasMainDropdownComponent && <DropdownContent />}
               {hasLeftComponent && DropdownContent.Left !== undefined && <DropdownContent.Left />}

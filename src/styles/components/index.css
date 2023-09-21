@@ -1,2 +1,3 @@
-@import "./features";
-@import "./layout";
+@import './features';
+@import './layout';
+@import './_animations.css';

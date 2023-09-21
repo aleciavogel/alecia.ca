@@ -146,6 +146,7 @@ module.exports = {
       addVariant('visibleChild', '& > :not([hidden]) ~ :not([hidden])')
       addVariant('activeLink', '&.active')
       addVariant('nextDiv', '& + div')
+      addVariant('in-view', '&.is-inview')
     },
   ],
 }
