@@ -23,7 +23,7 @@ const ArticleInfo: FC<Props> = ({
     <aside className="author-card">
       <p>
         {'By '}
-        <Link href="/">Alecia Vogel</Link>
+        <Link href="/about/alecia">Alecia Vogel</Link>
       </p>
       <p className="mt-3">
         <Date dateString={date} />

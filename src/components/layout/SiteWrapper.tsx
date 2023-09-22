@@ -7,7 +7,7 @@ import StaticMenu from './StaticMenu'
 import SiteHeader from './SiteHeader'
 import SiteFooter from './SiteFooter'
 // import HireMeBanner from "@/components/banners/HireMe";
-import UnderConstructionBanner from '../banners/UnderConstruction'
+// import UnderConstructionBanner from '../banners/UnderConstruction'
 
 interface Props {
   primaryColor?: DefaultColor
@@ -35,7 +35,7 @@ const SiteWrapper: FC<Props> = ({
       {children}
 
       {/* <HireMeBanner /> */}
-      <UnderConstructionBanner />
+      {/* <UnderConstructionBanner /> */}
       <SiteFooter accentColor={accentColor} primaryColor={primaryColor} />
     </div>
   )

@@ -1,30 +1,20 @@
 import { type FC } from 'react'
-import Link from 'next/link'
 
-import FormattedDate from '@/components/FormattedDate'
 import { getSortedPostsData } from '@/lib/posts'
 import PageMain from '../../PageMain'
+import BlogItem from './BlogItem'
+// import FeaturedBlogItem from './FeaturedBlogItem'
 
 const BlogMain: FC<any> = ({ params }) => {
   const posts = getSortedPostsData()
   const allPostsData = posts.slice(0, 3)
   return (
     <PageMain variant="chevron">
-      <div className="about-intro">
-        <h2 className="font-serif">Latest Posts</h2>
-
-        <ul className="blog-list">
-          {allPostsData?.map(({ slug, frontMatter: { date, title } }: any) => (
-            <li key={slug}>
-              <Link href={`/blog/${slug}`}>{title}</Link>
-              <br />
-              <small>
-                <FormattedDate dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="grid grid-cols-6 gap-8">
+        {allPostsData?.map((post) => (
+          <BlogItem key={`${post.slug.split('/')[1]}`} {...post} />
+        ))}
+      </ul>
     </PageMain>
   )
 }

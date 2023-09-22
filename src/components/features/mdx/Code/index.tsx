@@ -79,13 +79,17 @@ const CodeSnippet: FC<Props> = ({ codeString, language, isLive = false, codeTitl
               showCopied={keepShowingCopy}
             />
             <pre className={className} style={style}>
-              {tokens.map((line, i) => (
-                <div key={i} {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
-                  ))}
-                </div>
-              ))}
+              {tokens.map((line, i) => {
+                const { key: lineKey, ...lineProps } = getLineProps({ line, key: i })
+                return (
+                  <div key={lineKey} {...lineProps}>
+                    {line.map((token, key) => {
+                      const { key: tokenKey, ...tokenProps } = getTokenProps({ token, key })
+                      return <span key={tokenKey} {...tokenProps} />
+                    })}
+                  </div>
+                )
+              })}
             </pre>
             {Boolean(ghSource) && codeTitle === undefined && codeSourceComponent}
           </div>

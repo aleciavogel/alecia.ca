@@ -1,10 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import readingTime from 'reading-time'
 import { remark } from 'remark'
 import html from 'remark-html'
 
-import type { DefaultColor } from '@/types/colors'
+import type { PostData, PostFrontMatter } from '@/types/blog'
 
 const postsDirectory = path.join(process.cwd(), '_posts')
 
@@ -28,15 +29,10 @@ export function getPostSlugs(category?: string): string[] {
   })
 }
 
-interface PostFrontMatter extends Record<string, string> {
-  primaryColor: DefaultColor
-  accentColor: DefaultColor
-  textColor: DefaultColor
-}
-
 interface PostContent {
   id?: string
   slug: string
+  timeToRead: string
   content: string
   frontMatter: PostFrontMatter
 }
@@ -47,10 +43,12 @@ export function getPostBySlug(slug: string): PostContent {
   const fullPath = path.join(postsDirectory, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data: frontMatter, content } = matter(fileContents)
+  const timeToRead = readingTime(content).text
 
   return {
     slug,
     content,
+    timeToRead,
     frontMatter: frontMatter as PostFrontMatter,
   }
 }
@@ -69,12 +67,8 @@ export function getSortedPostsData(category?: string): PostContent[] {
   })
 }
 
-interface PostData extends Record<string, any> {
-  id: string
-  contentHtml: string
-}
-export async function getPostData(id: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.mdx`)
+export async function getPostData(slug: string): Promise<PostData> {
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   // Use gray-matter to parse the post metadata section
@@ -83,11 +77,14 @@ export async function getPostData(id: string): Promise<PostData> {
   // Use remark to convert markdown into HTML string
   const processedContent = await remark().use(html).process(matterResult.content)
   const contentHtml = processedContent.toString()
+  const timeToRead = readingTime(matterResult.content).text
 
   // Combine the data with the id and contentHtml
   return {
-    id,
+    id: slug,
     contentHtml,
-    ...matterResult.data,
+    timeToRead,
+    content: matterResult.content,
+    frontMatter: matterResult.data as PostFrontMatter,
   }
 }

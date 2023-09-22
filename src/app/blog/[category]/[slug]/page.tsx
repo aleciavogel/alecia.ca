@@ -12,6 +12,8 @@ import ArticleHeader from '@/components/pages/blog/ArticleHeader'
 import SiteWrapper from '@/components/layout/SiteWrapper'
 import { getPostBySlug } from '@/lib/posts'
 import type { DefaultColor } from '@/types/colors'
+import MorePostsBanner from '@/components/banners/MorePosts'
+// import AuthorInfo from '@/components/pages/blog/post/AuthorInfo'
 
 interface PostProps {
   params: {
@@ -31,6 +33,7 @@ interface PostProps {
 const Post: FC<PostProps> = ({ params }: any) => {
   const { category, slug } = params
   const props = getPostBySlug(category !== undefined ? `${category}/${slug}` : slug)
+  const timeToRead = readingTime(props.content).text
 
   return (
     <SiteWrapper
@@ -39,9 +42,10 @@ const Post: FC<PostProps> = ({ params }: any) => {
       accentColor={props.frontMatter.accentColor}
     >
       <article>
-        <ArticleHeader data={props.frontMatter} />
-        <ArticleMain timeToRead={readingTime(props.content).text} data={props.frontMatter}>
+        <ArticleHeader category={category} data={props.frontMatter} />
+        <ArticleMain timeToRead={timeToRead} data={props.frontMatter}>
           <MDXWrapper source={props.content} />
+          {/* <AuthorInfo /> */}
           <p className="mt-8 content-block">
             <Link href="/" className="">
               <span>← Back to homepage</span>
@@ -49,6 +53,7 @@ const Post: FC<PostProps> = ({ params }: any) => {
           </p>
         </ArticleMain>
       </article>
+      <MorePostsBanner />
     </SiteWrapper>
   )
 }

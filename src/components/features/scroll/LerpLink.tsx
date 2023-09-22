@@ -25,14 +25,7 @@ const LerpLink: FC<LerpLinkProps> = ({
   const characters = stringContent.split('')
 
   return (
-    <Link
-      className={cn(
-        'zigzag-link-no-pseudo',
-        'in-view:after:fade-in in-view:before:fade-in',
-        className,
-      )}
-      {...props}
-    >
+    <Link className={cn('zigzag-link-no-pseudo', className)} {...props}>
       {characters.map((char, index) => (
         <span
           className="inline-block"
