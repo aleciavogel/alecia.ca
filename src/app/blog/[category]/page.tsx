@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import { type Metadata } from 'next'
 
 import SiteWrapper from '@/components/layout/SiteWrapper'
-import BlogIndexHeader from '@/components/pages/blog/index/BlogIndexHeader'
+import BlogIndexHeader from '@/components/pages/blog/list/BlogIndexHeader'
 import BlogCategoryMain from '@/components/pages/blog/category/BlogCategoryMain'
 import { BLOG_CATEGORIES } from '@/config/blog-categories'
 

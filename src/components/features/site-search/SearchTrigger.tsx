@@ -1,9 +1,8 @@
 'use client'
 
 import { type FC } from 'react'
-import { useTheme } from 'next-themes'
-import DayIcon from '@/components/icons/DayIcon'
-import NightIcon from '@/components/icons/NightIcon'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/pro-solid-svg-icons'
 
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
 
@@ -11,10 +10,8 @@ interface Props {
   hover: boolean
 }
 
-const DarkModeToggle: FC<Props> = ({ hover }) => {
-  const { theme, setTheme } = useTheme()
-  const icon =
-    theme === 'dark' ? <NightIcon className="h-4 -mr-2" /> : <DayIcon className="h-5 -mr-2" />
+const SearchTrigger: FC<Props> = ({ hover }) => {
+  const icon = <FontAwesomeIcon icon={faSearch} className="h-3 -mr-2" />
 
   if (hover) {
     return (
@@ -25,18 +22,16 @@ const DarkModeToggle: FC<Props> = ({ hover }) => {
               <div
                 role="button"
                 className="theme-button pointer-events-auto p-2 translate-x-2"
-                aria-label="Toggle dark mode"
-                id="theme-toggle"
+                aria-label="Search Site"
+                id="search-toggle"
                 onClick={() => {
-                  setTheme(theme === 'dark' ? 'light' : 'dark')
+                  console.log('Search Trigger Clicked')
                 }}
               >
                 {icon}
               </div>
             </TooltipTrigger>
-            <TooltipContent side="left">
-              Switch to {theme === 'dark' ? 'light' : 'dark'} mode
-            </TooltipContent>
+            <TooltipContent side="left">Search site</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>
@@ -50,4 +45,4 @@ const DarkModeToggle: FC<Props> = ({ hover }) => {
   )
 }
 
-export default DarkModeToggle
+export default SearchTrigger

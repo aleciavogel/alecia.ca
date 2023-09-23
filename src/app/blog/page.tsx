@@ -2,8 +2,8 @@ import { type FC } from 'react'
 import { type Metadata } from 'next'
 
 import SiteWrapper from '@/components/layout/SiteWrapper'
-import BlogIndexHeader from '@/components/pages/blog/index/BlogIndexHeader'
-import BlogMain from '@/components/pages/blog/index/BlogMain'
+import BlogIndexHeader from '@/components/pages/blog/list/BlogIndexHeader'
+import BlogMain from '@/components/pages/blog/list/BlogMain'
 
 const BlogIndexPage: FC = () => {
   return (

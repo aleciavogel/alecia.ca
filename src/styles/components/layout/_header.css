@@ -42,7 +42,7 @@
   }
 
   .theme-button[role='button'] {
-    @apply opacity-0 transition-opacity ease-in-out duration-300;
+    @apply opacity-0 transition-opacity ease-in-out duration-200;
     color: var(--accent-500);
   }
 

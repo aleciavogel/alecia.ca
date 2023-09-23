@@ -5,13 +5,14 @@ import DarkModeToggle from '@/components/features/site-theme/DarkModeToggle'
 import MenuToggle from '@/components/layout/header/MenuToggle'
 import SiteSidebar from '@/components/layout/sidebar/SiteSidebar'
 import { cn } from '@/lib/utils'
+import SearchTrigger from '../features/site-search/SearchTrigger'
 
 interface HeaderRightProps {
   children: React.ReactNode
 }
 
 const HeaderRight: FC<HeaderRightProps> = ({ children }) => {
-  return <div className="visibleChild:mt-4 visibleChild:mb-0">{children}</div>
+  return <div className="visibleChild:mt-2 visibleChild:mb-0">{children}</div>
 }
 
 interface SiteHeaderProps {
@@ -38,6 +39,7 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
             <MenuToggle hover={hover} />
           </SiteSidebar>
           <DarkModeToggle hover={hover} />
+          <SearchTrigger hover={hover} />
         </HeaderRight>
       </div>
     )
@@ -55,6 +57,7 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
       <HeaderRight>
         <MenuToggle hover={hover} />
         <DarkModeToggle hover={hover} />
+        <SearchTrigger hover={hover} />
       </HeaderRight>
     </div>
   )
