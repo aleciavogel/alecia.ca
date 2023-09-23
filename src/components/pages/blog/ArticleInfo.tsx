@@ -2,8 +2,8 @@ import { type FC } from 'react'
 import Link from 'next/link'
 
 import { type DefaultColor } from '@/types/colors'
-import ShareLinks from './ShareLinks'
-import Date from '@/components/FormattedDate'
+import ShareLinks from '../../features/blog/ShareLinks'
+import Date from '@/components/features/blog/FormattedDate'
 
 interface Props {
   timeToRead: string

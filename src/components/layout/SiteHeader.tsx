@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import SiteLogo from '@/components/layout/Brand'
-import DarkModeToggle from '@/components/layout/DarkModeToggle'
+import DarkModeToggle from '@/components/features/site-theme/DarkModeToggle'
 import MenuToggle from '@/components/layout/header/MenuToggle'
 import SiteSidebar from '@/components/layout/sidebar/SiteSidebar'
 import { cn } from '@/lib/utils'

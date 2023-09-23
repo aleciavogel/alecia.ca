@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Link from 'next/link'
 
-import Logo from '@/components/images/vectors/Logo'
+import Logo from '@/components/vectors/Logo'
 
 interface Props {
   hover: boolean

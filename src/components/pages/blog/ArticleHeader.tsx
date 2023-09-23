@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Link from 'next/link'
 
 import { BLOG_CATEGORIES } from '@/config/blog-categories'
-import ReadMoreArrowIcon from '@/components/images/icons/ReadMoreIcon'
+import ReadMoreArrowIcon from '@/components/icons/ReadMoreIcon'
 
 interface Props {
   data: any

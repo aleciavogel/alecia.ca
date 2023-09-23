@@ -2,11 +2,11 @@
 import { type FC, useState } from 'react'
 
 import { NavigationMenuLink } from '@/components/ui/navigation-menu'
-import HappyLittleBracketsSvg from '@/components/images/vectors/HappyLittleBracketsSvg'
+import HappyLittleBracketsSvg from '@/components/vectors/HappyLittleBracketsSvg'
 import StaticNavListItem from './StaticNavListItem'
 import { faCartShopping, faRocketLaunch } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import TeleportAnimation from '@/components/images/icons/TeleportAnimation'
+import TeleportAnimation from '@/components/icons/TeleportAnimation'
 
 const LearnToCodeDropdownContent: FC = () => {
   const [isHoveringOverAdvanced, setIsHoveringOverAdvanced] = useState<boolean>(false)

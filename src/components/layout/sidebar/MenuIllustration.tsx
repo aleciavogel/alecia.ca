@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 // import BlobSvg from '@/components/images/vectors/BlobSvg'
-import AleciaLayingSvg from '@/components/images/vectors/AleciaLayingSvg'
+import AleciaLayingSvg from '@/components/vectors/AleciaLayingSvg'
 
 const MenuIllustration: FC = () => (
   <div id="menu-illustration">

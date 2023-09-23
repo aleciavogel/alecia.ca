@@ -12,7 +12,7 @@ import ArticleHeader from '@/components/pages/blog/ArticleHeader'
 import SiteWrapper from '@/components/layout/SiteWrapper'
 import { getPostBySlug } from '@/lib/posts'
 import type { DefaultColor } from '@/types/colors'
-import MorePostsBanner from '@/components/banners/MorePosts'
+import MorePostsBanner from '@/components/features/blog/MorePostsBanner'
 // import AuthorInfo from '@/components/pages/blog/post/AuthorInfo'
 
 interface PostProps {

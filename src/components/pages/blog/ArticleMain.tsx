@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import PostInfo from './ArticleInfo'
 import SiteHeader from '@/components/layout/SiteHeader'
-import ReadingProgress from './ReadingProgress'
+import ReadingProgress from '@/components/features/blog/ReadingProgress'
 
 interface Props {
   timeToRead: string

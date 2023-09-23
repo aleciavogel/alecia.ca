@@ -1,8 +1,8 @@
 'use client'
 
-import { ThemeProvider } from 'next-themes'
 import { type FC, useEffect, useState } from 'react'
-import ScrollProvider from './features/scroll/ScrollProvider'
+import ScrollProvider from './features/site-scroll/ScrollProvider'
+import DarkModeProvider from './features/site-theme/DarkModeProvider'
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -20,9 +20,9 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <DarkModeProvider>
       <ScrollProvider>{children}</ScrollProvider>
-    </ThemeProvider>
+    </DarkModeProvider>
   )
 }
 

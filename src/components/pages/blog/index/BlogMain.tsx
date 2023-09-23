@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import { getSortedPostsData } from '@/lib/posts'
 import PageMain from '../../PageMain'
-import BlogItem from './BlogItem'
+import BlogItem from '../../../features/blog/BlogItem'
 // import FeaturedBlogItem from './FeaturedBlogItem'
 
 const BlogMain: FC<any> = ({ params }) => {

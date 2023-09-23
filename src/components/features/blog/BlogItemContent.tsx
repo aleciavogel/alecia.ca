@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import type { PostContent } from '@/types/blog'
 import { BLOG_CATEGORIES } from '@/config/blog-categories'
-import FormattedDate from '@/components/FormattedDate'
+import FormattedDate from '@/components/features/blog/FormattedDate'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock } from '@fortawesome/pro-regular-svg-icons'
 

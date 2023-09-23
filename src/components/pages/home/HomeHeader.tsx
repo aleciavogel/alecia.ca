@@ -3,8 +3,8 @@
 import { type FC, useState, useEffect } from 'react'
 import { useLocomotiveScroll } from 'react-locomotive-scroll'
 
-import AleciaCouch from '@/components/images/vectors/AleciaCouchSvg'
-import RotatingText from '../about/RotatingText'
+import AleciaCouch from '@/components/vectors/AleciaCouchSvg'
+import RotatingText from '@/components/features/home/RotatingText'
 
 const HomeHeader: FC = () => {
   const { scroll } = useLocomotiveScroll()

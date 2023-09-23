@@ -1,7 +1,7 @@
 'use client'
 import { useTheme } from 'next-themes'
-import DayIcon from '@/components/images/icons/DayIcon'
-import NightIcon from '@/components/images/icons/NightIcon'
+import DayIcon from '@/components/icons/DayIcon'
+import NightIcon from '@/components/icons/NightIcon'
 import { type FC } from 'react'
 
 interface Props {
