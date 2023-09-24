@@ -14,7 +14,7 @@ const BlogCategoryHeader: FC<any> = ({ params }) => {
         <div>
           <Link
             href="/blog"
-            className="text-3xl text-accent-300 font-bold hover:text-accent-500 transition-colors duration-300 underline"
+            className="text-xl md:text-3xl text-accent-300 font-bold hover:text-accent-500 transition-colors duration-300 underline"
           >
             Blog
           </Link>
@@ -23,7 +23,7 @@ const BlogCategoryHeader: FC<any> = ({ params }) => {
           {/* {icon !== undefined && <FontAwesomeIcon icon={icon} className="mr-10" />} */}
           {title}
         </h1>
-        <p className="text-white w-full text-center mx-auto font-light">{description}</p>
+        <p className="text-white w-full md:text-center mx-auto font-light">{description}</p>
       </div>
     </section>
   )

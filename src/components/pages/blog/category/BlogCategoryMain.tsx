@@ -23,7 +23,7 @@ const BlogCategoryMain: FC<any> = ({ params }) => {
   return (
     <PageMain variant="chevron">
       <div className="about-intro">
-        <ul className="grid grid-cols-6 gap-8">
+        <ul className="px-16 md:px-20 grid grid-cols-6 gap-8">
           {posts.map((post) => (
             <BlogItem key={`${post.slug.split('/')[1]}`} {...post} />
           ))}

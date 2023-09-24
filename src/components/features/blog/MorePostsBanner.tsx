@@ -20,9 +20,9 @@ const MorePostsBanner: FC<MorePostsBannerProps> = ({ relatedPosts }) => {
         <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide mb-8">
           You might also enjoy...
         </h3>
-        <div className="grid grid-cols-6 gap-8">
+        <div className="px-16 md:px-20 grid grid-cols-6 gap-8">
           {relatedPostsList?.map((post, index) => (
-            <div key={`related-${index}`} className="col-span-2">
+            <div key={`related-${index}`} className="col-span-6 md:col-span-2">
               <OtherPostsItem {...post} />
             </div>
           ))}

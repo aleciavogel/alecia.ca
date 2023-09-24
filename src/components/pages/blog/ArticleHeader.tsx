@@ -22,7 +22,7 @@ const ArticleHeader: FC<Props> = ({ data, category }) => {
           {BLOG_CATEGORIES[category].title}
         </Link>
         <h1>{title}</h1>
-        <p className="text-white/60">{description}</p>
+        <p className="text-white/80">{description}</p>
       </div>
 
       <ReadMoreArrowIcon />

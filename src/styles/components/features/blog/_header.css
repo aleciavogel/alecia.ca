@@ -25,16 +25,16 @@
   }
 
   .hero .article-category {
-    @apply uppercase font-bold tracking-wider text-sm sm:text-base md:text-xl;
+    @apply uppercase font-bold tracking-wider text-lg sm:text-base md:text-xl;
     color: var(--accentLight);
   }
 
   .hero h1 {
-    @apply font-serif text-xl capitalize text-white leading-snug md:text-5xl lg:text-7xl;
+    @apply font-serif text-3xl capitalize text-white leading-snug md:text-5xl lg:text-7xl;
   }
 
   .hero p {
-    @apply text-sm md:text-2xl text-left;
+    @apply text-lg md:text-2xl md:text-left;
   }
 
   .hero .read-more-arrow {

@@ -29,11 +29,11 @@ const BlogItemContent: FC<PostContent> = ({
       </div>
       <div className="mb-4 space-y-3">
         <Link href="/blog/[...slug]" as={`/blog/${slug}`}>
-          <h2 className="line-clamp-2 text-2xl mb-1 text-primary-600 dark:text-primary-300 hover:text-accent-600 dark:hover:text-accent-300 transition-colors duration-300 ease-in-out">
+          <h2 className="line-clamp-3 md:line-clamp-2 text-2xl mb-1 text-primary-600 dark:text-primary-300 hover:text-accent-600 dark:hover:text-accent-300 transition-colors duration-300 ease-in-out">
             {title}
           </h2>
         </Link>
-        <p className="line-clamp-2 max-w-[460px]">{description}</p>
+        <p className="line-clamp-4 md:line-clamp-3 max-w-[460px]">{description}</p>
       </div>
       <div className="absolute bottom-4 left-4">
         <p className="text-sm text-body">

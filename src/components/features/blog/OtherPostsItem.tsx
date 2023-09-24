@@ -10,7 +10,7 @@ const OtherPostsItem: FC<PostContent> = ({ slug, frontMatter: { title, date, des
   const category = BLOG_CATEGORIES[categorySlug].title
 
   return (
-    <div className="w-full bg-white col-span-3 rounded-lg overflow-hidden border shadow-lg relative">
+    <div className="w-full bg-white rounded-lg overflow-hidden border shadow-lg relative">
       <div className="p-4">
         <div className="space-y-3 h-full">
           <div className="text-sm text-gray-600">
@@ -25,11 +25,13 @@ const OtherPostsItem: FC<PostContent> = ({ slug, frontMatter: { title, date, des
           </div>
           <div className="mb-4 space-y-3">
             <Link href="/blog/[...slug]" as={`/blog/${slug}`}>
-              <h2 className="line-clamp-2 text-2xl mb-1 text-primary-600 hover:text-accent-600 transition-colors duration-300 ease-in-out">
+              <h2 className="line-clamp-3 md:line-clamp-2 text-2xl mb-1 text-primary-600 hover:text-accent-600 transition-colors duration-300 ease-in-out">
                 {title}
               </h2>
             </Link>
-            <p className="line-clamp-2 max-w-[460px] text-gray-600">{description}</p>
+            <p className="line-clamp-4 md:line-clamp-2 max-w-[460px] text-gray-600">
+              {description}
+            </p>
           </div>
         </div>
       </div>
