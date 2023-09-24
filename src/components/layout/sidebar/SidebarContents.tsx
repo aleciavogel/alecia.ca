@@ -13,6 +13,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDribbble, faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
+/**
+ * TODO: Add scrollable area if it expands to where the vector illustration is (or if
+ * the browser is resized to be shorter)
+ */
 const SidebarContents: FC = () => {
   return (
     <SheetContent side="right" className="z-[200] text-white">
