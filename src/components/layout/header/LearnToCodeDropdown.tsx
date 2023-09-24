@@ -46,8 +46,8 @@ const LearnToCodeDropdownContent: FC = () => {
       </StaticNavListItem>
 
       <StaticNavListItem
-        href="/learn-to-code/coding-101"
-        title="Coding 101"
+        href="/learn-to-code/advanced-projects"
+        title="Advanced Projects"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
