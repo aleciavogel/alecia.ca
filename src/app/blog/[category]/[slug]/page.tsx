@@ -26,6 +26,7 @@ interface PostProps {
       textColor: DefaultColor
       primaryColor: DefaultColor
       accentColor: DefaultColor
+      relatedPosts?: string[]
     }
   }
 }
@@ -47,13 +48,13 @@ const Post: FC<PostProps> = ({ params }: any) => {
           <MDXWrapper source={props.content} />
           {/* <AuthorInfo /> */}
           <p className="mt-8 content-block">
-            <Link href="/" className="">
-              <span>← Back to homepage</span>
+            <Link href="/blog" className="">
+              <span>← All Posts</span>
             </Link>
           </p>
         </ArticleMain>
       </article>
-      <MorePostsBanner />
+      <MorePostsBanner relatedPosts={props.frontMatter.relatedPosts} />
     </SiteWrapper>
   )
 }

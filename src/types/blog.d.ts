@@ -8,6 +8,7 @@ interface PostFrontMatter extends Record<string, string> {
   primaryColor?: DefaultColor
   accentColor?: DefaultColor
   textColor?: DefaultColor
+  relatedPosts?: string[]
 }
 
 export interface PostData extends Record<string, any> {

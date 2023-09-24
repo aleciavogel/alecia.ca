@@ -4,7 +4,7 @@ import { type FC, useState } from 'react'
 import { NavigationMenuLink } from '@/components/ui/navigation-menu'
 import HappyLittleBracketsSvg from '@/components/vectors/HappyLittleBracketsSvg'
 import StaticNavListItem from './StaticNavListItem'
-import { faCartShopping, faRocketLaunch } from '@fortawesome/pro-solid-svg-icons'
+import { faRocketLaunch } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TeleportAnimation from '@/components/icons/TeleportAnimation'
 
@@ -62,13 +62,13 @@ const LearnToCodeDropdownContent: FC = () => {
           Dive into building real-world apps and learn as you go.
         </p>
       </StaticNavListItem>
-      <StaticNavListItem href="/learn-to-code/shop" title="Shop">
+      {/* <StaticNavListItem href="/learn-to-code/shop" title="Shop">
         <div className="text-sm text-white/90 font-medium leading-none">
           <FontAwesomeIcon icon={faCartShopping} className="mr-2" />
           Shop
         </div>
         <p className="line-clamp-2 text-sm leading-snug text-white/60">Rocket-fuel your learning</p>
-      </StaticNavListItem>
+      </StaticNavListItem> */}
     </>
   )
 }
