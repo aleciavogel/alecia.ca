@@ -5,6 +5,7 @@ import { useLocomotiveScroll } from 'react-locomotive-scroll'
 
 import AleciaCouch from '@/components/vectors/AleciaCouchSvg'
 import RotatingText from '@/components/features/home/RotatingText'
+import { cn } from '@/lib/utils'
 
 const HomeHeader: FC = () => {
   const { scroll } = useLocomotiveScroll()
@@ -34,13 +35,28 @@ const HomeHeader: FC = () => {
   }, [scroll])
 
   return (
-    <section className="about-header">
-      <div className="couch-wrapper">
+    <section
+      className={cn(
+        'lg:about-header',
+        'relative z-0 overflow-hidden pointer-events-none',
+        'pt-20',
+        'transition-colors duration-300 ease-in-out',
+        'bg-primary-800 dark:bg-primary-900',
+        'h-[530px] md:h-[800px]',
+      )}
+    >
+      <div className="absolute bottom-0 w-full">
         <div
           style={{ opacity: 1 - scrollPercent }}
           className="transition-opacity duration-300 ease-out"
         >
-          <RotatingText className="spinning-text" />
+          <RotatingText
+            className={cn(
+              'spinning-text',
+              'absolute left-1/2 transform -translate-x-1/2 -translate-y-[30px] lg:-translate-y-0',
+              'w-[120%] lg:w-full max-w-[1250px]',
+            )}
+          />
         </div>
         <div className="couch-svg">
           <AleciaCouch />

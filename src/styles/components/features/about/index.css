@@ -1,10 +1,5 @@
 @layer components {
   .about-header {
-    @apply relative z-0 pt-20;
-    @apply transition-colors duration-300 ease-in-out;
-    background-color: var(--primaryBg);
-    pointer-events: none;
-    overflow: hidden;
     min-height: calc(100vh + var(--triangleHeight));
   }
 
@@ -12,13 +7,7 @@
     @apply text-center pt-16;
   }
 
-  .couch-wrapper {
-    @apply absolute bottom-0 w-full;
-  }
-
   .spinning-text {
-    @apply absolute left-1/2 transform -translate-x-1/2;
-    max-width: 1250px;
     width: 100%;
   }
 
