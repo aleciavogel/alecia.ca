@@ -11,7 +11,7 @@ const ComingSoonHeader: FC<ComingSoonHeaderProps> = ({ pageTitle }) => {
       className={cn(
         'relative z-0 flex items-center justify-items-center px-20 pt-28 sm:pt-32',
         'transition-colors duration-300 ease-in-out',
-        'bg-primary-800 dark:primary-900',
+        'bg-primary-800 dark:bg-primary-900',
         'pb-[var(--triangleHeight)]',
       )}
       role="banner"
