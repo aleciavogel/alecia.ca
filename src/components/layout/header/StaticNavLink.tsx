@@ -29,7 +29,7 @@ const StaticNavLink: FC<MainNavItem> = ({
   return (
     <NavigationMenuItem>
       {items === undefined && DropdownContent === undefined ? (
-        <Link href={href} legacyBehavior passHref>
+        <Link href={href ?? ''} legacyBehavior passHref>
           <NavigationMenuLink className={`${srOnly ? 'sr-only' : navigationMenuTriggerStyle()}`}>
             {title}
           </NavigationMenuLink>
