@@ -3,11 +3,13 @@ import { type Metadata } from 'next'
 
 import HomePage from '@/components/pages/home'
 import SiteWrapper from '@/components/layout/SiteWrapper'
+import UnderConstructionBanner from '@/components/layout/banners/UnderConstruction'
 
 const Home: FC = () => {
   return (
     <SiteWrapper>
       <HomePage />
+      <UnderConstructionBanner />
     </SiteWrapper>
   )
 }

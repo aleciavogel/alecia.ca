@@ -13,7 +13,7 @@ const BlogItemContent: FC<PostContent> = ({
   timeToRead,
 }) => {
   const categorySlug = slug.split('/')[0]
-  const category = BLOG_CATEGORIES[categorySlug]
+  const category = BLOG_CATEGORIES[categorySlug].title
 
   return (
     <div className="dark:text-body space-y-3 h-full">

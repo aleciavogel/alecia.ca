@@ -19,7 +19,7 @@ const ArticleHeader: FC<Props> = ({ data, category }) => {
           href={`/blog/${category}`}
           className={'article-category hover:text-accent-500 transition-colors duration-300'}
         >
-          {BLOG_CATEGORIES[category]}
+          {BLOG_CATEGORIES[category].title}
         </Link>
         <h1>{title}</h1>
         <p className="text-white/60">{description}</p>

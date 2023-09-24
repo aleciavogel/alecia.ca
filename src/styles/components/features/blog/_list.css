@@ -8,7 +8,7 @@
   }
 
   .blog-index-header-wrapper {
-    @apply mx-auto space-y-2 md:space-y-4 text-left lg:text-center sm:max-w-screen-sm;
+    @apply mx-auto space-y-2 md:space-y-4 text-left lg:text-center sm:max-w-screen-sm md:max-w-screen-md;
     /* transform: translateY(calc(var(--triangleHeight) / -2)); */
   }
 

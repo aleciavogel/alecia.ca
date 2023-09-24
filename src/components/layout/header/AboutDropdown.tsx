@@ -1,8 +1,10 @@
 'use client'
 import { type FC } from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import Image from 'next/image'
 
+import { Avatar } from '@/components/ui/avatar'
 import { NavigationMenuLink } from '@/components/ui/navigation-menu'
+import aleciaIcon from '@/images/alecia_icon.png'
 
 const AboutDropdownContent: FC = () => {
   return (
@@ -13,8 +15,10 @@ const AboutDropdownContent: FC = () => {
           href="/"
         >
           <Avatar className="h-28 w-28">
-            <AvatarImage src="https://github.com/aleciavogel.png" />
-            <AvatarFallback>CN</AvatarFallback>
+            <Image
+              src={aleciaIcon}
+              alt="Image of Alecia Vogel wearing a blazer in front of a blue and gold mural in Downtown Edmonton"
+            />
           </Avatar>
 
           <div className="mb-1 mt-4 text-lg text-white font-medium">Alecia Vogel</div>

@@ -70,7 +70,7 @@ const SidebarContents: FC = () => {
         <div className="mt-1 space-x-4">
           <Link
             href="https://github.com/aleciavogel"
-            className="text-2xl"
+            className="text-2xl hover:text-accent-300 transition-colors duration-200"
             target="_blank"
             referrerPolicy="no-referrer"
           >
@@ -79,7 +79,7 @@ const SidebarContents: FC = () => {
 
           <Link
             href="https://linkedin.com/in/alecia-vogel"
-            className="text-2xl"
+            className="text-2xl hover:text-accent-300 transition-colors duration-200"
             target="_blank"
             referrerPolicy="no-referrer"
           >
@@ -88,7 +88,7 @@ const SidebarContents: FC = () => {
 
           <Link
             href="https://dribbble.com/aleciavogel"
-            className="text-2xl"
+            className="text-2xl hover:text-accent-300 transition-colors duration-200"
             target="_blank"
             referrerPolicy="no-referrer"
           >
@@ -97,7 +97,7 @@ const SidebarContents: FC = () => {
 
           <Link
             href="https://twitter.com/aleciavogel"
-            className="text-2xl"
+            className="text-2xl hover:text-accent-300 transition-colors duration-200"
             target="_blank"
             referrerPolicy="no-referrer"
           >

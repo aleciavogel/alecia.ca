@@ -7,7 +7,7 @@ import FormattedDate from '@/components/features/blog/FormattedDate'
 
 const OtherPostsItem: FC<PostContent> = ({ slug, frontMatter: { title, date, description } }) => {
   const categorySlug = slug.split('/')[0]
-  const category = BLOG_CATEGORIES[categorySlug]
+  const category = BLOG_CATEGORIES[categorySlug].title
 
   return (
     <div className="w-full bg-white col-span-3 rounded-lg overflow-hidden border shadow-lg relative">
