@@ -5,7 +5,7 @@
   .wave > span {
     animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
     animation-duration: 2s; /* Change to speed up or slow down */
-    animation-delay: 0.5s; /* Change to delay when the hand waves */
+    animation-delay: 2s; /* Change to delay when the hand waves */
     transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
     display: inline-block;
   }
@@ -15,13 +15,13 @@
       transform: rotate(0deg);
     }
     20% {
-      transform: rotate(14deg);
+      transform: rotate(20deg);
     } /* The following five values can be played with to make the waving more or less extreme */
     30% {
-      transform: rotate(-8deg);
+      transform: rotate(-15deg);
     }
     40% {
-      transform: rotate(10deg);
+      transform: rotate(20deg);
     }
     60% {
       transform: rotate(0deg);

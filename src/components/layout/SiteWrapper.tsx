@@ -25,7 +25,7 @@ const SiteWrapper: FC<Props> = ({
   const colorClasses = `primary-${primaryColor} accent-${accentColor} body-${textColor}`
 
   return (
-    <div id="site-wrapper" className={`${colorClasses}`}>
+    <div data-scroll-section id="site-wrapper" className={`${colorClasses}`}>
       <SiteHeader />
       <SiteHeader hover={true} />
 

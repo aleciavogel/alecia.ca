@@ -1,7 +1,7 @@
 'use client'
 
-import { type FC, useRef } from 'react'
 import { usePathname } from 'next/navigation'
+import { type FC, useRef } from 'react'
 import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
 
 interface ScrollProviderProps {
@@ -23,7 +23,6 @@ const ScrollProvider: FC<ScrollProviderProps> = ({ children }) => {
       }}
       containerRef={containerRef}
       location={pathname}
-      watch={[pathname]}
       onLocationChange={(scroll: any) => scroll.scrollTo(0, { duration: 0, disableLerp: true })} // If you want to reset the scroll position to 0 for example
     >
       <div data-scroll-container ref={containerRef}>

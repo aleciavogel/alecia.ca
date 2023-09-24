@@ -21,11 +21,11 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
   }
 
   return (
-    <DarkModeProvider>
-      <ScrollProvider>
+    <ScrollProvider>
+      <DarkModeProvider>
         <TooltipProvider>{children}</TooltipProvider>
-      </ScrollProvider>
-    </DarkModeProvider>
+      </DarkModeProvider>
+    </ScrollProvider>
   )
 }
 

@@ -32,14 +32,14 @@ const HomeIntro: FC = () => {
             </p>
             <p data-scroll data-scroll-speed={1}>
               From video chat platforms to exam administration software, I&apos;ve had a hand in
-              creating and maintaining products that have been used by millions of people across the
-              globe. I&apos;m thrilled to share what I&apos;ve learned through these experiences
+              creating and maintaining products that have been used by millions of people around the
+              world. I&apos;m thrilled to share what I&apos;ve learned through these experiences
               with you!
             </p>
           </div>
           <div className="mt-4">
             <LerpLink href="/about/alecia" className="text-lg">
-              Learn More &rarr;
+              Get To Know Me &rarr;
             </LerpLink>
           </div>
         </div>
