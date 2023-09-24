@@ -25,7 +25,7 @@ const LearnToCodeDropdownContent: FC = () => {
         <NavigationMenuLink asChild>
           <a
             className="text-white/80 hover:text-white rounded-lg flex h-full w-full select-none flex-col justify-end hover:bg-white/10 bg-gradient-to-b from-indigo-700/30 dark:from-indigo-800/30 to-indigo-700/60 dark:to-indigo-800/60 p-6 no-underline outline-none focus:shadow-md"
-            href="/"
+            href="/learn-to-code/happy-little-brackets"
           >
             <HappyLittleBracketsSvg className="w-32 mb-6 fill-white" />
             <p className="text-sm leading-tight">

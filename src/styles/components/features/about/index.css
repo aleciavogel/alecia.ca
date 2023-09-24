@@ -28,6 +28,10 @@
     font-weight: bold;
   }
 
+  .spinning-text svg text {
+    fill: var(--primary-300);
+  }
+
   .spinning-text svg {
     @apply absolute left-0;
     width: 100%;
