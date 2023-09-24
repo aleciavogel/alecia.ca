@@ -7,6 +7,7 @@ import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 import { type DefaultColor } from '@/types/colors'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 const FB_BASE = 'https://www.facebook.com/sharer/sharer.php?u='
 const TW_BASE = 'https://twitter.com/intent/tweet?url='
@@ -25,33 +26,53 @@ const ShareLinks: FC<Props> = ({ primaryColor, accentColor, title }) => {
     'Hey! Check out this article on Alecia.ca: ' + process.env.NEXT_PUBLIC_BASE_URL + pathname,
   )
   const emailSubject = encodeURIComponent(title)
+  const iconStyles =
+    'text-xl text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400'
 
   return (
-    <div className={`share-links text-${primaryColor}-600`}>
-      <a
-        href={FB_BASE + encoded} // TODO: fix
-        className={`dark:text-${primaryColor}-400 hover:text-${accentColor}-600 dark:hover:text-${accentColor}-400`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faFacebookF} />
-      </a>
+    <div className={`share-links`}>
+      <Tooltip>
+        <TooltipTrigger>
+          <a
+            href={FB_BASE + encoded} // TODO: fix
+            className="share-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faFacebookF} className={iconStyles} />
+          </a>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" sideOffset={10}>
+          Share on Facebook
+        </TooltipContent>
+      </Tooltip>
 
-      <a
-        href={TW_BASE + encoded}
-        className={`dark:text-${primaryColor}-400 hover:text-${accentColor}-600 dark:hover:text-${accentColor}-400`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faTwitter} />
-      </a>
+      <Tooltip>
+        <TooltipTrigger>
+          <a
+            href={TW_BASE + encoded}
+            className="share-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faTwitter} className={iconStyles} />
+          </a>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" sideOffset={10}>
+          Share on Twitter
+        </TooltipContent>
+      </Tooltip>
 
-      <a
-        href={`mailto:?subject=${emailSubject}&body=${emailBody}`}
-        className={`dark:text-${primaryColor}-400 hover:text-${accentColor}-600 dark:hover:text-${accentColor}-400`}
-      >
-        <FontAwesomeIcon icon={faEnvelope} />
-      </a>
+      <Tooltip>
+        <TooltipTrigger>
+          <a href={`mailto:?subject=${emailSubject}&body=${emailBody}`} className="share-link">
+            <FontAwesomeIcon icon={faEnvelope} className={iconStyles} />
+          </a>
+        </TooltipTrigger>
+        <TooltipContent sideOffset={10} side="bottom">
+          Share via Email
+        </TooltipContent>
+      </Tooltip>
     </div>
   )
 }

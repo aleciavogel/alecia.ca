@@ -64,10 +64,10 @@
   }
 
   .share-links {
-    @apply mt-6 mb-16 text-xl space-x-6;
+    @apply mt-6 mb-16 space-x-6;
   }
 
-  .share-links > a {
+  .share-link {
     @apply inline-block text-current transition-colors duration-300 ease-in-out;
   }
 

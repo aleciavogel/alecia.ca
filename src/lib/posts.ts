@@ -53,6 +53,19 @@ export function getPostBySlug(slug: string): PostContent {
   }
 }
 
+export function getPostTitleBySlug(slug: string): Record<string, string> {
+  const realSlug = slug.replace(/\.mdx$/, '')
+  const fullPath = path.join(postsDirectory, `${realSlug}.mdx`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const {
+    data: { title },
+  } = matter(fileContents)
+
+  return {
+    title,
+  }
+}
+
 export function getSortedPostsData(category?: string): PostContent[] {
   const fileNames = getPostSlugs(category)
   const allPostsData = fileNames.map((slug) => getPostBySlug(slug))

@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 import DayIcon from '@/components/icons/DayIcon'
 import NightIcon from '@/components/icons/NightIcon'
 
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 
 interface Props {
   hover: boolean
@@ -19,26 +19,24 @@ const DarkModeToggle: FC<Props> = ({ hover }) => {
   if (hover) {
     return (
       <div>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <div
-                role="button"
-                className="theme-button pointer-events-auto p-2 translate-x-2"
-                aria-label="Toggle dark mode"
-                id="theme-toggle"
-                onClick={() => {
-                  setTheme(theme === 'dark' ? 'light' : 'dark')
-                }}
-              >
-                {icon}
-              </div>
-            </TooltipTrigger>
-            <TooltipContent side="left">
-              Switch to {theme === 'dark' ? 'light' : 'dark'} mode
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <div
+              role="button"
+              className="theme-button pointer-events-auto p-2 translate-x-2"
+              aria-label="Toggle dark mode"
+              id="theme-toggle"
+              onClick={() => {
+                setTheme(theme === 'dark' ? 'light' : 'dark')
+              }}
+            >
+              {icon}
+            </div>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            Switch to {theme === 'dark' ? 'light' : 'dark'} mode
+          </TooltipContent>
+        </Tooltip>
       </div>
     )
   }

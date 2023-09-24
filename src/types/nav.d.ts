@@ -16,7 +16,11 @@ export interface NavItemWithChildren extends NavItem {
   description?: string
 }
 
-export interface MainNavItem extends NavItemWithChildren {
+export interface MainNavItemWithChildren extends Omit<NavItemWithChildren, 'href'> {
+  href?: string
+}
+
+export interface MainNavItem extends MainNavItemWithChildren {
   DropdownContent?:
     | FunctionComponent<any>
     | {

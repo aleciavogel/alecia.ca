@@ -6,6 +6,7 @@ import MenuToggle from '@/components/layout/header/MenuToggle'
 import SiteSidebar from '@/components/layout/sidebar/SiteSidebar'
 import { cn } from '@/lib/utils'
 import SearchTrigger from '../features/site-search/SearchTrigger'
+import SearchDialog from '../features/site-search/SearchDialog'
 
 interface HeaderRightProps {
   children: React.ReactNode
@@ -38,8 +39,8 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
           <SiteSidebar>
             <MenuToggle hover={hover} />
           </SiteSidebar>
+          <SearchDialog />
           <DarkModeToggle hover={hover} />
-          <SearchTrigger hover={hover} />
         </HeaderRight>
       </div>
     )
@@ -56,8 +57,8 @@ const SiteHeader: FC<SiteHeaderProps> = ({ hover = false, hasColor = false }) =>
       <SiteLogo hover={hover} />
       <HeaderRight>
         <MenuToggle hover={hover} />
-        <DarkModeToggle hover={hover} />
         <SearchTrigger hover={hover} />
+        <DarkModeToggle hover={hover} />
       </HeaderRight>
     </div>
   )

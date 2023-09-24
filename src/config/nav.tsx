@@ -22,7 +22,6 @@ export const MAIN_NAV: MainNavItem[] = [
   },
   {
     title: 'About',
-    href: '/about',
     DropdownContent: {
       Left: AboutDropdownContent,
     },
@@ -38,7 +37,7 @@ export const MAIN_NAV: MainNavItem[] = [
         description: 'A showcase of my past and present work.',
       },
       {
-        title: 'Resumé ↗',
+        title: 'Resumé',
         href: '/about/cv',
         description: 'Download a personalized copy of my CV.',
       },
@@ -46,7 +45,6 @@ export const MAIN_NAV: MainNavItem[] = [
   },
   {
     title: 'Blog',
-    href: '/blog',
     items: [
       {
         title: 'All Posts',
@@ -88,7 +86,6 @@ export const MAIN_NAV: MainNavItem[] = [
   },
   {
     title: 'Learn To Code',
-    href: '/learn-to-code',
     DropdownContent: LearnToCodeDropdownContent,
   },
   {

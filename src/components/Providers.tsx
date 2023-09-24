@@ -3,6 +3,7 @@
 import { type FC, useEffect, useState } from 'react'
 import ScrollProvider from './features/site-scroll/ScrollProvider'
 import DarkModeProvider from './features/site-theme/DarkModeProvider'
+import { TooltipProvider } from '@radix-ui/react-tooltip'
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -21,7 +22,9 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
 
   return (
     <DarkModeProvider>
-      <ScrollProvider>{children}</ScrollProvider>
+      <ScrollProvider>
+        <TooltipProvider>{children}</TooltipProvider>
+      </ScrollProvider>
     </DarkModeProvider>
   )
 }
