@@ -1,10 +1,17 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import ComingSoonPage from '@/components/pages/coming-soon/ComingSoonPage'
+import SiteWrapper from '@/components/layout/SiteWrapper'
+import AdvancedProjectsHeader from '@/components/pages/learn-to-code/advanced-projects/AdvancedProjectsHeader'
+import AdvancedProjectsMain from '@/components/pages/learn-to-code/advanced-projects/AdvancedProjectsMain'
 
 const AdvancedProjects: FC = () => {
-  return <ComingSoonPage pageTitle="Advanced Projects" />
+  return (
+    <SiteWrapper>
+      <AdvancedProjectsHeader />
+      <AdvancedProjectsMain />
+    </SiteWrapper>
+  )
 }
 
 export async function generateMetadata(): Promise<Metadata> {

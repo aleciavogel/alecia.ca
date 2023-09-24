@@ -6,19 +6,9 @@ import { remark } from 'remark'
 import html from 'remark-html'
 
 import type { PostData, PostFrontMatter } from '@/types/blog'
+import { walkSync } from '@/lib/files'
 
 const postsDirectory = path.join(process.cwd(), '_posts')
-
-function* walkSync(dir: string): Generator<string> {
-  const files = fs.readdirSync(dir, { withFileTypes: true })
-  for (const file of files) {
-    if (file.isDirectory()) {
-      yield* walkSync(path.join(dir, file.name))
-    } else {
-      yield path.join(dir, file.name)
-    }
-  }
-}
 
 export function getPostSlugs(category?: string): string[] {
   const targetDir = category !== undefined ? path.join(postsDirectory, category) : postsDirectory
