@@ -29,4 +29,6 @@ export interface MainNavItem extends MainNavItemWithChildren {
       }
 }
 
-export interface SidebarNavItem extends NavItemWithChildren {}
+export interface SidebarNavItem extends Omit<NavItemWithChildren, 'href'> {
+  href?: string
+}

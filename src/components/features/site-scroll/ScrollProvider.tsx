@@ -21,6 +21,7 @@ const ScrollProvider: FC<ScrollProviderProps> = ({ children }) => {
           breakpoint: 768,
         },
       }}
+      watch={[]}
       containerRef={containerRef}
       location={pathname}
       onLocationChange={(scroll: any) => scroll.scrollTo(0, { duration: 0, disableLerp: true })} // If you want to reset the scroll position to 0 for example
