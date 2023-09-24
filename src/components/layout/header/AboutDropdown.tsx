@@ -11,8 +11,8 @@ const AboutDropdownContent: FC = () => {
     <li className="row-span-3">
       <NavigationMenuLink asChild>
         <a
-          className="rounded-lg flex h-full w-full select-none flex-col justify-end bg-gradient-to-b from-indigo-700/30 dark:from-indigo-800/30 to-indigo-700/60 dark:to-indigo-800/60 p-6 no-underline outline-none focus:shadow-md"
-          href="/"
+          className="rounded-lg flex h-full w-full hover:bg-white/10 select-none flex-col justify-end bg-gradient-to-b from-indigo-700/30 dark:from-indigo-800/30 to-indigo-700/60 dark:to-indigo-800/60 p-6 no-underline outline-none focus:shadow-md"
+          href="/about/alecia"
         >
           <Avatar className="h-28 w-28">
             <Image
