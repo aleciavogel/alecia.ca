@@ -48,7 +48,7 @@ const SiteFooter: FC<Props> = ({ accentColor = 'pink', primaryColor = 'indigo' }
                 <Link href="/learn-to-code">Learn To Code</Link>
               </li>
               <li>
-                <Link href="/playground/resources">Developer Resources</Link>
+                <Link href="/playground/resources">Links & Resources</Link>
               </li>
             </ul>
           </div>
