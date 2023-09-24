@@ -35,37 +35,38 @@ const SiteFooter: FC<Props> = ({ accentColor = 'pink', primaryColor = 'indigo' }
             Edmonton.
           </p>
         </div>
-        <div className="md:grid md:grid-cols-2 w-full md:w-3/4 md:-mt-4">
-          <div className="text-white max-md:mb-8">
-            {/* <h2 className="mb-3 font-bold text-md lg:text-xl max-md:text-center">Get To Know Me</h2>
-            <ul className="space-y-2 md:space-y-3 text-xs lg:text-sm max-md:text-center">
+        <div className="md:grid md:grid-cols-2 w-full md:w-3/4 max-md:mt-8 md:-mt-4">
+          <div className="text-white max-md:pb-5 max-md:mb-8">
+            <h2 className="mb-2 md:mb-3 font-bold text-lg lg:text-xl max-md:text-center">
+              Explore
+            </h2>
+            <ul className="space-y-2 md:space-y-3 text-sm max-md:text-center">
               <li>
-                <Link href="/about">About</Link>
+                <Link href="/blog">Blog Articles</Link>
               </li>
               <li>
-                <Link href="/portfolio">Portfolio</Link>
+                <Link href="/learn-to-code">Learn To Code</Link>
+              </li>
+              <li>
+                <Link href="/playground/resources">Developer Resources</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="text-white">
+            <h2 className="mb-2 md:mb-3 font-bold text-md lg:text-xl max-md:text-center">
+              Get To Know Me
+            </h2>
+            <ul className="space-y-2 md:space-y-3 text-sm max-md:text-center">
+              <li>
+                <Link href="/about/alecia">About Alecia</Link>
+              </li>
+              <li>
+                <Link href="/about/projects">Portfolio</Link>
               </li>
               <li>
                 <Link href="/contact">Contact</Link>
               </li>
-            </ul> */}
-          </div>
-
-          <div className="text-white pb-5 md:pb-0">
-            <h2 className="mb-3 font-bold text-lg lg:text-xl max-md:text-center">Get To Know Me</h2>
-            <ul className="space-y-2 md:space-y-3 text-sm max-md:text-center">
-              <li>
-                <Link href="/">About Me</Link>
-              </li>
-              <li>
-                <Link href="/blog">Blog Articles</Link>
-              </li>
-              {/* <li>
-                <Link href="/tutorials">Coding Tutorials</Link>
-              </li>
-              <li>
-                <Link href="/virtual-interview">Talks & Presentations</Link>
-              </li> */}
             </ul>
           </div>
         </div>
