@@ -11,31 +11,31 @@
        o888o
   ************************************************************************/
   .phoebe-base-fill {
-    fill: theme("colors.gray.500");
+    fill: theme('colors.gray.500');
   }
 
   .phoebe-base-shade {
-    fill: theme("colors.gray.700");
+    fill: theme('colors.gray.700');
   }
 
   .phoebe-base-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.gray.700");
+    stroke: theme('colors.gray.700');
   }
 
   .phoebe-highlight-fill {
-    fill: theme("colors.gray.300");
+    fill: theme('colors.gray.300');
   }
 
   .phoebe-highlight-outline,
   .hammond-highlight-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.gray.400");
+    stroke: theme('colors.gray.400');
   }
 
   .hammond-ears-fill,
   .phoebe-ears-fill {
-    fill: theme("colors.pink.200");
+    fill: theme('colors.pink.200');
   }
 
   .phoebe-mouth-outline,
@@ -70,21 +70,21 @@
   }
 
   .alecia-pants-fill {
-    fill: theme("colors.blue.700");
+    fill: theme('colors.blue.700');
   }
 
   .alecia-pants-shade {
-    fill: theme("colors.blue.900");
+    fill: theme('colors.blue.900');
   }
 
   .alecia-pants-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.blue.900");
+    stroke: theme('colors.blue.900');
   }
 
   .alecia-pants-outline-lighter {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.blue.800");
+    stroke: theme('colors.blue.800');
   }
 
   .alecia-socks-light {
@@ -101,40 +101,40 @@
   }
 
   .alecia-hair-light-fill {
-    fill: theme("colors.yellow.700");
+    fill: theme('colors.yellow.700');
   }
 
   .alecia-hair-dark-fill {
-    fill: theme("colors.yellow.800");
+    fill: theme('colors.yellow.800');
   }
 
   .alecia-hair-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.yellow.900");
+    stroke: theme('colors.yellow.900');
   }
 
   .alecia-skin-fill {
-    fill: theme("colors.rose.200");
+    fill: theme('colors.rose.200');
   }
 
   .alecia-skin-fingers {
-    fill: theme("colors.rose.200");
-    stroke: theme("colors.rose.200");
+    fill: theme('colors.rose.200');
+    stroke: theme('colors.rose.200');
     stroke-width: 12px;
   }
 
   .alecia-arm-outline {
     @apply svg-rounded-small-outline;
-    stroke: theme("colors.rose.400");
+    stroke: theme('colors.rose.400');
   }
 
   .alecia-skin-shade {
-    fill: theme("colors.rose.400");
+    fill: theme('colors.rose.400');
   }
 
   .alecia-skin-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.rose.400");
+    stroke: theme('colors.rose.400');
   }
 
   .alecia-accessory {
@@ -142,44 +142,44 @@
   }
 
   .alecia-laptop-fill {
-    fill: theme("colors.zinc.300");
+    fill: theme('colors.zinc.300');
   }
 
   .alecia-laptop-screen {
-    fill: theme("colors.cyan.600");
+    fill: theme('colors.cyan.600');
   }
 
   .alecia-laptop-edge {
-    fill: theme("colors.zinc.300");
+    fill: theme('colors.zinc.300');
   }
 
   .alecia-laptop-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.zinc.500");
+    stroke: theme('colors.zinc.500');
   }
 
   .alecia-laptop-highlight {
-    fill: theme("colors.zinc.100");
+    fill: theme('colors.zinc.100');
   }
 
   .alecia-laptop-shade {
-    fill: theme("colors.zinc.600");
+    fill: theme('colors.zinc.600');
   }
 
   .alecia-laptop-keyboard {
-    fill: theme("colors.zinc.400");
+    fill: theme('colors.zinc.400');
   }
 
   .alecia-couch-light {
-    fill: theme("colors.blue.500");
+    fill: theme('colors.blue.500');
   }
 
   .alecia-couch-dark {
-    fill: theme("colors.blue.600");
+    fill: theme('colors.blue.600');
   }
 
   .alecia-couch-leg {
-    fill: theme("colors.yellow.500");
+    fill: theme('colors.yellow.500');
   }
 
   .alecia-eyes-light {
@@ -194,6 +194,10 @@
     fill: url(#laying-gradient);
   }
 
+  .idea-light {
+    fill: url(#idea-gradient);
+  }
+
   /********************************************************
                                .o8   o8o
                               "888   `"'
@@ -205,39 +209,39 @@
 
   ********************************************************/
   .sadie-body {
-    fill: theme("colors.zinc.600");
+    fill: theme('colors.zinc.600');
   }
 
   .sadie-head,
   .sadie-tail {
-    fill: theme("colors.zinc.500");
+    fill: theme('colors.zinc.500');
   }
 
   .sadie-ears-and-nose {
-    fill: theme("colors.zinc.700");
+    fill: theme('colors.zinc.700');
   }
 
   .sadie-snout {
-    fill: theme("colors.zinc.600");
+    fill: theme('colors.zinc.600');
   }
 
   .sadie-paw {
-    fill: theme("colors.zinc.400");
+    fill: theme('colors.zinc.400');
   }
 
   .sadie-paw-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.zinc.500");
+    stroke: theme('colors.zinc.500');
   }
 
   .sadie-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.zinc.700");
+    stroke: theme('colors.zinc.700');
   }
 
   .sadie-tail-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.zinc.600");
+    stroke: theme('colors.zinc.600');
   }
 
   /**************************************************************************
@@ -254,23 +258,23 @@
   *************************************************************************/
 
   .hammond-base-fill {
-    fill: theme("colors.yellow.800");
+    fill: theme('colors.yellow.800');
   }
 
   .hammond-base-outline {
     @apply svg-rounded-outline no-fill;
-    stroke: theme("colors.yellow.900");
+    stroke: theme('colors.yellow.900');
   }
 
   .hammond-base-shade {
-    fill: theme("colors.zinc.800");
+    fill: theme('colors.zinc.800');
   }
 
   .hammond-stripe-fill {
-    fill: theme("colors.yellow.900");
+    fill: theme('colors.yellow.900');
   }
 
   .hammond-highlight-fill {
-    fill: theme("colors.slate.200");
+    fill: theme('colors.slate.200');
   }
 }
