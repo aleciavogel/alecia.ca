@@ -118,7 +118,7 @@ export const Topics: Record<Tech, TutorialStackItem> = {
 
 export const Tutorials: Record<string, Tutorial> = {
   'test-course': {
-    title: 'Test Course',
+    title: 'Build A Jackbox Clone with Phoenix & React',
     description: 'This is a test course',
     stack: [Topics[Tech.PHOENIX], Topics[Tech.ELIXIR], Topics[Tech.TAILWIND], Topics[Tech.REACT]],
     level: TutorialLevel.beginner,

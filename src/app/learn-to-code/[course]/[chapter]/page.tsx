@@ -4,6 +4,10 @@ import { type Metadata } from 'next'
 import SiteWrapper from '@/components/layout/SiteWrapper'
 import { getTutorialPart } from '@/lib/tutorials'
 import ChapterHeader from '@/components/pages/learn-to-code/chapters/ChapterHeader'
+import ChapterMain from '@/components/pages/learn-to-code/chapters/ChapterMain'
+import ChapterSidebar from '@/components/pages/learn-to-code/chapters/ChapterSidebar'
+import ChapterContent from '@/components/pages/learn-to-code/chapters/ChapterContent'
+import UnderConstructionBanner from '@/components/layout/banners/UnderConstruction'
 
 interface TutorialChapterPageProps {
   params: {
@@ -20,7 +24,11 @@ const TutorialChapterPage: FC<TutorialChapterPageProps> = ({ params }) => {
   return (
     <SiteWrapper>
       <ChapterHeader {...part} />
-      <main></main>
+      <ChapterMain>
+        <ChapterContent {...part} />
+        <ChapterSidebar course={course} chapter={chapter} />
+      </ChapterMain>
+      <UnderConstructionBanner />
     </SiteWrapper>
   )
 }

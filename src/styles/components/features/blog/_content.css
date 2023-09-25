@@ -1,18 +1,23 @@
 @layer components {
+  .tutorial-content > p,
   .page-content > p {
     @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
     @apply mb-6 md:mb-10;
     color: var(--textBody);
   }
 
+  .tutorial-content > p del,
+  .tutorial-content > p strike,
   .page-content > p del,
   .page-content > p strike {
+    /* TODO */
   }
 
   .zigzag-link,
   .zigzag-link-no-pseudo,
   .author-card > p a,
-  .page-content > p a {
+  .page-content > p a,
+  .tutorial-content > p a {
     @apply relative overflow-hidden no-underline;
     color: var(--primary-600);
   }
@@ -20,20 +25,23 @@
   .dark .zigzag-link,
   .dark .zigzag-link-no-pseudo,
   .dark .author-card > p a,
-  .dark .page-content > p a {
+  .dark .page-content > p a,
+  .dark .tutorial-content > p a {
     color: var(--primary-400);
   }
 
   .zigzag-link,
   .zigzag-link-no-pseudo,
-  .page-content > p a {
+  .page-content > p a,
+  .tutorial-content > p a {
     @apply font-extrabold;
   }
 
   .zigzag-link::after,
   .zigzag-link-no-pseudo > div,
   .author-card > p a::after,
-  .page-content > p a::after {
+  .page-content > p a::after,
+  .tutorial-content > p a::after {
     @apply absolute w-full left-0 pointer-events-none;
     @apply opacity-30 bg-current;
     content: '';
@@ -44,27 +52,36 @@
   .zigzag-link:hover,
   .zigzag-link-no-pseudo:hover,
   .author-card > p a:hover,
-  .page-content > p a:hover {
+  .page-content > p a:hover,
+  .tutorial-content > p a:hover {
     color: var(--accent-600);
   }
 
   .dark .zigzag-link:hover,
   .dark .zigzag-link-no-pseudo:hover,
   .dark .author-card > p a:hover,
-  .dark .page-content > p a:hover {
+  .dark .page-content > p a:hover,
+  .dark .tutorial-content > p a:hover {
     color: var(--accent-400);
   }
 
   .zigzag-link:hover::after,
   .zigzag-link-no-pseudo:hover > div,
   .author-card > p a:hover::after,
-  .page-content > p a:hover::after {
+  .page-content > p a:hover::after,
+  .tutorial-content > p a:hover::after {
     @apply bg-transparent;
     @apply zigzag-base;
     top: calc(100% - 1px);
     background-image: var(--zigzag-accent-light);
   }
 
+  .tutorial-content h1,
+  .tutorial-content h2,
+  .tutorial-content h3,
+  .tutorial-content h4,
+  .tutorial-content h5,
+  .tutorial-content h6,
   .page-content h1,
   .page-content h2,
   .page-content h3,
@@ -75,34 +92,43 @@
     color: var(--primary);
   }
 
+  .tutorial-content h1,
+  .tutorial-content h2,
+  .tutorial-content h3,
   .page-content h1,
   .page-content h2,
   .page-content h3 {
     @apply mt-8 md:mt-16 mb-6 md:mb-8;
   }
 
+  .tutorial-content h1,
   .page-content h1 {
     @apply text-3xl md:text-6xl;
   }
 
+  .tutorial-content h2,
   .page-content h2 {
     @apply text-2xl md:text-5xl;
   }
 
+  .tutorial-content h3,
   .page-content h3 {
     @apply text-xl md:text-4xl;
   }
 
+  .tutorial-content h4,
   .page-content h4 {
     @apply text-lg mt-8 mb-4;
     @apply md:text-2xl md:mt-16 md:mb-8;
   }
 
+  .tutorial-content h5,
   .page-content h5 {
     @apply text-base mt-6 mb-2;
     @apply md:text-lg md:mt-12 md:mb-6;
   }
 
+  .tutorial-content h6,
   .page-content h6 {
     @apply text-base mt-4 mb-1;
     @apply md:mt-8 md:mb-4;
@@ -132,6 +158,7 @@
     }
   }
 
+  .tutorial-content > blockquote,
   .page-content > blockquote {
     @apply text-center mx-auto px-16 my-10 text-2xl font-normal w-full font-serif;
     @apply sm:px-10 sm:my-16 sm:text-5xl sm:max-w-screen-sm;
@@ -139,6 +166,8 @@
     color: var(--primary);
   }
 
+  .tutorial-content > blockquote::after,
+  .tutorial-content > blockquote::before,
   .page-content > blockquote::after,
   .page-content > blockquote::before {
     @apply block relative mx-auto zigzag-base;
@@ -147,29 +176,35 @@
     background-image: var(--zigzag-primary-dark);
   }
 
+  .tutorial-content > blockquote > p,
   .page-content > blockquote > p {
     @apply mt-12 mb-12 leading-tight px-0 lg:px-4;
   }
 
+  .tutorial-content hr,
   .page-content hr {
     @apply border-0 my-10 md:my-16 mx-auto zigzag-base;
     width: 50px;
     background-image: var(--zigzag-primary-dark);
   }
 
+  .tutorial-content .gatsby-highlight,
   .page-content .gatsby-highlight {
     @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
     @apply mb-6 md:mb-10;
   }
 
+  .tutorial-content > p > div:has(> code[class*='language-']),
   .page-content > p > div:has(> code[class*='language-']) {
     @apply inline-block;
   }
 
+  .tutorial-content > p > div > code[class*='language-'],
   .page-content > p > div > code[class*='language-'] {
     @apply px-1;
   }
 
+  .tutorial-content > p del,
   .page-content > p del {
     color: var(--accent);
     transition: color 0.2s ease-in-out;

@@ -53,7 +53,8 @@ export const getTutorialTOC = (tutorialDir: string): TutorialTOC => {
   const tutorialTOC: TutorialTOC = []
 
   tutorialParts.forEach((part) => {
-    const tutorialPart = getTutorialPart(tutorialDir, part)
+    const fileName = part.replace('.mdx', '').split('_tutorials/')[1].split('/')[1]
+    const tutorialPart = getTutorialPart(tutorialDir, fileName)
     tutorialTOC.push({
       title: tutorialPart.frontMatter.title,
       part: tutorialPart.id,

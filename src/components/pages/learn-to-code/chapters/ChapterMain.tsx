@@ -11,11 +11,12 @@ interface ChapterMainProps {
 const ChapterMain: FC<ChapterMainProps> = ({ children, className = '' }) => {
   return (
     <div
+      id="chapter-main"
       className={cn(
         // This is the main container for the chapter page
+        'min-h-screen',
         'z-40 h-full',
         'relative overflow-hidden',
-        'pb-16 pt-48 -mt-[var(--triangleHeight)]',
       )}
     >
       <div
