@@ -9,7 +9,7 @@ import { faClock } from '@fortawesome/pro-regular-svg-icons'
 
 const BlogItemContent: FC<PostContent> = ({
   slug,
-  frontMatter: { title, date, description },
+  frontMatter: { title, createdAt, description },
   timeToRead,
 }) => {
   const categorySlug = slug.split('/')[0]
@@ -25,7 +25,7 @@ const BlogItemContent: FC<PostContent> = ({
           {category}
         </Link>
         <span className="text-gray-500 mx-2">&mdash;</span>
-        <FormattedDate dateString={date} />
+        <FormattedDate dateString={createdAt} />
       </div>
       <div className="mb-4 space-y-3">
         <Link href="/blog/[...slug]" as={`/blog/${slug}`}>
