@@ -16,7 +16,10 @@ const ChapterSidebar: FC<ChapterSidebarProps> = ({ className = '', course, chapt
   const toc = getTutorialTOC(course)
 
   return (
-    <aside id="chapter-sidebar" className={cn('relative border-l')}>
+    <aside
+      id="chapter-sidebar"
+      className={cn('relative', 'border-l border-l-primary-400 dark:border-l-primary-200')}
+    >
       <div
         className={cn('w-[375px] max-h-screen', 'pl-6 py-6 pr-24')}
         data-scroll
@@ -24,7 +27,11 @@ const ChapterSidebar: FC<ChapterSidebarProps> = ({ className = '', course, chapt
         data-scroll-speed="1"
         data-scroll-target="#chapter-sidebar"
       >
-        <h2 className={cn('text-gray-600 dark:text-gray-300 font-bold text-lg')}>{courseTitle}</h2>
+        <h2
+          className={cn('text-accent-600 font-bold dark:text-accent-300 text-base tracking-loose')}
+        >
+          {courseTitle}
+        </h2>
         <ul className="space-y-3 mt-3">
           {toc.map(({ title, part }, index) => {
             return (
