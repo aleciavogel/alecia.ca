@@ -61,9 +61,12 @@ const Post: FC<PostProps> = ({ params }: any) => {
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const { category, slug } = params
-  const props = getPostBySlug(category !== undefined ? `${category}/${slug}` : slug)
+  const {
+    frontMatter: { title, description, seoTitle, seoDescription },
+  } = getPostBySlug(category !== undefined ? `${category}/${slug}` : slug)
   return {
-    title: `${props.frontMatter.title} | Alecia.ca`,
+    title: `${seoTitle ?? title} | Alecia.ca`,
+    description: seoDescription ?? description,
     authors: [
       {
         name: 'Alecia Vogel',

@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { type FC } from 'react'
 
-const AdvancedProjectsHeader: FC = () => {
+const LearnToCodeHeader: FC = () => {
   return (
     <section
       className={cn(
@@ -24,11 +24,11 @@ const AdvancedProjectsHeader: FC = () => {
             'font-serif text-3xl md:text-5xl lg:text-8xl capitalize text-white leading-snug',
           )}
         >
-          Advanced Projects
+          Learn To Code
         </h1>
       </div>
     </section>
   )
 }
 
-export default AdvancedProjectsHeader
+export default LearnToCodeHeader

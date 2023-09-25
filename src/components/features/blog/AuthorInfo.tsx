@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Image from 'next/image'
 
-import aleciaPic from '@/images/alecia_bw.png'
+import aleciaPic from '@/img/alecia_bw.png'
 
 const AuthorInfo: FC = () => {
   return (

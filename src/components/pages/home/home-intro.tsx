@@ -3,7 +3,7 @@
 import { type FC } from 'react'
 import Image from 'next/image'
 
-import AleciaPic from '@/images/alecia_bw.png'
+import AleciaPic from '@/img/alecia_bw.png'
 import LerpLink from '@/components/features/site-scroll/LerpLink'
 
 const HomeIntro: FC = () => {

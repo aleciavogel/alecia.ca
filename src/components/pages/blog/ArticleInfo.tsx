@@ -1,22 +1,17 @@
 import { type FC } from 'react'
 import Link from 'next/link'
 
-import { type DefaultColor } from '@/types/colors'
-import ShareLinks from '../../features/blog/ShareLinks'
+import ShareLinks from '@/components/features/blog/ShareLinks'
 import Date from '@/components/features/blog/FormattedDate'
+import type { PostFrontMatter } from '@/types/blog'
 
 interface Props {
   timeToRead: string
-  data: {
-    primaryColor?: DefaultColor
-    accentColor?: DefaultColor
-    date: string
-    title: string
-  }
+  data: PostFrontMatter
 }
 
 const ArticleInfo: FC<Props> = ({
-  data: { primaryColor, accentColor, date, title },
+  data: { primaryColor, accentColor, createdAt, title },
   timeToRead,
 }) => {
   return (
@@ -26,7 +21,7 @@ const ArticleInfo: FC<Props> = ({
         <Link href="/about/alecia">Alecia Vogel</Link>
       </p>
       <p className="mt-3">
-        <Date dateString={date} />
+        <Date dateString={createdAt} />
         <span className="mx-3">&#xB7;</span>
         {timeToRead}
       </p>

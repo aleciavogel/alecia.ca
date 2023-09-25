@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import { Avatar } from '@/components/ui/avatar'
 import { NavigationMenuLink } from '@/components/ui/navigation-menu'
-import aleciaIcon from '@/images/alecia_icon.png'
+import aleciaIcon from '@/img/alecia_icon.png'
 
 const AboutDropdownContent: FC = () => {
   return (

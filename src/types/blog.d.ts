@@ -1,10 +1,12 @@
 import { type DefaultColor } from './colors'
 
 interface PostFrontMatter extends Record<string, string> {
+  createdAt: string
+  updatedAt?: string
   title: string
-  subtitle: string
   description: string
-  date: string
+  seoTitle?: string
+  seoDescription?: string
   primaryColor?: DefaultColor
   accentColor?: DefaultColor
   textColor?: DefaultColor
