@@ -3,11 +3,15 @@ import { type FC } from 'react'
 import { cn } from '@/lib/utils'
 import type { TutorialPartData } from '@/types/tutorials'
 import { Tutorials } from '@/config/tutorials'
+import DemoLink from '@/components/features/tutorials/DemoLink'
+import GithubLink from '@/components/features/tutorials/GithubLink'
 
-const ChapterHeader: FC<TutorialPartData> = ({ id, frontMatter: { title } }) => {
-  const [course, fileSlug] = id.split('/')
+const ChapterHeader: FC<TutorialPartData> = ({
+  id,
+  frontMatter: { title, githubHref, demoHref },
+}) => {
+  const [course] = id.split('/')
   const { title: courseTitle } = Tutorials[course]
-  const [partNumber] = fileSlug.split('-')[0]
 
   return (
     <section
@@ -21,22 +25,31 @@ const ChapterHeader: FC<TutorialPartData> = ({ id, frontMatter: { title } }) => 
     >
       <div
         className={cn(
-          'mx-auto space-y-2 md:space-y-4 text-left lg:text-center sm:max-w-screen-sm md:max-w-screen-md',
+          'mx-auto',
+          'w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg',
+          'text-left',
         )}
       >
-        <div>
-          <p className="text-xl md:text-3xl text-accent-300 font-bold hover:text-accent-500 transition-colors duration-300">
-            {courseTitle}
-          </p>
+        <div className="space-y-2 md:space-y-4">
+          <div>
+            <p className="text-xl md:text-3xl text-accent-300 font-bold hover:text-accent-500 transition-colors duration-300">
+              {courseTitle}
+            </p>
+          </div>
+          <h1
+            id="page-title"
+            className={cn(
+              'font-serif text-3xl md:text-5xl lg:text-8xl capitalize text-white leading-snug',
+            )}
+          >
+            {title}
+          </h1>
+
+          <div className="space-x-3">
+            {githubHref !== undefined && <GithubLink githubHref={githubHref} />}
+            {demoHref !== undefined && <DemoLink demoHref={demoHref} />}
+          </div>
         </div>
-        <h1
-          id="page-title"
-          className={cn(
-            'font-serif text-3xl md:text-5xl lg:text-8xl capitalize text-white leading-snug',
-          )}
-        >
-          {partNumber}. {title}
-        </h1>
       </div>
     </section>
   )

@@ -8,6 +8,8 @@ export interface TutorialFrontMatter extends Record<string, string> {
   description: string
   seoTitle?: string
   seoDescription?: string
+  demoHref?: string
+  githubHref?: string
   quizQuestion?: string
   quizOptions?: string[]
   quizAnswer?: string

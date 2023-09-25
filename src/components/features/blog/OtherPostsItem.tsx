@@ -5,7 +5,10 @@ import type { PostContent } from '@/types/blog'
 import { BLOG_CATEGORIES } from '@/config/blog-categories'
 import FormattedDate from '@/components/features/blog/FormattedDate'
 
-const OtherPostsItem: FC<PostContent> = ({ slug, frontMatter: { title, date, description } }) => {
+const OtherPostsItem: FC<PostContent> = ({
+  slug,
+  frontMatter: { title, createdAt, description },
+}) => {
   const categorySlug = slug.split('/')[0]
   const category = BLOG_CATEGORIES[categorySlug].title
 
@@ -21,7 +24,7 @@ const OtherPostsItem: FC<PostContent> = ({ slug, frontMatter: { title, date, des
               {category}
             </Link>
             <span className="text-gray-500 mx-2">&mdash;</span>
-            <FormattedDate dateString={date} />
+            <FormattedDate dateString={createdAt} />
           </div>
           <div className="mb-4 space-y-3">
             <Link href="/blog/[...slug]" as={`/blog/${slug}`}>
