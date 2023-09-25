@@ -13,13 +13,13 @@ import type {
 } from '@/types/tutorials'
 import { walkSync } from '@/lib/files'
 
-const TUTORIALS_DIR = path.join(process.cwd(), '_tutorials')
+const TUTORIALS_DIR = path.join(process.cwd(), '_advanced')
 
 /**
- * Fetch all directory names from the _tutorials directory
+ * Fetch all directory names from the _advanced directory
  * @returns string[]
  */
-export const getTutorials = (): string[] => {
+export const getAdvancedTutorials = (): string[] => {
   return fs.readdirSync(TUTORIALS_DIR)
 }
 
@@ -29,7 +29,7 @@ export const getTutorials = (): string[] => {
  * @returns TutorialIntroData[]
  */
 export const fetchAllTutorialInfo = (): TutorialIntroData[] => {
-  const tutorialDirs = getTutorials()
+  const tutorialDirs = getAdvancedTutorials()
   const tutorialInfo: TutorialIntroData[] = []
 
   tutorialDirs.forEach((tutorialDir) => {
