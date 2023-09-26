@@ -22,6 +22,7 @@ for (const colorName in tailwindColors) {
         safelist.push(`dark:hover:text-${colorName}-${shade}`)
         safelist.push(`dark:text-${colorName}-${shade}`)
         safelist.push(`bg-${colorName}-${shade}`)
+        safelist.push(`fill-${colorName}-${shade}`)
         safelist.push(`hover:bg-${colorName}-${shade}`)
         safelist.push(`nextDiv:text-${colorName}-300`)
         safelist.push(`zigzag-${colorName}-400`)
