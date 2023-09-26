@@ -4,16 +4,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, run `cp .env.dist .env.local` to enable [Font Awesome](https://fontawesome.com) licensed icons. 
+
+Once that's done, you can run the development server:
 
 ```bash
-bun dev
+bun install && bun dev
 # or
-npm run dev
+npm install && npm run dev
 # or
-yarn dev
+yarn install && yarn dev
 # or
-pnpm dev
+pnpm install && pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
