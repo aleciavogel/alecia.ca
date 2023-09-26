@@ -18,7 +18,7 @@ const ChapterSidebar: FC<ChapterSidebarProps> = ({ className = '', course, chapt
   return (
     <aside
       id="chapter-sidebar"
-      className={cn('relative', 'border-l border-l-primary-400 dark:border-l-primary-200')}
+      className={cn('relative', 'border-l border-l-primary-400 dark:border-l-primary-900')}
     >
       <div
         className={cn('w-[375px] max-h-screen', 'pl-6 py-6 pr-24')}
