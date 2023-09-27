@@ -11,10 +11,10 @@ const BlogIndexPage: FC = () => {
   return (
     <StickyLayout
       contentClassName="bg-gray-100"
-      preFooter={() => <UnderConstructionBanner />}
       title={title}
       subtitle={subtitle}
       variant="chevron"
+      preFooter={<UnderConstructionBanner />}
     >
       <BlogPosts />
     </StickyLayout>

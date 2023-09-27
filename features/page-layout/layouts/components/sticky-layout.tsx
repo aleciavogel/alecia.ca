@@ -11,10 +11,10 @@ import PageMain from './page-main'
 
 interface StickyLayoutProps extends PageProps {
   variant?: ClippedContainerType
-  pageHeader?: () => React.ReactNode
+  pageHeader?: React.ReactNode
   contentClassName?: string
   stickyClassName?: string
-  preFooter?: () => React.ReactNode
+  preFooter?: React.ReactNode
 }
 
 const StickyLayout: FC<StickyLayoutProps> = ({
@@ -22,9 +22,9 @@ const StickyLayout: FC<StickyLayoutProps> = ({
   variant,
   title = '',
   subtitle,
-  pageHeader = () => <ChevronHeader title={title} subtitle={subtitle} />,
   contentClassName,
   stickyClassName,
+  pageHeader = <ChevronHeader title={title} subtitle={subtitle} />,
   preFooter,
   ...props
 }) => {
@@ -35,13 +35,13 @@ const StickyLayout: FC<StickyLayoutProps> = ({
 
       <StaticNav />
 
-      {pageHeader()}
+      {pageHeader}
 
       <PageMain className={contentClassName} stickyClassName={stickyClassName}>
         {children}
       </PageMain>
 
-      {preFooter !== undefined && preFooter()}
+      {preFooter}
 
       <SiteFooter />
     </SiteWrapper>

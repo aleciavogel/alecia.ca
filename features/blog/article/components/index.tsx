@@ -19,8 +19,8 @@ const BlogPostPage: FC = () => {
       textColor={textColor}
       primaryColor={primaryColor}
       accentColor={accentColor}
-      pageHeader={() => <ArticleHeader />}
-      preFooter={() => <MorePostsBanner relatedPosts={relatedPosts} />}
+      pageHeader={<ArticleHeader />}
+      preFooter={<MorePostsBanner relatedPosts={relatedPosts} />}
     >
       <ArticleMain>
         <MDXWrapper source={content} />

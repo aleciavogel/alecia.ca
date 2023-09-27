@@ -13,8 +13,8 @@ const BlogCategoryPage: FC<BlogCategoryPageProps> = ({ category }) => {
   return (
     <StickyLayout
       contentClassName="bg-gray-100"
-      preFooter={() => <UnderConstructionBanner />}
-      pageHeader={() => <BlogCategoryHeader category={category} />}
+      preFooter={<UnderConstructionBanner />}
+      pageHeader={<BlogCategoryHeader category={category} />}
       variant="chevron"
     >
       <BlogPosts category={category} />

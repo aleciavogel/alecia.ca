@@ -11,7 +11,7 @@ interface ComingSoonPageProps {
 
 const ComingSoonPage: FC<ComingSoonPageProps> = ({ pageTitle }) => {
   return (
-    <StickyLayout variant="chevron" title={pageTitle} preFooter={() => <UnderConstructionBanner />}>
+    <StickyLayout variant="chevron" title={pageTitle} preFooter={<UnderConstructionBanner />}>
       <div className="px-16 md:px-20 grid grid-cols-6 gap-8">
         <div className="col-span-6 md:col-span-2">
           <AleciaIdeaVector className="block w-full" />

@@ -7,7 +7,7 @@ import { UnderConstructionBanner } from '@/features/banners'
 
 const HomePage: FC = () => {
   return (
-    <StickyLayout pageHeader={() => <HomeHeader />} preFooter={() => <UnderConstructionBanner />}>
+    <StickyLayout pageHeader={<HomeHeader />} preFooter={<UnderConstructionBanner />}>
       <HomeIntro />
     </StickyLayout>
   )

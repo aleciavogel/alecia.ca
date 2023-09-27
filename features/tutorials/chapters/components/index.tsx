@@ -14,10 +14,7 @@ const TutorialPage: FC<TutorialPartData> = (props) => {
   const sidebarProps = { course, chapter }
 
   return (
-    <StickyLayout
-      pageHeader={() => <ChapterHeader {...props} />}
-      preFooter={() => <UnderConstructionBanner />}
-    >
+    <StickyLayout pageHeader={<ChapterHeader {...props} />} preFooter={<UnderConstructionBanner />}>
       <ChapterContainer {...props}>
         <ChapterContent {...props} />
         <ChapterSidebar {...sidebarProps} />
