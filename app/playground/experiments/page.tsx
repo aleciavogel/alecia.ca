@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import ComingSoonPage from '@/features/placeholders/components/ComingSoonPage'
+import ComingSoonPage from '@/features/coming-soon'
 
 const Experiments: FC = () => {
   return <ComingSoonPage pageTitle="Experiments" />

@@ -1,3 +1,15 @@
-import AleciaSitSvg from './alecia-sit-svg'
+import AleciaIdeaVector from './alecia-idea-vector'
+import AleciaLogo from './alecia-logo'
+import AleciaLayingVector from './alecia-laying-vector'
+import AleciaSitVector from './alecia-sit-vector'
+import HappyLittleBracketsLogo from './happy-little-brackets-logo'
+import MenuIcon from './menu-icon'
 
-export { AleciaSitSvg }
+export {
+  AleciaIdeaVector,
+  AleciaSitVector,
+  AleciaLayingVector,
+  HappyLittleBracketsLogo,
+  AleciaLogo,
+  MenuIcon,
+}

@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import { getSortedPostsData } from '@/features/blog/utils'
-import PageMain from '@/features/_layout/page/components/PageMain'
+import PageMain from '@/features/page-containers/components/page-main'
 import BlogItem from './BlogItem'
 // import FeaturedBlogItem from './FeaturedBlogItem'
 

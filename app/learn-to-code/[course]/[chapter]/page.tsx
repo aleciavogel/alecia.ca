@@ -1,13 +1,13 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import SiteWrapper from '@/features/_layout/page/components/SiteWrapper'
+import SiteWrapper from '@/features/page-containers/components/site-wrapper'
 import { getTutorialPart } from '@/features/tutorials/utils'
 import ChapterHeader from '@/features/tutorials/content/components/chapters/ChapterHeader'
 import ChapterMain from '@/features/tutorials/content/components/chapters/ChapterMain'
 import ChapterSidebar from '@/features/tutorials/content/components/chapters/ChapterSidebar'
 import ChapterContent from '@/features/tutorials/content/components/chapters/ChapterContent'
-import UnderConstructionBanner from '@/features/banners/components/UnderConstruction'
+import UnderConstructionBanner from '@/features/banners/components/under-contruction'
 
 interface TutorialChapterPageProps {
   params: {

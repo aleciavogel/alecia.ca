@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Link from 'next/link'
 
-import AleciaIdeaSvg from '@/features/placeholders/components/AleciaIdeaSvg'
+import AleciaIdeaSvg from '@/common/vectors/alecia-idea-vector'
 
 const EmptyCategory: FC = () => {
   return (

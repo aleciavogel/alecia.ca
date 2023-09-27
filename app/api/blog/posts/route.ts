@@ -2,11 +2,6 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 import { getPostSlugs, getPostTitleBySlug } from '@/features/blog/utils'
 
-export interface PostSearchInfo {
-  slug: string
-  title: string
-}
-
 export const GET = (_request: NextRequest): NextResponse => {
   // Fetch all post names
   const allPosts = getPostSlugs()

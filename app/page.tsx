@@ -1,9 +1,9 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import HomePage from '@/shared/pages/home'
-import SiteWrapper from '@/features/_layout/page/components/SiteWrapper'
-import UnderConstructionBanner from '@/features/_site/banners/UnderConstruction'
+import HomePage from '@/features/home/components/index'
+import SiteWrapper from '@/features/page-containers/components/site-wrapper'
+import { UnderConstructionBanner } from '@/features/banners'
 
 const Home: FC = () => {
   return (

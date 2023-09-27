@@ -6,7 +6,7 @@ import '@/styles/prismjs.css'
 import '@/styles/global.css'
 
 import { eksellLarge, eksellSmall, silka } from '@/common/fonts'
-import Providers from '@/features/_layout/Providers'
+import Providers from './Providers'
 import { type FC } from 'react'
 
 export const metadata = {
