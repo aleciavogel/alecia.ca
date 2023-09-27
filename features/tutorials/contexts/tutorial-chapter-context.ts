@@ -13,6 +13,8 @@ const initialState: TutorialChapterContext = {
   contentHtml: '',
   timeToRead: 0,
   course: '',
+  chapter: '',
+  toc: [],
   frontMatter: {
     title: '',
     description: '',
