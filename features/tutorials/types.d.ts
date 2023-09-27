@@ -39,30 +39,6 @@ export interface TutorialStackItem {
   image: string
 }
 
-export enum TutorialLevel {
-  beginner = 'beginner',
-  intermediate = 'intermediate',
-  advanced = 'advanced',
-}
-
-export enum TutorialTech {
-  PHOENIX = 'phoenix',
-  ELIXIR = 'elixir',
-  REACT = 'react',
-  NEXTJS = 'nextjs',
-  TYPESCRIPT = 'typescript',
-  JAVASCRIPT = 'javascript',
-  HTML = 'html',
-  CSS = 'css',
-  TAILWIND = 'tailwindcss',
-  RUBY = 'ruby',
-  RAILS = 'rails',
-  POSTGRESQL = 'postgresql',
-  MYSQL = 'mysql',
-  PYTHON = 'python',
-  PHP = 'php',
-}
-
 export interface Tutorial {
   title: string
   description: string

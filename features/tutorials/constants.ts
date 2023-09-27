@@ -1,5 +1,28 @@
 import type { TutorialStackItem, Tutorial } from './types'
-import { TutorialTech as Tech, TutorialLevel } from './types'
+
+export enum TutorialLevel {
+  beginner = 'beginner',
+  intermediate = 'intermediate',
+  advanced = 'advanced',
+}
+
+export enum Tech {
+  PHOENIX = 'phoenix',
+  ELIXIR = 'elixir',
+  REACT = 'react',
+  NEXTJS = 'nextjs',
+  TYPESCRIPT = 'typescript',
+  JAVASCRIPT = 'javascript',
+  HTML = 'html',
+  CSS = 'css',
+  TAILWIND = 'tailwindcss',
+  RUBY = 'ruby',
+  RAILS = 'rails',
+  POSTGRESQL = 'postgresql',
+  MYSQL = 'mysql',
+  PYTHON = 'python',
+  PHP = 'php',
+}
 
 export const TOPICS: Record<Tech, TutorialStackItem> = {
   [Tech.PHOENIX]: {
