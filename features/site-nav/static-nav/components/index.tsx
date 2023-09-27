@@ -1,9 +1,9 @@
 import React, { type FC } from 'react'
 
-import StaticNavLink from '@/features/site-nav/static-nav/components/nav-link'
-import { MAIN_NAV } from '@/features/_layout/nav/constants'
-import { NavigationMenu, NavigationMenuList } from '@/common/ui/navigation-menu'
 import { cn } from '@/common/lib/utils'
+import { NavigationMenu, NavigationMenuList } from '@/common/ui/navigation-menu'
+import StaticNavLink from './nav-link'
+import { MAIN_NAV } from '../constants'
 
 const StaticMenu: FC = () => {
   return (
