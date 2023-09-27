@@ -3,7 +3,6 @@
 import { type FC } from 'react'
 import Image from 'next/image'
 
-import AleciaPic from '@/img/alecia_bw.png'
 import LerpLink from '@/features/scroll/components/LerpLink'
 
 const HomeIntro: FC = () => {
@@ -53,7 +52,7 @@ const HomeIntro: FC = () => {
           data-scroll-speed={1.5}
           data-scroll-delay={0.5}
         >
-          <Image src={AleciaPic} alt="Alecia" />
+          <Image src="/img/alecia_bw.png" alt="Alecia" />
         </div>
       </div>
     </section>

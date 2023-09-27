@@ -4,7 +4,6 @@ import Image from 'next/image'
 
 import { Avatar } from '@/common/ui/avatar'
 import { NavigationMenuLink } from '@/common/ui/navigation-menu'
-import aleciaIcon from '@/img/alecia_icon.png'
 
 const AboutDropdownContent: FC = () => {
   return (
@@ -16,7 +15,7 @@ const AboutDropdownContent: FC = () => {
         >
           <Avatar className="h-28 w-28">
             <Image
-              src={aleciaIcon}
+              src={'/img/alecia_icon.png'}
               alt="Image of Alecia Vogel wearing a blazer in front of a blue and gold mural in Downtown Edmonton"
             />
           </Avatar>

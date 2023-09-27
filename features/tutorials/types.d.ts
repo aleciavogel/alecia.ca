@@ -36,7 +36,7 @@ export interface TutorialStackItem {
   description?: string
   docsHref?: string
   type: StackType
-  image: StaticImageData
+  image: string
 }
 
 export enum TutorialLevel {
