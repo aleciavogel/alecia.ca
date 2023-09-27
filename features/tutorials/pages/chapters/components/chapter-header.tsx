@@ -1,15 +1,17 @@
+'use client'
+
 import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
-import type { TutorialPartData } from '@/features/tutorials/types'
 import { TUTORIAL_LIST } from '@/features/tutorials/constants'
 import { DemoLink, GithubLink } from './buttons'
+import useTutorialChapter from '@/features/tutorials/hooks/use-tutorial-chapter'
 
-const ChapterHeader: FC<TutorialPartData> = ({
-  id,
-  frontMatter: { title, githubHref, demoHref },
-}) => {
-  const [course] = id.split('/')
+const ChapterHeader: FC = () => {
+  const {
+    course,
+    frontMatter: { title, githubHref, demoHref },
+  } = useTutorialChapter()
   const { title: courseTitle } = TUTORIAL_LIST[course]
 
   return (

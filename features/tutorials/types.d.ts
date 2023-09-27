@@ -1,6 +1,6 @@
 import { type StaticImageData } from 'next/image'
 
-export interface TutorialFrontMatter extends Record<string, string> {
+export interface TutorialFrontMatter {
   createdAt: string
   updatedAt?: string
   title: string
@@ -14,8 +14,11 @@ export interface TutorialFrontMatter extends Record<string, string> {
   quizAnswer?: string
 }
 
-export interface TutorialPartData extends Record<string, any> {
+export interface TutorialPartData {
   id: string
+  toc: TutorialTOC
+  course: string
+  chapter: string
   content: string
   contentHtml: string
   timeToRead: number

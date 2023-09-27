@@ -1,19 +1,20 @@
+'use client'
+
 import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
 import { TUTORIAL_LIST } from '@/features/tutorials/constants'
-import { getTutorialTOC } from '@/features/tutorials/utils'
 import SidebarLink from './sidebar-link'
+import useTutorialChapter from '@/features/tutorials/hooks/use-tutorial-chapter'
 
 interface ChapterSidebarProps {
   className?: string
-  course: string
-  chapter: string
 }
 
-const ChapterSidebar: FC<ChapterSidebarProps> = ({ className = '', course, chapter }) => {
+const ChapterSidebar: FC<ChapterSidebarProps> = ({ className = '' }) => {
+  const { course, chapter, toc } = useTutorialChapter()
   const { title: courseTitle } = TUTORIAL_LIST[course]
-  const toc = getTutorialTOC(course)
+  // const toc = getTutorialTOC(course)
 
   return (
     <aside

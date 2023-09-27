@@ -2,7 +2,8 @@ import { type FC } from 'react'
 import { type Metadata } from 'next'
 
 import { getTutorialPart } from '@/features/tutorials/utils'
-import TutorialPage from '@/features/tutorials/chapters/components'
+import TutorialChapterPage from '@/features/tutorials/pages/chapters'
+import { TutorialChapterProvider } from '@/features/tutorials/providers'
 
 interface TutorialChapterPageProps {
   params: {
@@ -12,11 +13,15 @@ interface TutorialChapterPageProps {
 }
 
 // TODO: redirect if chapter doesn't exist
-const TutorialChapterPage: FC<TutorialChapterPageProps> = ({ params }) => {
+const Page: FC<TutorialChapterPageProps> = async ({ params }) => {
   const { course, chapter } = params
   const part = getTutorialPart(course, chapter)
 
-  return <TutorialPage {...part} />
+  return (
+    <TutorialChapterProvider {...part}>
+      <TutorialChapterPage />
+    </TutorialChapterProvider>
+  )
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
@@ -36,4 +41,4 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   }
 }
 
-export default TutorialChapterPage
+export default Page

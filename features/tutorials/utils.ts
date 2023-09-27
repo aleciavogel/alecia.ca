@@ -33,9 +33,13 @@ export const getTutorialPart = (courseKey: string, part: string): TutorialPartDa
 
   const processedContent = remark().use(html).processSync(content)
   const contentHtml = processedContent.toString()
+  const toc = getTutorialTOC(courseKey)
 
   return {
     id: [courseKey, part].join('/'),
+    toc,
+    course: courseKey,
+    chapter: part,
     content,
     contentHtml,
     timeToRead,
