@@ -1,0 +1,27 @@
+@import '_variables.css';
+@import '_colors.css';
+@import '_buttons.css';
+@import '_patterns.css';
+@import '_zigzag.css';
+@import '_vectors.css';
+
+@layer base {
+  .dark {
+    --bg: theme('colors.gray.900');
+  }
+
+  html,
+  body {
+    @apply text-base text-gray-700 h-full min-h-full w-full min-w-full font-sans-serif;
+    background-color: theme('colors.gray.900');
+  }
+
+  body {
+    overflow-x: initial;
+  }
+
+  #___gatsby,
+  #gatsby-focus-wrapper {
+    @apply min-h-full h-full;
+  }
+}

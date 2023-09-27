@@ -1,0 +1,123 @@
+/*********************************************************************************************************
+  Copyright (c) 2022 by Ryan Mulligan (https://codepen.io/hexagoncircle/pen/OMJeja)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of
+  this software and associated documentation files (the "Software"), to deal in
+  the Software without restriction, including without limitation the rights to use,
+  copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  Software, and to permit persons to whom the Software is furnished to do so, subject
+  to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+  NOTE: I only used the animation that opens the menu as well as the spinning
+        transition of the close icon. Everything else is by me (Alecia).
+********************************************************************************************************/
+@layer components {
+  #site-menu {
+    @apply fixed overflow-hidden;
+    @apply w-full left-0 py-4 px-3 md:py-6 md:px-6;
+    height: 100vh;
+    top: -100%;
+    z-index: 101;
+    backface-visibility: hidden;
+    @apply transition-all delay-1000;
+  }
+
+  #site-menu::before {
+    @apply absolute w-full overflow-hidden;
+    @apply top-0 left-0 bottom-0 right-0 m-auto;
+    content: '';
+    height: 0;
+    border-radius: 100%;
+    background-color: var(--primary-700);
+    transform: scale(0.04) translateY(9999px);
+    padding-bottom: 100%;
+    animation: menu-animation-out 0.3s ease-in-out forwards;
+  }
+
+  .menu-open #site-menu {
+    @apply top-0;
+    @apply transition-none;
+  }
+
+  .menu-open #site-menu::before {
+    animation: menu-animation-in 0.8s ease-out forwards;
+  }
+
+  @keyframes menu-animation-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.04) translateY(300%);
+    }
+    40% {
+      transform: scale(0.04) translateY(0);
+      transition: ease-out;
+    }
+    40% {
+      transform: scale(0.04) translateY(0);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(0.02) translateY(0px);
+    }
+    61% {
+      transform: scale(0.04);
+    }
+    99.9% {
+      height: 0;
+      padding-bottom: 100%;
+      border-radius: 100%;
+    }
+    100% {
+      transform: scale(2);
+      height: 100%;
+      padding-bottom: 0;
+      border-radius: 0;
+    }
+  }
+
+  @keyframes menu-animation-out {
+    0% {
+      transform: scale(2);
+      height: 100%;
+      padding-bottom: 0;
+      border-radius: 0;
+      opacity: 1;
+    }
+    99.9% {
+      opacity: 0;
+      height: 100%;
+      transform: scale(2);
+    }
+    100% {
+      opacity: 0;
+      height: 0;
+    }
+  }
+
+  #site-menu .menu-toggle {
+    @apply absolute top-4 md:top-7 right-3 md:right-8 text-white text-4xl;
+    @apply opacity-0 transition-opacity duration-500;
+    @apply transition-opacity duration-300 ease-in-out;
+    line-height: 0;
+  }
+
+  .menu-open #site-menu .menu-toggle {
+    @apply opacity-100;
+    transform: translate3d(0, 0, 0) rotate(-360deg);
+    transition: transform 0.4s 1s ease-out, opacity 0.4s 1s ease-out, color 0.3s ease-in-out;
+  }
+
+  .menu-open #site-menu .menu-toggle:hover {
+    color: var(--accent-200);
+  }
+}
