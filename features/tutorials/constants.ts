@@ -1,5 +1,5 @@
-import type { TutorialStackItem, Tutorial } from '@/features/tutorials/types'
-import { TutorialTech as Tech, TutorialLevel } from '@/features/tutorials/types'
+import type { TutorialStackItem, Tutorial } from './types'
+import { TutorialTech as Tech, TutorialLevel } from './types'
 
 export const TOPICS: Record<Tech, TutorialStackItem> = {
   [Tech.PHOENIX]: {
