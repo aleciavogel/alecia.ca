@@ -1,6 +1,4 @@
-import Code from './Code'
-import MDXWrapper from './MDXWrapper'
+import Code from './code-wrapper'
+import MDXWrapper from './mdx-wrapper'
 
-export { Code }
-
-export default MDXWrapper
+export { Code, MDXWrapper }

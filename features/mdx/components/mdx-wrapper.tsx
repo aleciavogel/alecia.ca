@@ -2,9 +2,9 @@
 import { type FC } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 
-import CodeSnippet from './Code'
+import CodeSnippet from './code-wrapper'
 import Link from 'next/link'
-import { preToCodeSnippetProps } from './Code/utils'
+import { preToCodeSnippetProps } from './code-wrapper/utils'
 
 export const parsePreBlock = (preProps: any): JSX.Element => {
   const props = preToCodeSnippetProps(preProps)

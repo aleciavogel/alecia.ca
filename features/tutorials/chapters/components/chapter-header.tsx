@@ -2,19 +2,18 @@ import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
 import type { TutorialPartData } from '@/features/tutorials/types'
-import { Tutorials } from '@/features/tutorials/constants'
-import DemoLink from '@/components/features/tutorials/DemoLink'
-import GithubLink from '@/components/features/tutorials/GithubLink'
+import { TUTORIAL_LIST } from '@/features/tutorials/constants'
+import { DemoLink, GithubLink } from './buttons'
 
 const ChapterHeader: FC<TutorialPartData> = ({
   id,
   frontMatter: { title, githubHref, demoHref },
 }) => {
   const [course] = id.split('/')
-  const { title: courseTitle } = Tutorials[course]
+  const { title: courseTitle } = TUTORIAL_LIST[course]
 
   return (
-    <section
+    <div
       className={cn(
         'relative z-0 flex items-center justify-items-center px-20 pt-28 pb-16 sm:pt-32',
         'transition-colors duration-300 ease-in-out',
@@ -51,7 +50,7 @@ const ChapterHeader: FC<TutorialPartData> = ({
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

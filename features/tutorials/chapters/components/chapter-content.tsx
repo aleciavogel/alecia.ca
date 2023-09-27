@@ -3,11 +3,11 @@ import { type FC } from 'react'
 import { cn } from '@/common/lib/utils'
 import type { TutorialPartData } from '@/features/tutorials/types'
 import MDXWrapper from '@/features/mdx'
-import ChapterQuiz from '@/features/quizzes/components/ChapterQuiz'
+import ChapterQuiz from '@/features/quizzes'
 
 const ChapterContent: FC<TutorialPartData> = ({
   id,
-  contentHtml: content,
+  content,
   frontMatter: { quizOptions, quizQuestion, quizAnswer },
 }) => {
   return (

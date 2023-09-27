@@ -1,14 +1,14 @@
 import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
-import SiteHeader from '@/features/_layout/header/components/SiteHeader'
+import { ClippedContainer } from '@/features/page-layout'
 
 interface ChapterMainProps {
   children: React.ReactNode
   className?: string
 }
 
-const ChapterMain: FC<ChapterMainProps> = ({ children, className = '' }) => {
+const ChapterContainer: FC<ChapterMainProps> = ({ children, className = '' }) => {
   return (
     <div
       id="chapter-main"
@@ -31,11 +31,9 @@ const ChapterMain: FC<ChapterMainProps> = ({ children, className = '' }) => {
         {children}
       </div>
 
-      <div className={cn('clipped-container', className)}>
-        <SiteHeader hasColor={true} />
-      </div>
+      <ClippedContainer />
     </div>
   )
 }
 
-export default ChapterMain
+export default ChapterContainer

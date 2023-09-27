@@ -1,9 +1,9 @@
 import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
-import { Tutorials } from '@/features/tutorials/constants'
+import { TUTORIAL_LIST } from '@/features/tutorials/constants'
 import { getTutorialTOC } from '@/features/tutorials/utils'
-import SidebarLink from './SidebarLink'
+import SidebarLink from './sidebar-link'
 
 interface ChapterSidebarProps {
   className?: string
@@ -12,7 +12,7 @@ interface ChapterSidebarProps {
 }
 
 const ChapterSidebar: FC<ChapterSidebarProps> = ({ className = '', course, chapter }) => {
-  const { title: courseTitle } = Tutorials[course]
+  const { title: courseTitle } = TUTORIAL_LIST[course]
   const toc = getTutorialTOC(course)
 
   return (

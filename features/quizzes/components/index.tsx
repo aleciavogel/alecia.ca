@@ -1,11 +1,11 @@
 'use client'
 import { type FC, useCallback } from 'react'
 
-import { cn } from '@/common/lib/utils'
-import QuizOption from './QuizOption'
-import { RadioGroup } from '@/common/ui/radio-group'
 import type { SavedQuizDetails } from '../types'
-import { useLocalStorage } from '@/features/local-storage/hooks/useLocalStorage'
+import { cn } from '@/common/lib/utils'
+import { RadioGroup } from '@/common/ui/radio-group'
+import { useLocalStorage } from '@/features/local-storage'
+import QuizOption from './option'
 
 interface ChapterQuizProps {
   route: string
@@ -20,8 +20,6 @@ const ChapterQuiz: FC<ChapterQuizProps> = ({ route, question, options, correctIn
     correct: false,
   })
   const { selected = [] } = userData ?? {}
-
-  console.log('userData', userData)
 
   const handleOptionSelection = useCallback(
     (newValue: string): void => {

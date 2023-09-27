@@ -1,7 +1,7 @@
 import type { TutorialStackItem, Tutorial } from '@/features/tutorials/types'
 import { TutorialTech as Tech, TutorialLevel } from '@/features/tutorials/types'
 
-export const Topics: Record<Tech, TutorialStackItem> = {
+export const TOPICS: Record<Tech, TutorialStackItem> = {
   [Tech.PHOENIX]: {
     name: 'Phoenix',
     description: 'A productive web framework that does not compromise speed and maintainability.',
@@ -116,11 +116,11 @@ export const Topics: Record<Tech, TutorialStackItem> = {
   },
 }
 
-export const Tutorials: Record<string, Tutorial> = {
+export const TUTORIAL_LIST: Record<string, Tutorial> = {
   'supabase-jackbox-clone': {
     title: 'Build A JackBox.TV Clone with Supabase & NextJS',
     description: 'This is a test course',
-    stack: [Topics[Tech.PHOENIX], Topics[Tech.ELIXIR], Topics[Tech.TAILWIND], Topics[Tech.REACT]],
+    stack: [TOPICS[Tech.PHOENIX], TOPICS[Tech.ELIXIR], TOPICS[Tech.TAILWIND], TOPICS[Tech.REACT]],
     level: TutorialLevel.beginner,
     timeToRead: '10 min',
   },

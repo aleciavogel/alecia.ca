@@ -1,13 +1,8 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import StickyWrapper from '@/features/page-layout/layouts'
 import { getTutorialPart } from '@/features/tutorials/utils'
-import ChapterHeader from '@/features/tutorials/chapters/ChapterHeader'
-import ChapterMain from '@/features/tutorials/chapters/ChapterMain'
-import ChapterSidebar from '@/features/tutorials/chapters/ChapterSidebar'
-import ChapterContent from '@/features/tutorials/chapters/components/ChapterContent'
-import UnderConstructionBanner from '@/features/banners/components/under-contruction'
+import TutorialPage from '@/features/tutorials/chapters/components'
 
 interface TutorialChapterPageProps {
   params: {
@@ -21,16 +16,7 @@ const TutorialChapterPage: FC<TutorialChapterPageProps> = ({ params }) => {
   const { course, chapter } = params
   const part = getTutorialPart(course, chapter)
 
-  return (
-    <StickyWrapper>
-      <ChapterHeader {...part} />
-      <ChapterMain>
-        <ChapterContent {...part} />
-        <ChapterSidebar course={course} chapter={chapter} />
-      </ChapterMain>
-      <UnderConstructionBanner />
-    </StickyWrapper>
-  )
+  return <TutorialPage {...part} />
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
