@@ -14,6 +14,7 @@ const ClippedContainer: FC<ClippedContainerProps> = ({ variant = 'chevron', clas
     if (variant === 'chevron') return 'clipped-container-chevron'
     if (variant === 'angled-left') return 'clipped-container-angled-left'
     if (variant === 'angled-right') return 'clipped-container-angled-right'
+    if (variant === 'default') return 'clipped-container'
     return 'clipped-container'
   }
 

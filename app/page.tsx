@@ -2,16 +2,9 @@ import { type FC } from 'react'
 import { type Metadata } from 'next'
 
 import HomePage from '@/features/home'
-import StickyWrapper from '@/features/page-layout/layouts'
-import { UnderConstructionBanner } from '@/features/banners'
 
 const Home: FC = () => {
-  return (
-    <StickyWrapper>
-      <HomePage />
-      <UnderConstructionBanner />
-    </StickyWrapper>
-  )
+  return <HomePage />
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
