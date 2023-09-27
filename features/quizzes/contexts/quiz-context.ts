@@ -1,6 +1,8 @@
+'use client'
+
 import { createContext } from 'react'
 
-import type { SavedQuizzes, SavedQuizDetails } from '@/features/tutorials/types'
+import type { SavedQuizzes, SavedQuizDetails } from '../types'
 
 interface QuizContext {
   savedQuizzes: SavedQuizzes
