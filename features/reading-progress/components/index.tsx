@@ -1,4 +1,5 @@
 'use client'
+
 import { type FC, useState, useEffect } from 'react'
 import { useLocomotiveScroll } from 'react-locomotive-scroll'
 
