@@ -5,20 +5,16 @@ import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-
-import { type DefaultColor } from '@/common/types/colors'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/common/ui/tooltip'
 
 const FB_BASE = 'https://www.facebook.com/sharer/sharer.php?u='
 const TW_BASE = 'https://twitter.com/intent/tweet?url='
 
 interface Props {
-  accentColor: DefaultColor
-  primaryColor: DefaultColor
   title: string
 }
 
-const ShareLinks: FC<Props> = ({ primaryColor, accentColor, title }) => {
+const ShareLinks: FC<Props> = ({ title }) => {
   // Retrieve the current absolute url of the page for nextjs
   const pathname = usePathname()
   const encoded = encodeURIComponent(process.env.NEXT_PUBLIC_BASE_URL + pathname)

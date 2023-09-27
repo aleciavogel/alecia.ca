@@ -5,16 +5,14 @@ import ReadingProgress from '@/features/reading-progress'
 import { ClippedContainer, ContentWrapper } from '@/features/page-layout'
 
 interface ArticleMainProps {
-  timeToRead: string
-  data: any
   children?: string | React.ReactNode
 }
 
-const ArticleMain: FC<ArticleMainProps> = ({ data, children, timeToRead }) => {
+const ArticleMain: FC<ArticleMainProps> = ({ children }) => {
   return (
     <ContentWrapper>
       <ReadingProgress />
-      <PostInfo data={data} timeToRead={timeToRead} />
+      <PostInfo />
 
       <div>
         <div className="page-content">{children}</div>

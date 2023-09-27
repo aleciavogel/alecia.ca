@@ -1,13 +1,15 @@
+'use client'
+
 import { type FC } from 'react'
-import OtherPostsItem from './post-card'
+import PostCard from './post-card'
 
 import { getPostBySlug } from '@/features/blog/utils'
+import { useArticle } from '../../hooks'
 
-interface MorePostsBannerProps {
-  relatedPosts?: string[]
-}
-
-const MorePostsBanner: FC<MorePostsBannerProps> = ({ relatedPosts }) => {
+const MorePostsBanner: FC = () => {
+  const {
+    frontMatter: { relatedPosts },
+  } = useArticle()
   const relatedPostsList = relatedPosts?.map((slug) => getPostBySlug(slug))
 
   return (
@@ -23,7 +25,7 @@ const MorePostsBanner: FC<MorePostsBannerProps> = ({ relatedPosts }) => {
         <div className="px-16 md:px-20 grid grid-cols-6 gap-8">
           {relatedPostsList?.map((post, index) => (
             <div key={`related-${index}`} className="col-span-6 md:col-span-2">
-              <OtherPostsItem {...post} />
+              <PostCard {...post} />
             </div>
           ))}
         </div>

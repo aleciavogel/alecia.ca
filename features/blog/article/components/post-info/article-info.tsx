@@ -1,19 +1,16 @@
 import { type FC } from 'react'
 import Link from 'next/link'
 
-import type { PostFrontMatter } from '@/features/blog/types'
 import { FormattedDate } from '@/features/formatted-text'
 import ShareLinks from './share-links'
+import { useArticle } from '../../hooks'
 
-interface Props {
-  timeToRead: string
-  data: PostFrontMatter
-}
+const ArticleInfo: FC = () => {
+  const {
+    frontMatter: { createdAt, title },
+    timeToRead,
+  } = useArticle()
 
-const ArticleInfo: FC<Props> = ({
-  data: { primaryColor, accentColor, createdAt, title },
-  timeToRead,
-}) => {
   return (
     <aside className="author-card">
       <p>
@@ -26,11 +23,7 @@ const ArticleInfo: FC<Props> = ({
         {timeToRead}
       </p>
 
-      <ShareLinks
-        accentColor={accentColor ?? 'pink'}
-        primaryColor={primaryColor ?? 'indigo'}
-        title={title}
-      />
+      <ShareLinks title={title} />
     </aside>
   )
 }

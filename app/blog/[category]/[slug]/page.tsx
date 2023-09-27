@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 import { getPostBySlug } from '@/features/blog/utils'
 import BlogPostPage from '@/features/blog/article'
-// import AuthorInfo from '@/components/pages/blog/post/AuthorInfo'
+import ArticleProvider from '@/features/blog/article/providers/article-provider'
 
 interface PostProps {
   params: {
@@ -16,7 +16,11 @@ const Page: FC<PostProps> = ({ params }: any) => {
   const { category, slug } = params
   const props = getPostBySlug(category !== undefined ? `${category}/${slug}` : slug)
 
-  return <BlogPostPage category={category} {...props} />
+  return (
+    <ArticleProvider category={category} {...props}>
+      <BlogPostPage />
+    </ArticleProvider>
+  )
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {

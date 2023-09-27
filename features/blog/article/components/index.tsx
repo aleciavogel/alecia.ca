@@ -2,28 +2,27 @@ import { type FC } from 'react'
 import Link from 'next/link'
 
 import { StickyLayout } from '@/features/page-layout'
-import MDXWrapper from '@/features/mdx/components'
-import type { PostData } from '@/features/blog/types'
+import MDXWrapper from '@/features/mdx'
 import { MorePostsBanner } from './bottom-banner'
 import ArticleHeader from './article-header'
 import ArticleMain from './article-main'
+import { useArticle } from '../hooks'
 
-interface BlogPostPageProps extends PostData {
-  category: string
-}
+const BlogPostPage: FC = () => {
+  const {
+    frontMatter: { textColor, primaryColor, accentColor },
+    content,
+  } = useArticle()
 
-const BlogPostPage: FC<BlogPostPageProps> = ({ category, content, frontMatter }) => {
   return (
     <StickyLayout
-      textColor={frontMatter.textColor}
-      primaryColor={frontMatter.primaryColor}
-      accentColor={frontMatter.accentColor}
-      pageHeader={() => <ArticleHeader category={category} data={frontMatter} />}
-      preFooter={() => <MorePostsBanner relatedPosts={frontMatter.relatedPosts} />}
-      title={frontMatter.title}
-      subtitle={frontMatter.description}
+      textColor={textColor}
+      primaryColor={primaryColor}
+      accentColor={accentColor}
+      pageHeader={() => <ArticleHeader />}
+      preFooter={() => <MorePostsBanner />}
     >
-      <ArticleMain timeToRead={frontMatter.timeToRead} data={frontMatter}>
+      <ArticleMain>
         <MDXWrapper source={content} />
         <p className="mt-8 content-block">
           <Link href="/blog" className="">

@@ -1,17 +1,17 @@
+'use client'
+
 import { type FC } from 'react'
 import Link from 'next/link'
 
 import { BLOG_CATEGORIES } from '@/features/blog/constants'
 import ReadMoreArrowIcon from './read-more-icon'
-import type { PostFrontMatter } from '../../types'
+import { useArticle } from '../hooks'
 
-interface Props {
-  data: PostFrontMatter
-  category: keyof typeof BLOG_CATEGORIES
-}
-
-const ArticleHeader: FC<Props> = ({ data, category }) => {
-  const { title, description } = data
+const ArticleHeader: FC = () => {
+  const {
+    frontMatter: { title, description },
+    category,
+  } = useArticle()
 
   return (
     <section className={`hero`}>
