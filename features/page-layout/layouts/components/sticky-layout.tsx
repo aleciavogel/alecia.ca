@@ -37,7 +37,7 @@ const StickyLayout: FC<StickyLayoutProps> = ({
 
       {pageHeader()}
 
-      <PageMain variant={variant} className={contentClassName} stickyClassName={stickyClassName}>
+      <PageMain className={contentClassName} stickyClassName={stickyClassName}>
         {children}
       </PageMain>
 
