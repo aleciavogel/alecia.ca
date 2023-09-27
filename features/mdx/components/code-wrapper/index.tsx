@@ -6,7 +6,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import CodeSnippetCopy from './CodeSnippetCopy'
+import CodeSnippetCopy from './code-snippet-copy'
 
 interface Props {
   codeString: string
