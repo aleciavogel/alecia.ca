@@ -1,19 +1,10 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import StickyWrapper from '@/features/page-layout/layouts'
-import LearnToCodeHeader from '@/features/tutorials/list/components/LearnToCodeHeader'
-import LearnToCodeMain from '@/features/tutorials/list/components/LearnToCodeMain'
-import UnderConstructionBanner from '@/features/banners/components/under-contruction'
+import ComingSoonPage from '@/features/coming-soon'
 
 const LearnToCode: FC = () => {
-  return (
-    <StickyWrapper>
-      <LearnToCodeHeader />
-      <LearnToCodeMain />
-      <UnderConstructionBanner />
-    </StickyWrapper>
-  )
+  return <ComingSoonPage pageTitle="Learn To Code" />
 }
 
 export async function generateMetadata(): Promise<Metadata> {
