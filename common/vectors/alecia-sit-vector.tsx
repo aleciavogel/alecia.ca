@@ -4,7 +4,7 @@ interface Props {
   className?: string
 }
 
-const AleciaSitSvg: FC<Props> = (props) => {
+const AleciaSitVector: FC<Props> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -642,4 +642,4 @@ const AleciaSitSvg: FC<Props> = (props) => {
   )
 }
 
-export default AleciaSitSvg
+export default AleciaSitVector

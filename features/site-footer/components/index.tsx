@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 import Link from 'next/link'
 
-import { AleciaSitSvg } from '@/common/vectors'
+import { AleciaSitVector } from '@/common/vectors'
 import SocialLinks from './social-links'
 
 const SiteFooter: FC = () => {
@@ -17,7 +17,7 @@ const SiteFooter: FC = () => {
             'md:mr-6 lg:mr-8'
           }
         >
-          <AleciaSitSvg className="block h-48 lg:h-80" />
+          <AleciaSitVector className="block h-48 lg:h-80" />
         </div>
         <div className="py-5 md:mr-6 lg:mr-12 md:max-lg:max-w-[240px]">
           <h2 className="font-serif text-4xl lg:text-5xl mb-2 text-center md:text-left">
