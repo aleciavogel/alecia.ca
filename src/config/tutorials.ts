@@ -117,8 +117,8 @@ export const Topics: Record<Tech, TutorialStackItem> = {
 }
 
 export const Tutorials: Record<string, Tutorial> = {
-  'jackbox-clone-supabase-nextjs': {
-    title: 'Build A Jackbox Clone with Supabase & NextJS',
+  'supabase-jackbox-clone': {
+    title: 'Build A JackBox.TV Clone with Supabase & NextJS',
     description: 'This is a test course',
     stack: [Topics[Tech.PHOENIX], Topics[Tech.ELIXIR], Topics[Tech.TAILWIND], Topics[Tech.REACT]],
     level: TutorialLevel.beginner,
