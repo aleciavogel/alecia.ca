@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix --ext .jsx --ext .js --ext .tsx --ext .ts .",
+    "lint": "eslint --fix --ext .jsx,.js,.ts,.tsx ./features ./app ./common",
     "cy:open": "start-server-and-test develop http://localhost:8000 cy:open",
     "cy:run": "start-server-and-test develop http://localhost:8000 cy:run",
     "prettier": "prettier --write './src/**/*.{js,jsx,ts,tsx}'"
