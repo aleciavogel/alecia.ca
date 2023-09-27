@@ -15,6 +15,7 @@ const BlogCategoryPage: FC<BlogCategoryPageProps> = ({ category }) => {
       contentClassName="bg-gray-100"
       preFooter={() => <UnderConstructionBanner />}
       pageHeader={() => <BlogCategoryHeader category={category} />}
+      variant="chevron"
     >
       <BlogPosts category={category} />
     </StickyLayout>

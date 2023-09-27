@@ -14,6 +14,7 @@ const BlogIndexPage: FC = () => {
       preFooter={() => <UnderConstructionBanner />}
       title={title}
       subtitle={subtitle}
+      variant="chevron"
     >
       <BlogPosts />
     </StickyLayout>
