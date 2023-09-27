@@ -8,13 +8,14 @@ import html from 'remark-html'
 import type { PostData, PostFrontMatter } from '@/features/blog/types'
 import { walkSync } from '@/common/lib/files'
 
-const postsDirectory = path.join(process.cwd(), '_posts')
+const POSTS_DIR = '_content/blog'
+const POSTS_PATH = path.join(process.cwd(), POSTS_DIR)
 
 export function getPostSlugs(category?: string): string[] {
-  const targetDir = category !== undefined ? path.join(postsDirectory, category) : postsDirectory
+  const targetDir = category !== undefined ? path.join(POSTS_PATH, category) : POSTS_PATH
   const fileNames = walkSync(targetDir)
   return [...fileNames].map((fileName) => {
-    const filePath = fileName.split('_posts/')[1]
+    const filePath = fileName.split(POSTS_DIR + '/')[1]
     return filePath.replace(/\.mdx$/, '') // Remove the file extension from the path
   })
 }
@@ -30,7 +31,7 @@ interface PostContent {
 export function getPostBySlug(slug: string): PostContent {
   const realSlug = slug.replace(/\.mdx$/, '')
 
-  const fullPath = path.join(postsDirectory, `${realSlug}.mdx`)
+  const fullPath = path.join(POSTS_PATH, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data: frontMatter, content } = matter(fileContents)
   const timeToRead = readingTime(content).text
@@ -45,7 +46,7 @@ export function getPostBySlug(slug: string): PostContent {
 
 export function getPostTitleBySlug(slug: string): Record<string, string> {
   const realSlug = slug.replace(/\.mdx$/, '')
-  const fullPath = path.join(postsDirectory, `${realSlug}.mdx`)
+  const fullPath = path.join(POSTS_PATH, `${realSlug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const {
     data: { title },
@@ -71,7 +72,7 @@ export function getSortedPostsData(category?: string): PostContent[] {
 }
 
 export async function getPostData(slug: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`)
+  const fullPath = path.join(POSTS_PATH, `${slug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   // Use gray-matter to parse the post metadata section

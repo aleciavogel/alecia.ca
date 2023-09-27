@@ -8,11 +8,11 @@ import html from 'remark-html'
 import type { TutorialFrontMatter, TutorialPartData, TutorialTOC } from '@/features/tutorials/types'
 import { walkSync } from '@/common/lib/files'
 
-export const TUTORIALS_DIR = '_tutorials'
+export const TUTORIALS_DIR = '_content/tutorials'
 export const TUTORIALS_PATH = path.join(process.cwd(), TUTORIALS_DIR)
 
 /**
- * Fetch all directory names from the _tutorials directory
+ * Fetch all directory names from the tutorials directory
  * @returns string[]
  */
 export const fetchTutorials = (): string[] => {
@@ -53,7 +53,10 @@ export const getTutorialTOC = (tutorialDir: string): TutorialTOC => {
   const tutorialTOC: TutorialTOC = []
 
   tutorialParts.forEach((part) => {
-    const fileName = part.replace('.mdx', '').split('_tutorials/')[1].split('/')[1]
+    const fileName = part
+      .replace('.mdx', '')
+      .split(TUTORIALS_DIR + '/')[1]
+      .split('/')[1]
     const tutorialPart = getTutorialPart(tutorialDir, fileName)
     tutorialTOC.push({
       title: tutorialPart.frontMatter.title,
