@@ -1,8 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
-export const useLocalStorage = <T>(key: string, fallbackValue: T): [T, (newValue: T) => void] => {
+export const useLocalStorage = <T>(
+  key: string,
+  fallbackValue: T,
+): [T, Dispatch<SetStateAction<T>>] => {
   const [value, setValue] = useState(() => {
     let currentValue
 
@@ -16,13 +20,9 @@ export const useLocalStorage = <T>(key: string, fallbackValue: T): [T, (newValue
     return currentValue
   })
 
-  const updateValue = (newValue: T): void => {
-    setValue(newValue)
-  }
-
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value))
   }, [key, value])
 
-  return [value, updateValue]
+  return [value, setValue]
 }
