@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import type { PostContent } from '@/features/blog/types'
 import { BLOG_CATEGORIES } from '@/features/blog/constants'
-import FormattedDate from '@/features/blog/FormattedDate'
+import { FormattedDate } from '@/features/formatted-text'
 
 const OtherPostsItem: FC<PostContent> = ({
   slug,
