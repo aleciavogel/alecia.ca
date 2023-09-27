@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
-import { ClippedContainer } from '@/features/page-layout'
+import { ClippedContainer } from '@/features/site-layout'
 
 interface ChapterMainProps {
   children: React.ReactNode

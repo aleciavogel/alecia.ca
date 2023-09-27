@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { StickyLayout } from '@/features/page-layout'
+import { StickyLayout } from '@/features/site-layout'
 import HomeHeader from './home-header'
 import { HomeIntro } from './page-partials'
 import { UnderConstructionBanner } from '@/features/banners'

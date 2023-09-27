@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import PostInfo from './post-info/article-info'
 import ReadingProgress from '@/features/reading-progress'
-import { ClippedContainer, ContentWrapper } from '@/features/page-layout'
+import { ClippedContainer, ContentWrapper } from '@/features/site-layout'
 
 interface ArticleMainProps {
   children?: string | React.ReactNode

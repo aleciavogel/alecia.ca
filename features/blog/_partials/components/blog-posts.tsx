@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { ContentWrapper } from '@/features/page-layout'
+import { ContentWrapper } from '@/features/site-layout'
 import { getSortedPostsData } from '@/features/blog/utils'
 import { BlogItem, EmptyState } from '@/features/blog/_partials'
 

@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import { cn } from '@/common/lib/utils'
-import type { ClippedContainerType } from '@/features/page-layout/layouts/types'
+import type { ClippedContainerType } from '@/features/site-layout/layouts/types'
 import ClippedContainer from './clipped-container'
 
 interface PageMainProps {

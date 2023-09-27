@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { StickyLayout } from '@/features/page-layout'
+import { StickyLayout } from '@/features/site-layout'
 import type { TutorialPartData } from '../../types'
 import ChapterHeader from './chapter-header'
 import { UnderConstructionBanner } from '@/features/banners'

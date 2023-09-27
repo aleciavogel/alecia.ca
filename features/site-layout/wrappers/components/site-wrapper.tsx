@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import type { SiteLayoutProps } from '@/features/page-layout/types'
+import type { SiteLayoutProps } from '@/features/site-layout/types'
 import { cn } from '@/common/lib/utils'
 
 const SiteWrapper: FC<SiteLayoutProps> = ({

@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Link from 'next/link'
 
-import { StickyLayout } from '@/features/page-layout'
+import { StickyLayout } from '@/features/site-layout'
 import MDXWrapper from '@/features/mdx'
 import { MorePostsBanner } from './bottom-banner'
 import ArticleHeader from './article-header'

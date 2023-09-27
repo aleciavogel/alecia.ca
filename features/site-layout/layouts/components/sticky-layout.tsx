@@ -4,8 +4,8 @@ import { type FC } from 'react'
 
 import { StaticNav, StickyHeader } from '@/features/site-nav'
 import SiteFooter from '@/features/site-footer'
-import { ChevronHeader, SiteWrapper } from '@/features/page-layout'
-import type { PageProps } from '@/features/page-layout/types'
+import { ChevronHeader, SiteWrapper } from '@/features/site-layout'
+import type { PageProps } from '@/features/site-layout/types'
 import type { ClippedContainerType } from '../types'
 import PageMain from './page-main'
 

@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import PageMain from '@/features/page-layout/wrappers/components/content-wrapper'
+import PageMain from '@/features/site-layout/wrappers/components/content-wrapper'
 import TutorialItem from '@/features/tutorials/list/components/TutorialItem'
 import { TUTORIAL_LIST } from '@/features/tutorials/constants'
 

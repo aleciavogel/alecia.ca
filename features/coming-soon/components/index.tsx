@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Link from 'next/link'
 
 import { AleciaIdeaVector } from '@/common/vectors'
-import { StickyLayout } from '@/features/page-layout'
+import { StickyLayout } from '@/features/site-layout'
 import UnderConstructionBanner from '@/features/banners/components/under-contruction'
 
 interface ComingSoonPageProps {
