@@ -1,4 +1,4 @@
-import Code from './code-wrapper'
+import Code from './code'
 import MDXWrapper from './mdx-wrapper'
 
 export { Code, MDXWrapper }
