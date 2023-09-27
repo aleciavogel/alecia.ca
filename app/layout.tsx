@@ -2,8 +2,8 @@
 import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/plugins/command-line/prism-command-line.css'
-import '@/styles/prismjs.css'
-import '@/styles/global.css'
+import '@/common/styles/prismjs.css'
+import '@/common/styles/global.css'
 
 import { eksellLarge, eksellSmall, silka } from '@/common/fonts'
 import Providers from './Providers'
