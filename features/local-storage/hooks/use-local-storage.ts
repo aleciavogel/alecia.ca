@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 
-export const useLocalStorage = <T>(key: string, fallbackValue: T): [T, (value: T) => void] => {
+export const useLocalStorage = <T>(key: string, fallbackValue: T): [T, (newValue: T) => void] => {
   const [value, setValue] = useState(() => {
     let currentValue
 
@@ -24,5 +24,5 @@ export const useLocalStorage = <T>(key: string, fallbackValue: T): [T, (value: T
     localStorage.setItem(key, JSON.stringify(value))
   }, [key, value])
 
-  return [value, updateValue] as const
+  return [value, updateValue]
 }
