@@ -1,15 +1,13 @@
-'use client'
-
 import { type FC } from 'react'
 import PostCard from './post-card'
 
 import { getPostBySlug } from '@/features/blog/utils'
-import { useArticle } from '../../hooks'
 
-const MorePostsBanner: FC = () => {
-  const {
-    frontMatter: { relatedPosts },
-  } = useArticle()
+interface Props {
+  relatedPosts?: string[]
+}
+
+const MorePostsBanner: FC<Props> = ({ relatedPosts }) => {
   const relatedPostsList = relatedPosts?.map((slug) => getPostBySlug(slug))
 
   return (

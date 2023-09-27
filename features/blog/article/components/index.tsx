@@ -10,7 +10,7 @@ import { useArticle } from '../hooks'
 
 const BlogPostPage: FC = () => {
   const {
-    frontMatter: { textColor, primaryColor, accentColor },
+    frontMatter: { textColor, primaryColor, accentColor, relatedPosts },
     content,
   } = useArticle()
 
@@ -20,7 +20,7 @@ const BlogPostPage: FC = () => {
       primaryColor={primaryColor}
       accentColor={accentColor}
       pageHeader={() => <ArticleHeader />}
-      preFooter={() => <MorePostsBanner />}
+      preFooter={() => <MorePostsBanner relatedPosts={relatedPosts} />}
     >
       <ArticleMain>
         <MDXWrapper source={content} />
