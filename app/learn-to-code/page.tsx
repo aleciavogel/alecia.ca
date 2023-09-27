@@ -1,18 +1,18 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import SiteWrapper from '@/features/page-containers/components/site-wrapper'
-import LearnToCodeHeader from '@/features/tutorials/content/components/LearnToCodeHeader'
-import LearnToCodeMain from '@/features/tutorials/content/components/LearnToCodeMain'
+import StickyWrapper from '@/features/page-layout/layouts'
+import LearnToCodeHeader from '@/features/tutorials/list/components/LearnToCodeHeader'
+import LearnToCodeMain from '@/features/tutorials/list/components/LearnToCodeMain'
 import UnderConstructionBanner from '@/features/banners/components/under-contruction'
 
 const LearnToCode: FC = () => {
   return (
-    <SiteWrapper>
+    <StickyWrapper>
       <LearnToCodeHeader />
       <LearnToCodeMain />
       <UnderConstructionBanner />
-    </SiteWrapper>
+    </StickyWrapper>
   )
 }
 

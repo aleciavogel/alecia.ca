@@ -1,8 +1,7 @@
 import { type FC } from 'react'
 
-import SiteWrapper from '@/features/page-containers/components/site-wrapper'
+import { StickyWrapper, ChevronHeader } from '@/features/page-layout'
 import UnderConstructionBanner from '@/features/banners/components/under-contruction'
-import ComingSoonHeader from './ComingSoonHeader'
 import ComingSoonMain from './ComingSoonMain'
 
 interface ComingSoonPageProps {
@@ -11,11 +10,11 @@ interface ComingSoonPageProps {
 
 const ComingSoonPage: FC<ComingSoonPageProps> = ({ pageTitle }) => {
   return (
-    <SiteWrapper>
-      <ComingSoonHeader pageTitle={pageTitle} />
+    <StickyWrapper>
+      <ChevronHeader title={pageTitle} />
       <ComingSoonMain />
       <UnderConstructionBanner />
-    </SiteWrapper>
+    </StickyWrapper>
   )
 }
 

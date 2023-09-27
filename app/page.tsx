@@ -1,16 +1,16 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import HomePage from '@/features/home/components/index'
-import SiteWrapper from '@/features/page-containers/components/site-wrapper'
+import HomePage from '@/features/home'
+import StickyWrapper from '@/features/page-layout/layouts'
 import { UnderConstructionBanner } from '@/features/banners'
 
 const Home: FC = () => {
   return (
-    <SiteWrapper>
+    <StickyWrapper>
       <HomePage />
       <UnderConstructionBanner />
-    </SiteWrapper>
+    </StickyWrapper>
   )
 }
 

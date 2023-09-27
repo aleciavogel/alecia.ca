@@ -1,21 +1,10 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import SiteWrapper from '@/features/page-containers/components/site-wrapper'
-import BlogCategoryHeader from '@/features/blog/components/category/BlogCategoryHeader'
-import BlogCategoryMain from '@/features/blog/components/category/BlogCategoryMain'
 import { BLOG_CATEGORIES } from '@/features/blog/constants'
-import UnderConstructionBanner from '@/features/banners/components/under-contruction'
+import BlogCategoryPage from '@/features/blog/category/components'
 
-const BlogIndexPage: FC<any> = ({ params }) => {
-  return (
-    <SiteWrapper>
-      <BlogCategoryHeader params={params} />
-      <BlogCategoryMain params={params} />
-      <UnderConstructionBanner />
-    </SiteWrapper>
-  )
-}
+const Page: FC<any> = ({ params: { category } }) => <BlogCategoryPage category={category} />
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const { category } = params
@@ -25,4 +14,4 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   }
 }
 
-export default BlogIndexPage
+export default Page

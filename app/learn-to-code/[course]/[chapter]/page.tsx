@@ -1,12 +1,12 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import SiteWrapper from '@/features/page-containers/components/site-wrapper'
+import StickyWrapper from '@/features/page-layout/layouts'
 import { getTutorialPart } from '@/features/tutorials/utils'
-import ChapterHeader from '@/features/tutorials/content/components/chapters/ChapterHeader'
-import ChapterMain from '@/features/tutorials/content/components/chapters/ChapterMain'
-import ChapterSidebar from '@/features/tutorials/content/components/chapters/ChapterSidebar'
-import ChapterContent from '@/features/tutorials/content/components/chapters/ChapterContent'
+import ChapterHeader from '@/features/tutorials/chapters/ChapterHeader'
+import ChapterMain from '@/features/tutorials/chapters/ChapterMain'
+import ChapterSidebar from '@/features/tutorials/chapters/ChapterSidebar'
+import ChapterContent from '@/features/tutorials/chapters/components/ChapterContent'
 import UnderConstructionBanner from '@/features/banners/components/under-contruction'
 
 interface TutorialChapterPageProps {
@@ -22,14 +22,14 @@ const TutorialChapterPage: FC<TutorialChapterPageProps> = ({ params }) => {
   const part = getTutorialPart(course, chapter)
 
   return (
-    <SiteWrapper>
+    <StickyWrapper>
       <ChapterHeader {...part} />
       <ChapterMain>
         <ChapterContent {...part} />
         <ChapterSidebar course={course} chapter={chapter} />
       </ChapterMain>
       <UnderConstructionBanner />
-    </SiteWrapper>
+    </StickyWrapper>
   )
 }
 

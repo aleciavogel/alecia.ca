@@ -1,24 +1,27 @@
 import { type FC } from 'react'
 
-import HomeHeader from './HomeHeader'
-import HomeIntro from './home-intro'
-import SiteHeader from '@/features/_layout/header/components/SiteHeader'
+import { StickyHeader } from '@/features/site-nav'
+import { StickyWrapper } from '@/features/page-layout'
+import HomeHeader from './home-header'
+import { HomeIntro } from './page-partials'
 
 const HomePage: FC = () => {
   return (
-    <div>
-      <HomeHeader />
-      <div
-        id="page-container"
-        className="relative overflow-hidden pb-20 pt-48 mt-[-152px] z-40 h-full"
-      >
-        <HomeIntro />
+    <StickyWrapper>
+      <div>
+        <HomeHeader />
+        <div
+          id="page-container"
+          className="relative overflow-hidden pb-20 pt-48 mt-[-152px] z-40 h-full"
+        >
+          <HomeIntro />
 
-        <div className="clipped-container">
-          <SiteHeader hasColor={true} />
+          <div className="clipped-container">
+            <StickyHeader hasColor={true} />
+          </div>
         </div>
       </div>
-    </div>
+    </StickyWrapper>
   )
 }
 

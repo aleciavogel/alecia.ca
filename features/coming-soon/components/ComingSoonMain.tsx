@@ -1,8 +1,8 @@
 import { type FC } from 'react'
-
-import PageMain from '@/features/page-containers/components/page-main'
-import { AleciaIdeaVector } from '@/common/vectors'
 import Link from 'next/link'
+
+import { AleciaIdeaVector } from '@/common/vectors'
+import { PageMain } from '@/features/page-layout'
 
 const ComingSoonMain: FC = () => {
   return (

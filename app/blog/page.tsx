@@ -1,25 +1,16 @@
 import { type FC } from 'react'
 import { type Metadata } from 'next'
 
-import SiteWrapper from '@/features/page-containers/components/site-wrapper'
-import BlogIndexHeader from '@/features/blog/components/all-posts/BlogIndexHeader'
-import BlogMain from '@/features/blog/components/all-posts/BlogMain'
-import UnderConstructionBanner from '@/features/banners/components/under-contruction'
+import BlogIndexPage, { PAGE_INFO } from '@/features/blog/all-posts'
 
-const BlogIndexPage: FC = () => {
-  return (
-    <SiteWrapper>
-      <BlogIndexHeader />
-      <BlogMain />
-      <UnderConstructionBanner />
-    </SiteWrapper>
-  )
+const Page: FC = () => {
+  return <BlogIndexPage />
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   return {
-    title: `Blog | Alecia.ca`,
+    title: `${PAGE_INFO.title} | Alecia.ca`,
   }
 }
 
-export default BlogIndexPage
+export default Page

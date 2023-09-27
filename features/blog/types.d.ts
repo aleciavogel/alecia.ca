@@ -21,9 +21,9 @@ interface PostFrontMatter extends Record<string, string> {
 }
 
 export interface PostData extends Record<string, any> {
-  id: string
+  id?: string
   content: string
-  contentHtml: string
+  contentHtml?: string
   timeToRead: string
   frontMatter: PostFrontMatter
 }
