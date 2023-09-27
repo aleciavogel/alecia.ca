@@ -5,7 +5,7 @@ import { type FC } from 'react'
 import { type DefaultColor } from '@/common/types/colors'
 import StaticMenu from './StaticMenu'
 import SiteHeader from '../../header/components/SiteHeader'
-import SiteFooter from '../../footer/components/SiteFooter'
+import SiteFooter from '../../footer/components'
 // import HireMeBanner from "@/components/banners/HireMe";
 // import UnderConstructionBanner from '../banners/UnderConstruction'
 

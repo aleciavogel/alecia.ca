@@ -1,16 +1,10 @@
 import React, { type FC } from 'react'
 import Link from 'next/link'
 
-import { type DefaultColor } from '@/common/types/colors'
-import AleciaSitSvg from '@/features/_layout/footer/components/AleciaSitSvg'
-import SocialLinks from '@/features/_layout/footer/components/SocialLinks'
+import { AleciaSitSvg } from '@/common/vectors'
+import SocialLinks from './social-links'
 
-interface Props {
-  accentColor?: DefaultColor
-  primaryColor?: DefaultColor
-}
-
-const SiteFooter: FC<Props> = ({ accentColor = 'pink', primaryColor = 'indigo' }) => {
+const SiteFooter: FC = () => {
   return (
     <footer id="site-footer" role="contentinfo">
       <div className="mb-4 mx-auto flex-wrap md:flex-nowrap sm:flex sm:items-center sm:justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl">
