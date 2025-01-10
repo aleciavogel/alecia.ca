@@ -1,0 +1,14 @@
+{
+  "name": "design-system",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/design-system/src",
+  "projectType": "library",
+  "tags": ["scope:design-system", "type:ui"],
+  "targets": {
+    "storybook": {
+      "options": {
+        "port": 4400
+      }
+    }
+  }
+}

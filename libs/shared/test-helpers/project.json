@@ -1,0 +1,9 @@
+{
+  "name": "test-helpers",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/test-helpers/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project test-helpers --web",
+  "targets": {}
+}

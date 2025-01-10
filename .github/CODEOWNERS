@@ -1,0 +1,10 @@
+# CODEOWNERS File
+
+# This file is used to define the owners of the codebase. Every time a pull request is created,
+# the owners of the files that are being changed will be notified.
+
+# For more info visit
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for all files
+*     @aleciavogel

@@ -1,0 +1,10 @@
+@layer components {
+    .transition-dark-mode {
+        @apply transition-all duration-200 ease-in-out;
+    }
+
+    .page-container {
+        @apply w-full mx-auto px-4;
+        @apply sm:max-w-screen-sm md:max-w-screen-lg lg:max-w-screen-xl;
+    }
+}

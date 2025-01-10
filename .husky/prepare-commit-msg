@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Trap the EXIT signal to ensure cleanup is run
+trap cleanup ERR
+cleanup() {
+    exec < /dev/tty && bunx cz --hook || true
+    exit 0
+}
+bunx commitlint --edit "$1"

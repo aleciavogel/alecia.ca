@@ -1,0 +1,9 @@
+{
+  "name": "comments",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/comments/feature/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project comments --web",
+  "targets": {}
+}

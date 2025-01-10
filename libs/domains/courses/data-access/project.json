@@ -1,0 +1,9 @@
+{
+  "name": "courses-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/courses/data-access/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project courses-data-access --web",
+  "targets": {}
+}

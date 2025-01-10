@@ -1,0 +1,5 @@
+@layer utilities {
+    .content-block {
+        @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
+    }
+}

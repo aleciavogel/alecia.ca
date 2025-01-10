@@ -1,0 +1,131 @@
+@layer components {
+    .radio-card-item {
+        @apply relative;
+        @apply col-span-1 px-3 py-4 rounded-md;
+        @apply transform-gpu;
+        @apply transition-all duration-200 ease-in-out;
+        @apply text-left;
+        @apply flex flex-col items-start;
+        @apply border-2;
+        @apply animated-flat-shadow;
+
+        /* Text Color */
+        @apply text-primary-800 dark:text-primary-300;
+
+        /* Border & Shadow */
+        @apply border-primary-300 shadow-primary-300;
+        @apply dark:border-primary-800 dark:shadow-primary-800;
+        @apply hover:border-primary-400 hover:shadow-primary-400;
+        @apply disabled:hover:border-primary-800 disabled:hover:shadow-primary-800;
+        @apply disabled:active:shadow-flat;
+        @apply active:shadow-none;
+
+        /* Translation */
+        @apply hover:translate-x-[2px] hover:translate-y-[2px];
+        @apply active:translate-x-[5px] active:translate-y-[5px];
+        @apply disabled:translate-x-0 disabled:translate-y-0 disabled:transform-none;
+
+        .indicator {
+            @apply z-10;
+            @apply transition-colors duration-200 ease-in-out;
+            @apply aspect-square h-4 w-4 min-w-4 min-h-4 rounded-full;
+            @apply focus:outline-none focus-visible:ring-1 focus-visible:ring-current;
+
+            /* Border Color */
+            @apply border border-primary-800 dark:border-primary-200;
+
+            /* Icon */
+            @apply text-white dark:text-gray-900;
+        }
+
+        &[aria-checked="true"] {
+            /* Border & Shadow */
+            @apply border-primary-600 shadow-primary-600;
+            @apply dark:border-primary-300 dark:shadow-primary-300;
+            @apply disabled:shadow-primary-300 disabled:border-primary-300;
+
+            /* Translation */
+            @apply disabled:transform-none;
+            @apply disabled:translate-x-0 disabled:translate-y-0;
+
+            .indicator {
+                @apply bg-primary-800 dark:bg-primary-200;
+            }
+
+            &:disabled {
+                @apply shadow-flat;
+
+                &.correct-guess {
+                    /* Text Color */
+                    @apply text-emerald-800;
+                    @apply dark:text-emerald-300;
+
+                    /* Border & Shadow */
+                    @apply border-emerald-600 shadow-emerald-600;
+                    @apply dark:border-emerald-300 dark:shadow-emerald-300;
+
+                    .indicator {
+                        @apply bg-emerald-600 dark:bg-emerald-300;
+                        @apply border-emerald-600 dark:border-emerald-300;
+                    }
+                }
+
+                &.incorrect-guess {
+                    /* Text Color */
+                    @apply text-accent-800;
+                    @apply dark:text-accent-300;
+                    @apply line-through;
+
+                    /* Border & Shadow */
+                    @apply border-accent-600 shadow-accent-600;
+                    @apply dark:border-accent-300 dark:shadow-accent-300;
+
+                    /* Translation */
+                    @apply transform-none;
+                    @apply translate-x-0 translate-y-0;
+
+                    .indicator {
+                        @apply bg-transparent;
+                        @apply border-accent-800 dark:border-accent-300;
+                        @apply text-accent-800 dark:text-accent-300;
+                    }
+                }
+
+                &.revealed-answer {
+                    /* Text Color */
+                    @apply text-primary-800;
+                    @apply dark:text-primary-300;
+
+                    /* Border & Shadow */
+                    @apply border-primary-600 shadow-primary-600;
+                    @apply dark:border-primary-300 dark:shadow-primary-300;
+
+                    .indicator {
+                        @apply bg-primary-800 dark:bg-primary-200;
+                    }
+                }
+            }
+        }
+
+        &.unselected {
+            /* Text Color */
+            @apply text-primary-300;
+            @apply dark:text-primary-800;
+            @apply line-through;
+
+            /* Border & Shadow */
+            @apply border-primary-300 shadow-primary-300;
+            @apply hover:border-primary-300 hover:shadow-primary-300;
+            @apply dark:border-primary-800 dark:shadow-primary-800;
+            @apply dark:hover:border-primary-800 dark:hover:shadow-primary-800;
+
+            /* Translation */
+            @apply translate-x-0 translate-y-0;
+
+            .indicator {
+                @apply bg-transparent;
+                @apply border-primary-300 dark:border-primary-800;
+            }
+        }
+    }
+}

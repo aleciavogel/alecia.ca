@@ -1,0 +1,9 @@
+{
+  "name": "site-layout-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/site-layout/ui/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project site-layout-ui --web",
+  "targets": {}
+}

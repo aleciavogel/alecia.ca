@@ -1,0 +1,3 @@
+setup:
+  - project: alecia-portfolio
+    config: dev_personal

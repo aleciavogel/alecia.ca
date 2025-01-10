@@ -1,0 +1,9 @@
+{
+  "name": "dark-mode",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/site-layout/feature-dark-mode/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project dark-mode --web",
+  "targets": {}
+}

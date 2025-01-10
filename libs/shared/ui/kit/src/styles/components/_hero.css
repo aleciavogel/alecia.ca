@@ -1,0 +1,17 @@
+@layer components {
+    .hero-slanted {
+        height: calc(100vh + var(--triangle-height));
+    }
+
+    .hero-padding {
+        @apply pb-[var(--triangle-height)];
+    }
+
+    .hero-slanted-content {
+        transform: translateY(calc(var(--triangle-height) / -2));
+    }
+
+    .hero-slanted-arrow-wrapper {
+        transform: translateY(calc(var(--triangle-height) * -1));
+    }
+}
