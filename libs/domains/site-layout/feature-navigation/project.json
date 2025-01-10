@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/site-layout/feature-navigation/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["type:feature", "scope:site-layout"],
   "// targets": "to see all targets run: nx show project navigation --web",
   "targets": {}
 }

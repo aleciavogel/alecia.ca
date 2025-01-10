@@ -1,1 +1,2 @@
-export * from './lib/sanity-data-access'
+export * from './lib'
+export * from './sanity.config'

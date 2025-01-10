@@ -1,1 +1,1 @@
-export * from './lib/sanity-ui'
+export * from './structure'

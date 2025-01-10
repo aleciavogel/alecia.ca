@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/blog/feature/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:blog", "type:feature"],
   "// targets": "to see all targets run: nx show project blog --web",
   "targets": {}
 }

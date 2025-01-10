@@ -1,0 +1,9 @@
+{
+  "name": "blog-authors",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/blog/feature-authors/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project blog-authors --web",
+  "targets": {}
+}

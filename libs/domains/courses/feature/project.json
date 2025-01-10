@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/courses/feature/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["domain:courses", "type:feature"],
   "// targets": "to see all targets run: nx show project courses --web",
   "targets": {}
 }

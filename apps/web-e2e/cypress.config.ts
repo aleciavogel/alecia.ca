@@ -6,7 +6,7 @@ export default defineConfig({
     ...nxE2EPreset(__filename, {
       cypressDir: 'src',
       webServerCommands: {
-        default: 'bun nx run alecia:dev',
+        default: 'bun nx run alecia:ci',
       },
       ciWebServerCommand: 'bun nx run alecia:serve-static',
       ciBaseUrl: 'http://localhost:3000',

@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/test-helpers/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:shared", "type:test-helpers"],
   "// targets": "to see all targets run: nx show project test-helpers --web",
   "targets": {}
 }

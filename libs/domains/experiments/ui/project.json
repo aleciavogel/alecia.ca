@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/experiments/ui/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:experiments", "type:ui"],
   "// targets": "to see all targets run: nx show project experiments-ui --web",
   "targets": {}
 }

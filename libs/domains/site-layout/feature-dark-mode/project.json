@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/site-layout/feature-dark-mode/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:site-layout", "type:feature"],
   "// targets": "to see all targets run: nx show project dark-mode --web",
   "targets": {}
 }

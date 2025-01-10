@@ -1,0 +1,9 @@
+{
+  "name": "page-blocks",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/pages/feature-blocks/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project page-blocks --web",
+  "targets": {}
+}
