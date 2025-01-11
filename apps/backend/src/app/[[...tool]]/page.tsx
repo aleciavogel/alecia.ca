@@ -9,7 +9,7 @@
 import * as React from 'react'
 import { NextStudio } from 'next-sanity/studio'
 
-import { config } from '@alecia/sanity-data-access/config'
+import { config } from '@alecia/sanity-studio/config'
 
 export const dynamic = 'force-static'
 

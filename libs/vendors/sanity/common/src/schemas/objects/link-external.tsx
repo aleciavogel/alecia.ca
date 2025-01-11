@@ -5,7 +5,7 @@ import { defineField, defineType } from 'sanity'
 export const linkExternal = defineType({
   name: 'link.external',
   title: 'External Link',
-  icon: <FontAwesomeIcon icon={faLinkSimple} />,
+  icon: () => <FontAwesomeIcon icon={faLinkSimple} />,
   type: 'object',
   fields: [
     defineField({
@@ -30,7 +30,3 @@ export const linkExternal = defineType({
     },
   },
 })
-
-export const externalLinkQuery = `
-  ...,
-`

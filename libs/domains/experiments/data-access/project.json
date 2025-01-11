@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/domains/experiments/data-access/src",
   "projectType": "library",
-  "tags": ["scope:experiments", "type:data-access"],
+  "tags": [],
   "// targets": "to see all targets run: nx show project experiments-data-access --web",
   "targets": {}
 }

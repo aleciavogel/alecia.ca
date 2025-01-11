@@ -1,1 +1,1 @@
-export * from './lib/projects-data-access'
+export * from './schemas'

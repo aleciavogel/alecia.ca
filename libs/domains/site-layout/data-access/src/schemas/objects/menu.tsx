@@ -7,7 +7,7 @@ import { count } from '@alecia/sanity-util'
 export const menu = defineType({
   name: 'menu',
   title: 'Menu',
-  icon: <FontAwesomeIcon icon={faListDropdown} />,
+  icon: () => <FontAwesomeIcon icon={faListDropdown} />,
   type: 'object',
   fields: [
     defineField({

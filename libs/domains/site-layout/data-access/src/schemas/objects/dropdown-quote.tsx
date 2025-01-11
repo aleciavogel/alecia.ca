@@ -2,13 +2,12 @@ import { faQuoteLeft } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { internalLinkQuery } from '@alecia/sanity-common'
 import { count } from '@alecia/sanity-util'
 
 export const dropdownQuote = defineType({
   name: 'dropdown.quote',
   title: 'Dropdown Menu (Quote)',
-  icon: <FontAwesomeIcon icon={faQuoteLeft} />,
+  icon: () => <FontAwesomeIcon icon={faQuoteLeft} />,
   type: 'object',
   fields: [
     defineField({
@@ -43,12 +42,3 @@ export const dropdownQuote = defineType({
     }),
   },
 })
-
-export const quoteDropdownQuery = `
-  _type == 'dropdown.quote' => {
-    ...,
-    links[]{
-      ${internalLinkQuery}
-    }
-  }
-`

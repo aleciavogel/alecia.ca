@@ -2,13 +2,12 @@ import { faAddressCard } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { internalLinkQuery } from '@alecia/sanity-common'
 import { count } from '@alecia/sanity-util'
 
 export const dropdownAbout = defineType({
   name: 'dropdown.about',
   title: 'Dropdown Menu (About)',
-  icon: <FontAwesomeIcon icon={faAddressCard} />,
+  icon: () => <FontAwesomeIcon icon={faAddressCard} />,
   type: 'object',
   fields: [
     defineField({
@@ -51,13 +50,3 @@ export const dropdownAbout = defineType({
     }),
   },
 })
-
-export const aboutDropdownQuery = `
-  _type == 'dropdown.about' => {
-    ...,
-    'image': image.asset->url,
-    links[]{
-      ${internalLinkQuery}
-    }
-  }
-`

@@ -10,7 +10,7 @@ import { socialIconPickerOptions } from '../../fragments'
 export const linkSocial = defineType({
   name: 'link.social',
   title: 'Social Link',
-  icon: <FontAwesomeIcon icon={faLinkSimple} />,
+  icon: () => <FontAwesomeIcon icon={faLinkSimple} />,
   type: 'object',
   fields: [
     defineField({
@@ -58,7 +58,3 @@ export const linkSocial = defineType({
     },
   },
 })
-
-export const socialLinkQuery = `
-  ...,
-`

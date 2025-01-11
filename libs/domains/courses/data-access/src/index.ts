@@ -1,1 +1,2 @@
-export * from './lib/courses-data-access'
+export * from './queries'
+export * from './schemas'

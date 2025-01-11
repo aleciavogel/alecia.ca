@@ -1,0 +1,35 @@
+{
+  "name": "sanity-studio",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/vendors/sanity/studio/src",
+  "projectType": "library",
+  "tags": ["scope:vendors", "type:studio"],
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "doppler run --command='cd libs/vendors/sanity/studio/src && sanity start'"
+      }
+    },
+    "validate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "doppler run --command='cd libs/vendors/sanity/studio/src && sanity schema validate'"
+      }
+    },
+    "extract": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["validate"],
+      "options": {
+        "command": "doppler run --command='cd libs/vendors/sanity/studio/src && sanity schema extract'"
+      }
+    },
+    "typegen": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["validate", "extract"],
+      "options": {
+        "command": "doppler run --command='cd libs/vendors/sanity/studio/src && sanity typegen generate'"
+      }
+    }
+  }
+}

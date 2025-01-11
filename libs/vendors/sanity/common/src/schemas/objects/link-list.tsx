@@ -4,12 +4,10 @@ import { defineField, defineType } from 'sanity'
 
 import { count } from '@alecia/sanity-util'
 
-import { internalLinkQuery } from './link-internal'
-
 export const linkList = defineType({
   name: 'link.list',
   title: 'Link list',
-  icon: <FontAwesomeIcon icon={faFolderOpen} />,
+  icon: () => <FontAwesomeIcon icon={faFolderOpen} />,
   type: 'object',
   fields: [
     defineField({
@@ -33,11 +31,3 @@ export const linkList = defineType({
     }),
   },
 })
-
-export const linkListQuery = `
-  _type == 'link.list' => {
-    links[]{
-      ${internalLinkQuery}
-    }
-  }
-`

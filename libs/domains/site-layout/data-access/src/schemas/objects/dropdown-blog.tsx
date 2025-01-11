@@ -7,7 +7,7 @@ import { count } from '@alecia/sanity-util'
 export const dropdownBlog = defineType({
   name: 'dropdown.blog',
   title: 'Dropdown Menu (Blog)',
-  icon: <FontAwesomeIcon icon={faTag} />,
+  icon: () => <FontAwesomeIcon icon={faTag} />,
   type: 'object',
   fields: [
     defineField({
@@ -37,16 +37,3 @@ export const dropdownBlog = defineType({
     }),
   },
 })
-
-export const blogDropdownQuery = `
-  _type == 'dropdown.blog' => {
-    ...,
-    links[]{
-      _type == 'reference' => @->{
-        ...,
-        "slug": '/blog?category=' + slug.current,
-        "icon": icon.name
-      }
-    }
-  }
-`

@@ -16,7 +16,7 @@ import {
 export const linkInternal = defineType({
   name: 'link.internal',
   title: 'Internal Link',
-  icon: <FontAwesomeIcon icon={faLink} />,
+  icon: () => <FontAwesomeIcon icon={faLink} />,
   type: 'object',
   fields: [
     defineField({
@@ -33,7 +33,7 @@ export const linkInternal = defineType({
       type: 'reference',
       to: [
         { type: 'page' },
-        { type: 'blog.post' },
+        { type: 'blog.article' },
         { type: 'blog.category' },
         { type: 'author' },
         { type: 'course' },
@@ -61,23 +61,3 @@ export const linkInternal = defineType({
     },
   },
 })
-
-export const internalLinkQuery = `
-  _type == 'link.internal' => {
-    ...,
-    'icon': item->icon.name,
-    'slug': item->{
-      'slug': select(
-        ${authorSlugPartial},
-        ${blogPostSlugPartial},
-        ${blogCategorySlugPartial},
-        ${courseSlugPartial},
-        ${courseChapterSlugPartial},
-        ${pageSlugPartial},
-        ${projectSlugPartial},
-        ${experimentSlugPartial},
-        null
-      )
-    }.slug,
-  }
-`

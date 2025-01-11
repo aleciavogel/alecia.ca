@@ -2,13 +2,12 @@ import { faEyes } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { internalLinkQuery } from '@alecia/sanity-common'
 import { count } from '@alecia/sanity-util'
 
 export const dropdownPromo = defineType({
   name: 'dropdown.promo',
   title: 'Dropdown Menu (HLB Promo)',
-  icon: <FontAwesomeIcon icon={faEyes} />,
+  icon: () => <FontAwesomeIcon icon={faEyes} />,
   type: 'object',
   fields: [
     defineField({
@@ -48,12 +47,3 @@ export const dropdownPromo = defineType({
     }),
   },
 })
-
-export const promoDropdownQuery = `
-  _type == 'dropdown.promo' => {
-    ...,
-    links[]{
-      ${internalLinkQuery}
-    }
-  }
-`

@@ -7,7 +7,7 @@ import { defineArrayMember, defineField } from 'sanity'
  */
 export const imageBlock = defineArrayMember({
   type: 'image',
-  icon: <FontAwesomeIcon icon={faImage} />,
+  icon: () => <FontAwesomeIcon icon={faImage} />,
   options: {
     hotspot: true,
   },
