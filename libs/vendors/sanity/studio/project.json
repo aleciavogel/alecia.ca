@@ -28,7 +28,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["validate", "extract"],
       "options": {
-        "command": "doppler run --command='cd libs/vendors/sanity/studio/src && sanity typegen generate'"
+        "command": "doppler run --command='cd libs/vendors/sanity/studio/src && sanity typegen generate --verbose'"
       }
     }
   }

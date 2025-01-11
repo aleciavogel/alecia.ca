@@ -1,1 +1,1 @@
-export * from './lib/dark-mode'
+export * from './provider'

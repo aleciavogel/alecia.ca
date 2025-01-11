@@ -17,7 +17,8 @@ import {
   SANITY_STUDIO_URL,
 } from '@alecia/sanity-constants'
 
-import { locations, schemaTypes, structure } from './lib'
+import { locations, structure } from './lib'
+import { schemaTypes } from './schemas'
 
 const singletonTypes = ['settings']
 

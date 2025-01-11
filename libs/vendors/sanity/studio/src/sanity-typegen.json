@@ -1,5 +1,5 @@
 {
-  "path": ["../../../../../*.{ts,tsx,js,jsx}"],
+  "path": ["../../../../../libs/**/*.{ts,tsx,js,jsx}"],
   "schema": "./schema.json",
   "generates": "../../types/src/sanity.types.ts"
 }

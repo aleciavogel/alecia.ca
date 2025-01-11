@@ -1,6 +1,0 @@
-export * from './link-external.query'
-export * from './link-internal.query'
-export * from './link-list.query'
-export * from './link-social.query'
-export * from './settings.query'
-export * from './slugs.query'

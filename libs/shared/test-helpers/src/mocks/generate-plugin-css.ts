@@ -4,7 +4,7 @@ import postcss, { Plugin } from 'postcss'
 import tailwindcss, { Config } from 'tailwindcss'
 import type { PluginsConfig } from 'tailwindcss/types/config'
 
-export const generatePluginCss = async (
+export const generatePluginCssMock = async (
   plugins: Partial<PluginsConfig>,
   config = {} as Config,
 ): Promise<string> => {

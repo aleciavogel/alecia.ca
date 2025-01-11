@@ -68,15 +68,196 @@ export type Geopoint = {
   alt?: number
 }
 
-export type ProjectTag = {
+export type Uid = string
+
+export type SandpackFile = {
+  _type: 'sandpack.file'
+  code?: Code
+  readOnly?: boolean
+  active?: boolean
+  hidden?: boolean
+}
+
+export type LinkSocial = {
+  _type: 'link.social'
+  label?: string
+  url?: string
+}
+
+export type LinkExternal = {
+  _type: 'link.external'
+  label?: string
+  url?: string
+}
+
+export type DropdownQuote = {
+  _type: 'dropdown.quote'
+  label?: string
+  author?: string
+  quote?: string
+  links?: Array<
+    {
+      _key: string
+    } & LinkInternal
+  >
+}
+
+export type DropdownPromo = {
+  _type: 'dropdown.promo'
+  label?: string
+  subtitle?: string
+  links?: Array<
+    {
+      _key: string
+    } & LinkInternal
+  >
+}
+
+export type DropdownBlog = {
+  _type: 'dropdown.blog'
+  label?: string
+  links?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'blog.category'
+  }>
+}
+
+export type DropdownAbout = {
+  _type: 'dropdown.about'
+  label?: string
+  name?: string
+  subtitle?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  links?: Array<
+    {
+      _key: string
+    } & LinkInternal
+  >
+}
+
+export type Cta = {
+  _type: 'cta'
+  link?: LinkInternal
+  style?: 'primary' | 'secondary' | 'outline' | 'destructive' | 'ghost' | 'link'
+}
+
+export type Settings = {
   _id: string
-  _type: 'project.tag'
+  _type: 'settings'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  label?: string
+  title?: string
+  announcements?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'announcement'
+  }>
+  mainMenu?: MenuMain
+  secondaryMenu?: Menu
+  social?: Array<
+    {
+      _key: string
+    } & LinkSocial
+  >
+  footerName?: string
+  footerBio?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  copyright?: string
+  ogimage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+}
+
+export type Menu = {
+  _type: 'menu'
+  items?: Array<
+    | ({
+        _key: string
+      } & LinkInternal)
+    | ({
+        _key: string
+      } & LinkExternal)
+    | ({
+        _key: string
+      } & LinkList)
+  >
+}
+
+export type MenuMain = {
+  _type: 'menu.main'
+  items?: Array<
+    | ({
+        _key: string
+      } & LinkInternal)
+    | ({
+        _key: string
+      } & DropdownAbout)
+    | ({
+        _key: string
+      } & DropdownBlog)
+    | ({
+        _key: string
+      } & DropdownPromo)
+    | ({
+        _key: string
+      } & DropdownQuote)
+  >
+}
+
+export type ResourceCategory = {
+  _id: string
+  _type: 'resource.category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
   description?: string
-  slug?: Slug
+  links?: Array<
+    {
+      _key: string
+    } & Resource
+  >
+  icon?: IconPicker
 }
 
 export type Resource = {
@@ -116,20 +297,219 @@ export type Resource = {
   layout?: 'vertical' | 'horizontal'
 }
 
-export type ResourceCategory = {
+export type Redirect = {
   _id: string
-  _type: 'resource.category'
+  _type: 'redirect'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  source?: string
+  destination?: string
+  permanent?: boolean
+}
+
+export type ProjectTag = {
+  _id: string
+  _type: 'project.tag'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  label?: string
+  description?: string
+  slug?: Slug
+}
+
+export type Project = {
+  _id: string
+  _type: 'project'
   _createdAt: string
   _updatedAt: string
   _rev: string
   title?: string
-  description?: string
-  links?: Array<
-    {
-      _key: string
-    } & Resource
+  subtitle?: string
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'lazy' | 'eager'
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & Sandpack)
+    | ({
+        _key: string
+      } & CustomHtml)
   >
+  tags?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'project.tag'
+  }>
+  publishDate?: string
+  featured?: boolean
+  repoUrl?: string
+  metadata?: Metadata
+}
+
+export type Page = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
   icon?: IconPicker
+  pretitle?: string
+  title?: string
+  subtitle?: string
+  headerBorder?: 'angled' | 'angled-inverse' | 'rectangular' | 'chevron'
+  headerIllustration?:
+    | 'none'
+    | 'AleciaCouchIllustration'
+    | 'AleciaIdeaIllustration'
+    | 'AleciaLayingIllustration'
+    | 'AleciaSitIllustration'
+    | 'AleciaWaveIllustration'
+    | 'HammondScienceIllustration'
+    | 'HammondSleepingIllustration'
+    | 'PhoebeLaptopIllustration'
+    | 'PhoebeYarnIllustration'
+    | 'SadieAteMyWebsiteIllustration'
+    | 'SadieHammondCookiesIllustration'
+  headerImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  modules?: Array<
+    | ({
+        _key: string
+      } & AccordionList)
+    | ({
+        _key: string
+      } & BlogFrontpage)
+    | ({
+        _key: string
+      } & BlogList)
+    | ({
+        _key: string
+      } & Callout)
+    | ({
+        _key: string
+      } & CustomHtml)
+    | ({
+        _key: string
+      } & GalleryPets)
+    | ({
+        _key: string
+      } & NavAbout)
+    | ({
+        _key: string
+      } & NavExplore)
+    | ({
+        _key: string
+      } & LogoList)
+    | ({
+        _key: string
+      } & Sandpack)
+    | ({
+        _key: string
+      } & TestimonialList)
+    | ({
+        _key: string
+      } & TestimonialFeatured)
+    | ({
+        _key: string
+      } & TextCta)
+    | ({
+        _key: string
+      } & TextIntro)
+    | ({
+        _key: string
+      } & TextRich)
+  >
+  metadata?: Metadata
+}
+
+export type Logo = {
+  _id: string
+  _type: 'logo'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  image?: {
+    default?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    light?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    dark?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+  }
 }
 
 export type ExperimentTag = {
@@ -143,67 +523,350 @@ export type ExperimentTag = {
   slug?: Slug
 }
 
-export type CourseList = {
-  _type: 'course-list'
-  heading?: string
-  intro?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  layout?: 'grid' | 'carousel'
-  displayFilters?: boolean
-  limit?: number
-  filteredCategory?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'course.category'
-  }
-}
-
-export type CourseCategory = {
+export type Experiment = {
   _id: string
-  _type: 'course.category'
+  _type: 'experiment'
   _createdAt: string
   _updatedAt: string
   _rev: string
   title?: string
-  description?: string
+  subtitle?: string
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'lazy' | 'eager'
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & Sandpack)
+    | ({
+        _key: string
+      } & CustomHtml)
+  >
+  tags?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'experiment.tag'
+  }>
+  publishDate?: string
+  featured?: boolean
+  repoUrl?: string
+  metadata?: Metadata
+}
+
+export type CourseChapter = {
+  _id: string
+  _type: 'course.chapter'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  subtitle?: string
+  video?: MuxVideo
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'lazy' | 'eager'
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & Sandpack)
+    | ({
+        _key: string
+      } & CustomHtml)
+  >
+  publishDate?: string
+  hideTableOfContents?: boolean
+  repoUrl?: string
+  sectionQuiz?: PopQuiz
+  nextSectionText?: string
+  metadata?: Metadata
+}
+
+export type Course = {
+  _id: string
+  _type: 'course'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  subtitle?: string
+  video?: MuxVideo
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'lazy' | 'eager'
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & Code)
+    | ({
+        _key: string
+      } & CustomHtml)
+  >
+  chapters?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'course.chapter'
+  }>
+  difficulty?: 'beginner' | 'advanced'
+  categories?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'course.category'
+  }>
+  publishDate?: string
+  featured?: boolean
+  repoUrl?: string
+  metadata?: Metadata
+}
+
+export type BlogArticle = {
+  _id: string
+  _type: 'blog.article'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  subtitle?: string
+  previewText?: string
+  video?: MuxVideo
+  mainImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'lazy' | 'eager'
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & Sandpack)
+    | ({
+        _key: string
+      } & CustomHtml)
+  >
+  authors?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'author'
+  }>
+  categories?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'blog.category'
+  }>
+  publishDate?: string
+  featured?: boolean
+  hideTableOfContents?: boolean
+  metadata?: Metadata
+}
+
+export type Metadata = {
+  _type: 'metadata'
   slug?: Slug
-  icon?: IconPicker
+  title?: string
+  description?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  noIndex?: boolean
 }
 
-export type BlogFrontpage = {
-  _type: 'blog-frontpage'
-  mainPost?: 'recent' | 'featured'
-  showFeaturedPostsFirst?: boolean
+export type Author = {
+  _id: string
+  _type: 'author'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  description?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  socials?: LinkList
+  slug?: Slug
 }
 
-export type BlogList = {
-  _type: 'blog-list'
-  heading?: string
-  intro?: Array<{
+export type LinkList = {
+  _type: 'link.list'
+  label?: string
+  links?: Array<
+    {
+      _key: string
+    } & LinkInternal
+  >
+}
+
+export type Announcement = {
+  _id: string
+  _type: 'announcement'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  content?: Array<{
     children?: Array<{
       marks?: Array<string>
       text?: string
       _type: 'span'
       _key: string
     }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    style?: 'normal'
     listItem?: 'bullet' | 'number'
     markDefs?: Array<{
       href?: string
@@ -214,98 +877,9 @@ export type BlogList = {
     _type: 'block'
     _key: string
   }>
-  layout?: 'grid' | 'carousel'
-  displayFilters?: boolean
-  limit?: number
-  filteredCategory?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'blog.category'
-  }
-}
-
-export type BlogPostContent = {
-  _type: 'blog-post-content'
-  uid?: string
-}
-
-export type SandpackFile = {
-  _type: 'sandpack.file'
-  code?: Code
-  readOnly?: boolean
-  active?: boolean
-  hidden?: boolean
-}
-
-export type Sandpack = {
-  _type: 'sandpack'
-  title?: string
-  template?:
-    | 'react'
-    | 'react-ts'
-    | 'static'
-    | 'solid'
-    | 'svelte'
-    | 'angular'
-    | 'test-ts'
-    | 'vanilla'
-    | 'vanilla-ts'
-    | 'vue'
-    | 'vue-ts'
-    | 'node'
-    | 'nextjs'
-    | 'vite'
-    | 'vite-react'
-    | 'vite-react-ts'
-    | 'vite-preact'
-    | 'vite-preact-ts'
-    | 'vite-vue'
-    | 'vite-vue-ts'
-    | 'vite-svelte'
-    | 'vite-svelte-ts'
-    | 'astro'
-  files?: Array<
-    {
-      _key: string
-    } & SandpackFile
-  >
-  dependencies?: Array<{
-    name?: string
-    version?: string
-    _key: string
-  }>
-  devDependencies?: Array<{
-    name?: string
-    version?: string
-    _key: string
-  }>
-  options?: {
-    showTabs?: boolean
-    closeableTabs?: boolean
-    showLineNumbers?: boolean
-    showInlineErrors?: boolean
-    showRunButton?: boolean
-    wrapContent?: boolean
-    readOnly?: boolean
-    showReadOnly?: boolean
-    initMode?: 'immediate' | 'lazy' | 'user-visible'
-    staticResources?: Array<string>
-    showNavigator?: boolean
-    layout?: 'console' | 'preview' | 'tests'
-    editorHeight?: number
-    editorWidthPercentage?: number
-    autoRun?: boolean
-    autoReload?: boolean
-    resizablePanels?: boolean
-  }
-  showPreview?: boolean
-}
-
-export type Cta = {
-  _type: 'cta'
-  link?: LinkInternal
-  style?: 'primary' | 'secondary' | 'outline' | 'destructive' | 'ghost' | 'link'
+  cta?: LinkInternal
+  start?: string
+  end?: string
 }
 
 export type Tip = {
@@ -422,496 +996,6 @@ export type TextCta = {
   link?: LinkInternal
 }
 
-export type TestimonialList = {
-  _type: 'testimonial-list'
-  intro?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  testimonials?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'testimonial'
-  }>
-  layout?: 'grid' | 'carousel'
-}
-
-export type TestimonialFeatured = {
-  _type: 'testimonial.featured'
-  testimonial?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'testimonial'
-  }
-}
-
-export type LogoList = {
-  _type: 'logo-list'
-  pretitle?: string
-  intro?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  logos?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'logo'
-  }>
-  logoType?: 'default' | 'light' | 'dark'
-  autoScroll?: boolean
-}
-
-export type GalleryPets = {
-  _type: 'gallery.pets'
-  pretitle?: string
-  title?: string
-  images?: Array<{
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    name?: string
-    alt?: string
-    _type: 'image'
-    _key: string
-  }>
-}
-
-export type CustomHtml = {
-  _type: 'custom-html'
-  uid?: string
-  className?: string
-  html?: Code
-}
-
-export type Callout = {
-  _type: 'callout'
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  ctas?: Array<
-    {
-      _key: string
-    } & Cta
-  >
-}
-
-export type AccordionList = {
-  _type: 'accordion-list'
-  heading?: string
-  intro?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  items?: Array<{
-    trigger?: string
-    content?: Array<{
-      children?: Array<{
-        marks?: Array<string>
-        text?: string
-        _type: 'span'
-        _key: string
-      }>
-      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-      listItem?: 'bullet' | 'number'
-      markDefs?: Array<{
-        href?: string
-        _type: 'link'
-        _key: string
-      }>
-      level?: number
-      _type: 'block'
-      _key: string
-    }>
-    open?: boolean
-    _key: string
-  }>
-  layout?: 'vertical' | 'horizontal'
-  uid?: string
-}
-
-export type Testimonial = {
-  _id: string
-  _type: 'testimonial'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  author?: {
-    name?: string
-    title?: string
-    image?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-  }
-}
-
-export type Redirect = {
-  _id: string
-  _type: 'redirect'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  source?: string
-  destination?: string
-  permanent?: boolean
-}
-
-export type NavExplore = {
-  _type: 'nav.explore'
-  pretitle?: string
-  title?: string
-  description?: string
-  links?: Array<
-    {
-      _key: string
-    } & LinkInternal
-  >
-}
-
-export type NavAbout = {
-  _type: 'nav.about'
-  pretitle?: string
-  title?: string
-  image?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  links?: Array<
-    {
-      _key: string
-    } & LinkInternal
-  >
-}
-
-export type Logo = {
-  _id: string
-  _type: 'logo'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  image?: {
-    default?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-    light?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-    dark?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-  }
-}
-
-export type Announcement = {
-  _id: string
-  _type: 'announcement'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  cta?: LinkInternal
-  start?: string
-  end?: string
-}
-
-export type DropdownQuote = {
-  _type: 'dropdown.quote'
-  label?: string
-  author?: string
-  quote?: string
-  links?: Array<
-    {
-      _key: string
-    } & LinkInternal
-  >
-}
-
-export type DropdownPromo = {
-  _type: 'dropdown.promo'
-  label?: string
-  subtitle?: string
-  links?: Array<
-    {
-      _key: string
-    } & LinkInternal
-  >
-}
-
-export type DropdownBlog = {
-  _type: 'dropdown.blog'
-  label?: string
-  links?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'blog.category'
-  }>
-}
-
-export type DropdownAbout = {
-  _type: 'dropdown.about'
-  label?: string
-  name?: string
-  subtitle?: string
-  image?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
-  links?: Array<
-    {
-      _key: string
-    } & LinkInternal
-  >
-}
-
-export type Settings = {
-  _id: string
-  _type: 'settings'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  announcements?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'announcement'
-  }>
-  mainMenu?: MenuMain
-  secondaryMenu?: Menu
-  social?: Array<
-    {
-      _key: string
-    } & LinkSocial
-  >
-  footerName?: string
-  footerBio?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  copyright?: string
-  ogimage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
-}
-
-export type Menu = {
-  _type: 'menu'
-  items?: Array<
-    | ({
-        _key: string
-      } & LinkInternal)
-    | ({
-        _key: string
-      } & LinkExternal)
-    | ({
-        _key: string
-      } & LinkList)
-  >
-}
-
-export type MenuMain = {
-  _type: 'menu.main'
-  items?: Array<
-    | ({
-        _key: string
-      } & LinkInternal)
-    | ({
-        _key: string
-      } & DropdownAbout)
-    | ({
-        _key: string
-      } & DropdownBlog)
-    | ({
-        _key: string
-      } & DropdownPromo)
-    | ({
-        _key: string
-      } & DropdownQuote)
-  >
-}
-
-export type Uid = string
-
-export type LinkSocial = {
-  _type: 'link.social'
-  label?: string
-  url?: string
-}
-
 export type LinkInternal = {
   _type: 'link.internal'
   label?: string
@@ -968,189 +1052,149 @@ export type LinkInternal = {
   params?: string
 }
 
-export type Experiment = {
-  _id: string
-  _type: 'experiment'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  subtitle?: string
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        alt?: string
-        source?: string
-        loading?: 'lazy' | 'eager'
-        _type: 'image'
-        _key: string
-      }
-    | ({
-        _key: string
-      } & Sandpack)
-    | ({
-        _key: string
-      } & CustomHtml)
-  >
-  tags?: Array<{
+export type TestimonialList = {
+  _type: 'testimonial-list'
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  testimonials?: Array<{
     _ref: string
     _type: 'reference'
     _weak?: boolean
     _key: string
-    [internalGroqTypeReferenceTo]?: 'experiment.tag'
+    [internalGroqTypeReferenceTo]?: 'testimonial'
   }>
-  publishDate?: string
-  featured?: boolean
-  repoUrl?: string
-  metadata?: Metadata
+  layout?: 'grid' | 'carousel'
 }
 
-export type Project = {
-  _id: string
-  _type: 'project'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  subtitle?: string
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        alt?: string
-        source?: string
-        loading?: 'lazy' | 'eager'
-        _type: 'image'
-        _key: string
-      }
-    | ({
-        _key: string
-      } & Sandpack)
-    | ({
-        _key: string
-      } & CustomHtml)
-  >
-  tags?: Array<{
+export type TestimonialFeatured = {
+  _type: 'testimonial.featured'
+  testimonial?: {
     _ref: string
     _type: 'reference'
     _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'project.tag'
-  }>
-  publishDate?: string
-  featured?: boolean
-  repoUrl?: string
-  metadata?: Metadata
+    [internalGroqTypeReferenceTo]?: 'testimonial'
+  }
 }
 
-export type CourseChapter = {
+export type Testimonial = {
   _id: string
-  _type: 'course.chapter'
+  _type: 'testimonial'
   _createdAt: string
   _updatedAt: string
   _rev: string
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  author?: {
+    name?: string
+    title?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+  }
+}
+
+export type Sandpack = {
+  _type: 'sandpack'
   title?: string
-  subtitle?: string
-  video?: MuxVideo
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        alt?: string
-        source?: string
-        loading?: 'lazy' | 'eager'
-        _type: 'image'
-        _key: string
-      }
-    | ({
-        _key: string
-      } & Sandpack)
-    | ({
-        _key: string
-      } & CustomHtml)
+  template?:
+    | 'react'
+    | 'react-ts'
+    | 'static'
+    | 'solid'
+    | 'svelte'
+    | 'angular'
+    | 'test-ts'
+    | 'vanilla'
+    | 'vanilla-ts'
+    | 'vue'
+    | 'vue-ts'
+    | 'node'
+    | 'nextjs'
+    | 'vite'
+    | 'vite-react'
+    | 'vite-react-ts'
+    | 'vite-preact'
+    | 'vite-preact-ts'
+    | 'vite-vue'
+    | 'vite-vue-ts'
+    | 'vite-svelte'
+    | 'vite-svelte-ts'
+    | 'astro'
+  files?: Array<
+    {
+      _key: string
+    } & SandpackFile
   >
-  publishDate?: string
-  hideTableOfContents?: boolean
-  repoUrl?: string
-  sectionQuiz?: PopQuiz
-  nextSectionText?: string
-  metadata?: Metadata
+  dependencies?: Array<{
+    name?: string
+    version?: string
+    _key: string
+  }>
+  devDependencies?: Array<{
+    name?: string
+    version?: string
+    _key: string
+  }>
+  options?: {
+    showTabs?: boolean
+    closeableTabs?: boolean
+    showLineNumbers?: boolean
+    showInlineErrors?: boolean
+    showRunButton?: boolean
+    wrapContent?: boolean
+    readOnly?: boolean
+    showReadOnly?: boolean
+    initMode?: 'immediate' | 'lazy' | 'user-visible'
+    staticResources?: Array<string>
+    showNavigator?: boolean
+    layout?: 'console' | 'preview' | 'tests'
+    editorHeight?: number
+    editorWidthPercentage?: number
+    autoRun?: boolean
+    autoReload?: boolean
+    resizablePanels?: boolean
+  }
+  showPreview?: boolean
 }
 
 export type PopQuiz = {
@@ -1181,104 +1225,11 @@ export type PopQuiz = {
   }>
 }
 
-export type Course = {
-  _id: string
-  _type: 'course'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
+export type NavExplore = {
+  _type: 'nav.explore'
+  pretitle?: string
   title?: string
-  subtitle?: string
-  video?: MuxVideo
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        alt?: string
-        source?: string
-        loading?: 'lazy' | 'eager'
-        _type: 'image'
-        _key: string
-      }
-    | ({
-        _key: string
-      } & Code)
-    | ({
-        _key: string
-      } & CustomHtml)
-  >
-  chapters?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'course.chapter'
-  }>
-  difficulty?: 'beginner' | 'advanced'
-  categories?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'course.category'
-  }>
-  publishDate?: string
-  featured?: boolean
-  repoUrl?: string
-  metadata?: Metadata
-}
-
-export type Author = {
-  _id: string
-  _type: 'author'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
   description?: string
-  image?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
-  socials?: LinkList
-  slug?: Slug
-}
-
-export type LinkList = {
-  _type: 'link.list'
-  label?: string
   links?: Array<
     {
       _key: string
@@ -1286,199 +1237,10 @@ export type LinkList = {
   >
 }
 
-export type BlogCategory = {
-  _id: string
-  _type: 'blog.category'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  description?: string
-  slug?: Slug
-  icon?: IconPicker
-}
-
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
-
-export type BlogArticle = {
-  _id: string
-  _type: 'blog.article'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  subtitle?: string
-  previewText?: string
-  video?: MuxVideo
-  mainImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        alt?: string
-        source?: string
-        loading?: 'lazy' | 'eager'
-        _type: 'image'
-        _key: string
-      }
-    | ({
-        _key: string
-      } & Sandpack)
-    | ({
-        _key: string
-      } & CustomHtml)
-  >
-  authors?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'author'
-  }>
-  categories?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'blog.category'
-  }>
-  publishDate?: string
-  featured?: boolean
-  hideTableOfContents?: boolean
-  metadata?: Metadata
-}
-
-export type Page = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  icon?: IconPicker
+export type NavAbout = {
+  _type: 'nav.about'
   pretitle?: string
   title?: string
-  subtitle?: string
-  headerBorder?: 'angled' | 'angled-inverse' | 'rectangular' | 'chevron'
-  headerIllustration?:
-    | 'none'
-    | 'AleciaCouchIllustration'
-    | 'AleciaIdeaIllustration'
-    | 'AleciaLayingIllustration'
-    | 'AleciaSitIllustration'
-    | 'AleciaWaveIllustration'
-    | 'HammondScienceIllustration'
-    | 'HammondSleepingIllustration'
-    | 'PhoebeLaptopIllustration'
-    | 'PhoebeYarnIllustration'
-    | 'SadieAteMyWebsiteIllustration'
-    | 'SadieHammondCookiesIllustration'
-  headerImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  modules?: Array<
-    | ({
-        _key: string
-      } & AccordionList)
-    | ({
-        _key: string
-      } & BlogFrontpage)
-    | ({
-        _key: string
-      } & BlogList)
-    | ({
-        _key: string
-      } & Callout)
-    | ({
-        _key: string
-      } & CustomHtml)
-    | ({
-        _key: string
-      } & GalleryPets)
-    | ({
-        _key: string
-      } & NavAbout)
-    | ({
-        _key: string
-      } & NavExplore)
-    | ({
-        _key: string
-      } & LogoList)
-    | ({
-        _key: string
-      } & Sandpack)
-    | ({
-        _key: string
-      } & TestimonialList)
-    | ({
-        _key: string
-      } & TestimonialFeatured)
-    | ({
-        _key: string
-      } & TextCta)
-    | ({
-        _key: string
-      } & TextIntro)
-    | ({
-        _key: string
-      } & TextRich)
-  >
-  metadata?: Metadata
-}
-
-export type Metadata = {
-  _type: 'metadata'
-  slug?: Slug
-  title?: string
-  description?: string
   image?: {
     asset?: {
       _ref: string
@@ -1488,9 +1250,66 @@ export type Metadata = {
     }
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    alt?: string
     _type: 'image'
   }
-  noIndex?: boolean
+  links?: Array<
+    {
+      _key: string
+    } & LinkInternal
+  >
+}
+
+export type LogoList = {
+  _type: 'logo-list'
+  pretitle?: string
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  logos?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'logo'
+  }>
+  logoType?: 'default' | 'light' | 'dark'
+  autoScroll?: boolean
+}
+
+export type GalleryPets = {
+  _type: 'gallery.pets'
+  pretitle?: string
+  title?: string
+  images?: Array<{
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    name?: string
+    alt?: string
+    _type: 'image'
+    _key: string
+  }>
 }
 
 export type SanityImageCrop = {
@@ -1550,10 +1369,191 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
-export type LinkExternal = {
-  _type: 'link.external'
-  label?: string
-  url?: string
+export type CustomHtml = {
+  _type: 'custom-html'
+  uid?: Uid
+  className?: string
+  html?: Code
+}
+
+export type CourseList = {
+  _type: 'course-list'
+  heading?: string
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  layout?: 'grid' | 'carousel'
+  displayFilters?: boolean
+  limit?: number
+  filteredCategory?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'course.category'
+  }
+}
+
+export type CourseCategory = {
+  _id: string
+  _type: 'course.category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  description?: string
+  slug?: Slug
+  icon?: IconPicker
+}
+
+export type Callout = {
+  _type: 'callout'
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  ctas?: Array<
+    {
+      _key: string
+    } & Cta
+  >
+}
+
+export type BlogFrontpage = {
+  _type: 'blog-frontpage'
+  mainPost?: 'recent' | 'featured'
+  showFeaturedPostsFirst?: boolean
+}
+
+export type BlogList = {
+  _type: 'blog-list'
+  heading?: string
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  layout?: 'grid' | 'carousel'
+  displayFilters?: boolean
+  limit?: number
+  filteredCategory?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'blog.category'
+  }
+}
+
+export type BlogCategory = {
+  _id: string
+  _type: 'blog.category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  description?: string
+  slug?: Slug
+  icon?: IconPicker
+}
+
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
+
+export type BlogPostContent = {
+  _type: 'blog-post-content'
+  uid?: Uid
+}
+
+export type AccordionList = {
+  _type: 'accordion-list'
+  heading?: string
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  items?: Array<{
+    trigger?: string
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    open?: boolean
+    _key: string
+  }>
+  layout?: 'vertical' | 'horizontal'
+  uid?: Uid
 }
 
 export type Code = {
@@ -1662,63 +1662,63 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | ProjectTag
-  | Resource
-  | ResourceCategory
-  | ExperimentTag
-  | CourseList
-  | CourseCategory
-  | BlogFrontpage
-  | BlogList
-  | BlogPostContent
+  | Uid
   | SandpackFile
-  | Sandpack
-  | Cta
-  | Tip
-  | TextRich
-  | TextIntro
-  | TextCta
-  | TestimonialList
-  | TestimonialFeatured
-  | LogoList
-  | GalleryPets
-  | CustomHtml
-  | Callout
-  | AccordionList
-  | Testimonial
-  | Redirect
-  | NavExplore
-  | NavAbout
-  | Logo
-  | Announcement
+  | LinkSocial
+  | LinkExternal
   | DropdownQuote
   | DropdownPromo
   | DropdownBlog
   | DropdownAbout
+  | Cta
   | Settings
   | Menu
   | MenuMain
-  | Uid
-  | LinkSocial
-  | LinkInternal
-  | Experiment
+  | ResourceCategory
+  | Resource
+  | Redirect
+  | ProjectTag
   | Project
+  | Page
+  | Logo
+  | ExperimentTag
+  | Experiment
   | CourseChapter
-  | PopQuiz
   | Course
+  | BlogArticle
+  | Metadata
   | Author
   | LinkList
-  | BlogCategory
-  | Slug
-  | BlogArticle
-  | Page
-  | Metadata
+  | Announcement
+  | Tip
+  | TextRich
+  | TextIntro
+  | TextCta
+  | LinkInternal
+  | TestimonialList
+  | TestimonialFeatured
+  | Testimonial
+  | Sandpack
+  | PopQuiz
+  | NavExplore
+  | NavAbout
+  | LogoList
+  | GalleryPets
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | LinkExternal
+  | CustomHtml
+  | CourseList
+  | CourseCategory
+  | Callout
+  | BlogFrontpage
+  | BlogList
+  | BlogCategory
+  | Slug
+  | BlogPostContent
+  | AccordionList
   | Code
   | MuxVideo
   | MuxVideoAsset
@@ -1729,3 +1729,1882 @@ export type AllSanitySchemaTypes =
   | MuxTrack
   | IconPicker
 export declare const internalGroqTypeReferenceTo: unique symbol
+// Source: ../../../../../libs/vendors/sanity/studio/src/queries/blog-article.query.ts
+// Variable: allBlogArticlesQuery
+// Query: *[ _type == 'blog.article' ] | order(publishedAt desc) {        title,    previewText,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    categories[]-> {      title,      'slug': '/blog?category=' + slug.current,      'icon': icon.name    }  }
+export type AllBlogArticlesQueryResult = Array<{
+  title: string | null
+  previewText: string | null
+  slug: string | null
+  estimatedReadingTime: number
+  imageSrc: string | null
+  imageAlt: string | null
+  categories: Array<{
+    title: string | null
+    slug: string | null
+    icon: string | null
+  }> | null
+}>
+// Variable: blogArticlesForCategoryQuery
+// Query: *[ _type == 'blog.article' && references(*[_type == 'blog.category' && slug.current == $slug]._id) ] | order(publishedAt desc) {        title,    previewText,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    categories[]-> {      title,      'slug': '/blog?category=' + slug.current,      'icon': icon.name    }  }
+export type BlogArticlesForCategoryQueryResult = Array<{
+  title: string | null
+  previewText: string | null
+  slug: string | null
+  estimatedReadingTime: number
+  imageSrc: string | null
+  imageAlt: string | null
+  categories: Array<{
+    title: string | null
+    slug: string | null
+    icon: string | null
+  }> | null
+}>
+
+// Source: ../../../../../libs/vendors/sanity/studio/src/queries/blog-category.query.ts
+// Variable: blogCategoriesQuery
+// Query: *[ _type == 'blog.category' ] {    ...,    "slug": slug.current,    "href": '/blog?category=' + slug.current,    "icon": icon.name  }
+export type BlogCategoriesQueryResult = Array<{
+  _id: string
+  _type: 'blog.category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  description?: string
+  slug: string | null
+  icon: string | null
+  href: string | null
+}>
+
+// Source: ../../../../../libs/vendors/sanity/studio/src/queries/blog-pages.query.ts
+// Variable: blogIndexQuery
+// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{    pretitle,    title,    subtitle,    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {        title,    previewText,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    categories[]-> {      title,      'slug': '/blog?category=' + slug.current,      'icon': icon.name    },  }}
+export type BlogIndexQueryResult = {
+  page: {
+    pretitle: string | null
+    title: string | null
+    subtitle: string | null
+    metadata: {
+      _type: 'metadata'
+      slug?: Slug
+      title?: string
+      description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      noIndex?: boolean
+      ogimage: string | null
+    } | null
+  } | null
+  articles: Array<{
+    title: string | null
+    previewText: string | null
+    slug: string | null
+    estimatedReadingTime: number
+    imageSrc: string | null
+    imageAlt: string | null
+    categories: Array<{
+      title: string | null
+      slug: string | null
+      icon: string | null
+    }> | null
+  }>
+}
+// Variable: blogArticlePageQuery
+// Query: *[_type == 'blog.article' && metadata.slug.current == $slug][0]{    ...,        title,    previewText,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    categories[]-> {      title,      'slug': '/blog?category=' + slug.current,      'icon': icon.name    }  }
+export type BlogArticlePageQueryResult = {
+  _id: string
+  _type: 'blog.article'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string | null
+  subtitle?: string
+  previewText: string | null
+  video?: MuxVideo
+  mainImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  body?: Array<
+    | ({
+        _key: string
+      } & CustomHtml)
+    | ({
+        _key: string
+      } & Sandpack)
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'eager' | 'lazy'
+        _type: 'image'
+        _key: string
+      }
+  >
+  authors?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'author'
+  }>
+  categories: Array<{
+    title: string | null
+    slug: string | null
+    icon: string | null
+  }> | null
+  publishDate?: string
+  featured?: boolean
+  hideTableOfContents?: boolean
+  metadata?: Metadata
+  slug: string | null
+  estimatedReadingTime: number
+  imageSrc: string | null
+  imageAlt: string | null
+} | null
+
+// Source: ../../../../../libs/vendors/sanity/studio/src/queries/pages.query.ts
+// Variable: homePageQuery
+// Query: *[_type == 'page' && metadata.slug.current == 'index'][0]{  ...,  modules[]{      ...,    _type == 'nav.about' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'nav.explore' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'gallery.pets' => {    ...,    images[] {      ...,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  }  },  metadata {    ...,    'ogimage': image.asset->url + '?w=1200'  }}
+export type HomePageQueryResult = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  icon?: IconPicker
+  pretitle?: string
+  title?: string
+  subtitle?: string
+  headerBorder?: 'angled-inverse' | 'angled' | 'chevron' | 'rectangular'
+  headerIllustration?:
+    | 'AleciaCouchIllustration'
+    | 'AleciaIdeaIllustration'
+    | 'AleciaLayingIllustration'
+    | 'AleciaSitIllustration'
+    | 'AleciaWaveIllustration'
+    | 'HammondScienceIllustration'
+    | 'HammondSleepingIllustration'
+    | 'none'
+    | 'PhoebeLaptopIllustration'
+    | 'PhoebeYarnIllustration'
+    | 'SadieAteMyWebsiteIllustration'
+    | 'SadieHammondCookiesIllustration'
+  headerImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  modules: Array<
+    | {
+        _key: string
+        _type: 'accordion-list'
+        heading?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        items?: Array<{
+          trigger?: string
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: 'bullet' | 'number'
+            markDefs?: Array<{
+              href?: string
+              _type: 'link'
+              _key: string
+            }>
+            level?: number
+            _type: 'block'
+            _key: string
+          }>
+          open?: boolean
+          _key: string
+        }>
+        layout?: 'horizontal' | 'vertical'
+        uid?: Uid
+      }
+    | {
+        _key: string
+        _type: 'blog-frontpage'
+        mainPost?: 'featured' | 'recent'
+        showFeaturedPostsFirst?: boolean
+      }
+    | {
+        _key: string
+        _type: 'blog-list'
+        heading?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        layout?: 'carousel' | 'grid'
+        displayFilters?: boolean
+        limit?: number
+        filteredCategory?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'blog.category'
+        }
+      }
+    | {
+        _key: string
+        _type: 'callout'
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        ctas?: Array<
+          {
+            _key: string
+          } & Cta
+        >
+      }
+    | {
+        _key: string
+        _type: 'custom-html'
+        uid?: Uid
+        className?: string
+        html?: Code
+      }
+    | {
+        _key: string
+        _type: 'gallery.pets'
+        pretitle?: string
+        title?: string
+        images: Array<{
+          asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          name?: string
+          alt?: string
+          _type: 'image'
+          _key: string
+          imageSrc: string | null
+          imageAlt: string | null
+        }> | null
+      }
+    | {
+        _key: string
+        _type: 'logo-list'
+        pretitle?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        logos?: Array<{
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          _key: string
+          [internalGroqTypeReferenceTo]?: 'logo'
+        }>
+        logoType?: 'dark' | 'default' | 'light'
+        autoScroll?: boolean
+      }
+    | {
+        _key: string
+        _type: 'nav.about'
+        pretitle?: string
+        title?: string
+        image: string | null
+        links: Array<{
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        }> | null
+        alt: string | null
+      }
+    | {
+        _key: string
+        _type: 'nav.explore'
+        pretitle?: string
+        title?: string
+        description?: string
+        links: Array<{
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        }> | null
+      }
+    | {
+        _key: string
+        _type: 'sandpack'
+        title?: string
+        template?:
+          | 'angular'
+          | 'astro'
+          | 'nextjs'
+          | 'node'
+          | 'react-ts'
+          | 'react'
+          | 'solid'
+          | 'static'
+          | 'svelte'
+          | 'test-ts'
+          | 'vanilla-ts'
+          | 'vanilla'
+          | 'vite-preact-ts'
+          | 'vite-preact'
+          | 'vite-react-ts'
+          | 'vite-react'
+          | 'vite-svelte-ts'
+          | 'vite-svelte'
+          | 'vite-vue-ts'
+          | 'vite-vue'
+          | 'vite'
+          | 'vue-ts'
+          | 'vue'
+        files?: Array<
+          {
+            _key: string
+          } & SandpackFile
+        >
+        dependencies?: Array<{
+          name?: string
+          version?: string
+          _key: string
+        }>
+        devDependencies?: Array<{
+          name?: string
+          version?: string
+          _key: string
+        }>
+        options?: {
+          showTabs?: boolean
+          closeableTabs?: boolean
+          showLineNumbers?: boolean
+          showInlineErrors?: boolean
+          showRunButton?: boolean
+          wrapContent?: boolean
+          readOnly?: boolean
+          showReadOnly?: boolean
+          initMode?: 'immediate' | 'lazy' | 'user-visible'
+          staticResources?: Array<string>
+          showNavigator?: boolean
+          layout?: 'console' | 'preview' | 'tests'
+          editorHeight?: number
+          editorWidthPercentage?: number
+          autoRun?: boolean
+          autoReload?: boolean
+          resizablePanels?: boolean
+        }
+        showPreview?: boolean
+      }
+    | {
+        _key: string
+        _type: 'testimonial-list'
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        testimonials?: Array<{
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          _key: string
+          [internalGroqTypeReferenceTo]?: 'testimonial'
+        }>
+        layout?: 'carousel' | 'grid'
+      }
+    | {
+        _key: string
+        _type: 'testimonial.featured'
+        testimonial?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'testimonial'
+        }
+      }
+    | {
+        _key: string
+        _type: 'text.cta'
+        layout?: 'left' | 'right'
+        pretitle?: string
+        title?: string
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        shouldUseLinkIcon?: boolean
+        icon?: IconPicker
+        link: {
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        } | null
+        linkIcon: string | null
+      }
+    | {
+        _key: string
+        _type: 'text.intro'
+        leadText?: string
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'text.rich'
+        content?: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>
+                text?: string
+                _type: 'span'
+                _key: string
+              }>
+              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+              listItem?: 'bullet' | 'number'
+              markDefs?: Array<{
+                href?: string
+                _type: 'link'
+                _key: string
+              }>
+              level?: number
+              _type: 'block'
+              _key: string
+            }
+          | {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              caption?: string
+              alt?: string
+              source?: string
+              loading?: 'eager' | 'lazy'
+              _type: 'image'
+              _key: string
+            }
+        >
+      }
+  > | null
+  metadata: {
+    _type: 'metadata'
+    slug?: Slug
+    title?: string
+    description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    noIndex?: boolean
+    ogimage: string | null
+  } | null
+} | null
+// Variable: pageQuery
+// Query: *[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{    ...,    modules[]{        ...,    _type == 'nav.about' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'nav.explore' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'gallery.pets' => {    ...,    images[] {      ...,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  }
+export type PageQueryResult = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  icon?: IconPicker
+  pretitle?: string
+  title?: string
+  subtitle?: string
+  headerBorder?: 'angled-inverse' | 'angled' | 'chevron' | 'rectangular'
+  headerIllustration?:
+    | 'AleciaCouchIllustration'
+    | 'AleciaIdeaIllustration'
+    | 'AleciaLayingIllustration'
+    | 'AleciaSitIllustration'
+    | 'AleciaWaveIllustration'
+    | 'HammondScienceIllustration'
+    | 'HammondSleepingIllustration'
+    | 'none'
+    | 'PhoebeLaptopIllustration'
+    | 'PhoebeYarnIllustration'
+    | 'SadieAteMyWebsiteIllustration'
+    | 'SadieHammondCookiesIllustration'
+  headerImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  modules: Array<
+    | {
+        _key: string
+        _type: 'accordion-list'
+        heading?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        items?: Array<{
+          trigger?: string
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: 'bullet' | 'number'
+            markDefs?: Array<{
+              href?: string
+              _type: 'link'
+              _key: string
+            }>
+            level?: number
+            _type: 'block'
+            _key: string
+          }>
+          open?: boolean
+          _key: string
+        }>
+        layout?: 'horizontal' | 'vertical'
+        uid?: Uid
+      }
+    | {
+        _key: string
+        _type: 'blog-frontpage'
+        mainPost?: 'featured' | 'recent'
+        showFeaturedPostsFirst?: boolean
+      }
+    | {
+        _key: string
+        _type: 'blog-list'
+        heading?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        layout?: 'carousel' | 'grid'
+        displayFilters?: boolean
+        limit?: number
+        filteredCategory?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'blog.category'
+        }
+      }
+    | {
+        _key: string
+        _type: 'callout'
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        ctas?: Array<
+          {
+            _key: string
+          } & Cta
+        >
+      }
+    | {
+        _key: string
+        _type: 'custom-html'
+        uid?: Uid
+        className?: string
+        html?: Code
+      }
+    | {
+        _key: string
+        _type: 'gallery.pets'
+        pretitle?: string
+        title?: string
+        images: Array<{
+          asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          name?: string
+          alt?: string
+          _type: 'image'
+          _key: string
+          imageSrc: string | null
+          imageAlt: string | null
+        }> | null
+      }
+    | {
+        _key: string
+        _type: 'logo-list'
+        pretitle?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        logos?: Array<{
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          _key: string
+          [internalGroqTypeReferenceTo]?: 'logo'
+        }>
+        logoType?: 'dark' | 'default' | 'light'
+        autoScroll?: boolean
+      }
+    | {
+        _key: string
+        _type: 'nav.about'
+        pretitle?: string
+        title?: string
+        image: string | null
+        links: Array<{
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        }> | null
+        alt: string | null
+      }
+    | {
+        _key: string
+        _type: 'nav.explore'
+        pretitle?: string
+        title?: string
+        description?: string
+        links: Array<{
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        }> | null
+      }
+    | {
+        _key: string
+        _type: 'sandpack'
+        title?: string
+        template?:
+          | 'angular'
+          | 'astro'
+          | 'nextjs'
+          | 'node'
+          | 'react-ts'
+          | 'react'
+          | 'solid'
+          | 'static'
+          | 'svelte'
+          | 'test-ts'
+          | 'vanilla-ts'
+          | 'vanilla'
+          | 'vite-preact-ts'
+          | 'vite-preact'
+          | 'vite-react-ts'
+          | 'vite-react'
+          | 'vite-svelte-ts'
+          | 'vite-svelte'
+          | 'vite-vue-ts'
+          | 'vite-vue'
+          | 'vite'
+          | 'vue-ts'
+          | 'vue'
+        files?: Array<
+          {
+            _key: string
+          } & SandpackFile
+        >
+        dependencies?: Array<{
+          name?: string
+          version?: string
+          _key: string
+        }>
+        devDependencies?: Array<{
+          name?: string
+          version?: string
+          _key: string
+        }>
+        options?: {
+          showTabs?: boolean
+          closeableTabs?: boolean
+          showLineNumbers?: boolean
+          showInlineErrors?: boolean
+          showRunButton?: boolean
+          wrapContent?: boolean
+          readOnly?: boolean
+          showReadOnly?: boolean
+          initMode?: 'immediate' | 'lazy' | 'user-visible'
+          staticResources?: Array<string>
+          showNavigator?: boolean
+          layout?: 'console' | 'preview' | 'tests'
+          editorHeight?: number
+          editorWidthPercentage?: number
+          autoRun?: boolean
+          autoReload?: boolean
+          resizablePanels?: boolean
+        }
+        showPreview?: boolean
+      }
+    | {
+        _key: string
+        _type: 'testimonial-list'
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        testimonials?: Array<{
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          _key: string
+          [internalGroqTypeReferenceTo]?: 'testimonial'
+        }>
+        layout?: 'carousel' | 'grid'
+      }
+    | {
+        _key: string
+        _type: 'testimonial.featured'
+        testimonial?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'testimonial'
+        }
+      }
+    | {
+        _key: string
+        _type: 'text.cta'
+        layout?: 'left' | 'right'
+        pretitle?: string
+        title?: string
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        shouldUseLinkIcon?: boolean
+        icon?: IconPicker
+        link: {
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        } | null
+        linkIcon: string | null
+      }
+    | {
+        _key: string
+        _type: 'text.intro'
+        leadText?: string
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'text.rich'
+        content?: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>
+                text?: string
+                _type: 'span'
+                _key: string
+              }>
+              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+              listItem?: 'bullet' | 'number'
+              markDefs?: Array<{
+                href?: string
+                _type: 'link'
+                _key: string
+              }>
+              level?: number
+              _type: 'block'
+              _key: string
+            }
+          | {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              caption?: string
+              alt?: string
+              source?: string
+              loading?: 'eager' | 'lazy'
+              _type: 'image'
+              _key: string
+            }
+        >
+      }
+  > | null
+  metadata: {
+    _type: 'metadata'
+    slug?: Slug
+    title?: string
+    description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    noIndex?: boolean
+    ogimage: string | null
+  } | null
+} | null
+// Variable: pageSlugQuery
+// Query: *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current
+export type PageSlugQueryResult = Array<string | null>
+
+// Source: ../../../../../libs/vendors/sanity/studio/src/queries/settings.query.ts
+// Variable: settingsQuery
+// Query: *[_type == 'settings'][0]{    ...,    mainMenu{      items[]{          _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  },          _type == 'link.list' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },        _type == 'dropdown.about' => {          ...,          'image': image.asset->url,          links[]{              _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }          }        },        _type == 'dropdown.blog' => {          ...,          links[]{            _type == 'reference' => @->{              ...,              "slug": '/blog?category=' + slug.current,              "icon": icon.name            }          }        },        _type == 'dropdown.promo' => {          ...,          links[]{              _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }          }        },        _type == 'dropdown.quote' => {          ...,          links[]{              _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }          }        }      }    },    secondaryMenu{      items[]{        ...,          _type == 'link.list' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      '/courses/' +      *[_type == 'course' && references(^._id)][0].metadata.slug.current +      '/' +      metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },      }    },    'ogimage': image.asset->url + '?w=1200'  }
+export type SettingsQueryResult = {
+  _id: string
+  _type: 'settings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  announcements?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'announcement'
+  }>
+  mainMenu: {
+    items: Array<
+      | {
+          _key: string
+          _type: 'dropdown.about'
+          label?: string
+          name?: string
+          subtitle?: string
+          image: string | null
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'dropdown.blog'
+          label?: string
+          links: Array<{
+            _id: string
+            _type: 'blog.category'
+            _createdAt: string
+            _updatedAt: string
+            _rev: string
+            title?: string
+            description?: string
+            slug: string | null
+            icon: string | null
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'dropdown.promo'
+          label?: string
+          subtitle?: string
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'dropdown.quote'
+          label?: string
+          author?: string
+          quote?: string
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        }
+    > | null
+  } | null
+  secondaryMenu: {
+    items: Array<
+      | {
+          _key: string
+          _type: 'link.external'
+          label?: string
+          url?: string
+        }
+      | {
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+        }
+      | {
+          _key: string
+          _type: 'link.list'
+          label?: string
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+    > | null
+  } | null
+  social?: Array<
+    {
+      _key: string
+    } & LinkSocial
+  >
+  footerName?: string
+  footerBio?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  copyright?: string
+  ogimage: null
+} | null
+
+// Query TypeMap
+import '@sanity/client'
+declare module '@sanity/client' {
+  interface SanityQueries {
+    "\n  *[ _type == 'blog.article' ] | order(publishedAt desc) {\n    \n    title,\n    previewText,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    categories[]-> {\n      title,\n      'slug': '/blog?category=' + slug.current,\n      'icon': icon.name\n    }\n\n  }": AllBlogArticlesQueryResult
+    "\n  *[ _type == 'blog.article' && references(*[_type == 'blog.category' && slug.current == $slug]._id) ] | order(publishedAt desc) {\n    \n    title,\n    previewText,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    categories[]-> {\n      title,\n      'slug': '/blog?category=' + slug.current,\n      'icon': icon.name\n    }\n\n  }": BlogArticlesForCategoryQueryResult
+    '\n  *[ _type == \'blog.category\' ] {\n    ...,\n    "slug": slug.current,\n    "href": \'/blog?category=\' + slug.current,\n    "icon": icon.name\n  }': BlogCategoriesQueryResult
+    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{\n    pretitle,\n    title,\n    subtitle,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {\n    \n    title,\n    previewText,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    categories[]-> {\n      title,\n      'slug': '/blog?category=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": BlogIndexQueryResult
+    "\n  *[_type == 'blog.article' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    title,\n    previewText,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    categories[]-> {\n      title,\n      'slug': '/blog?category=' + slug.current,\n      'icon': icon.name\n    }\n\n  }\n": BlogArticlePageQueryResult
+    "\n*[_type == 'page' && metadata.slug.current == 'index'][0]{\n  ...,\n  modules[]{\n    \n  ...,\n  \n  _type == 'nav.about' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'nav.explore' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'gallery.pets' => {\n    ...,\n    images[] {\n      ...,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  }\n\n  },\n  metadata {\n    ...,\n    'ogimage': image.asset->url + '?w=1200'\n  }\n}": HomePageQueryResult
+    "*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{\n    ...,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.about' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'nav.explore' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'gallery.pets' => {\n    ...,\n    images[] {\n      ...,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  }\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  }": PageQueryResult
+    "\n  *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current": PageSlugQueryResult
+    "\n  *[_type == 'settings'][0]{\n    ...,\n    mainMenu{\n      items[]{\n        \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  }\n,\n\n        _type == 'dropdown.about' => {\n          ...,\n          'image': image.asset->url,\n          links[]{\n            \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n          }\n        },\n\n        _type == 'dropdown.blog' => {\n          ...,\n          links[]{\n            _type == 'reference' => @->{\n              ...,\n              \"slug\": '/blog?category=' + slug.current,\n              \"icon\": icon.name\n            }\n          }\n        },\n\n        _type == 'dropdown.promo' => {\n          ...,\n          links[]{\n            \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n          }\n        },\n\n        _type == 'dropdown.quote' => {\n          ...,\n          links[]{\n            \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n          }\n        }\n      }\n    },\n    secondaryMenu{\n      items[]{\n        ...,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      '/courses/' +\n      *[_type == 'course' && references(^._id)][0].metadata.slug.current +\n      '/' +\n      metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  }\n,\n      }\n    },\n    'ogimage': image.asset->url + '?w=1200'\n  }\n": SettingsQueryResult
+  }
+}
