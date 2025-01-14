@@ -1,5 +1,3 @@
-'use client'
-
 import { codeInput } from '@sanity/code-input'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'

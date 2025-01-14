@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation'
 import { RenderedBlocks } from '@alecia/pages'
 import { getPage } from '@alecia/pages-data-access/server'
 import type { PageQueryResult } from '@alecia/sanity-types'
-import { PageContents, SiteWrapper } from '@alecia/site-layout'
+import { SiteWrapper } from '@alecia/site-layout'
+import { PageContents } from '@alecia/site-navigation'
 
 interface PageProps {
   params: { slug?: string[] }

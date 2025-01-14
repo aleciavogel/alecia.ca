@@ -8,3 +8,10 @@ export const textCtaQueryPartial = `
       ${internalLinkQueryPartial}
     }
   }`
+
+export const textAsideListQueryPartial = `
+  _type == 'text.aside-list' => {
+    ...,
+    'listItems': listItems[]->,
+  }
+`

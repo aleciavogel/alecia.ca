@@ -5,7 +5,8 @@ import { getBlogArticlePage } from '@alecia/blog-data-access/server'
 import { BlogComments } from '@alecia/blog-ui'
 import { HeroHeader } from '@alecia/pages-ui'
 import { BlogArticlePageQueryResult } from '@alecia/sanity-types'
-import { PageContents, ReadingProgress, SiteWrapper } from '@alecia/site-layout'
+import { ReadingProgress, SiteWrapper } from '@alecia/site-layout'
+import { PageContents } from '@alecia/site-navigation'
 
 const fetchArticleData = async (slug: string): Promise<BlogArticlePageQueryResult | undefined> => {
   return await getBlogArticlePage(slug)

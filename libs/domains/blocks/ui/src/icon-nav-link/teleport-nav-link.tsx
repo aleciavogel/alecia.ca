@@ -2,7 +2,7 @@
 
 import { FC, useState } from 'react'
 
-import { useTeleportAnimation } from '@alecia/site-layout'
+import { useTeleportAnimation } from '@alecia/animations'
 
 import { IconNavLink, IconNavLinkProps } from './icon-nav-link'
 

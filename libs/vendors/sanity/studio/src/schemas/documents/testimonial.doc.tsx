@@ -4,6 +4,8 @@ import { defineField, defineType } from 'sanity'
 
 import { getBlockText } from '@alecia/sanity-util'
 
+import { literallyJustTheDefaultTextBlocks } from '../fragments'
+
 export const testimonial = defineType({
   name: 'testimonial',
   title: 'Testimonial',
@@ -13,7 +15,7 @@ export const testimonial = defineType({
     defineField({
       name: 'content',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: literallyJustTheDefaultTextBlocks,
     }),
     defineField({
       name: 'author',

@@ -2,7 +2,7 @@ import { faBriefcase } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { imageBlock } from '../fragments'
+import { blockTypes } from '../fragments/blocks'
 
 /**
  * Portfolio Project
@@ -24,9 +24,22 @@ export const project = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'body',
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'image',
+      group: 'content',
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'modules',
       type: 'array',
-      of: [{ type: 'block' }, imageBlock, { type: 'sandpack' }, { type: 'custom-html' }],
+      of: blockTypes,
       group: 'content',
     }),
     defineField({
@@ -70,7 +83,7 @@ export const project = defineType({
       featured: 'featured',
       title: 'title',
       subtitle: 'publishDate',
-      media: 'metadata.image',
+      media: 'mainImage.image',
     },
     prepare: ({ title, subtitle, media, featured }) => ({
       title: [featured && '★', title].filter(Boolean).join(' '),

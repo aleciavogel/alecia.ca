@@ -46,9 +46,12 @@ colors.forEach((color) => {
 const config: Config = {
   safelist,
   darkMode: ['selector'],
-  content: ['../../libs/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+  content: ['../../libs/**/*.{ts,tsx}', '../../apps/web/**/*.{ts,tsx}'],
   prefix: '',
   theme: {
+    listStyleType: {
+      square: 'square',
+    },
     container: {
       center: true,
       padding: '2rem',

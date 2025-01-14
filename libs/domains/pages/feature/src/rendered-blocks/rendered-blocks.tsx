@@ -3,16 +3,15 @@ import * as React from 'react'
 import type { PortableTextBlock } from 'next-sanity'
 
 import { GalleryPets, NavCard, NavIcons, TextCTA, TextIntro } from '@alecia/blocks'
-import { PageQueryResult } from '@alecia/sanity-types'
+import { TextAsideList } from '@alecia/blocks'
 
-type ModulesList = NonNullable<PageQueryResult>['modules']
-
+// TODO: attempt to fix the type later
 interface BlocksProps {
-  modules?: ModulesList
+  modules?: any[]
 }
 
 export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
-  modules?.map((module, index) => {
+  modules?.map((module) => {
     switch (module._type) {
       case 'gallery.pets':
         return <GalleryPets key={module._key} {...module} />
@@ -24,6 +23,10 @@ export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
         return <TextIntro key={module._key} {...module} body={module.body as PortableTextBlock[]} />
       case 'text.cta':
         return <TextCTA key={module._key} {...module} body={module.body as PortableTextBlock[]} />
+      case 'text.aside-list':
+        return (
+          <TextAsideList key={module._key} {...module} body={module.text as PortableTextBlock[]} />
+        )
       default:
         return null
     }

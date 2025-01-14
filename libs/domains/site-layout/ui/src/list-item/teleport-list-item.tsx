@@ -3,7 +3,7 @@
 import { type FC, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { useTeleportAnimation } from '@alecia/site-layout'
+import { useTeleportAnimation } from '@alecia/animations'
 
 import { ListItemProps } from './list-item'
 import { StaticNavListItem } from './static-nav-list-item'

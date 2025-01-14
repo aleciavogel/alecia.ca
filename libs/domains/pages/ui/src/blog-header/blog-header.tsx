@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React from 'react'
 
-import { AleciaCouchIllustration, Typography } from '@alecia/ui-kit'
+import { AleciaCouchIllustration, Typography, ZigZagAccent } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
 interface BlogHeaderProps {

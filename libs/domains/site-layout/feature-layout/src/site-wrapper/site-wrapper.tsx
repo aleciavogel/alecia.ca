@@ -1,12 +1,9 @@
 import type { FC, ReactNode } from 'react'
-import { type VariantProps } from 'class-variance-authority'
 
 import { Footer, StaticNav, StickyNav, StickyNavHoverLayer } from '@alecia/site-navigation'
 import { cn } from '@alecia/util'
 
-import { type pageVariants } from '../page-contents'
-
-interface AngledWrapperProps extends VariantProps<typeof pageVariants> {
+interface AngledWrapperProps {
   children?: ReactNode
   primaryColor?: string
   accentColor?: string

@@ -2,8 +2,9 @@ import type { FC, ReactNode } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import classNames from 'classnames'
 
-import { StickyNav } from '@alecia/site-navigation'
 import { calcWavyBorderMask, cn } from '@alecia/util'
+
+import { StickyNav } from '../sticky-nav'
 
 export const pageVariants = cva(
   cn(

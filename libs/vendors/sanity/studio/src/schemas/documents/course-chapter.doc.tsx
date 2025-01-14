@@ -2,7 +2,7 @@ import { faBookBookmark } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { imageBlock } from '../fragments'
+import { imageBlock, limitedBlockTypes } from '../fragments'
 
 /**
  * Course chapter
@@ -36,7 +36,7 @@ export const courseChapter = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [{ type: 'block' }, imageBlock, { type: 'sandpack' }, { type: 'custom-html' }],
+      of: limitedBlockTypes,
       group: 'content',
     }),
     defineField({

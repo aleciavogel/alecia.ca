@@ -3,7 +3,8 @@ import * as React from 'react'
 import { RenderedBlocks } from '@alecia/pages'
 import { getHomePage } from '@alecia/pages-data-access/server'
 import { WavyHeader } from '@alecia/pages-ui'
-import { PageContents, SiteWrapper } from '@alecia/site-layout'
+import { SiteWrapper } from '@alecia/site-layout'
+import { PageContents } from '@alecia/site-navigation'
 
 export default async function HomePage() {
   const data = await getHomePage()

@@ -2,7 +2,7 @@ import { faNewspaper } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { imageBlock } from '../fragments'
+import { imageBlock, limitedBlockTypes } from '../fragments'
 
 /**
  * Blog article
@@ -53,7 +53,7 @@ export const article = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [{ type: 'block' }, imageBlock, { type: 'sandpack' }, { type: 'custom-html' }],
+      of: limitedBlockTypes,
       group: 'content',
     }),
     defineField({

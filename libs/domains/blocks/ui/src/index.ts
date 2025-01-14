@@ -1,3 +1,4 @@
+export * from './aside-list'
 export * from './centered-nav-link'
 export * from './icon-nav-link'
 export * from './icon-nav-list'

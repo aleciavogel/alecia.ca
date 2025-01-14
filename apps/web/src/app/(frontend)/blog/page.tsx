@@ -6,8 +6,9 @@ import { BlogCategoryFilters } from '@alecia/blog-categories'
 import { getBlogIndexPage } from '@alecia/blog-data-access/server'
 import { BlogHeader } from '@alecia/pages-ui'
 import { BlogIndexQueryResult } from '@alecia/sanity-types'
-import { PageContents, SiteWrapper } from '@alecia/site-layout'
+import { SiteWrapper } from '@alecia/site-layout'
 import { EmptyState } from '@alecia/site-layout-ui'
+import { PageContents } from '@alecia/site-navigation'
 
 const fetchPageData = async (category?: string): Promise<BlogIndexQueryResult | undefined> => {
   return await getBlogIndexPage(category)

@@ -2,6 +2,8 @@ import { faGlobePointer } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
+import { literallyJustTheDefaultTextBlocks } from '../fragments'
+
 export const resource = defineType({
   name: 'resource',
   title: 'Resource',
@@ -29,7 +31,7 @@ export const resource = defineType({
     defineField({
       name: 'content',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: literallyJustTheDefaultTextBlocks,
       group: 'content',
     }),
     defineField({

@@ -1,15 +1,16 @@
 import type { FC } from 'react'
 import React from 'react'
 import classnames from 'classnames'
+import { stegaClean } from 'next-sanity'
 
-import { Typography } from '@alecia/ui-kit'
+import { Typography, ZigZagAccent } from '@alecia/ui-kit'
 import * as illustrations from '@alecia/ui-kit/components/vectors/illustrations'
 import { cn } from '@alecia/util'
 
 interface SimpleHeaderProps {
-  pretitle?: string
-  title?: string
-  subtitle?: string
+  pretitle?: string | null
+  title?: string | null
+  subtitle?: string | null
   headerIllustration?: keyof typeof illustrations | 'none'
 }
 
@@ -19,10 +20,10 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   pretitle = 'Pretitle',
   title = 'Untitled',
   subtitle,
-  headerIllustration = 'AleciaCouchIllustration',
+  headerIllustration = 'none',
 }) => {
   const svgKey = headerIllustration !== 'none' ? headerIllustration : DEFAULT_ILLUSTRATION
-  const IllustrationSVG = illustrations[svgKey ?? DEFAULT_ILLUSTRATION]
+  const IllustrationSVG = illustrations[stegaClean(svgKey) ?? DEFAULT_ILLUSTRATION]
   const hasHeaderIllustration = headerIllustration !== 'none'
 
   return (
@@ -30,7 +31,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
       className={cn(
         'relative',
         'flex items-center justify-items-center',
-        'px-8 md:px-20 pt-24',
+        'px-8 md:px-20 pt-24 lg:pt-32',
         'transition-dark-mode',
         'hero-padding',
         // 'bg-primary-800 dark:bg-primary-900',
@@ -44,20 +45,15 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
           'w-full text-white',
           classnames({ 'md:grid-cols-2': hasHeaderIllustration }),
           'grid grid-cols-1 ',
-          'gap-6 md:gap-10 lg:gap-16 pb-8',
+          'gap-6 md:gap-10 lg:gap-4 pb-8',
         )}
       >
-        <div
-          className={cn(
-            'col-span-1 h-full flex items-center justify-center',
-            classnames('md:just-start'),
-          )}
-        >
+        <div className={cn('h-full flex items-center', classnames('md:just-start'))}>
           <div
-            className={cn(
-              'text-center',
-              classnames({ 'max-w-[400px] md:text-left': hasHeaderIllustration }),
-            )}
+            className={classnames({
+              'md:text-left': hasHeaderIllustration,
+              'text-center': hasHeaderIllustration,
+            })}
           >
             {pretitle ? (
               <Typography variant="pretitle" className="mb-2">
@@ -65,17 +61,26 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
               </Typography>
             ) : null}
             <h1 className="w-full font-serif text-5xl md:text-6xl lg:text-8xl mb-2">{title}</h1>
-            {subtitle ? <p className="text-left md:text-lg text-white/80">{subtitle}</p> : null}
+            <ZigZagAccent className="fill-primary-300 w-[175px] my-8" />
+            {subtitle ? (
+              <p className="text-left md:text-lg lg:text-2xl text-white/90 max-w-[400px]">
+                {subtitle}
+              </p>
+            ) : null}
           </div>
         </div>
         {hasHeaderIllustration ? (
-          <div className="col-span-1 relative h-full z-[100]">
+          <div className="relative h-full z-[100]">
             <IllustrationSVG
               className={cn(
-                'z-[100] absolute top-0 right-0',
+                'z-[100] absolute bottom-0 right-0 -mb-[43%]',
                 classnames({
-                  'w-[90%]': svgKey !== 'AleciaCouchIllustration',
-                  'w-[120%]': svgKey === 'AleciaCouchIllustration',
+                  'w-[90%]': !['HammondSleepingIllustration', 'AleciaCouchIllustration'].includes(
+                    stegaClean(svgKey),
+                  ),
+                  'w-[120%]': ['HammondSleepingIllustration', 'AleciaCouchIllustration'].includes(
+                    stegaClean(svgKey),
+                  ),
                 }),
               )}
             />

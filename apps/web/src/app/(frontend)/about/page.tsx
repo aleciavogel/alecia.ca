@@ -5,7 +5,8 @@ import { RenderedBlocks } from '@alecia/pages'
 import { getPage } from '@alecia/pages-data-access/server'
 import { ImageHeader } from '@alecia/pages-ui'
 import { urlFor } from '@alecia/sanity-util'
-import { PageContents, SiteWrapper } from '@alecia/site-layout'
+import { SiteWrapper } from '@alecia/site-layout'
+import { PageContents } from '@alecia/site-navigation'
 
 export const metadata = {
   title: 'About Alecia | alecia.ca',

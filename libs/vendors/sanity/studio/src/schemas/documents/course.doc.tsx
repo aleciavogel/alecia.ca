@@ -2,7 +2,7 @@ import { faGraduationCap } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-import { imageBlock } from '../fragments'
+import { imageBlock, limitedBlockTypes } from '../fragments'
 
 /**
  * Blog post
@@ -31,17 +31,7 @@ export const course = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [
-        { type: 'block' },
-        imageBlock,
-        defineArrayMember({
-          type: 'code',
-          options: {
-            withFilename: true,
-          },
-        }),
-        { type: 'custom-html' },
-      ],
+      of: limitedBlockTypes,
       group: 'content',
     }),
     defineField({
