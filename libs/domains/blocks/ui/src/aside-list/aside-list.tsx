@@ -2,6 +2,8 @@ import { FC } from 'react'
 
 import { Typography } from '@alecia/ui-kit'
 
+// TODO: dark-mode version
+
 interface AsideListProps {
   heading?: string | null
   listItems?: string[] | null

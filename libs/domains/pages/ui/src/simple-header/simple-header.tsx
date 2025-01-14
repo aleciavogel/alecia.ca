@@ -22,7 +22,8 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   subtitle,
   headerIllustration = 'none',
 }) => {
-  const svgKey = headerIllustration !== 'none' ? headerIllustration : DEFAULT_ILLUSTRATION
+  const svgKey =
+    headerIllustration !== 'none' ? stegaClean(headerIllustration) : DEFAULT_ILLUSTRATION
   const IllustrationSVG = illustrations[stegaClean(svgKey) ?? DEFAULT_ILLUSTRATION]
   const hasHeaderIllustration = headerIllustration !== 'none'
 
@@ -75,12 +76,17 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
               className={cn(
                 'z-[100] absolute bottom-0 right-0 -mb-[43%]',
                 classnames({
-                  'w-[90%]': !['HammondSleepingIllustration', 'AleciaCouchIllustration'].includes(
-                    stegaClean(svgKey),
-                  ),
-                  'w-[120%]': ['HammondSleepingIllustration', 'AleciaCouchIllustration'].includes(
-                    stegaClean(svgKey),
-                  ),
+                  'w-[90%]': ![
+                    'HammondSleepingIllustration',
+                    'AleciaCouchIllustration',
+                    'SadieHammondCookiesIllustration',
+                  ].includes(svgKey),
+                  'w-[120%]': [
+                    'HammondSleepingIllustration',
+                    'AleciaCouchIllustration',
+                    'SadieHammondCookiesIllustration',
+                  ].includes(svgKey),
+                  '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
                 }),
               )}
             />

@@ -1,9 +1,0 @@
-{
-  "name": "sanity-common",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/vendors/sanity/common/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project sanity-common --web",
-  "targets": {}
-}

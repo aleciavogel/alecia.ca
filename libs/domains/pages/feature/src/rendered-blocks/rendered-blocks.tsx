@@ -2,8 +2,7 @@ import { FC } from 'react'
 import * as React from 'react'
 import type { PortableTextBlock } from 'next-sanity'
 
-import { GalleryPets, NavCard, NavIcons, TextCTA, TextIntro } from '@alecia/blocks'
-import { TextAsideList } from '@alecia/blocks'
+import { GalleryPets, NavCard, NavIcons, TextAsideList, TextCTA, TextIntro } from '@alecia/blocks'
 
 // TODO: attempt to fix the type later
 interface BlocksProps {
