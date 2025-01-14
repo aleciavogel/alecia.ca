@@ -33,7 +33,7 @@ export default async function RootLayout({ children, sandbox }: RootLayoutProps)
     <html lang="en">
       <body
         id="root"
-        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray `}
+        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}
       >
         <Providers>
           {sandbox}

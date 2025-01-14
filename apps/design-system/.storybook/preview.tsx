@@ -1,13 +1,13 @@
-// Add IntlProvider to wrap the preview
-import { NextIntlClientProvider } from 'next-intl'
+import { ScrollProvider } from '@alecia/site-scroll'
 
-import '@alecia/ui-kit/styles/global.css'
+import 'locomotive-scroll/dist/locomotive-scroll.min.css'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import './storybook.css'
 
 export const decorators = [
-  (Story) => (
-    <NextIntlClientProvider locale="en" messages={{}}>
+  (Story: any) => (
+    <ScrollProvider>
       <Story />
-    </NextIntlClientProvider>
+    </ScrollProvider>
   ),
 ]

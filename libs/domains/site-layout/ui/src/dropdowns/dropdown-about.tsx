@@ -27,12 +27,12 @@ interface DropdownAboutProps {
 export const DropdownAbout: FC<DropdownAboutProps> = ({ label, image, links, name, subtitle }) => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
-    <NavigationMenuContent className="bg-primary-800 dark:bg-primary-900">
+    <NavigationMenuContent className="bg-primary-900">
       <ul className={cn('grid gap-3 p-4', 'md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]')}>
         <li className="row-span-3">
           <NavigationMenuLink asChild>
             <a
-              className="rounded-lg flex h-full w-full hover:bg-white/10 select-none flex-col justify-end bg-gradient-to-b from-primary-700/30 dark:from-primary-800/30 to-primary-700/60 dark:to-primary-800/60 p-6 no-underline outline-none focus:shadow-md"
+              className="rounded-lg flex h-full w-full hover:bg-white/10 select-none flex-col justify-end bg-gradient-to-b from-primary-800/30 to-primary-800/60 p-6 no-underline outline-none focus:shadow-md"
               href="/about"
             >
               {image && name ? (

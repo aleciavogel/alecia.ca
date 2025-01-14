@@ -94,6 +94,7 @@
       "@alecia/site-layout": ["libs/domains/site-layout/feature-layout/src/index.ts"],
       "@alecia/site-layout-ui": ["libs/domains/site-layout/ui/src/index.ts"],
       "@alecia/site-navigation": ["libs/domains/site-layout/feature-navigation/src/index.ts"],
+      "@alecia/site-scroll": ["libs/domains/site-layout/feature-scroll/src/index.ts"],
       "@alecia/test-helpers": ["libs/shared/test-helpers/src/index.ts"],
       "@alecia/tw-dynamic-themes": ["libs/plugins/dynamic-themes/src/index.ts"],
       "@alecia/types": ["libs/shared/types/src/index.ts"],

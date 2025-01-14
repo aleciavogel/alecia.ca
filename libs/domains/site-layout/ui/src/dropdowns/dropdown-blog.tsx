@@ -18,7 +18,7 @@ interface DropdownBlogProps {
 export const DropdownBlog: FC<DropdownBlogProps> = ({ label, links }) => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
-    <NavigationMenuContent className="bg-primary-800 dark:bg-primary-900">
+    <NavigationMenuContent className="bg-primary-900">
       <ul className={cn('grid gap-3 p-4', 'md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]')}>
         {links?.map((item, index) => (
           <ListItem

@@ -6,8 +6,9 @@
   "tags": ["scope:design-system", "type:ui"],
   "targets": {
     "storybook": {
+      "executor": "nx:run-commands",
       "options": {
-        "port": 4400
+        "command": "doppler run --command='cd apps/design-system && storybook dev --port 4400'"
       }
     }
   }

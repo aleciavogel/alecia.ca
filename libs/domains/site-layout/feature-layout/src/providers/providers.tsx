@@ -5,8 +5,7 @@ import React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { DarkModeProvider } from '@alecia/dark-mode'
-
-import { ScrollProvider } from '../scroll-provider'
+import { ScrollProvider } from '@alecia/site-scroll'
 
 interface ProvidersProps {
   children: React.ReactNode

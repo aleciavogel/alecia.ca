@@ -23,7 +23,7 @@ interface DropdownQuoteProps {
 export const DropdownQuote: FC<DropdownQuoteProps> = ({ label, quote, author, links }) => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
-    <NavigationMenuContent className="bg-primary-800 dark:bg-primary-900">
+    <NavigationMenuContent className="bg-primary-900">
       <ul className={cn('grid gap-3 p-4', 'md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]')}>
         <li className="row-span-3">
           <NavigationMenuLink asChild>
@@ -35,8 +35,8 @@ export const DropdownQuote: FC<DropdownQuoteProps> = ({ label, quote, author, li
                 'rounded-lg select-none focus:shadow-md outline-none', // Other container styles
                 'text-white', // Base text styles
                 // Background colors
-                'bg-gradient-to-b to-primary-700/60 from-primary-700/30', // Gradient (Light mode)
-                'dark:to-primary-800/60 dark:from-primary-800/30', // Gradient (Dark mode)
+                'bg-gradient-to-b',
+                'to-primary-800/60 from-primary-800/30',
               )}
             >
               <p className="italic text-sm mb-2 leading-snug">&ldquo;{quote}&rdquo;</p>

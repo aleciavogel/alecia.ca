@@ -1,3 +1,86 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "../../../libs/shared/ui/src/styles/global.css";
+
+@font-face {
+  font-family: 'Eksell Large';
+  src: url('../../../libs/shared/ui/src/fonts/eksell/eksell-display-large-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eksell Small';
+  src: url('../../../libs/shared/ui/src/fonts/eksell/eksell-display-small-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-regular-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-black-webfont.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-bold-webfont.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-extralight-webfont.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-light-webfont.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-medium-webfont.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-semibold-webfont.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Silka';
+  src: url('../../../libs/shared/ui/src/fonts/silka/silka-regular-italic-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+:root {
+  --font-eksell-large: 'Eksell Large';
+  --font-eksell-small: 'Eksell Small';
+  --font-silka: 'Silka';
+}
+
+body {
+  font-family: var(--font-silka), sans-serif;
+}
+
+body.dark,
+body.dark .docs-story{
+  @apply bg-gray-900;
+}
