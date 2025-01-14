@@ -1,8 +1,8 @@
-import groq from 'groq'
+import { defineQuery } from 'next-sanity'
 
 import { modulesQueryPartial } from './modules.query'
 
-export const homePageQuery = groq`
+export const homePageQuery = defineQuery(`
 *[_type == 'page' && metadata.slug.current == 'index'][0]{
   ...,
   modules[]{
@@ -12,9 +12,10 @@ export const homePageQuery = groq`
     ...,
     'ogimage': image.asset->url + '?w=1200'
   }
-}`
+}`)
 
-export const pageQuery = groq`*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{
+export const pageQuery =
+  defineQuery(`*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{
     ...,
     modules[]{
       ${modulesQueryPartial}
@@ -23,7 +24,7 @@ export const pageQuery = groq`*[_type == 'page' && metadata.slug.current == $slu
       ...,
       'ogimage': image.asset->url + '?w=1200'
     }
-  }`
+  }`)
 
-export const pageSlugQuery = groq`
-  *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current`
+export const pageSlugQuery = defineQuery(`
+  *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current`)

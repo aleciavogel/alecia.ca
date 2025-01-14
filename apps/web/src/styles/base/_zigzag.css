@@ -1,0 +1,30 @@
+@layer base {
+  .zigzag-link,
+  .zigzag-btn,
+  .zigzag-link-no-pseudo {
+    @apply relative overflow-hidden no-underline;
+    @apply font-semibold;
+  }
+
+  .zigzag-link::after,
+  .zigzag-btn::after,
+  .zigzag-link-no-pseudo > div {
+    @apply absolute w-full left-0 pointer-events-none;
+    @apply opacity-30 bg-current;
+    @apply h-[2px];
+    content: '';
+    top: calc(100% + 1px);
+  }
+
+  .zigzag-link:hover {
+    @apply text-accent-600;
+  }
+
+  .zigzag-link:hover::after,
+  .zigzag-link-no-pseudo:hover > div {
+    @apply bg-transparent;
+    @apply zigzag-base;
+    top: calc(100% - 1px);
+    background-image: var(--accent-zigzag);
+  }
+}

@@ -1,0 +1,24 @@
+@layer components {
+  .drop-cap-shadow {
+    text-shadow: 2px 4px 0 var(--bg), 4px 7px 0 rgb(var(--primary-800));
+  }
+
+  .dark .drop-cap-shadow {
+    text-shadow: 2px 4px 0 var(--bg), 4px 7px 0 rgb(var(--primary-500));
+  }
+
+  .drop-cap > p:first-of-type::first-letter {
+    @apply drop-cap-shadow;
+    @apply font-serif font-extrabold border-solid;
+    @apply float-left mt-2;
+    @apply p-[12px];
+    @apply border-[1px] border-primary;
+    @apply text-primary;
+    @apply transition-[text-shadow] transition-dark-mode;
+    @apply text-[92px] leading-[0.75];
+    @apply mr-[8px];
+
+    @apply md:text-[138px] md:p-[14px] md:mr-[18px];
+    @apply md:duration-200 md:ease-in-out;
+  }
+}

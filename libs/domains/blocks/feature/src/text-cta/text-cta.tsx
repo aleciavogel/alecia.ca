@@ -1,0 +1,52 @@
+import type { FC } from 'react'
+
+import { BasicBlockContent, IconButtonLink, Typography } from '@alecia/ui-kit'
+import { cn } from '@alecia/util'
+
+import type { TextCTAProps } from './types'
+
+export const TextCTA: FC<TextCTAProps> = ({
+  title = 'Untitled',
+  pretitle = 'Pretitle',
+  body,
+  link,
+  shouldUseLinkIcon,
+  linkIcon,
+  icon,
+}) => (
+  <div
+    className={cn(
+      'container mx-auto',
+      'md:flex md:justify-center gap-8 md:gap-20',
+      'px-14 md:px-20',
+      'relative',
+    )}
+  >
+    <div className="h-full md:flex md:max-w-[430px] md:items-center md:justify-self-stretch mt-8">
+      <div className="max-md:text-center">
+        {pretitle ? (
+          <Typography variant="blockPretitle" className="mb-4">
+            {pretitle}
+          </Typography>
+        ) : null}
+        <Typography variant="blockTitle" className="text-primary-700 dark:text-primary-300 mb-6">
+          {title}
+        </Typography>
+
+        {link ? (
+          <IconButtonLink
+            href={link.slug ?? '#'}
+            variant="outline"
+            size="lg"
+            iconName={shouldUseLinkIcon ? linkIcon : icon?.name}
+          >
+            {link.label}
+          </IconButtonLink>
+        ) : null}
+      </div>
+    </div>
+    <div className="flex-grow space-y-6 max-w-screen-sm">
+      <BasicBlockContent value={body} />
+    </div>
+  </div>
+)

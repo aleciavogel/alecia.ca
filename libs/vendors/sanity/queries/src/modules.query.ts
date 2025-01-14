@@ -1,11 +1,11 @@
 import { galleryPetsQueryPartial } from './gallery-pets.query'
-import { navAboutQueryPartial, navExploreQueryPartial } from './nav.query'
+import { navCardQueryPartial, navIconsQueryPartial } from './nav.query'
 import { textCtaQueryPartial } from './text.query'
 
 export const modulesQueryPartial = `
   ...,
-  ${navAboutQueryPartial},
-  ${navExploreQueryPartial},
+  ${navIconsQueryPartial},
+  ${navCardQueryPartial},
   ${galleryPetsQueryPartial},
   ${textCtaQueryPartial}
 `

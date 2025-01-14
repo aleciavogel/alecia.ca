@@ -1,1 +1,1 @@
-export * from './lib/blog-categories'
+export * from './blog-category-filters'

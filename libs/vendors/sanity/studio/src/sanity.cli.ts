@@ -10,4 +10,6 @@ loadEnvConfig(__dirname, IS_DEV_MODE || IS_VERCEL_PREVIEW, {
   error: console.error,
 })
 
-export default defineCliConfig({ api: { projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET } })
+export default defineCliConfig({
+  api: { projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET },
+})

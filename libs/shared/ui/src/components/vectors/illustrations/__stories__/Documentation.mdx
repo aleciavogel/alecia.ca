@@ -1,0 +1,106 @@
+import { Canvas, Meta, ArgTypes } from '@storybook/blocks'
+import * as PhoebeStories from '../phoebe/__stories__/phoebe-illustrations.stories'
+import * as AleciaStories from '../alecia/__stories__/alecia-illustrations.stories'
+import * as HammondStories from '../hammond/__stories__/hammond-illustrations.stories'
+import * as SadieStories from '../sadie/__stories__/sadie-illustrations.stories'
+
+<Meta title="Vectors/Illustrations/Documentation" />
+
+# Illustrations
+
+Vector illustrations are used to visually represent concepts, ideas, and actions in a more engaging way than text or
+icons alone. They can be used to add visual interest to a page, break up large blocks of text, or provide context for
+a concept.
+
+All the illustrations are SVG files that use Tailwind CSS classes to style them. This makes it easy to customize
+them to match the color theme of each page.
+
+## Alecia
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+{' '}
+
+<div>
+  ### Alecia Couch
+  <Canvas of={AleciaStories.AleciaCouch} />
+</div>
+
+{' '}
+
+<div>
+  ### Alecia Sit
+  <Canvas of={AleciaStories.AleciaSit} />
+</div>
+
+{' '}
+
+<div>
+  ### Alecia Idea
+  <Canvas of={AleciaStories.AleciaIdea} />
+</div>
+
+{' '}
+
+<div>
+  ### Alecia Wave
+  <Canvas of={AleciaStories.AleciaWave} />
+</div>
+
+{' '}
+
+<div>
+  ### Alecia Laying
+  <Canvas of={AleciaStories.AleciaLaying} />
+</div>
+
+  <div>
+    ### Sadie Ate My Website
+    <Canvas of={SadieStories.SadieAteMyWebsite} />
+  </div>
+</div>
+
+## Animals
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div>
+    ### Hammond Sleeping
+    <Canvas of={HammondStories.HammondSleeping} />
+  </div>
+
+{' '}
+
+<div>
+  ### Hammond Tipping Over A Beaker
+  <Canvas of={HammondStories.HammondScience} />
+</div>
+
+{' '}
+
+<div>
+  ### Sadie & Hammond Stealing Cookies
+  <Canvas of={HammondStories.SadieHammondCookies} />
+</div>
+
+{' '}
+
+<div>
+  ### Phoebe Laptop
+  <Canvas of={PhoebeStories.PhoebeLaptop} />
+</div>
+
+{' '}
+
+<div>
+  ### Phoebe Sleeping
+  <Canvas of={PhoebeStories.PhoebeSleeping} />
+</div>
+
+{' '}
+
+<div>
+  ### Phoebe Playing With Yarn
+  <Canvas of={PhoebeStories.PhoebeYarn} />
+</div>
+
+</div>

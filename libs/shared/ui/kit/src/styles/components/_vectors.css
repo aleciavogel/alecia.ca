@@ -1,5 +1,0 @@
-@layer components {
-    .svg-light {
-        @apply opacity-0 dark:opacity-50 transition-opacity ease-in-out duration-200;
-    }
-}

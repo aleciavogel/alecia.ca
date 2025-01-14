@@ -1,1 +1,3 @@
-export * from './lib/blog-ui'
+export * from './blog-card'
+export * from './comments'
+export * from './separator'

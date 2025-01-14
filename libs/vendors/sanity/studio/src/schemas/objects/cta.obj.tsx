@@ -5,7 +5,7 @@ import { defineField, defineType } from 'sanity'
 export const cta = defineType({
   name: 'cta',
   title: 'Call-to-action',
-  icon: <FontAwesomeIcon icon={faPhone} />,
+  icon: () => <FontAwesomeIcon icon={faPhone} />,
   type: 'object',
   fields: [
     defineField({

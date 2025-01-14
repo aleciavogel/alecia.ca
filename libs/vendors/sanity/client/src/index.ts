@@ -1,5 +1,6 @@
 import { createClient } from 'next-sanity'
 
+import { IS_DEV_MODE } from '@alecia/constants'
 import {
   SANITY_API_VERSION,
   SANITY_DATASET,
@@ -14,9 +15,8 @@ export const sanityClient = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   apiVersion: SANITY_API_VERSION,
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  useCdn: !IS_DEV_MODE,
   stega: {
-    enabled: false,
     studioUrl: SANITY_STUDIO_URL,
   },
 })

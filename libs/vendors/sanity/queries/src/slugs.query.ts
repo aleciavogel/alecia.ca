@@ -7,7 +7,7 @@ export const blogPostSlugPartial = `
 `
 
 export const blogCategorySlugPartial = `
-  _type == 'blog.category' => '/blog?category=' + slug.current
+  _type == 'blog.category' => '/blog?category=' + metadata.slug.current
 `
 
 export const courseSlugPartial = `
@@ -17,10 +17,12 @@ export const courseSlugPartial = `
 export const courseChapterSlugPartial = `
   _type == 'course.chapter' => {
     'slug':
-      '/courses/' +
-      *[_type == 'course' && references(^._id)][0].metadata.slug.current +
-      '/' +
-      metadata.slug.current
+      "/courses/" +
+      coalesce(
+        *[_type == "course" && references(^._id)][0].metadata.slug.current,
+        "unknown-course"
+      ) +
+      "/" + metadata.slug.current
   }.slug
 `
 

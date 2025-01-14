@@ -1,8 +1,8 @@
-import groq from 'groq'
+import { defineQuery } from 'next-sanity'
 
 import { internalLinkQueryPartial, linkListQueryPartial } from './links.query'
 
-export const settingsQuery = groq`
+export const settingsQuery = defineQuery(`
   *[_type == 'settings'][0]{
     ...,
     mainMenu{
@@ -52,4 +52,4 @@ export const settingsQuery = groq`
     },
     'ogimage': image.asset->url + '?w=1200'
   }
-`
+`)

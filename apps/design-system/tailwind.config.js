@@ -1,4 +1,4 @@
-const { theme, plugins } = require('../../libs/shared/ui/kit/src/tailwind')
+const { theme, plugins } = require('../../libs/shared/ui/src/tailwind')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

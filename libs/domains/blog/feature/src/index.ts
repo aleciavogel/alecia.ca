@@ -1,1 +1,1 @@
-export * from './lib/blog'
+export * from './portable-text'

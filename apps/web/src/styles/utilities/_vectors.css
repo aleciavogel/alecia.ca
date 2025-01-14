@@ -1,0 +1,26 @@
+@layer utilities {
+  .svg-rounded {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .svg-outline {
+    stroke-width: 2px;
+  }
+
+  .svg-small-outline {
+    stroke-width: 1px;
+  }
+
+  .no-fill {
+    fill: none;
+  }
+
+  .svg-rounded-outline {
+    @apply svg-rounded svg-outline;
+  }
+
+  .svg-rounded-small-outline {
+    @apply svg-rounded svg-small-outline;
+  }
+}

@@ -5,7 +5,7 @@ import { defineField, defineType } from 'sanity'
 export const redirect = defineType({
   name: 'redirect',
   title: 'Redirect',
-  icon: <FontAwesomeIcon icon={faDiamondTurnRight} />,
+  icon: () => <FontAwesomeIcon icon={faDiamondTurnRight} />,
   type: 'document',
   fields: [
     defineField({

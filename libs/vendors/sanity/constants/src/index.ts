@@ -22,7 +22,7 @@ export const SANITY_PROJECT_ID = assertValue(
  * The API version in Sanity.io
  * @see https://www.sanity.io/docs/api-versioning for how versioning works
  */
-export const SANITY_API_VERSION = process.env['NEXT_PUBLIC_SANITY_API_VERSION'] ?? '2023-06-21'
+export const SANITY_API_VERSION = process.env['NEXT_PUBLIC_SANITY_API_VERSION'] ?? '2024-12-01'
 
 /**
  * The secret used to revalidate the cache

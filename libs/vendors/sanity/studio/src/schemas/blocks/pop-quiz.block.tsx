@@ -8,7 +8,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 export const popQuiz = defineType({
   name: 'pop-quiz',
   title: 'Pop quiz',
-  icon: <FontAwesomeIcon icon={faPenCircle} />,
+  icon: () => <FontAwesomeIcon icon={faPenCircle} />,
   type: 'object',
   fields: [
     defineField({

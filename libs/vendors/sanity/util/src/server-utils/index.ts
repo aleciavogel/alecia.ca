@@ -1,1 +1,2 @@
-export * from './sanity-fetch'
+export * from './fetch'
+export * from './live'

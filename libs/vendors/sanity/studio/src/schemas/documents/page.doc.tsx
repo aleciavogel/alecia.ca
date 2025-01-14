@@ -9,7 +9,7 @@ export const page = defineType({
   name: 'page',
   title: 'Page',
   type: 'document',
-  icon: <FontAwesomeIcon icon={faPage} />,
+  icon: () => <FontAwesomeIcon icon={faPage} />,
   fieldsets: [{ name: 'heading', title: 'Page Heading' }],
   groups: [
     { name: 'content', default: true },
@@ -121,8 +121,8 @@ export const page = defineType({
         { type: 'gallery.pets' },
 
         /** Navigation */
-        { type: 'nav.about' },
-        { type: 'nav.explore' },
+        { type: 'nav.card' },
+        { type: 'nav.icons' },
         // { type: 'flag-list' },
         // { type: 'hero' },
         // { type: 'hero.saas' },
@@ -150,7 +150,7 @@ export const page = defineType({
           views: [{ name: 'list' }, { name: 'grid' }],
           groups: [
             { name: 'blog', of: ['blog-frontpage', 'blog-list', 'blog-post-content'] },
-            { name: 'navigation', of: ['nav.about', 'nav.explore'] },
+            { name: 'navigation', of: ['nav.card', 'nav.icons'] },
             {
               name: 'testimonial',
               of: ['testimonial-list', 'testimonial.featured'],

@@ -1,6 +1,5 @@
 const nx = require('@nx/eslint-plugin')
 const simpleImport = require('eslint-plugin-simple-import-sort')
-const jsoncParser = require('jsonc-eslint-parser')
 
 module.exports = [
   ...nx.configs['flat/base'],
@@ -12,7 +11,6 @@ module.exports = [
       'simple-import-sort': simpleImport,
     },
   },
-
   {
     files: ['**/*.stories.tsx', '**/*.stories.ts', '**/*.stories.jsx', '**/*.stories.js'],
     rules: {

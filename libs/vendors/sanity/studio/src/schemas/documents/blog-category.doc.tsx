@@ -13,6 +13,7 @@ export const blogCategory = defineType({
   title: 'Blog category',
   type: 'document',
   icon: () => <FontAwesomeIcon icon={faFolderOpen} />,
+  groups: [{ name: 'seo', title: 'SEO' }],
   fields: [
     defineField({
       name: 'title',
@@ -24,12 +25,9 @@ export const blogCategory = defineType({
       type: 'text',
     }),
     defineField({
-      name: 'slug',
-      type: 'slug',
-      validation: (Rule) => Rule.required(),
-      options: {
-        source: 'title',
-      },
+      name: 'metadata',
+      type: 'metadata',
+      group: 'seo',
     }),
     iconPickerField,
   ],

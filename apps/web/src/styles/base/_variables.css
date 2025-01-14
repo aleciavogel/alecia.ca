@@ -1,0 +1,14 @@
+@layer base {
+  :root {
+    /* Main page styling */
+    --bg: white;
+    /* Vectors */
+
+    /* For math reasons */
+    --triangle-height: 152px;
+  }
+
+  .dark {
+    --bg: theme('colors.gray.900');
+  }
+}

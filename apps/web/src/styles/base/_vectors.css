@@ -1,0 +1,470 @@
+@layer base {
+  /************************************************************************
+                    oooo                             .o8
+                    `888                            "888
+         oo.ooooo.   888 .oo.    .ooooo.   .ooooo.   888oooo.   .ooooo.
+          888' `88b  888P"Y88b  d88' `88b d88' `88b  d88' `88b d88' `88b
+          888   888  888   888  888   888 888ooo888  888   888 888ooo888
+          888   888  888   888  888   888 888    .o  888   888 888    .o
+          888bod8P' o888o o888o `Y8bod8P' `Y8bod8P'  `Y8bod8P' `Y8bod8P'
+          888
+         o888o
+    ************************************************************************/
+  .phoebe-base-fill {
+    @apply fill-gray-500;
+  }
+
+  .phoebe-base-shade {
+    @apply fill-gray-700;
+  }
+
+  .phoebe-base-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-gray-700;
+  }
+
+  .phoebe-highlight-fill {
+    @apply fill-gray-300;
+  }
+
+  .phoebe-highlight-shade {
+    @apply fill-gray-400;
+  }
+
+  .phoebe-highlight-outline,
+  .hammond-highlight-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-gray-400;
+  }
+
+  .hammond-ears-fill,
+  .phoebe-ears-fill {
+    @apply fill-pink-200;
+  }
+
+  .phoebe-mouth-outline,
+  .cat-face-outline,
+  .dog-face-outline {
+    @apply svg-rounded-small-outline no-fill;
+    @apply stroke-black;
+  }
+
+  .cat-tongue {
+    @apply fill-pink-400;
+  }
+
+  /*************************************************************
+                  oooo                       o8o
+                  `888                       `"'
+         .oooo.    888   .ooooo.   .ooooo.  oooo   .oooo.
+        `P  )88b   888  d88' `88b d88' `"Y8 `888  `P  )88b
+         .oP"888   888  888ooo888 888        888   .oP"888
+        d8(  888   888  888    .o 888   .o8  888  d8(  888
+        `Y888""8o o888o `Y8bod8P' `Y8bod8P' o888o `Y888""8o
+
+    *************************************************************/
+  .alecia-shirt-fill {
+    @apply fill-primary-500;
+  }
+
+  .alecia-shirt-shade {
+    @apply svg-rounded-small-outline;
+    @apply fill-primary-600;
+    @apply stroke-primary-600;
+  }
+
+  .alecia-shirt-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-primary-600;
+  }
+
+  .alecia-pants-fill {
+    @apply fill-blue-700;
+  }
+
+  .alecia-pants-shade {
+    @apply fill-blue-950;
+  }
+
+  .alecia-pants-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-blue-900;
+  }
+
+  .alecia-pants-outline-lighter {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-blue-800;
+  }
+
+  .alecia-socks-light {
+    @apply fill-accent-50;
+  }
+
+  .alecia-socks-dark {
+    @apply fill-accent-300;
+  }
+
+  .alecia-socks-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-accent-300;
+  }
+
+  .alecia-hair-light-fill {
+    @apply fill-yellow-700;
+  }
+
+  .alecia-hair-dark-fill {
+    @apply fill-yellow-800;
+  }
+
+  .alecia-hair-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-yellow-900;
+  }
+
+  .alecia-skin-fill {
+    @apply fill-rose-200;
+  }
+
+  .alecia-skin-fingers {
+    @apply fill-rose-200;
+    @apply stroke-rose-200;
+    stroke-width: 12px;
+  }
+
+  .alecia-arm-outline {
+    @apply svg-rounded-small-outline;
+    @apply stroke-rose-400;
+  }
+
+  .alecia-skin-soft-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-rose-300;
+  }
+
+  .alecia-skin-shade {
+    @apply fill-rose-300;
+  }
+
+  .alecia-skin-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-rose-400;
+  }
+
+  .alecia-accessory {
+    @apply fill-accent-500;
+  }
+
+  .alecia-laptop-fill {
+    @apply fill-zinc-300;
+  }
+
+  .alecia-laptop-screen {
+    @apply fill-cyan-600;
+  }
+
+  .alecia-laptop-edge {
+    @apply fill-zinc-300;
+  }
+
+  .alecia-laptop-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-zinc-500;
+  }
+
+  .alecia-laptop-highlight {
+    @apply fill-zinc-100;
+  }
+
+  .alecia-laptop-shade {
+    @apply fill-zinc-600;
+  }
+
+  .alecia-laptop-keyboard {
+    @apply fill-zinc-400;
+  }
+
+  .alecia-couch-light {
+    @apply fill-blue-500;
+  }
+
+  .alecia-couch-dark {
+    @apply fill-blue-600;
+  }
+
+  .alecia-couch-leg {
+    @apply fill-yellow-500;
+  }
+
+  .alecia-eyes-light {
+    @apply fill-white;
+  }
+
+  .couch-light {
+    fill: url(#couch-gradient);
+  }
+
+  .lying-light {
+    fill: url(#laying-gradient);
+  }
+
+  .idea-light {
+    fill: url(#idea-gradient);
+  }
+
+  .sit-light {
+    fill: url(#sit-gradient);
+  }
+
+  /********************************************************
+                                 .o8   o8o
+                                "888   `"'
+         .oooo.o  .oooo.    .oooo888  oooo   .ooooo.
+        d88(  "8 `P  )88b  d88' `888  `888  d88' `88b
+        `"Y88b.   .oP"888  888   888   888  888ooo888
+        o.  )88b d8(  888  888   888   888  888    .o
+        8""888P' `Y888""8o `Y8bod88P" o888o `Y8bod8P'
+
+    ********************************************************/
+  .sadie-body {
+    @apply fill-zinc-600;
+  }
+
+  .sadie-shade {
+    @apply fill-zinc-600;
+  }
+
+  .sadie-tongue-fill {
+    @apply fill-rose-400;
+  }
+
+  .sadie-tongue-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-red-600;
+  }
+
+  .sadie-head,
+  .sadie-tail {
+    @apply fill-zinc-500;
+  }
+
+  .sadie-ears-and-nose {
+    @apply fill-zinc-700;
+  }
+
+  .sadie-snout {
+    @apply fill-zinc-600;
+  }
+
+  .sadie-paw {
+    @apply fill-zinc-400;
+  }
+
+  .sadie-paw-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-zinc-500;
+  }
+
+  .sadie-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-zinc-700;
+  }
+
+  .sadie-tail-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-zinc-600;
+  }
+
+  /**************************************************************************
+
+      oooo
+      `888
+       888 .oo.    .oooo.   ooo. .oo.  .oo.   ooo. .oo.  .oo.   oooo    ooo
+       888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888P"Y88bP"Y88b   `88.  .8'
+       888   888   .oP"888   888   888   888   888   888   888    `88..8'
+       888   888  d8(  888   888   888   888   888   888   888     `888'
+      o888o o888o `Y888""8o o888o o888o o888o o888o o888o o888o     .8'
+                                                                .o..P'
+                                                               `Y8P'
+    *************************************************************************/
+
+  .hammond-base-fill {
+    @apply fill-yellow-800;
+  }
+
+  .hammond-base-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-yellow-900;
+  }
+
+  .hammond-light-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-gray-400;
+  }
+
+  .hammond-base-shade {
+    @apply fill-yellow-900;
+  }
+
+  .hammond-stripe-fill {
+    @apply fill-yellow-900;
+  }
+
+  .hammond-highlight-fill {
+    @apply fill-slate-200;
+  }
+
+  .hammond-highlight-shade {
+    @apply fill-slate-300;
+  }
+
+  .hammond-ears-outer {
+    @apply fill-yellow-950;
+  }
+
+  .toe-beans {
+    @apply fill-pink-300;
+  }
+
+  /**
+     * Miscellaneous
+     */
+  .cookie-dark-fill {
+    @apply fill-yellow-950;
+  }
+
+  .cookie-outline {
+    @apply fill-none stroke-black;
+    stroke-miterlimit: 10;
+  }
+
+  .jar-label {
+    @apply fill-white;
+  }
+
+  .cabinet-light-fill {
+    @apply fill-orange-300;
+  }
+
+  .cabinet-dark-fill {
+    @apply fill-orange-600;
+  }
+
+  .picture-frame {
+    @apply fill-orange-400;
+  }
+
+  .picture-bg {
+    @apply fill-orange-100;
+  }
+
+  .picture-stroke {
+    @apply stroke-orange-600;
+    @apply fill-none;
+
+    stroke-miterlimit: 10;
+  }
+
+  .fern-fill {
+    @apply fill-green-600;
+  }
+
+  .fern-lighter-fill {
+    @apply fill-green-500;
+  }
+
+  .fern-leaf-stroke {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-green-700;
+  }
+
+  .fern-leaf-lighter-stroke {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-green-600;
+  }
+
+  .pot-fill {
+    @apply fill-orange-700;
+  }
+
+  .beaker-juice {
+    @apply fill-green-400;
+  }
+
+  .beaker-juice-dark {
+    @apply fill-green-600;
+  }
+
+  .beaker-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-sky-700;
+  }
+
+  .beaker-shadow {
+    @apply fill-sky-800;
+  }
+
+  .yarn-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-green-700;
+  }
+
+  .yarn-fill {
+    @apply fill-green-500;
+  }
+
+  .yarn-highlight-fill {
+    @apply fill-green-400;
+  }
+
+  .yarn-shadow-fill {
+    @apply fill-green-700;
+  }
+
+  .knitting-needle-fill {
+    @apply fill-yellow-800;
+  }
+
+  .knitting-needle-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-yellow-900;
+  }
+
+  .paper-blue-fill {
+    @apply fill-blue-300;
+  }
+
+  .paper-blue-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-blue-500;
+  }
+
+  .paper-tertiary-fill {
+    @apply fill-yellow-200;
+  }
+
+  .paper-tertiary-outline {
+    @apply svg-rounded-outline no-fill;
+    @apply stroke-yellow-400;
+  }
+
+  .wave-light-gradient {
+    fill: url(#wave-light);
+  }
+
+  .phoebe-laptop-light {
+    fill: url(#phoebe-laptop-light);
+  }
+
+  .speech-bubble {
+    @apply fill-primary-300;
+  }
+
+  .vectorized-text {
+    @apply fill-black;
+  }
+
+  .desktop {
+    @apply fill-yellow-900;
+  }
+}

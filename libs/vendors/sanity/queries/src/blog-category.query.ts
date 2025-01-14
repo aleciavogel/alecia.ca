@@ -1,9 +1,9 @@
-import groq from 'groq'
+import { defineQuery } from 'next-sanity'
 
-export const blogCategoriesQuery = groq`
+export const blogCategoriesQuery = defineQuery(`
   *[ _type == 'blog.category' ] {
     ...,
-    "slug": slug.current,
-    "href": '/blog?category=' + slug.current,
-    "icon": icon.name
-  }`
+    'slug': '/blog/' + metadata.slug.current,
+    'href': '/blog?category=' + metadata.slug.current,
+    'icon': icon.name
+  }`)

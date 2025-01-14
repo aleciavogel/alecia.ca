@@ -1,0 +1,16 @@
+@layer utilities {
+  .zigzag-base {
+    background-repeat: repeat-x;
+    background-size: auto 6px;
+    background-position: 0 center;
+    height: 6px;
+  }
+
+  .zigzag-bg-primary {
+    background-image: var(--primary-zigzag);
+  }
+
+  .zigzag-bg-accent {
+    background-image: var(--accent-zigzag);
+  }
+}

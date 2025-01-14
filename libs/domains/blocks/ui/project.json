@@ -1,0 +1,9 @@
+{
+  "name": "blocks-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/blocks/ui/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project blocks-ui --web",
+  "targets": {}
+}

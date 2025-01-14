@@ -1,0 +1,48 @@
+import { Canvas, Meta, ArgTypes } from '@storybook/blocks'
+import * as ButtonStories from './button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A button component is used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
+
+## Basic Usage
+
+The Button component comes with several variants and states that can be used to match the context of your application. Below are some of the most common usages.
+
+### Default Button
+
+The default button is used for primary actions.
+
+<Canvas of={ButtonStories.Default} />
+
+### Secondary Button
+
+The secondary button is used for secondary actions.
+
+<Canvas of={ButtonStories.Secondary} />
+
+### Outline Button
+
+The outline button is used when you want a less prominent button that still triggers an action.
+
+<Canvas of={ButtonStories.Outlined} />
+
+### Destructive Button
+
+The destructive button is used for actions that are potentially harmful, such as deleting data.
+
+<Canvas of={ButtonStories.Destructive} />
+
+### Ghost Button
+
+The ghost button is used for actions that are less prominent than the default and secondary button variants.
+
+<Canvas of={ButtonStories.Ghost} />
+
+## Props
+
+Here’s a table of props you can use with the Button component.
+
+<ArgTypes of={ButtonStories.Default} />

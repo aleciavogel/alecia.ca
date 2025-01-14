@@ -1,0 +1,115 @@
+import { Canvas, Meta, ArgTypes, Story } from '@storybook/blocks'
+import * as TypographyStories from './typography.stories'
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+The Typography component is a versatile text component that allows for consistent styling across the application.
+It supports various text styles, sizes, weights, alignments, and colors.
+
+## Props
+
+Here's a table of props you can use with the Typography component:
+
+<ArgTypes of={TypographyStories.DefaultText} />
+
+## Examples
+
+### Default Paragraph
+
+The default variant is a paragraph (`p`) with standard styling.
+
+<Canvas of={TypographyStories.DefaultText} />
+
+### Headings
+
+The Typography component supports six levels of headings, each with its own styling.
+
+<Canvas of={TypographyStories.Headings} />
+
+### Blockquote
+
+The blockquote variant provides styled quotations with decorative elements.
+
+<Canvas of={TypographyStories.Blockquote} />
+
+### Lists
+
+The Typography component can be used to create styled unordered and ordered lists.
+
+<Canvas of={TypographyStories.UnorderedList} />
+<Canvas of={TypographyStories.OrderedList} />
+
+### Lead Text
+
+The lead variant is useful for introductory paragraphs or emphasized text.
+
+<Canvas of={TypographyStories.Lead} />
+
+### Large Text
+
+Use the large variant for text that needs to be slightly larger than normal.
+
+<Canvas of={TypographyStories.Large} />
+
+### Small Text
+
+The small variant is perfect for captions, footnotes, or other secondary text.
+
+<Canvas of={TypographyStories.Small} />
+
+### Strikethrough Text
+
+Use the strike variant to apply a line-through style to text.
+
+<Canvas of={TypographyStories.Strike} />
+
+## Customization
+
+### Custom Sizes
+
+You can adjust the size of any Typography variant using the `size` prop.
+
+<Canvas of={TypographyStories.CustomSize} />
+
+### Custom Weights
+
+Modify the font weight using the `weight` prop.
+
+<Canvas of={TypographyStories.CustomWeight} />
+
+### Text Alignment
+
+Control text alignment with the `align` prop.
+
+<Canvas of={TypographyStories.CustomAlignment} />
+
+### Custom Colors
+
+Change the text color using the `color` prop.
+
+<Canvas of={TypographyStories.Muted} />
+
+### Combining Props
+
+You can combine multiple props to achieve the desired styling.
+
+<Canvas of={TypographyStories.CombinedCustomization} />
+
+### Using as Different Elements
+
+Use the `as` prop to render the Typography component as a different HTML element while maintaining its styling.
+
+<Canvas of={TypographyStories.AsComponent} />
+
+## Usage Guidelines
+
+- Use appropriate heading levels (h1-h6) to maintain a logical document structure.
+- The `lead` variant is great for introductory paragraphs or important callouts.
+- Use `small` for less important information or metadata.
+- The `blockquote` variant is perfect for highlighting quotes or important statements.
+- Utilize custom colors and weights to create visual hierarchy in your content.
+- Remember that semantic HTML is important for accessibility, so use the `as` prop judiciously.
+
+By leveraging the Typography component, you can ensure consistent and easily maintainable text styling throughout your application.

@@ -1,0 +1,29 @@
+@import 'tailwindcss/base';
+@import './base';
+
+@import 'tailwindcss/components';
+@import './components';
+
+@import 'tailwindcss/utilities';
+@import './utilities';
+
+:root {
+  --ring: 215 20.2% 65.1%;
+
+  --radius: 0.5rem;
+
+  --triangle-height: 152px;
+}
+
+.dark {
+  --ring: 216 34% 17%;
+
+  --radius: 0.5rem;
+}
+
+@layer base {
+  body {
+    @apply text-body overscroll-none font-sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+}

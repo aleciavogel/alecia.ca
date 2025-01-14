@@ -1,7 +1,7 @@
 import { internalLinkQueryPartial } from './links.query'
 
-export const navAboutQueryPartial = `
-  _type == 'nav.about' => {
+export const navIconsQueryPartial = `
+  _type == 'nav.icons' => {
     links[]{
       ${internalLinkQueryPartial}
     },
@@ -9,8 +9,8 @@ export const navAboutQueryPartial = `
     'alt': image.alt,
   }`
 
-export const navExploreQueryPartial = `
-  _type == 'nav.explore' => {
+export const navCardQueryPartial = `
+  _type == 'nav.card' => {
     links[]{
       ${internalLinkQueryPartial}
     }
