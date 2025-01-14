@@ -30,7 +30,6 @@
     ]
   },
   "include": [
-    "tailwind.config.ts",
     "**/*.js",
     "**/*.jsx",
     "**/*.ts",

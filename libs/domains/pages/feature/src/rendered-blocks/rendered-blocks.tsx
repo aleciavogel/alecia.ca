@@ -6,7 +6,7 @@ import { GalleryPets, NavCard, NavIcons, TextAsideList, TextCTA, TextIntro } fro
 
 // TODO: attempt to fix the type later
 interface BlocksProps {
-  modules?: any[]
+  modules?: any[] | null
 }
 
 export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>

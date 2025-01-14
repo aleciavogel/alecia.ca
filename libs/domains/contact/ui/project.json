@@ -1,0 +1,9 @@
+{
+  "name": "contact-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/contact/ui/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project contact-ui --web",
+  "targets": {}
+}

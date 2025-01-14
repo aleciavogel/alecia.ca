@@ -15,7 +15,7 @@ export const FormLabel = forwardRef<ElementRef<'label'>, ComponentPropsWithoutRe
     return (
       <Label
         ref={ref}
-        className={cn(error && 'text-destructive', className)}
+        className={cn(error && 'text-red-600 dark:text-red-300', className)}
         htmlFor={formItemId}
         {...props}
       />

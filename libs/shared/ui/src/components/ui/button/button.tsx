@@ -52,9 +52,9 @@ export const buttonVariants = cva(
         ghost: 'hover:text-primary-600 dark:hover:text-primary-300',
       },
       size: {
-        default: 'h-9 rounded px-4 py-2',
-        sm: 'h-8 rounded px-3 text-xs',
-        lg: 'h-10 rounded px-8',
+        default: 'h-9 rounded px-4 py-2 gap-2 [&>svg]:size-4',
+        sm: 'h-8 rounded px-3 text-xs gap-1 [&>svg]:size-3',
+        lg: 'h-10 rounded px-8 [&>svg]:size-5 gap-3',
         icon: 'h-9 w-9',
       },
     },

@@ -20,7 +20,7 @@ export const FormMessage = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLP
       <p
         ref={ref}
         id={formMessageId}
-        className={cn('text-[0.8rem] font-medium text-destructive', className)}
+        className={cn('text-[0.8rem] font-medium text-red-600 dark:text-red-300', className)}
         {...props}
       >
         {body}

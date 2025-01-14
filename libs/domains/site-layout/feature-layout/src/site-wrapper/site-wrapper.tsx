@@ -10,20 +10,8 @@ interface AngledWrapperProps {
   bodyColor?: string
 }
 
-export const SiteWrapper: FC<AngledWrapperProps> = ({
-  children,
-  primaryColor = 'violet',
-  accentColor = 'pink',
-  bodyColor = 'gray',
-}) => (
-  <div
-    data-scroll-container
-    id="site-wrapper"
-    className={cn(
-      'relative h-full min-h-full w-full',
-      `primary-${primaryColor} accent-${accentColor} body-${bodyColor}`,
-    )}
-  >
+export const SiteWrapper: FC<AngledWrapperProps> = ({ children }) => (
+  <div data-scroll-container id="site-wrapper" className={cn('relative h-full min-h-full w-full')}>
     <StickyNav />
     <StickyNavHoverLayer />
 

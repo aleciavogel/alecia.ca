@@ -1,6 +1,8 @@
 import { type ReactElement } from 'react'
 import type { Control, FieldValues, Path } from 'react-hook-form'
 
+import { cn } from '@alecia/util'
+
 import {
   Select,
   SelectContent,
@@ -41,13 +43,18 @@ export const SelectField = <T extends FieldValues>({
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <FormItem className={className}>
           {label ? <FormLabel htmlFor={name}>{label}</FormLabel> : null}
 
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger className="border-gray-300 dark:border-primary-800 focus:border-primary dark:focus:border-primary-300">
+              <SelectTrigger
+                className={cn(
+                  'border-gray-300 dark:border-primary-800 focus:border-primary dark:focus:border-primary-300',
+                  fieldState.error && 'border-red-600 dark:border-red-300',
+                )}
+              >
                 <SelectValue placeholder={placeholder ?? ''} />
               </SelectTrigger>
             </FormControl>

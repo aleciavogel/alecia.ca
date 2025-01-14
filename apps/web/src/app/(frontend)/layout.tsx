@@ -9,7 +9,7 @@ import { eksellLarge, eksellSmall, silka } from '@alecia/ui-kit'
 
 import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import '../../styles/global.css'
+import './global.css'
 
 export const metadata: Metadata = {
   title: 'Alecia.ca',
@@ -32,7 +32,8 @@ export default async function RootLayout({ children, sandbox }: RootLayoutProps)
   return (
     <html lang="en">
       <body
-        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} bg-blue-950 overscroll-none`}
+        id="root"
+        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray `}
       >
         <Providers>
           {sandbox}

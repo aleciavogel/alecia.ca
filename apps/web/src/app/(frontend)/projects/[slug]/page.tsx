@@ -29,7 +29,7 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
     <SiteWrapper>
       <SimpleHeader pretitle="Projects" title={project.title} subtitle={project.subtitle} />
       <PageContents variant="rectangular">
-        <div className="page-container mx-auto space-y-16">
+        <div className="space-y-16">
           <div className="space-y-4">
             <Typography variant="blockPretitle" as="h2">
               The Objective

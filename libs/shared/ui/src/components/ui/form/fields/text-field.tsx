@@ -41,7 +41,7 @@ export const TextField = <T extends FieldValues>({
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <FormItem className={className}>
           {label ? <FormLabel htmlFor={name}>{label}</FormLabel> : null}
 
@@ -57,6 +57,7 @@ export const TextField = <T extends FieldValues>({
               className={cn(
                 'border-gray-300 dark:border-primary-800 focus:border-primary dark:focus:border-primary-300',
                 inputClassName,
+                fieldState.error && 'border-red-600 dark:border-red-300',
               )}
               onBlur={onBlur}
             />

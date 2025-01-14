@@ -13,7 +13,7 @@ export const SimpleMenuLink: FC<InternalLinkProps> = ({ label, slug }) => {
 
   return (
     <NavigationMenuItem>
-      <Link href={`/${slug}`} legacyBehavior passHref className="active:text-white">
+      <Link href={`${slug}`} legacyBehavior passHref className="active:text-white">
         {}
         <NavigationMenuLink className={srOnly ? 'sr-only' : navigationMenuTriggerStyle()}>
           {label}

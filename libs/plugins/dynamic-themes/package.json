@@ -1,0 +1,7 @@
+{
+  "name": "@alecia/tw-dynamic-themes",
+  "version": "0.0.1",
+  "dependencies": {},
+  "private": true,
+  "main": "./src/index.js"
+}

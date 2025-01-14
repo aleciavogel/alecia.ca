@@ -20,7 +20,7 @@ export const SocialLinksItem: FC<SocialLinksItemProps> = ({ label, icon, classNa
       aria-label={label}
       target="_blank"
       rel="noreferrer"
-      className={cn('text-white hover:text-accent-400 transition-dark-mode', className)}
+      className={cn('text-current opacity-100 hover:opacity-80 transition-all', className)}
       {...props}
     >
       <FontAwesomeIcon icon={icon} />
