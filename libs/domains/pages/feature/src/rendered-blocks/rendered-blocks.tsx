@@ -2,7 +2,15 @@ import { FC } from 'react'
 import * as React from 'react'
 import type { PortableTextBlock } from 'next-sanity'
 
-import { GalleryPets, NavCard, NavIcons, TextAsideList, TextCTA, TextIntro } from '@alecia/blocks'
+import {
+  AccordionList,
+  GalleryPets,
+  NavCard,
+  NavIcons,
+  TextAsideList,
+  TextCTA,
+  TextIntro,
+} from '@alecia/blocks'
 
 // TODO: attempt to fix the type later
 interface BlocksProps {
@@ -12,6 +20,8 @@ interface BlocksProps {
 export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
   modules?.map((module) => {
     switch (module._type) {
+      case 'accordion-list':
+        return <AccordionList key={module._key} {...module} />
       case 'gallery.pets':
         return <GalleryPets key={module._key} {...module} />
       case 'nav.card':

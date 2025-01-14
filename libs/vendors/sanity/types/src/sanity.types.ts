@@ -1558,6 +1558,7 @@ export type BlogPostContent = {
 
 export type AccordionList = {
   _type: 'accordion-list'
+  pretitle?: string
   heading?: string
   intro?: Array<{
     children?: Array<{
@@ -2012,6 +2013,7 @@ export type HomePageQueryResult = {
     | {
         _key: string
         _type: 'accordion-list'
+        pretitle?: string
         heading?: string
         intro?: Array<{
           children?: Array<{
@@ -2654,6 +2656,7 @@ export type PageQueryResult = {
     | {
         _key: string
         _type: 'accordion-list'
+        pretitle?: string
         heading?: string
         intro?: Array<{
           children?: Array<{
@@ -3388,6 +3391,7 @@ export type ProjectIndexQueryResult = {
       | {
           _key: string
           _type: 'accordion-list'
+          pretitle?: string
           heading?: string
           intro?: Array<{
             children?: Array<{

@@ -1,4 +1,3 @@
-export * from './accordion-list'
 export * from './aside-list'
 export * from './centered-nav-link'
 export * from './icon-nav-link'

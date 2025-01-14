@@ -10105,6 +10105,13 @@
             "value": "accordion-list"
           }
         },
+        "pretitle": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "heading": {
           "type": "objectAttribute",
           "value": {

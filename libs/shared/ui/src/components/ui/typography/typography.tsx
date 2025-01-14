@@ -53,7 +53,7 @@ export const typographyVariants = cva('font-normal leading-snug transition-dark-
       blockPretitle: cn('font-semibold uppercase text-primary-800 dark:text-primary-500'),
       blockTitle: cn(
         'scroll-m-20 font-serif text-4xl  md:text-5xl lg:text-7xl  text-primary',
-        'text-primary-800',
+        'text-primary-800 dark:text-primary-300',
       ),
       galleryTitle: cn(
         'scroll-m-20 font-serif text-2xl  md:text-3xl lg:text-5xl',

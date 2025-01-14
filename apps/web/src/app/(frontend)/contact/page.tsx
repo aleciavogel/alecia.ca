@@ -31,7 +31,7 @@ export default async function ContactPage() {
       >
         <ContactFormCard />
       </FormHeader>
-      <PageContents className="pt-28 px-8 md:px-20">
+      <PageContents className="pt-28 lg:pb-48 px-8 md:px-20">
         <div className="space-y-3 page-container">
           <Typography variant="blockPretitle" className="text-primary-900">
             Connect with me

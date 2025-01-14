@@ -18,6 +18,11 @@ export const accordionList = defineType({
   ],
   fields: [
     defineField({
+      name: 'pretitle',
+      type: 'string',
+      group: 'content',
+    }),
+    defineField({
       name: 'heading',
       type: 'string',
       group: 'content',
