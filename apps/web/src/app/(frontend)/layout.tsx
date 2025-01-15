@@ -24,10 +24,9 @@ export const viewport: Viewport = {
 
 interface RootLayoutProps {
   children: ReactNode
-  sandbox: ReactNode
 }
 
-export default async function RootLayout({ children, sandbox }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
   const isDraftMode = (await draftMode()).isEnabled
 
   return (
@@ -36,10 +35,7 @@ export default async function RootLayout({ children, sandbox }: RootLayoutProps)
         id="root"
         className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}
       >
-        <Providers>
-          {sandbox}
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
         {isDraftMode ? <VisualEditingControls /> : null}
       </body>
     </html>

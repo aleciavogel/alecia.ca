@@ -23,7 +23,7 @@
 
 @layer base {
   body {
-    @apply text-body overscroll-none font-sans-serif;
+    @apply text-body font-sans-serif;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }

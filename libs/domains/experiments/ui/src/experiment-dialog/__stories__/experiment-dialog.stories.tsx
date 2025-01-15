@@ -1,13 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Button } from '@alecia/ui-kit'
 import { getPlaceholderImage } from '@alecia/util'
 
-import { ExperimentCard } from '../experiments-card'
+import { ExperimentDialog } from '../experiment-dialog'
 
-const meta: Meta<typeof ExperimentCard> = {
-  title: 'Features/Experiments/Experiment Card',
-  component: ExperimentCard,
+const meta: Meta<typeof ExperimentDialog> = {
+  title: 'Features/Experiments/Experiment Dialog',
+  component: ExperimentDialog,
   argTypes: {
+    body: {
+      control: {
+        type: 'object',
+      },
+    },
     tags: {
       control: {
         type: 'object',
@@ -43,17 +49,37 @@ const meta: Meta<typeof ExperimentCard> = {
         type: 'text',
       },
     },
+    defaultOpen: {
+      control: { type: 'boolean' },
+    },
+  },
+  args: {
+    defaultOpen: true,
+    body: [
+      {
+        _key: '4',
+        _type: 'block',
+        style: 'normal',
+        children: [
+          {
+            _key: '3',
+            _type: 'span',
+            text: 'The future of web development is rapidly evolving, with modern frameworks and libraries making it easier than ever to create dynamic and responsive applications.',
+          },
+        ],
+      },
+    ],
   },
   render: (args) => (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-      <ExperimentCard {...args} />
-    </div>
+    <ExperimentDialog {...args}>
+      <Button>Click me uwu</Button>
+    </ExperimentDialog>
   ),
 }
 
 export default meta
 
-type Story = StoryObj<typeof ExperimentCard>
+type Story = StoryObj<typeof ExperimentDialog>
 
 export const Default: Story = {
   args: {
