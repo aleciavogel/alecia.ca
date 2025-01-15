@@ -1,7 +1,5 @@
 import { assertValue } from '@alecia/util'
 
-export * from './lib'
-
 /**
  * The dataset name in Sanity.io
  */

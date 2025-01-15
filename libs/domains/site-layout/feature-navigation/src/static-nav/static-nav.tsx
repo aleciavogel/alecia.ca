@@ -1,15 +1,11 @@
 import { JSX } from 'react'
 
 import { getSettings } from '@alecia/settings-data-access/server'
-import {
-  DropdownAbout,
-  DropdownBlog,
-  DropdownPromo,
-  DropdownQuote,
-  SimpleMenuLink as NonDropdownLink,
-} from '@alecia/site-layout-ui'
+import { SimpleMenuLink as NonDropdownLink } from '@alecia/site-layout-ui'
 import { NavigationMenu, NavigationMenuList } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
+
+import { DropdownAbout, DropdownBlog, DropdownPromo, DropdownQuote } from '../dropdowns'
 
 export const StaticNav = async (): Promise<JSX.Element | null> => {
   const data = await getSettings()

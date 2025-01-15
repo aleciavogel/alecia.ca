@@ -2,6 +2,7 @@ import { type FC } from 'react'
 import { Image } from 'next-sanity/image'
 
 import { urlFor } from '@alecia/sanity-util'
+import { ListItem } from '@alecia/site-layout-ui'
 import { InternalLinkProps } from '@alecia/types'
 import {
   Avatar,
@@ -11,8 +12,6 @@ import {
   NavigationMenuTrigger,
 } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
-
-import { ListItem } from '../list-item'
 
 interface DropdownAboutProps {
   _key: string

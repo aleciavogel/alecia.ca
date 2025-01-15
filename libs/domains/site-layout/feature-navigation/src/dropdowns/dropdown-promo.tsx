@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 
+import { ListItem, TeleportListItem } from '@alecia/site-layout-ui'
 import type { InternalLinkProps } from '@alecia/types'
 import {
   HappyLittleBracketsLogo,
@@ -8,8 +9,6 @@ import {
   NavigationMenuTrigger,
 } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
-
-import { ListItem, TeleportListItem } from '../list-item'
 
 interface DropdownPromoProps {
   _key: string

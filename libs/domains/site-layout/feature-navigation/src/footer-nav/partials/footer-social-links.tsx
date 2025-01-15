@@ -1,6 +1,6 @@
 import type { JSX } from 'react'
 
-import { SOCIAL_ICON_PROP_MAP } from '@alecia/sanity-constants'
+import { SOCIAL_ICON_PROP_MAP } from '@alecia/constants'
 import { getSettings } from '@alecia/settings-data-access/server'
 import { SocialLinksItem } from '@alecia/site-layout-ui'
 

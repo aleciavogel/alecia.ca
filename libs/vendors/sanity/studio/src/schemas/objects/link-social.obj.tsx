@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 import { preview } from 'sanity-plugin-icon-picker'
 
-import { SOCIAL_ICON_MAP } from '@alecia/sanity-constants'
+import { SOCIAL_ICON_MAP } from '@alecia/constants'
 
 import { socialIconPickerOptions } from '../fragments'
 

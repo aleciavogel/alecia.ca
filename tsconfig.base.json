@@ -50,13 +50,16 @@
       "@alecia/data-access-algolia": ["libs/vendors/algolia/data-access/src/index.ts"],
       "@alecia/experiments": ["libs/domains/experiments/feature/src/index.ts"],
       "@alecia/experiments-data-access": ["libs/domains/experiments/data-access/src/index.ts"],
-      "@alecia/experiments-data-access/server": ["libs/domains/experiments/data-access/src/server.ts"],
+      "@alecia/experiments-data-access/server": [
+        "libs/domains/experiments/data-access/src/server.ts"
+      ],
       "@alecia/experiments-ui": ["libs/domains/experiments/ui/src/index.ts"],
       "@alecia/giscus-constants": ["libs/vendors/giscus/constants/src/index.ts"],
       "@alecia/giscus-types": ["libs/vendors/giscus/types/src/index.ts"],
       "@alecia/giscus-ui": ["libs/vendors/giscus/ui/src/index.ts"],
       "@alecia/image-types": ["libs/domains/images/types/src/index.ts"],
       "@alecia/images-ui": ["libs/domains/images/ui/src/index.ts"],
+      "@alecia/intercepted-ui": ["libs/domains/intercepted-routes/ui/src/index.ts"],
       "@alecia/pages": ["libs/domains/pages/feature/src/index.ts"],
       "@alecia/pages-constants": ["libs/domains/pages/constants/src/index.ts"],
       "@alecia/pages-data-access": ["libs/domains/pages/data-access/src/index.ts"],

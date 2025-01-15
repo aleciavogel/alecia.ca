@@ -1,4 +1,3 @@
-export * from './dropdowns'
 export * from './footer-link'
 export * from './footer-nav-menu'
 export * from './footer-portable-text'

@@ -1,10 +1,9 @@
 import { type FC } from 'react'
 
+import { ListItem } from '@alecia/site-layout-ui'
 import { type BlogCategory } from '@alecia/types'
 import { NavigationMenuContent, NavigationMenuItem, NavigationMenuTrigger } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
-
-import { ListItem } from '../list-item'
 
 interface DropdownBlogProps {
   _key: string
