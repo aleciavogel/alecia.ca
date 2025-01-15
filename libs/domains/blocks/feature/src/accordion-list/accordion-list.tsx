@@ -35,7 +35,7 @@ export const AccordionList = ({ pretitle, heading, intro, items }: AccordionList
       </div>
       <Accordion type="single" collapsible className="w-full">
         {items?.map((item, index) => (
-          <AccordionItem value={item._key}>
+          <AccordionItem key={item._key} value={item._key}>
             <AccordionTrigger className="text-base">{item.trigger}</AccordionTrigger>
             <AccordionContent className="">
               <AccordionPortableText value={item.content as PortableTextBlock[]} />

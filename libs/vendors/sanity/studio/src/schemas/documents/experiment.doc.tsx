@@ -2,7 +2,7 @@ import { faVial } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { imageBlock, limitedBlockTypes } from '../fragments'
+import { limitedBlockTypes } from '../fragments'
 
 /**
  * Blog post
@@ -28,6 +28,18 @@ export const experiment = defineType({
       type: 'array',
       of: limitedBlockTypes,
       group: 'content',
+    }),
+    defineField({
+      name: 'mainImage',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alt text',
+        }),
+      ],
     }),
     defineField({
       name: 'tags',

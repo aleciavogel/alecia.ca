@@ -50,6 +50,7 @@
       "@alecia/data-access-algolia": ["libs/vendors/algolia/data-access/src/index.ts"],
       "@alecia/experiments": ["libs/domains/experiments/feature/src/index.ts"],
       "@alecia/experiments-data-access": ["libs/domains/experiments/data-access/src/index.ts"],
+      "@alecia/experiments-data-access/server": ["libs/domains/experiments/data-access/src/server.ts"],
       "@alecia/experiments-ui": ["libs/domains/experiments/ui/src/index.ts"],
       "@alecia/giscus-constants": ["libs/vendors/giscus/constants/src/index.ts"],
       "@alecia/giscus-types": ["libs/vendors/giscus/types/src/index.ts"],

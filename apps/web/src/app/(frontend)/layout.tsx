@@ -9,6 +9,7 @@ import { eksellLarge, eksellSmall, silka } from '@alecia/ui-kit'
 
 import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import '@alecia/ui-kit/styles/global.css'
 import './global.css'
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default async function RootLayout({ children, sandbox }: RootLayoutProps)
   const isDraftMode = (await draftMode()).isEnabled
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         id="root"
         className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}

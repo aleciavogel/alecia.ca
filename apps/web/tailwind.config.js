@@ -44,8 +44,8 @@ module.exports = {
   safelist,
   darkMode: ['selector'],
   content: [
-    join(__dirname, 'src/**/*!(*.stories|*.spec).{ts,tsx,js,jsx,css}'),
-    '../../libs/**/*!(*.spec|*.stories).{ts,tsx,js,jsx,css}',
+    join(__dirname, 'src/**/*.{js,ts,jsx,tsx}'),
+    '../../libs/**/src/**/*.{js,ts,jsx,tsx}',
     ...createGlobPatternsForDependencies(__dirname),
   ],
   prefix: '',

@@ -1,7 +1,4 @@
 import type { FC } from 'react'
-import type { IconProp } from '@fortawesome/fontawesome-svg-core'
-import * as solidIcons from '@fortawesome/pro-solid-svg-icons'
-import { stegaClean } from '@sanity/client/stega'
 
 import { ProjectCard } from '@alecia/projects-ui'
 import type { AllProjectsQueryResult } from '@alecia/sanity-types'

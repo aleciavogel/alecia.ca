@@ -51,24 +51,6 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
           'gap-6 md:gap-10 lg:gap-4 pb-8',
         )}
       >
-        {hasHeaderIllustration && reverse ? (
-          <div className="relative h-full z-[100]">
-            <IllustrationSVG
-              className={cn(
-                'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
-                classnames({
-                  'w-[120%]': [
-                    'HammondSleepingIllustration',
-                    'AleciaCouchIllustration',
-                    'SadieHammondCookiesIllustration',
-                  ].includes(svgKey),
-                  'w-[100%] -mb-[30%]': svgKey === 'PhoebeLaptopIllustration',
-                  '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
-                }),
-              )}
-            />
-          </div>
-        ) : null}
         <div className={cn('h-full flex items-center', classnames('md:just-start'))}>
           <div
             className={classnames({
@@ -90,24 +72,23 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
             ) : null}
           </div>
         </div>
-        {hasHeaderIllustration && !reverse ? (
-          <div className="relative h-full z-[100]">
-            <IllustrationSVG
-              className={cn(
-                'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
-                classnames({
-                  'w-[120%]': [
-                    'HammondSleepingIllustration',
-                    'AleciaCouchIllustration',
-                    'SadieHammondCookiesIllustration',
-                  ].includes(svgKey),
-                  'w-[100%] -mb-[30%]': svgKey === 'PhoebeLaptopIllustration',
-                  '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
-                }),
-              )}
-            />
-          </div>
-        ) : null}
+        <div className="relative h-full z-[100]">
+          <IllustrationSVG
+            className={cn(
+              'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
+              classnames({
+                'w-[120%]': [
+                  'HammondSleepingIllustration',
+                  'AleciaCouchIllustration',
+                  'SadieHammondCookiesIllustration',
+                ].includes(svgKey),
+                'w-[100%] -mb-[30%]': ['PhoebeLaptopIllustration'].includes(svgKey),
+                '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
+                'w-[100%] -mb-[55%]': svgKey === 'HammondScienceIllustration',
+              }),
+            )}
+          />
+        </div>
       </div>
     </header>
   )
