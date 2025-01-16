@@ -1,6 +1,7 @@
 'use client'
 
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { RemoveScroll } from 'react-remove-scroll'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import { cn } from '@alecia/util'
@@ -11,7 +12,7 @@ export const InterceptedModalContent = forwardRef<
   ElementRef<typeof DialogPrimitive.Content>,
   ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
-  // To build out with GSAP
+  // To build out with React Spring
   // 1. Show nothing
   // 2. Animate background in
   // 3. Fade in the content
@@ -23,17 +24,24 @@ export const InterceptedModalContent = forwardRef<
   // 4. Proceed with router.back() or whatever
 
   return (
-    <InterceptedModalPortal>
-      <DialogPrimitive.Content
-        ref={ref}
-        className={cn(
-          'fixed inset-0 z-50 bg-black p-6 overflow-auto focus:outline-none data-[state=open]:animate-fadeIn data-[state=closed]:animate-fadeOut',
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </DialogPrimitive.Content>
+    <InterceptedModalPortal forceMount>
+      <RemoveScroll>
+        <DialogPrimitive.Content
+          ref={ref}
+          className={cn(
+            'fixed inset-0',
+            'p-6',
+            'z-50',
+            'bg-black',
+            'overflow-auto',
+            'focus:outline-none',
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </DialogPrimitive.Content>
+      </RemoveScroll>
     </InterceptedModalPortal>
   )
 })

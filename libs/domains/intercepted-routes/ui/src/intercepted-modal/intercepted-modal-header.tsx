@@ -1,15 +1,18 @@
-import { SiteLogo, SiteLogoHoverLayer, StickyHeader } from '@alecia/site-layout-ui'
+import { StickyHeader } from '@alecia/site-layout-ui'
+
+import { InterceptedLogo } from '../intercepted-logo'
 
 export const InterceptedModalHeader = () => {
   return (
     <>
       <StickyHeader>
-        <SiteLogo />
+        <InterceptedLogo />
       </StickyHeader>
 
       <StickyHeader isHoverLayer>
-        <SiteLogoHoverLayer />
+        <InterceptedLogo showText />
       </StickyHeader>
     </>
   )
 }
+InterceptedModalHeader.displayName = 'InterceptedModalHeader'

@@ -59,6 +59,7 @@
       "@alecia/giscus-ui": ["libs/vendors/giscus/ui/src/index.ts"],
       "@alecia/image-types": ["libs/domains/images/types/src/index.ts"],
       "@alecia/images-ui": ["libs/domains/images/ui/src/index.ts"],
+      "@alecia/intercepted-routes": ["libs/domains/intercepted-routes/feature/src/index.ts"],
       "@alecia/intercepted-ui": ["libs/domains/intercepted-routes/ui/src/index.ts"],
       "@alecia/pages": ["libs/domains/pages/feature/src/index.ts"],
       "@alecia/pages-constants": ["libs/domains/pages/constants/src/index.ts"],

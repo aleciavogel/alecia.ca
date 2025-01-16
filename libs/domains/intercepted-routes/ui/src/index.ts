@@ -1,1 +1,2 @@
-export * from './lib/intercepted-ui'
+export * from './intercepted-logo'
+export * from './intercepted-modal'
