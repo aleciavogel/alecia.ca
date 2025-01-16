@@ -1,9 +1,7 @@
 'use client'
 
-import { type FC, HTMLProps } from 'react'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import * as solidIcons from '@fortawesome/pro-solid-svg-icons'
-import { faRocket } from '@fortawesome/pro-solid-svg-icons'
+import type { FC, HTMLProps } from 'react'
+import type { IconName } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { stegaClean } from 'next-sanity'
@@ -12,7 +10,7 @@ import { cn } from '@alecia/util'
 
 export interface IconNavLinkProps extends HTMLProps<HTMLAnchorElement> {
   iconComponent?: FontAwesomeIconProps['icon']
-  icon?: string | null
+  icon?: IconName | null
   label?: string
   subtitle?: string
   slug: string | null
@@ -29,9 +27,6 @@ export const IconNavLink: FC<IconNavLinkProps> = ({
   ...rest
 }) => {
   const iconName = icon !== null && typeof icon === 'string' ? stegaClean(icon) : undefined
-  const finalIcon = iconComponent
-    ? iconComponent
-    : (solidIcons[iconName as keyof typeof solidIcons] as IconProp)
 
   return (
     <Link
@@ -48,7 +43,7 @@ export const IconNavLink: FC<IconNavLinkProps> = ({
       {...rest}
     >
       <h4 className="space-x-2 uppercase text-sm font-semibold">
-        <FontAwesomeIcon icon={finalIcon ?? faRocket} />
+        <FontAwesomeIcon icon={['fas', (iconName ?? 'faRocket') as IconName]} />
         <span>{label}</span>
       </h4>
       <p>{subtitle}</p>

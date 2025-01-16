@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { type IconProp } from '@fortawesome/fontawesome-svg-core'
+import { type IconName } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 
@@ -11,7 +11,7 @@ export interface TagProps {
   /** The text to display in the tag */
   text: string
   href?: string
-  icon?: IconProp | null
+  icon?: IconName | null
   className?: string
 }
 

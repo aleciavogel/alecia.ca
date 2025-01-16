@@ -1,4 +1,7 @@
 import type { ReactNode } from 'react'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/pro-solid-svg-icons'
 import type { Metadata, Viewport } from 'next'
 import { draftMode } from 'next/headers'
 import * as twColors from 'tailwindcss/colors'
@@ -11,6 +14,8 @@ import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '@alecia/ui-kit/styles/global.css'
 import './global.css'
+
+library.add(fas, fab)
 
 export const metadata: Metadata = {
   title: 'Alecia.ca',

@@ -1,6 +1,5 @@
 import type { FC } from 'react'
-import type { IconProp } from '@fortawesome/fontawesome-svg-core'
-import * as solidIcons from '@fortawesome/pro-solid-svg-icons'
+import type { IconName } from '@fortawesome/fontawesome-svg-core'
 import { stegaClean } from '@sanity/client/stega'
 
 import { BlogCard } from '@alecia/blog-ui'
@@ -31,9 +30,7 @@ export const BlogList: FC<BlogListProps> = ({ posts }) => {
             return {
               text: category.title ?? 'Untitled Category',
               href: category.slug ?? '#',
-              icon: category.icon
-                ? (solidIcons[stegaClean(category.icon) as keyof typeof solidIcons] as IconProp)
-                : undefined,
+              icon: category.icon ? (stegaClean(category.icon) as IconName) : undefined,
             }
           })}
         />

@@ -1,5 +1,5 @@
 import type { IconProp } from '@fortawesome/fontawesome-svg-core'
-import * as faBrandIcons from '@fortawesome/free-brands-svg-icons'
+import { fab as faBrandIcons } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField } from 'sanity'
 
