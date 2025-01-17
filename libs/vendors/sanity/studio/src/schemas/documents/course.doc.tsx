@@ -24,9 +24,27 @@ export const course = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'previewText',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'video',
       title: 'Video file',
       type: 'mux.video',
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'image',
+      group: 'content',
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
     }),
     defineField({
       name: 'body',

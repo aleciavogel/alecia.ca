@@ -85,8 +85,9 @@ export const CardItem: FC<CardWithTextProps> = ({
     </div>
     <div
       className={cn(
-        'px-5 py-4 border-t-2',
+        'px-5 py-4',
         classnames({
+          'border-t-2': Boolean(image),
           'transition-all duration-200 ease-in-out': Boolean(image),
           'border-t-solid border-t-primary-800 dark:border-t-primary-300': Boolean(image),
           'dark:group-hover/card:border-t-primary-500': Boolean(image),

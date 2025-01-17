@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 
 import { RenderedBlocks } from '@alecia/pages'
 import { getPage } from '@alecia/pages-data-access/server'
+import { SimpleHeader } from '@alecia/pages-ui'
 import type { PageQueryResult } from '@alecia/sanity-types'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
@@ -28,8 +29,8 @@ const Page = async ({ params }: PageProps) => {
 
   return (
     <SiteWrapper>
-      <p>Header will go here uwu</p>
-      <PageContents>
+      <SimpleHeader {...page} />
+      <PageContents className="pt-48">
         <RenderedBlocks modules={page.modules} />
       </PageContents>
     </SiteWrapper>

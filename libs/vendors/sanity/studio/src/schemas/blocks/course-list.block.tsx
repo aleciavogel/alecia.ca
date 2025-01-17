@@ -50,6 +50,17 @@ export const courseList = defineType({
       group: 'filtering',
     }),
     defineField({
+      name: 'difficulty',
+      title: 'Filter courses by difficulty',
+      description: 'Leave empty to show all courses',
+      type: 'string',
+      group: 'filtering',
+      options: {
+        list: ['beginner', 'advanced'],
+        layout: 'radio',
+      },
+    }),
+    defineField({
       name: 'filteredCategory',
       title: 'Filter courses by a category',
       description: 'Leave empty to show all courses',
@@ -65,7 +76,7 @@ export const courseList = defineType({
     },
     prepare: ({ title, layout }) => ({
       title,
-      subtitle: `Blog list (${layout as string})`,
+      subtitle: `Course list (${layout as string})`,
     }),
   },
 })

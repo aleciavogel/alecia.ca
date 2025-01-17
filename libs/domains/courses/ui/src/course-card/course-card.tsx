@@ -1,42 +1,44 @@
 import type { FC } from 'react'
+import { IconName } from '@fortawesome/pro-light-svg-icons'
 import { faArrowRightLong } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import Link from 'next/link'
 
-import { CardItem, type TagProps, Typography } from '@alecia/ui-kit'
+import { CoursesByDifficultyQueryResult } from '@alecia/sanity-types'
+import { CardItem, Typography } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
-interface CourseProps {
-  title?: string
-  content?: string
-  url?: string
-  description?: string
+type SingleCourse = CoursesByDifficultyQueryResult[number]
+
+interface CourseProps extends SingleCourse {
   changeOnDarkMode?: boolean
   className?: string
-  image?: {
-    src: string
-    alt: string
-  }
-  tags?: TagProps[]
 }
 
 export const CourseCard: FC<CourseProps> = ({
   className,
-  url = '/',
+  slug = '#',
   title = 'Untitled',
-  description = '',
+  previewText = '',
   changeOnDarkMode = false,
-  image,
-  tags,
+  imageSrc,
+  imageAlt,
+  categories,
 }) => {
   return (
     <CardItem
-      href={url}
+      href={slug ?? '#'}
       className={cn('pb-10 group/card', className)}
       changeOnDarkMode={changeOnDarkMode}
-      tags={tags}
-      image={image}
+      tags={
+        categories?.map((cat) => ({
+          text: cat.title ?? '',
+          slug: cat.slug,
+          icon: cat.icon as IconName,
+        })) ?? []
+      }
+      image={imageSrc ? { src: imageSrc, alt: imageAlt ?? '' } : undefined}
     >
       <div
         className={cn(
@@ -48,7 +50,7 @@ export const CourseCard: FC<CourseProps> = ({
         )}
       >
         <div className="mb-4 space-y-3 line-clamp-4 md:line-clamp-5">
-          <Link href={url}>
+          <Link href={slug ?? '#'}>
             <Typography
               size="3xl"
               variant="h3"
@@ -72,12 +74,12 @@ export const CourseCard: FC<CourseProps> = ({
               }),
             )}
           >
-            {description.length ? description : 'No preview text has been set yet.'}
+            {previewText?.length ? previewText : 'No preview text has been set yet.'}
           </Typography>
         </div>
 
         <Link
-          href={url}
+          href={slug ?? '#'}
           className={cn(
             'absolute bottom-8 left-5 space-x-2 group/link',
             classNames({

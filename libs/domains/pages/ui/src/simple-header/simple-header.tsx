@@ -3,6 +3,7 @@ import React from 'react'
 import classnames from 'classnames'
 import { stegaClean } from 'next-sanity'
 
+import { Illustrations } from '@alecia/constants'
 import { Typography, ZigZagAccent } from '@alecia/ui-kit'
 import * as illustrations from '@alecia/ui-kit/components/vectors/illustrations'
 import { cn } from '@alecia/util'
@@ -15,7 +16,7 @@ interface SimpleHeaderProps {
   reverse?: boolean
 }
 
-const DEFAULT_ILLUSTRATION = 'AleciaCouchIllustration'
+const DEFAULT_ILLUSTRATION: Illustrations = Illustrations.AleciaCouch
 
 export const SimpleHeader: FC<SimpleHeaderProps> = ({
   pretitle = 'Pretitle',
@@ -25,9 +26,27 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   reverse = false,
 }) => {
   const svgKey =
-    headerIllustration !== 'none' ? stegaClean(headerIllustration) : DEFAULT_ILLUSTRATION
-  const IllustrationSVG = illustrations[stegaClean(svgKey) ?? DEFAULT_ILLUSTRATION]
-  const hasHeaderIllustration = headerIllustration !== 'none'
+    headerIllustration !== 'none'
+      ? (stegaClean(headerIllustration) as Illustrations)
+      : DEFAULT_ILLUSTRATION
+  const IllustrationSVG = illustrations[svgKey ?? DEFAULT_ILLUSTRATION]
+  const hasHeaderIllustration =
+    headerIllustration !== 'none' && headerIllustration !== undefined && headerIllustration !== null
+  const headerClassNames = cn(
+    'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
+    classnames({
+      'w-[120%]': [
+        Illustrations.HammondSleeping,
+        Illustrations.AleciaCouch,
+        Illustrations.SadieHammondCookies,
+      ].includes(svgKey),
+      'w-[110%] -mb-[50%]': [Illustrations.PhoebeYarn].includes(svgKey),
+      'w-[100%] -mb-[30%]': [Illustrations.PhoebeLaptop].includes(svgKey),
+      'w-[120%] -mb-[48%]': [Illustrations.PhoebeSleeping].includes(svgKey),
+      '-mb-[35%]': [Illustrations.SadieHammondCookies].includes(svgKey),
+      'w-[100%] -mb-[55%]': [Illustrations.HammondScience].includes(svgKey),
+    }),
+  )
 
   return (
     <header
@@ -51,6 +70,11 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
           'gap-6 md:gap-10 lg:gap-4 pb-8',
         )}
       >
+        {hasHeaderIllustration && reverse ? (
+          <div className="relative h-full z-[100]">
+            <IllustrationSVG className={headerClassNames} />
+          </div>
+        ) : null}
         <div className={cn('h-full flex items-center', classnames('md:just-start'))}>
           <div
             className={classnames({
@@ -72,23 +96,9 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
             ) : null}
           </div>
         </div>
-        {hasHeaderIllustration ? (
+        {hasHeaderIllustration && !reverse ? (
           <div className="relative h-full z-[100]">
-            <IllustrationSVG
-              className={cn(
-                'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
-                classnames({
-                  'w-[120%]': [
-                    'HammondSleepingIllustration',
-                    'AleciaCouchIllustration',
-                    'SadieHammondCookiesIllustration',
-                  ].includes(svgKey),
-                  'w-[100%] -mb-[30%]': ['PhoebeLaptopIllustration'].includes(svgKey),
-                  '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
-                  'w-[100%] -mb-[55%]': svgKey === 'HammondScienceIllustration',
-                }),
-              )}
-            />
+            <IllustrationSVG className={headerClassNames} />
           </div>
         ) : null}
       </div>

@@ -9,15 +9,15 @@ import { Badge } from './badge'
 
 export interface TagProps {
   /** The text to display in the tag */
-  text: string
-  href?: string
+  text: string | null
+  href?: string | null
   icon?: IconName | null
   className?: string
 }
 
 export const Tag: FC<TagProps> = ({ text, href, icon, className }) => (
   <Badge
-    href={href}
+    href={href ?? '#'}
     className={cn(
       'transition duration-200 ease-in-out',
       classNames({

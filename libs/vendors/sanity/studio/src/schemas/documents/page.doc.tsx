@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 import { preview } from 'sanity-plugin-icon-picker'
 
+import { Illustrations } from '@alecia/constants'
+
 import { blockTypes, iconPickerOptions } from '../fragments'
 
 export const page = defineType({
@@ -69,17 +71,18 @@ export const page = defineType({
       options: {
         list: [
           { title: 'N/A', value: 'none' },
-          { title: 'Alecia - Couch With All Pets', value: 'AleciaCouchIllustration' },
-          { title: 'Alecia - Idea', value: 'AleciaIdeaIllustration' },
-          { title: 'Alecia - Laying With Hammond', value: 'AleciaLayingIllustration' },
-          { title: 'Alecia - Sitting With Phoebe', value: 'AleciaSitIllustration' },
-          { title: 'Alecia - Wave', value: 'AleciaWaveIllustration' },
-          { title: 'Hammond - Chemical Spill', value: 'HammondScienceIllustration' },
-          { title: 'Hammond - Sleeping On Notes', value: 'HammondSleepingIllustration' },
-          { title: 'Phoebe - Random Email', value: 'PhoebeLaptopIllustration' },
-          { title: 'Phoebe - Playing With Yarn', value: 'PhoebeYarnIllustration' },
-          { title: 'Sadie - Scolded', value: 'SadieAteMyWebsiteIllustration' },
-          { title: 'Sadie - Cookie Thief Accomplice', value: 'SadieHammondCookiesIllustration' },
+          { title: 'Alecia - Couch With All Pets', value: Illustrations.AleciaCouch },
+          { title: 'Alecia - Idea', value: Illustrations.AleciaIdea },
+          { title: 'Alecia - Laying With Hammond', value: Illustrations.AleciaLaying },
+          { title: 'Alecia - Sitting With Phoebe', value: Illustrations.AleciaSit },
+          { title: 'Alecia - Wave', value: Illustrations.AleciaWave },
+          { title: 'Hammond - Chemical Spill', value: Illustrations.HammondScience },
+          { title: 'Hammond - Sleeping On Notes', value: Illustrations.HammondSleeping },
+          { title: 'Phoebe - Random Email', value: Illustrations.PhoebeLaptop },
+          { title: 'Phoebe - Playing With Yarn', value: Illustrations.PhoebeYarn },
+          { title: 'Phoebe - Sleeping On Blanket', value: Illustrations.PhoebeSleeping },
+          { title: 'Sadie - Scolded', value: Illustrations.SadieAteMyWebsite },
+          { title: 'Sadie - Cookie Thief Accomplice', value: Illustrations.SadieHammondCookies },
         ],
       },
       hidden: ({ parent }) => parent?.metadata?.slug?.current === 'about',

@@ -10,6 +10,7 @@ export const blockTypes = [
   // { type: 'breadcrumbs' },
   { type: 'callout' },
   // { type: 'creative-module' },
+  { type: 'course-list' },
   { type: 'custom-html' },
 
   // Image gallery types

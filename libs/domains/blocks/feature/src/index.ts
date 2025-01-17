@@ -1,5 +1,6 @@
 export * from './accordion-list'
 export * from './article-list'
+export * from './course-list'
 export * from './experiments-list'
 export * from './gallery-pets'
 export * from './nav-card'

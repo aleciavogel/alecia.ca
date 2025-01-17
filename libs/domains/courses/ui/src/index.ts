@@ -1,1 +1,1 @@
-export * from './lib/courses-ui'
+export * from './course-card'

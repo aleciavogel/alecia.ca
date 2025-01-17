@@ -4,6 +4,7 @@ import type { PortableTextBlock } from 'next-sanity'
 
 import {
   AccordionList,
+  CourseList,
   GalleryPets,
   NavCard,
   NavIcons,
@@ -36,6 +37,8 @@ export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
         return (
           <TextAsideList key={module._key} {...module} body={module.text as PortableTextBlock[]} />
         )
+      case 'course-list':
+        return <CourseList key={module._key} {...module} />
       default:
         return null
     }

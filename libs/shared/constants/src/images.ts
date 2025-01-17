@@ -10,3 +10,21 @@ export const ThumbnailDimensions = {
  * The height and width of the avatar is the same
  */
 export const AvatarDimensions = 40
+
+/**
+ * List of illustrations
+ */
+export enum Illustrations {
+  AleciaCouch = 'AleciaCouchIllustration',
+  AleciaIdea = 'AleciaIdeaIllustration',
+  AleciaLaying = 'AleciaLayingIllustration',
+  AleciaSit = 'AleciaSitIllustration',
+  AleciaWave = 'AleciaWaveIllustration',
+  HammondScience = 'HammondScienceIllustration',
+  HammondSleeping = 'HammondSleepingIllustration',
+  PhoebeLaptop = 'PhoebeLaptopIllustration',
+  PhoebeYarn = 'PhoebeYarnIllustration',
+  PhoebeSleeping = 'PhoebeSleepingIllustration',
+  SadieAteMyWebsite = 'SadieAteMyWebsiteIllustration',
+  SadieHammondCookies = 'SadieHammondCookiesIllustration',
+}

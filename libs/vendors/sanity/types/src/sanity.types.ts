@@ -354,6 +354,9 @@ export type Project = {
       } & Callout)
     | ({
         _key: string
+      } & CourseList)
+    | ({
+        _key: string
       } & CustomHtml)
     | ({
         _key: string
@@ -424,6 +427,7 @@ export type Page = {
     | 'HammondSleepingIllustration'
     | 'PhoebeLaptopIllustration'
     | 'PhoebeYarnIllustration'
+    | 'PhoebeSleepingIllustration'
     | 'SadieAteMyWebsiteIllustration'
     | 'SadieHammondCookiesIllustration'
   headerImage?: {
@@ -451,6 +455,9 @@ export type Page = {
     | ({
         _key: string
       } & Callout)
+    | ({
+        _key: string
+      } & CourseList)
     | ({
         _key: string
       } & CustomHtml)
@@ -688,7 +695,20 @@ export type Course = {
   _rev: string
   title?: string
   subtitle?: string
+  previewText?: string
   video?: MuxVideo
+  mainImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   body?: Array<
     | {
         children?: Array<{
@@ -1384,6 +1404,7 @@ export type CourseList = {
   layout?: 'grid' | 'carousel'
   displayFilters?: boolean
   limit?: number
+  difficulty?: 'beginner' | 'advanced'
   filteredCategory?: {
     _ref: string
     _type: 'reference'
@@ -1977,6 +1998,111 @@ export type BlogArticlePageQueryResult = {
   imageAlt: string | null
 } | null
 
+// Source: ../../../../../libs/vendors/sanity/queries/src/courses.query.ts
+// Variable: CoursesByDifficultyQuery
+// Query: *[_type == 'course' && difficulty == $difficulty] | order(publishedAt desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  },  }
+export type CoursesByDifficultyQueryResult = Array<{
+  _id: string
+  _type: 'course'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string | null
+  subtitle: string | null
+  previewText: string | null
+  video?: MuxVideo
+  mainImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  body?: Array<
+    | ({
+        _key: string
+      } & CustomHtml)
+    | ({
+        _key: string
+      } & Sandpack)
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        source?: string
+        loading?: 'eager' | 'lazy'
+        _type: 'image'
+        _key: string
+      }
+  >
+  chapters?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'course.chapter'
+  }>
+  difficulty: 'advanced' | 'beginner' | null
+  categories: Array<{
+    _key: null
+    title: string | null
+    slug: string | null
+    icon: string | null
+  }> | null
+  publishDate: string | null
+  featured: boolean | null
+  repoUrl?: string
+  metadata: {
+    title: string | null
+    description: string | null
+    image: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
+  } | null
+  numChapters: number | null
+  slug: string | null
+  imageSrc: string | null
+  imageAlt: string | null
+}>
+
 // Source: ../../../../../libs/vendors/sanity/queries/src/experiments.query.ts
 // Variable: allExperimentsQuery
 // Query: *[_type == 'experiment'] | order(publishedAt desc) {        ...,    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),    'imageSrc': coalesce(mainImage.asset->url, ''),    'imageAlt': coalesce(mainImage.alt, 'No alt text'),    tags[]-> {      ...,      label,      'slug': '/experiments?tag=' + slug.current,      'icon': icon.name    },  }
@@ -2062,7 +2188,7 @@ export type AllExperimentsQueryResult = Array<{
   imageAlt: string | 'No alt text'
 }>
 // Variable: experimentIndexQuery
-// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{    ...,    pretitle,    title,    subtitle,    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    modules[]{        ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'experiments': *[_type == 'experiment'] | order(publishedAt desc) {        ...,    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),    'imageSrc': coalesce(mainImage.asset->url, ''),    'imageAlt': coalesce(mainImage.alt, 'No alt text'),    tags[]-> {      ...,      label,      'slug': '/experiments?tag=' + slug.current,      'icon': icon.name    },  }}
+// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{    ...,    pretitle,    title,    subtitle,    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    modules[]{        ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'experiments': *[_type == 'experiment'] | order(publishedAt desc) {        ...,    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),    'imageSrc': coalesce(mainImage.asset->url, ''),    'imageAlt': coalesce(mainImage.alt, 'No alt text'),    tags[]-> {      ...,      label,      'slug': '/experiments?tag=' + slug.current,      'icon': icon.name    },  }}
 export type ExperimentIndexQueryResult = {
   page: {
     _id: string
@@ -2085,6 +2211,7 @@ export type ExperimentIndexQueryResult = {
       | 'HammondSleepingIllustration'
       | 'none'
       | 'PhoebeLaptopIllustration'
+      | 'PhoebeSleepingIllustration'
       | 'PhoebeYarnIllustration'
       | 'SadieAteMyWebsiteIllustration'
       | 'SadieHammondCookiesIllustration'
@@ -2214,6 +2341,140 @@ export type ExperimentIndexQueryResult = {
               _key: string
             } & Cta
           >
+        }
+      | {
+          _key: string
+          _type: 'course-list'
+          heading: string | null
+          intro: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: 'bullet' | 'number'
+            markDefs?: Array<{
+              href?: string
+              _type: 'link'
+              _key: string
+            }>
+            level?: number
+            _type: 'block'
+            _key: string
+          }> | null
+          layout: 'carousel' | 'grid' | null
+          displayFilters: boolean | null
+          limit: number | null
+          difficulty: 'advanced' | 'beginner' | null
+          filteredCategory?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'course.category'
+          }
+          courses: Array<{
+            _id: string
+            _type: 'course'
+            _createdAt: string
+            _updatedAt: string
+            _rev: string
+            title: string | null
+            subtitle: string | null
+            previewText: string | null
+            video?: MuxVideo
+            mainImage?: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              alt?: string
+              _type: 'image'
+            }
+            body?: Array<
+              | ({
+                  _key: string
+                } & CustomHtml)
+              | ({
+                  _key: string
+                } & Sandpack)
+              | {
+                  children?: Array<{
+                    marks?: Array<string>
+                    text?: string
+                    _type: 'span'
+                    _key: string
+                  }>
+                  style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+                  listItem?: 'bullet' | 'number'
+                  markDefs?: Array<{
+                    href?: string
+                    _type: 'link'
+                    _key: string
+                  }>
+                  level?: number
+                  _type: 'block'
+                  _key: string
+                }
+              | {
+                  asset?: {
+                    _ref: string
+                    _type: 'reference'
+                    _weak?: boolean
+                    [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                  }
+                  hotspot?: SanityImageHotspot
+                  crop?: SanityImageCrop
+                  caption?: string
+                  alt?: string
+                  source?: string
+                  loading?: 'eager' | 'lazy'
+                  _type: 'image'
+                  _key: string
+                }
+            >
+            chapters?: Array<{
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              _key: string
+              [internalGroqTypeReferenceTo]?: 'course.chapter'
+            }>
+            difficulty: 'advanced' | 'beginner' | null
+            categories: Array<{
+              _key: null
+              title: string | null
+              slug: string | null
+              icon: string | null
+            }> | null
+            publishDate: string | null
+            featured: boolean | null
+            repoUrl?: string
+            metadata: {
+              title: string | null
+              description: string | null
+              image: {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                _type: 'image'
+              } | null
+            } | null
+            numChapters: number | null
+            slug: string | null
+            imageSrc: string | null
+            imageAlt: string | null
+          }>
         }
       | {
           _key: string
@@ -2880,7 +3141,7 @@ export type GalleryPetsQueryResult = Array<never>
 
 // Source: ../../../../../libs/vendors/sanity/queries/src/pages.query.ts
 // Variable: homePageQuery
-// Query: *[_type == 'page' && metadata.slug.current == 'index'][0]{  ...,  modules[]{      ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  }  },  metadata {    ...,    'ogimage': image.asset->url + '?w=1200'  }}
+// Query: *[_type == 'page' && metadata.slug.current == 'index'][0]{  ...,  modules[]{      ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  }  },  metadata {    ...,    'ogimage': image.asset->url + '?w=1200'  }}
 export type HomePageQueryResult = {
   _id: string
   _type: 'page'
@@ -2902,6 +3163,7 @@ export type HomePageQueryResult = {
     | 'HammondSleepingIllustration'
     | 'none'
     | 'PhoebeLaptopIllustration'
+    | 'PhoebeSleepingIllustration'
     | 'PhoebeYarnIllustration'
     | 'SadieAteMyWebsiteIllustration'
     | 'SadieHammondCookiesIllustration'
@@ -3031,6 +3293,140 @@ export type HomePageQueryResult = {
             _key: string
           } & Cta
         >
+      }
+    | {
+        _key: string
+        _type: 'course-list'
+        heading: string | null
+        intro: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
+        layout: 'carousel' | 'grid' | null
+        displayFilters: boolean | null
+        limit: number | null
+        difficulty: 'advanced' | 'beginner' | null
+        filteredCategory?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'course.category'
+        }
+        courses: Array<{
+          _id: string
+          _type: 'course'
+          _createdAt: string
+          _updatedAt: string
+          _rev: string
+          title: string | null
+          subtitle: string | null
+          previewText: string | null
+          video?: MuxVideo
+          mainImage?: {
+            asset?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+            }
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          }
+          body?: Array<
+            | ({
+                _key: string
+              } & CustomHtml)
+            | ({
+                _key: string
+              } & Sandpack)
+            | {
+                children?: Array<{
+                  marks?: Array<string>
+                  text?: string
+                  _type: 'span'
+                  _key: string
+                }>
+                style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+                listItem?: 'bullet' | 'number'
+                markDefs?: Array<{
+                  href?: string
+                  _type: 'link'
+                  _key: string
+                }>
+                level?: number
+                _type: 'block'
+                _key: string
+              }
+            | {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                caption?: string
+                alt?: string
+                source?: string
+                loading?: 'eager' | 'lazy'
+                _type: 'image'
+                _key: string
+              }
+          >
+          chapters?: Array<{
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            _key: string
+            [internalGroqTypeReferenceTo]?: 'course.chapter'
+          }>
+          difficulty: 'advanced' | 'beginner' | null
+          categories: Array<{
+            _key: null
+            title: string | null
+            slug: string | null
+            icon: string | null
+          }> | null
+          publishDate: string | null
+          featured: boolean | null
+          repoUrl?: string
+          metadata: {
+            title: string | null
+            description: string | null
+            image: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+            } | null
+          } | null
+          numChapters: number | null
+          slug: string | null
+          imageSrc: string | null
+          imageAlt: string | null
+        }>
       }
     | {
         _key: string
@@ -3523,7 +3919,7 @@ export type HomePageQueryResult = {
   } | null
 } | null
 // Variable: pageQuery
-// Query: *[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{    ...,    modules[]{        ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  }
+// Query: *[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{    ...,    modules[]{        ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  }
 export type PageQueryResult = {
   _id: string
   _type: 'page'
@@ -3545,6 +3941,7 @@ export type PageQueryResult = {
     | 'HammondSleepingIllustration'
     | 'none'
     | 'PhoebeLaptopIllustration'
+    | 'PhoebeSleepingIllustration'
     | 'PhoebeYarnIllustration'
     | 'SadieAteMyWebsiteIllustration'
     | 'SadieHammondCookiesIllustration'
@@ -3674,6 +4071,140 @@ export type PageQueryResult = {
             _key: string
           } & Cta
         >
+      }
+    | {
+        _key: string
+        _type: 'course-list'
+        heading: string | null
+        intro: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
+        layout: 'carousel' | 'grid' | null
+        displayFilters: boolean | null
+        limit: number | null
+        difficulty: 'advanced' | 'beginner' | null
+        filteredCategory?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'course.category'
+        }
+        courses: Array<{
+          _id: string
+          _type: 'course'
+          _createdAt: string
+          _updatedAt: string
+          _rev: string
+          title: string | null
+          subtitle: string | null
+          previewText: string | null
+          video?: MuxVideo
+          mainImage?: {
+            asset?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+            }
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          }
+          body?: Array<
+            | ({
+                _key: string
+              } & CustomHtml)
+            | ({
+                _key: string
+              } & Sandpack)
+            | {
+                children?: Array<{
+                  marks?: Array<string>
+                  text?: string
+                  _type: 'span'
+                  _key: string
+                }>
+                style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+                listItem?: 'bullet' | 'number'
+                markDefs?: Array<{
+                  href?: string
+                  _type: 'link'
+                  _key: string
+                }>
+                level?: number
+                _type: 'block'
+                _key: string
+              }
+            | {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                caption?: string
+                alt?: string
+                source?: string
+                loading?: 'eager' | 'lazy'
+                _type: 'image'
+                _key: string
+              }
+          >
+          chapters?: Array<{
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            _key: string
+            [internalGroqTypeReferenceTo]?: 'course.chapter'
+          }>
+          difficulty: 'advanced' | 'beginner' | null
+          categories: Array<{
+            _key: null
+            title: string | null
+            slug: string | null
+            icon: string | null
+          }> | null
+          publishDate: string | null
+          featured: boolean | null
+          repoUrl?: string
+          metadata: {
+            title: string | null
+            description: string | null
+            image: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+            } | null
+          } | null
+          numChapters: number | null
+          slug: string | null
+          imageSrc: string | null
+          imageAlt: string | null
+        }>
       }
     | {
         _key: string
@@ -4207,6 +4738,9 @@ export type AllProjectsQueryResult = Array<{
       } & Callout)
     | ({
         _key: string
+      } & CourseList)
+    | ({
+        _key: string
       } & CustomHtml)
     | ({
         _key: string
@@ -4257,7 +4791,7 @@ export type AllProjectsQueryResult = Array<{
   imageAlt: string | null
 }>
 // Variable: projectIndexQuery
-// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{    ...,    pretitle,    title,    subtitle,    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    modules[]{        ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'projects': *[_type == 'project'] | order(publishedAt desc) {        ...,    'slug': '/projects/' + metadata.slug.current,    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    tags[]-> {      _key,      title,      'slug': '/projects?tag=' + slug.current,      'icon': icon.name    },  }}
+// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{    ...,    pretitle,    title,    subtitle,    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    modules[]{        ...,    _type == 'nav.icons' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'nav.card' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    },    'image': image.asset->url,    'alt': image.alt,  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug,  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[]->,  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'projects': *[_type == 'project'] | order(publishedAt desc) {        ...,    'slug': '/projects/' + metadata.slug.current,    'imageSrc': mainImage.asset->url,    'imageAlt': mainImage.alt,    tags[]-> {      _key,      title,      'slug': '/projects?tag=' + slug.current,      'icon': icon.name    },  }}
 export type ProjectIndexQueryResult = {
   page: {
     _id: string
@@ -4280,6 +4814,7 @@ export type ProjectIndexQueryResult = {
       | 'HammondSleepingIllustration'
       | 'none'
       | 'PhoebeLaptopIllustration'
+      | 'PhoebeSleepingIllustration'
       | 'PhoebeYarnIllustration'
       | 'SadieAteMyWebsiteIllustration'
       | 'SadieHammondCookiesIllustration'
@@ -4409,6 +4944,140 @@ export type ProjectIndexQueryResult = {
               _key: string
             } & Cta
           >
+        }
+      | {
+          _key: string
+          _type: 'course-list'
+          heading: string | null
+          intro: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: 'bullet' | 'number'
+            markDefs?: Array<{
+              href?: string
+              _type: 'link'
+              _key: string
+            }>
+            level?: number
+            _type: 'block'
+            _key: string
+          }> | null
+          layout: 'carousel' | 'grid' | null
+          displayFilters: boolean | null
+          limit: number | null
+          difficulty: 'advanced' | 'beginner' | null
+          filteredCategory?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'course.category'
+          }
+          courses: Array<{
+            _id: string
+            _type: 'course'
+            _createdAt: string
+            _updatedAt: string
+            _rev: string
+            title: string | null
+            subtitle: string | null
+            previewText: string | null
+            video?: MuxVideo
+            mainImage?: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              alt?: string
+              _type: 'image'
+            }
+            body?: Array<
+              | ({
+                  _key: string
+                } & CustomHtml)
+              | ({
+                  _key: string
+                } & Sandpack)
+              | {
+                  children?: Array<{
+                    marks?: Array<string>
+                    text?: string
+                    _type: 'span'
+                    _key: string
+                  }>
+                  style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+                  listItem?: 'bullet' | 'number'
+                  markDefs?: Array<{
+                    href?: string
+                    _type: 'link'
+                    _key: string
+                  }>
+                  level?: number
+                  _type: 'block'
+                  _key: string
+                }
+              | {
+                  asset?: {
+                    _ref: string
+                    _type: 'reference'
+                    _weak?: boolean
+                    [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                  }
+                  hotspot?: SanityImageHotspot
+                  crop?: SanityImageCrop
+                  caption?: string
+                  alt?: string
+                  source?: string
+                  loading?: 'eager' | 'lazy'
+                  _type: 'image'
+                  _key: string
+                }
+            >
+            chapters?: Array<{
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              _key: string
+              [internalGroqTypeReferenceTo]?: 'course.chapter'
+            }>
+            difficulty: 'advanced' | 'beginner' | null
+            categories: Array<{
+              _key: null
+              title: string | null
+              slug: string | null
+              icon: string | null
+            }> | null
+            publishDate: string | null
+            featured: boolean | null
+            repoUrl?: string
+            metadata: {
+              title: string | null
+              description: string | null
+              image: {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                _type: 'image'
+              } | null
+            } | null
+            numChapters: number | null
+            slug: string | null
+            imageSrc: string | null
+            imageAlt: string | null
+          }>
         }
       | {
           _key: string
@@ -4937,6 +5606,9 @@ export type ProjectIndexQueryResult = {
         } & Callout)
       | ({
           _key: string
+        } & CourseList)
+      | ({
+          _key: string
         } & CustomHtml)
       | ({
           _key: string
@@ -5024,6 +5696,9 @@ export type ProjectPageQueryResult = {
       } & Callout)
     | ({
         _key: string
+      } & CourseList)
+    | ({
+        _key: string
       } & CustomHtml)
     | ({
         _key: string
@@ -5099,6 +5774,7 @@ export type ResourcesIndexQueryResult = {
       | 'HammondSleepingIllustration'
       | 'none'
       | 'PhoebeLaptopIllustration'
+      | 'PhoebeSleepingIllustration'
       | 'PhoebeYarnIllustration'
       | 'SadieAteMyWebsiteIllustration'
       | 'SadieHammondCookiesIllustration'
@@ -5128,6 +5804,9 @@ export type ResourcesIndexQueryResult = {
       | ({
           _key: string
         } & Callout)
+      | ({
+          _key: string
+        } & CourseList)
       | ({
           _key: string
         } & CustomHtml)
@@ -5677,15 +6356,16 @@ declare module '@sanity/client' {
     "\n  *[ _type == 'blog.category' ] {\n    ...,\n    'slug': '/blog/' + metadata.slug.current,\n    'href': '/blog?category=' + metadata.slug.current,\n    'icon': icon.name\n  }": BlogCategoriesQueryResult
     "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{\n    pretitle,\n    title,\n    subtitle,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": BlogIndexQueryResult
     "\n  *[_type == 'blog.article' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    _id,\n    title,\n    previewText,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + slug.current,\n      'icon': icon.name\n    }\n\n  }\n": BlogArticlePageQueryResult
+    "\n  *[_type == 'course' && difficulty == $difficulty] | order(publishedAt desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n,\n  }\n": CoursesByDifficultyQueryResult
     "\n  *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n": AllExperimentsQueryResult
-    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'experiments': *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": ExperimentIndexQueryResult
+    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'experiments': *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": ExperimentIndexQueryResult
     "\n  *[_type == 'experiment' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n  }\n": ExperimentPageQueryResult
     "\n  *[_type == 'gallery.pets'] {\n    \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  }\n  }": GalleryPetsQueryResult
-    "\n*[_type == 'page' && metadata.slug.current == 'index'][0]{\n  ...,\n  modules[]{\n    \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n\n\n  },\n  metadata {\n    ...,\n    'ogimage': image.asset->url + '?w=1200'\n  }\n}": HomePageQueryResult
-    "*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{\n    ...,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  }": PageQueryResult
+    "\n*[_type == 'page' && metadata.slug.current == 'index'][0]{\n  ...,\n  modules[]{\n    \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n\n\n  },\n  metadata {\n    ...,\n    'ogimage': image.asset->url + '?w=1200'\n  }\n}": HomePageQueryResult
+    "*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{\n    ...,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  }": PageQueryResult
     "\n  *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current": PageSlugQueryResult
     "\n  *[_type == 'project'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    tags[]-> {\n      _key,\n      title,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n": AllProjectsQueryResult
-    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'projects': *[_type == 'project'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    tags[]-> {\n      _key,\n      title,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": ProjectIndexQueryResult
+    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'nav.card' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    },\n    'image': image.asset->url,\n    'alt': image.alt,\n  },\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  },\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'projects': *[_type == 'project'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    tags[]-> {\n      _key,\n      title,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": ProjectIndexQueryResult
     "\n  *[_type == 'project' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    tags[]-> {\n      _key,\n      title,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n  }\n": ProjectPageQueryResult
     "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'resources'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    headerIllustration,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'resources': *[_type == 'resource.category'] | order(title asc) {\n    _id,\n    title,\n    description,\n    icon,\n    links[] {\n      \n  _id,\n  label,\n  url,\n  content,\n  'image': image.asset->url,\n  'alt': image.alt,\n  featured,\n  layout\n\n    }\n  }\n}": ResourcesIndexQueryResult
     "\n  *[_type == 'settings'][0]{\n    ...,\n    mainMenu{\n      items[]{\n        \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  }\n,\n\n        _type == 'dropdown.about' => {\n          ...,\n          'image': image.asset->url,\n          links[]{\n            \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n          }\n        },\n\n        _type == 'dropdown.blog' => {\n          ...,\n          links[]{\n            _type == 'reference' => @->{\n              ...,\n              \"slug\": '/blog?category=' + slug.current,\n              \"icon\": icon.name\n            }\n          }\n        },\n\n        _type == 'dropdown.promo' => {\n          ...,\n          links[]{\n            \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n          }\n        },\n\n        _type == 'dropdown.quote' => {\n          ...,\n          links[]{\n            \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n          }\n        }\n      }\n    },\n    secondaryMenu{\n      items[]{\n        ...,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug,\n  }\n\n    }\n  }\n,\n      }\n    },\n    'ogimage': image.asset->url + '?w=1200'\n  }\n": SettingsQueryResult
