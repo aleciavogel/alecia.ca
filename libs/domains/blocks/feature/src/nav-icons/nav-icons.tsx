@@ -1,54 +1,56 @@
 import type { FC } from 'react'
-import classNames from 'classnames'
 
-import { NavLinksBlockProps } from '@alecia/blocks-types'
-import { NavCardImage, NavCardList } from '@alecia/blocks-ui'
+import { IconNavList } from '@alecia/blocks-ui'
+import type { InternalLinkProps } from '@alecia/types'
 import { Typography } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
-export const NavIcons: FC<NavLinksBlockProps> = (props) => {
-  const { pretitle, title, image, links } = props
-  const hasImage = image !== null
+interface NavCardProps {
+  _type: 'nav.card'
+  _key: string
+  title?: string
+  pretitle?: string
+  description?: string
+  links: InternalLinkProps[] | null
+}
 
+export const NavIcons: FC<NavCardProps> = ({
+  _key,
+  title = 'Untitled',
+  pretitle = 'Pretitle',
+  description = '',
+  links,
+}) => {
   return (
     <div
       className={cn(
-        'container mx-auto px-12 md:px-20 relative ',
-        classNames({
-          'max-md:grid md:flex md:items-start': hasImage,
-          'lg:gap-4 xl:gap-10': hasImage,
-        }),
+        'container mx-auto',
+        'md:flex md:justify-center md:items-center',
+        'gap-8 md:gap-24',
+        'px-14 md:px-20',
+        'relative',
       )}
     >
-      {hasImage ? <NavCardImage {...props} /> : null}
-      <div
-        // White backdrop for container (either a pseudo-element or the bg)
-        className={cn(
-          'text-center w-full relative z-[2]',
-          'pt-10 pb-14 px-8 xl:px-20 box-border',
-          classNames({
-            'flex-grow': hasImage,
-            'after:content[""] after:block after:h-full': hasImage,
-            'after:w-full md:after:w-[120%]': hasImage,
-            'after:bg-white': hasImage,
-            'after:absolute after:top-0 after:right-0': hasImage,
-            'after:z-[-1]': hasImage,
-            'after:rounded-lg': hasImage,
-          }),
-          classNames({
-            'bg-white rounded-lg': !hasImage,
-            'mx-auto overflow-hidden': !hasImage,
-            'max-w-screen-md': !hasImage,
-          }),
-        )}
-      >
-        <Typography variant="blockPretitle" className="mb-2">
-          {pretitle}
-        </Typography>
-        <Typography variant="blockTitle" className="mb-8">
-          {title}
-        </Typography>
-        <NavCardList links={links} />
+      <div className="md:flex md:max-w-[340px]">
+        <div className="max-md:text-center">
+          {pretitle ? (
+            <Typography variant="blockPretitle" className="mb-4">
+              {pretitle}
+            </Typography>
+          ) : null}
+          <Typography variant="blockTitle" className="mb-2">
+            {title}
+          </Typography>
+          <Typography
+            variant="p"
+            className="text-primary-950 dark:text-primary-300 max-w-[300px] max-md:mx-auto lg:text-[1.125rem] lg:leading-relaxed"
+          >
+            {description}
+          </Typography>
+        </div>
+      </div>
+      <div className={cn('w-full relative z-[2]', 'col-span-2 max-w-screen-sm max-md:mx-auto')}>
+        <IconNavList links={links} />
       </div>
     </div>
   )

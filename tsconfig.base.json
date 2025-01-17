@@ -48,12 +48,16 @@
       "@alecia/courses-ui": ["libs/domains/courses/ui/src/index.ts"],
       "@alecia/dark-mode": ["libs/domains/site-layout/feature-dark-mode/src/index.ts"],
       "@alecia/data-access-algolia": ["libs/vendors/algolia/data-access/src/index.ts"],
+      "@alecia/data-access-firebase": ["libs/vendors/firebase/data-access/src/index.ts"],
+      "@alecia/data-access-firebase/server": ["libs/vendors/firebase/data-access/src/server.ts"],
       "@alecia/experiments": ["libs/domains/experiments/feature/src/index.ts"],
       "@alecia/experiments-data-access": ["libs/domains/experiments/data-access/src/index.ts"],
       "@alecia/experiments-data-access/server": [
         "libs/domains/experiments/data-access/src/server.ts"
       ],
       "@alecia/experiments-ui": ["libs/domains/experiments/ui/src/index.ts"],
+      "@alecia/firebase-constants": ["libs/vendors/firebase/constants/src/index.ts"],
+      "@alecia/firebase-constants/server": ["libs/vendors/firebase/constants/src/server.ts"],
       "@alecia/giscus-constants": ["libs/vendors/giscus/constants/src/index.ts"],
       "@alecia/giscus-types": ["libs/vendors/giscus/types/src/index.ts"],
       "@alecia/giscus-ui": ["libs/vendors/giscus/ui/src/index.ts"],

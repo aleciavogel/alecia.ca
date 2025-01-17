@@ -1,30 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { type IconProp } from '@fortawesome/fontawesome-svg-core'
-import {
-  faQuestion,
-  faTransporter,
-  faTransporter1,
-  faTransporter2,
-  faTransporter3,
-  faTransporter4,
-  faTransporter5,
-  faTransporter6,
-  faTransporter7,
-  faTransporterEmpty,
-} from '@fortawesome/pro-solid-svg-icons'
+import { IconName } from '@fortawesome/fontawesome-svg-core'
 
-const ICONS: IconProp[] = [
-  faTransporter,
-  faTransporter1,
-  faTransporter2,
-  faTransporter3,
-  faTransporter4,
-  faTransporter5,
-  faTransporter6,
-  faTransporter7,
-  faTransporterEmpty,
+const ICONS: string[] = [
+  'faTransporter',
+  'faTransporter1',
+  'faTransporter2',
+  'faTransporter3',
+  'faTransporter4',
+  'faTransporter5',
+  'faTransporter6',
+  'faTransporter7',
+  'faTransporterEmpty',
 ].reverse()
 
 const FRAME_LENGTH = 50
@@ -71,6 +59,6 @@ export const useTeleportAnimation = (animationDirection: Omit<AnimationDirection
   }, [animationDirection])
 
   return {
-    teleportIcon: ICONS[currentIcon] ?? faQuestion,
+    teleportIcon: ICONS[currentIcon] as IconName,
   }
 }

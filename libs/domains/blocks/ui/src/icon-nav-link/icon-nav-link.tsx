@@ -1,32 +1,29 @@
-'use client'
-
-import type { FC, HTMLProps } from 'react'
+import type { HTMLProps } from 'react'
 import type { IconName } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { stegaClean } from 'next-sanity'
 
+import { Icon } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
 export interface IconNavLinkProps extends HTMLProps<HTMLAnchorElement> {
-  iconComponent?: FontAwesomeIconProps['icon']
-  icon?: IconName | null
+  icon?: string | null
   label?: string
   subtitle?: string
   slug: string | null
 }
 
 // TODO: animate the transition
-export const IconNavLink: FC<IconNavLinkProps> = ({
-  iconComponent,
+export const IconNavLink = ({
   icon,
   label = '',
   subtitle = '',
   slug,
   className,
   ...rest
-}) => {
-  const iconName = icon !== null && typeof icon === 'string' ? stegaClean(icon) : undefined
+}: IconNavLinkProps) => {
+  const iconName =
+    icon !== null && typeof icon === 'string' ? (stegaClean(icon) as IconName) : 'faRocket'
 
   return (
     <Link
@@ -43,7 +40,7 @@ export const IconNavLink: FC<IconNavLinkProps> = ({
       {...rest}
     >
       <h4 className="space-x-2 uppercase text-sm font-semibold">
-        <FontAwesomeIcon icon={['fas', (iconName ?? 'faRocket') as IconName]} />
+        <Icon name={iconName as IconName} />
         <span>{label}</span>
       </h4>
       <p>{subtitle}</p>

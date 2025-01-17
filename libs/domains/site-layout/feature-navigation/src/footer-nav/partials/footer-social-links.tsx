@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
+import { IconName } from '@fortawesome/fontawesome-svg-core'
 
-import { SOCIAL_ICON_PROP_MAP } from '@alecia/constants'
+import { SOCIAL_ICON_MAP } from '@alecia/constants'
 import { getSettings } from '@alecia/settings-data-access/server'
 import { SocialLinksItem } from '@alecia/site-layout-ui'
 
@@ -19,10 +20,10 @@ export const FooterSocialLinks = async (): Promise<JSX.Element> => {
           .split('.')[0]
           .toLowerCase()
 
-        const icon = SOCIAL_ICON_PROP_MAP[iconSource]
+        const iconName = SOCIAL_ICON_MAP[iconSource] as IconName
 
         return (
-          <SocialLinksItem key={socialKey} icon={icon} href={social.url} label={social.label} />
+          <SocialLinksItem key={socialKey} icon={iconName} href={social.url} label={social.label} />
         )
       })}
     </>

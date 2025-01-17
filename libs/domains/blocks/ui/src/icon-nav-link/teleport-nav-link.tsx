@@ -21,7 +21,7 @@ export const TeleportNavLink: FC<IconNavLinkProps> = (props) => {
   return (
     <IconNavLink
       {...props}
-      iconComponent={teleportIcon}
+      icon={teleportIcon}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     />

@@ -1,9 +1,9 @@
 'use client'
 
 import { type FC, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { useTeleportAnimation } from '@alecia/animations'
+import { Icon } from '@alecia/ui-kit'
 
 import { ListItemProps } from './list-item'
 import { StaticNavListItem } from './static-nav-list-item'
@@ -31,7 +31,7 @@ export const TeleportListItem: FC<ListItemProps> = ({ label, href, description }
       onMouseLeave={handleMouseLeave}
     >
       <div className="text-sm text-white/90 font-medium leading-none">
-        <FontAwesomeIcon icon={teleportIcon} className="mr-2" />
+        <Icon name={teleportIcon} className="mr-2" />
         {label}
       </div>
       {description ? (

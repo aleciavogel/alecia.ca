@@ -26,4 +26,11 @@
     @apply text-body font-sans-serif;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
+
+  .oh-no-honey {
+    @apply absolute top-0 left-0;
+    @apply h-0 w-0;
+    @apply z-[-1];
+    @apply opacity-0;
+  }
 }

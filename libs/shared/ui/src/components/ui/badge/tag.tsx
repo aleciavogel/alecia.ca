@@ -1,10 +1,10 @@
 import type { FC } from 'react'
 import { type IconName } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 
 import { cn } from '@alecia/util'
 
+import { Icon } from '../icon'
 import { Badge } from './badge'
 
 export interface TagProps {
@@ -27,7 +27,7 @@ export const Tag: FC<TagProps> = ({ text, href, icon, className }) => (
       className,
     )}
   >
-    {icon ? <FontAwesomeIcon icon={icon} /> : null}
+    {icon ? <Icon name={icon} /> : null}
     <span>{text}</span>
   </Badge>
 )

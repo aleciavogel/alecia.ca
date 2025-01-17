@@ -72,23 +72,25 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
             ) : null}
           </div>
         </div>
-        <div className="relative h-full z-[100]">
-          <IllustrationSVG
-            className={cn(
-              'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
-              classnames({
-                'w-[120%]': [
-                  'HammondSleepingIllustration',
-                  'AleciaCouchIllustration',
-                  'SadieHammondCookiesIllustration',
-                ].includes(svgKey),
-                'w-[100%] -mb-[30%]': ['PhoebeLaptopIllustration'].includes(svgKey),
-                '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
-                'w-[100%] -mb-[55%]': svgKey === 'HammondScienceIllustration',
-              }),
-            )}
-          />
-        </div>
+        {hasHeaderIllustration ? (
+          <div className="relative h-full z-[100]">
+            <IllustrationSVG
+              className={cn(
+                'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
+                classnames({
+                  'w-[120%]': [
+                    'HammondSleepingIllustration',
+                    'AleciaCouchIllustration',
+                    'SadieHammondCookiesIllustration',
+                  ].includes(svgKey),
+                  'w-[100%] -mb-[30%]': ['PhoebeLaptopIllustration'].includes(svgKey),
+                  '-mb-[35%]': svgKey === 'SadieHammondCookiesIllustration',
+                  'w-[100%] -mb-[55%]': svgKey === 'HammondScienceIllustration',
+                }),
+              )}
+            />
+          </div>
+        ) : null}
       </div>
     </header>
   )

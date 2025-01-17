@@ -42,7 +42,7 @@ export const DropdownPromo: FC<DropdownPromoProps> = ({ label, links }) => (
         </li>
 
         {links?.map((item, index) => {
-          if (item.icon?.includes('faTransporter')) {
+          if (item.icon?.includes('faTransporterEmpty')) {
             return (
               <TeleportListItem
                 key={`promo-dropdown-${String(index)}`}

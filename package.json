@@ -67,6 +67,8 @@
     "cmdk": "^1.0.4",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.5.2",
+    "firebase": "^11.2.0",
+    "firebase-admin": "^13.0.2",
     "framer-motion": "^11.18.0",
     "fs-extra": "^11.2.0",
     "groq": "^3.69.0",

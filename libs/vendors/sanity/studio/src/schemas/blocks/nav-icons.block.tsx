@@ -1,11 +1,13 @@
-import { faAddressCard } from '@fortawesome/pro-solid-svg-icons'
+import { faBinoculars } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
+import { count } from '@alecia/sanity-util'
+
 export const navIcons = defineType({
   name: 'nav.icons',
-  title: 'About Nav',
-  icon: () => <FontAwesomeIcon icon={faAddressCard} />,
+  title: 'Nav Icons Block',
+  icon: () => <FontAwesomeIcon icon={faBinoculars} />,
   type: 'object',
   fields: [
     defineField({
@@ -17,35 +19,24 @@ export const navIcons = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alt text',
-          description: 'A short description of the image for screen readers',
-          validation: (Rule) => Rule.required(),
-        }),
-      ],
+      name: 'description',
+      type: 'string',
     }),
     defineField({
       name: 'links',
       type: 'array',
       of: [{ type: 'link.internal' }],
-      validation: (Rule) => Rule.required().max(3),
+      validation: (Rule) => Rule.required().max(4),
     }),
   ],
   preview: {
     select: {
       title: 'title',
+      links: 'links',
     },
-    prepare: ({ title }) => ({
+    prepare: ({ title, links }) => ({
       title,
-      subtitle: 'About Nav',
+      subtitle: count(links, 'link'),
     }),
   },
 })

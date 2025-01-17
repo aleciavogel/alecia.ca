@@ -10,17 +10,19 @@ interface AnimatedInterceptedModalProps {
   animationDuration?: number
   open?: boolean
   children: ReactNode
+  className?: string
 }
 
 export const AnimatedInterceptedModal = ({
   animationDuration = 300,
   children,
   open = false,
+  ...rest
 }: AnimatedInterceptedModalProps) => {
   const transitions = useTransition(open, {
-    from: { opacity: 0, y: -10 },
+    from: { opacity: 0, y: 50 },
     enter: { opacity: 1, y: 0 },
-    leave: { opacity: 0, y: 10 },
+    leave: { opacity: 0, y: 50 },
     config: {
       ...config.slow,
       duration: animationDuration,
@@ -31,7 +33,7 @@ export const AnimatedInterceptedModal = ({
     <>
       {transitions((styles, item) =>
         item ? (
-          <InterceptedModalContent asChild forceMount>
+          <InterceptedModalContent asChild forceMount {...rest}>
             <animated.div className="bg-red-600 opacity-0" style={styles}>
               {children}
               <InterceptedModalClose>
