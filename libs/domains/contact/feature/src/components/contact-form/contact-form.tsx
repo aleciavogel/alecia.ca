@@ -1,6 +1,5 @@
 'use client'
 
-import type { FC } from 'react'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { faSpinner } from '@fortawesome/pro-solid-svg-icons'
@@ -30,7 +29,12 @@ const SUBJECT_OPTIONS = [
   'Something else...',
 ]
 
-export const ContactForm: FC = () => {
+interface ContactFormProps {
+  onSuccess?: (data: ContactFormValues) => void
+  onError?: (error: Error) => void
+}
+
+export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
   const { mutate: submitForm, isPending } = useSendContactForm()
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactFormSchema),
@@ -45,14 +49,13 @@ export const ContactForm: FC = () => {
   })
 
   const handleSubmit = (data: ContactFormValues): void => {
-    console.log('data submitted', data)
-
     submitForm(data, {
       onSuccess: () => {
         form.reset()
+        onSuccess?.(data)
       },
       onError: (error) => {
-        console.error('Error submitting contact form', error)
+        onError?.(error)
       },
     })
   }

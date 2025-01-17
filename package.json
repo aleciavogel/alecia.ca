@@ -95,6 +95,7 @@
     "recharts": "^2.15.0",
     "redux": "^5.0.1",
     "reselect": "^5.1.1",
+    "resend": "^4.1.1",
     "rtl-detect": "^1.1.2",
     "sanity": "3.69.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.2",

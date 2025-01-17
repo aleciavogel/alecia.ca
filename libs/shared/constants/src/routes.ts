@@ -9,7 +9,8 @@ export const SITE_BASE_URL =
  */
 export const Routes = {
   Emails: {
-    ContactFormSubmission: '/contact-form/send',
+    ContactFormSubmission: '/contact/send',
+    ContactFormConfirmation: '/contact/confirm',
   },
   Newsletters: {
     Subscribe: '/newsletter/subscribe',

@@ -50,6 +50,7 @@
       "@alecia/data-access-algolia": ["libs/vendors/algolia/data-access/src/index.ts"],
       "@alecia/data-access-firebase": ["libs/vendors/firebase/data-access/src/index.ts"],
       "@alecia/data-access-firebase/server": ["libs/vendors/firebase/data-access/src/server.ts"],
+      "@alecia/email-templates": ["libs/domains/emails/templates/src/index.ts"],
       "@alecia/experiments": ["libs/domains/experiments/feature/src/index.ts"],
       "@alecia/experiments-data-access": ["libs/domains/experiments/data-access/src/index.ts"],
       "@alecia/experiments-data-access/server": [

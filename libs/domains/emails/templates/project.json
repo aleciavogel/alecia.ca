@@ -1,0 +1,16 @@
+{
+  "name": "email-templates",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/emails/templates/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project email-templates --web",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "email dev --dir libs/domains/emails/templates/src/templates --port 4500"
+      }
+    }
+  }
+}

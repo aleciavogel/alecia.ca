@@ -1,6 +1,4 @@
-import { SITE_BASE_URL } from '@alecia/constants'
-
-const API_URL = SITE_BASE_URL + '/api'
+const API_URL = '/api'
 
 /**
  * Get method
