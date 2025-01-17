@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         id="root"
-        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-fuchsia body-gray`}
+        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}
       >
         <Providers>{children}</Providers>
         {isDraftMode ? <VisualEditingControls /> : null}

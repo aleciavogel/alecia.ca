@@ -1,11 +1,9 @@
 'use client'
 
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
 import { DarkModeToggleHoverLayer } from '@alecia/dark-mode'
 import {
-  FullscreenMenu,
-  MenuSheet,
   MenuSheetTrigger,
   MenuToggleHoverLayer,
   SiteLogoHoverLayer,
@@ -16,18 +14,13 @@ import { cn } from '@alecia/util'
 import { StickyNavProps } from './sticky-nav'
 
 export const StickyNavHoverLayer: FC<StickyNavProps> = ({ className }) => {
-  const [open, setOpen] = useState(false)
-
   return (
     <StickyHeader isHoverLayer className={cn('z-[100]', className)}>
       <SiteLogoHoverLayer />
       <div className="space-y-3">
-        <MenuSheet open={open} onOpenChange={setOpen}>
-          <MenuSheetTrigger>
-            <MenuToggleHoverLayer />
-          </MenuSheetTrigger>
-          <FullscreenMenu open={open} />
-        </MenuSheet>
+        <MenuSheetTrigger>
+          <MenuToggleHoverLayer />
+        </MenuSheetTrigger>
         <DarkModeToggleHoverLayer />
       </div>
     </StickyHeader>

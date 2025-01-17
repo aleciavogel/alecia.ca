@@ -9,10 +9,13 @@ import {
   useSpringRef,
   useTransition,
 } from '@react-spring/web'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import { MenuSheetClose, MenuSheetContent } from '@alecia/site-layout-ui'
 import { AleciaLayingIllustration } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
+
+import { MenuSheetClose, MenuSheetContent } from '../menu-sheet'
 
 interface FullscreenMenuProps {
   animationDuration?: number
@@ -25,6 +28,8 @@ const menuItems = [
   { name: 'About', link: '/about' },
   { name: 'Blog', link: '/blog' },
   { name: 'Portfolio', link: '/projects' },
+  { name: 'Coding 101', link: '/coding-101' },
+  { name: 'Advanced Projects', link: '/advanced-projects' },
   { name: 'Experiments', link: '/experiments' },
   { name: 'Resources', link: '/resources' },
   { name: 'Resumé', link: '/about/resume' },
@@ -85,12 +90,12 @@ export const FullscreenMenu = ({
               <ul className="m-0 p-0 space-y-6">
                 {liTransitions((style, item) => (
                   <animated.li key={item.name} className="list-style-none" style={style}>
-                    <a
+                    <Link
                       href={item.link}
                       className="text-white text-5xl font-serif zigzag-btn after:h-[4px] hover:opacity-70"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </animated.li>
                 ))}
               </ul>
