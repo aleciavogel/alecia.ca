@@ -7,17 +7,25 @@ import { cn } from '@alecia/util'
 
 import { BlogCategoryFilterItem } from './filter-item'
 
+const ALL_POSTS_SLUGS = ['all-posts', 'all']
+
 export const BlogCategoryFilters = async (): Promise<JSX.Element | null> => {
   const categories = await getBlogCategories()
 
   if (!categories) return null
 
   const allCategory = categories.filter((category) =>
-    ['all posts', 'all'].includes(stegaClean(category.title)?.toLowerCase() ?? ''),
+    ALL_POSTS_SLUGS.includes(stegaClean(category.slug)?.toLowerCase() ?? ''),
   )[0]
-  const rest = categories.filter(
-    (category) => !['all-posts', 'all'].includes(stegaClean(category.slug)?.toLowerCase() ?? ''),
-  )
+
+  const rest = categories.filter((category) => {
+    console.log(
+      'Category',
+      stegaClean(category.slug),
+      !ALL_POSTS_SLUGS.includes(stegaClean(category.slug)?.toLowerCase() ?? ''),
+    )
+    return !ALL_POSTS_SLUGS.includes(stegaClean(category.slug)?.toLowerCase() ?? '')
+  })
   const filters = [allCategory, ...rest]
 
   return (
@@ -37,7 +45,7 @@ export const BlogCategoryFilters = async (): Promise<JSX.Element | null> => {
                 name={category.title}
                 href={category.href}
                 slug={category.slug}
-                iconName={category.icon}
+                iconName={stegaClean(category.icon)}
               />
             </li>
           ))}

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: twColors.indigo[600],
+  themeColor: twColors.violet[600],
 }
 
 interface RootLayoutProps {
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         id="root"
-        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}
+        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-fuchsia body-gray`}
       >
         <Providers>{children}</Providers>
         {isDraftMode ? <VisualEditingControls /> : null}

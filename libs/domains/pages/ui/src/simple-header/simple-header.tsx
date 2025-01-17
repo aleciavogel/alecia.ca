@@ -76,12 +76,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
           </div>
         ) : null}
         <div className={cn('h-full flex items-center', classnames('md:just-start'))}>
-          <div
-            className={classnames({
-              'md:text-left': hasHeaderIllustration,
-              'text-center': hasHeaderIllustration,
-            })}
-          >
+          <div className="text-center md:text-left">
             {pretitle ? (
               <Typography variant="pretitle" className="mb-2">
                 {pretitle}

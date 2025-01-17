@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React from 'react'
 
-import { AleciaCouchIllustration, Typography } from '@alecia/ui-kit'
+import { AleciaCouchIllustration, Typography, ZigZagAccent } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
 interface BlogHeaderProps {
@@ -44,7 +44,7 @@ export const BlogHeader: FC<BlogHeaderProps> = ({
               </Typography>
             ) : null}
             <h1 className="w-full font-serif text-5xl md:text-6xl lg:text-8xl mb-2">{title}</h1>
-            {subtitle ? <p className="text-left md:text-lg text-white/80">{subtitle}</p> : null}
+            <ZigZagAccent className="fill-primary-300 w-[175px] my-8" />
           </div>
         </div>
         <div className="col-span-2 relative h-full z-[100]">

@@ -1,4 +1,4 @@
-import type { ComponentProps, FC } from 'react'
+import { ComponentProps, FC } from 'react'
 import { faBars } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

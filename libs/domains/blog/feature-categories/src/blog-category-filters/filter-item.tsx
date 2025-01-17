@@ -1,6 +1,7 @@
 'use client'
 
 import { type FC } from 'react'
+import { IconName } from '@fortawesome/pro-light-svg-icons'
 import { stegaClean } from '@sanity/client/stega'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -39,7 +40,7 @@ export const BlogCategoryFilterItem: FC<BlogCategoryFilterProps> = ({
         'flex items-center gap-2',
       )}
     >
-      {iconName ? <Icon name={iconName} /> : null}
+      {iconName ? <Icon name={iconName as IconName} /> : null}
       <span>{name ?? 'Untitled Category'}</span>
     </Link>
   )
