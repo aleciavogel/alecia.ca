@@ -112,7 +112,7 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
                   <p>Site Menu</p>
                 </MenuSheetTitle>
 
-                <div className="h-screen overflow-y-scroll w-full">
+                <div className="h-screen overflow-y-scroll w-full flex items-center">
                   <div
                     className={cn(
                       'max-md:bg-gradient-to-t max-md:from-fuchsia-600 to-30% max-md:to-transparent',
@@ -122,7 +122,7 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
                     )}
                   />
                   <div className="w-full py-16 px-6 md:px-24 max-md:pb-[175px] max-md:pt-24">
-                    <ul className="m-0 p-0 space-y-4 max-md:text-center md:space-y-8 overflow-y-auto relative z-[1]">
+                    <ul className="m-0 p-0 space-y-4 max-md:text-center md:space-y-8 relative z-[1]">
                       {liTransitions((style, item) => (
                         <animated.li key={item.label} className="list-style-none" style={style}>
                           <Link
