@@ -7,6 +7,7 @@ const galleryPetsSchema = `
       _key,
       'imageSrc': asset->url,
       'imageAlt': alt,
+      additionalInfo
     }
 `
 

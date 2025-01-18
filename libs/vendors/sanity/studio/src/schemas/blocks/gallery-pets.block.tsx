@@ -46,6 +46,18 @@ export const galleryPets = defineType({
               description: 'A short description of the image for screen readers',
               validation: (Rule) => Rule.required(),
             }),
+            defineField({
+              name: 'additionalInfo',
+              type: 'array',
+              title: 'Additional Info',
+              description: 'Additional information about the pet',
+              of: [
+                defineArrayMember({
+                  type: 'string',
+                  validation: (Rule) => Rule.required().max(50),
+                }),
+              ],
+            }),
           ],
         }),
       ],

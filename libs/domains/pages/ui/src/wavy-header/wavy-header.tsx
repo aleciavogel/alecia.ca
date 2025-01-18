@@ -1,5 +1,6 @@
 import React, { type FC } from 'react'
 
+import { WavyText } from '@alecia/site-layout-ui'
 import { WavyDescriptiveText } from '@alecia/ui-kit'
 import * as illustrations from '@alecia/ui-kit/components/vectors/illustrations'
 import { cn } from '@alecia/util'
@@ -24,9 +25,8 @@ export const WavyHeader: FC<WavyHeaderProps> = ({ headerIllustration, ...props }
         'after:bg-gradient-to-b after:from-primary-950 after:from-20% after:to-fuchsia-600',
       )}
     >
-      <div className="w-full text-white/30 absolute top-[45%] md:top-auto md:visible md:-mb-[7%] overflow-hidden">
-        {/* TODO: animate this */}
-        <WavyDescriptiveText className="w-[200%] md:w-full" />
+      <div className="w-full text-white/30 absolute top-[10%] md:visible">
+        <WavyText className="-translate-x-72 absolute z-10 w-[150%]" />
       </div>
       <div className={cn('flex items-center justify-items-center px-8 md:px-20 page-container')}>
         <div

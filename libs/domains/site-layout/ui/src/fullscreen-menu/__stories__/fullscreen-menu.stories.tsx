@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { MenuSheet, MenuSheetTrigger } from '@alecia/site-layout-ui'
 import { Button } from '@alecia/ui-kit'
 
+import { MenuSheet, MenuSheetTrigger } from '../../'
 import { FullscreenMenu } from '..'
 
 const meta: Meta<typeof FullscreenMenu> = {
@@ -25,9 +25,7 @@ export const Default: Story = {
         <MenuSheetTrigger>
           <Button>Open</Button>
         </MenuSheetTrigger>
-        <FullscreenMenu {...args} open={open}>
-          <span>Hello, it is I</span>
-        </FullscreenMenu>
+        <FullscreenMenu {...args} open={open} />
       </MenuSheet>
     )
   },

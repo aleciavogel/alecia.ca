@@ -17,7 +17,7 @@ export const NavigationMenuViewport = forwardRef<
         'w-full md:w-[var(--radix-navigation-menu-viewport-width)]',
         'h-[var(--radix-navigation-menu-viewport-height)]',
         'relative origin-top-center mt-1.5',
-        'border border-white border-opacity-100',
+        'border border-primary-600 border-opacity-100',
         'overflow-hidden rounded-md shadow-lg',
         'bg-primary-800 dark:bg-primary-900',
         'data-[state=open]:animate-in data-[state=closed]:animate-out',

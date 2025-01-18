@@ -8,6 +8,7 @@ export const FooterIllustration: FC = () => (
     className={cn(
       'max-md:mx-auto',
       'max-w-[300px] w-2/3',
+      'relative z-20',
       /**
        * Move down so Phoebe is sitting on the border
        * (dynamically adjusted, so it stays the same regardless of width)

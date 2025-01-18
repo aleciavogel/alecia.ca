@@ -134,7 +134,6 @@ const plainLink = {
 const header = {
   borderRadius: '5px 5px 0 0',
   display: 'flex',
-  flexDireciont: 'column',
   backgroundColor: '#5b21b6',
 }
 
