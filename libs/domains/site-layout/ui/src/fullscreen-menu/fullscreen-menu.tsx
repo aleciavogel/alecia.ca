@@ -103,52 +103,68 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
               <animated.nav
                 ref={ref}
                 className={cn(
-                  'fixed right-0 py-16 px-24 flex items-center',
-                  'bg-gradient-to-b from-primary-950 from-30% to-fuchsia-600',
+                  'fixed right-0 flex items-center max-md:justify-center',
+                  'bg-gradient-to-b from-violet-950 from-30% to-fuchsia-600',
                 )}
                 style={navStyles}
               >
                 <MenuSheetTitle className="sr-only">
                   <p>Site Menu</p>
                 </MenuSheetTitle>
-                <ul className="m-0 p-0 space-y-8">
-                  {liTransitions((style, item) => (
-                    <animated.li key={item.label} className="list-style-none" style={style}>
-                      <Link
-                        href={item.slug ?? '#'}
-                        className={cn(
-                          'text-white text-5xl font-serif zigzag-btn after:h-[4px] hover:text-accent-200/80',
-                          'transition-all duration-300 ease-in-out',
-                        )}
-                      >
-                        {item.label}
-                      </Link>
-                    </animated.li>
-                  ))}
-                  <li className="pt-4">
-                    <ul className="m-0 p-0 flex gap-6">
-                      {socialLinksTransitions((style, item) => (
-                        <animated.li
-                          key={`fullscreen-${item._key}`}
-                          className="list-style-none"
-                          style={style}
-                        >
-                          <SocialLink
-                            {...item}
-                            className="text-white text-5xl hover:text-accent-200/80 transition-all duration-300 ease-in-out"
-                          />
+
+                <div className="h-screen overflow-y-scroll w-full">
+                  <div
+                    className={cn(
+                      'max-md:bg-gradient-to-t max-md:from-fuchsia-600 to-30% max-md:to-transparent',
+                      'pointer-events-none z-[2]',
+                      'absolute bottom-0 left-0',
+                      'w-full h-full',
+                    )}
+                  />
+                  <div className="w-full py-16 px-6 md:px-24 max-md:pb-[175px] max-md:pt-24">
+                    <ul className="m-0 p-0 space-y-4 max-md:text-center md:space-y-8 overflow-y-auto relative z-[1]">
+                      {liTransitions((style, item) => (
+                        <animated.li key={item.label} className="list-style-none" style={style}>
+                          <Link
+                            href={item.slug ?? '#'}
+                            className={cn(
+                              'text-white text-2xl md:text-5xl font-serif zigzag-btn after:h-[4px] hover:text-accent-200/80',
+                              'transition-all duration-300 ease-in-out',
+                            )}
+                          >
+                            {item.label}
+                          </Link>
                         </animated.li>
                       ))}
+                      <li className="pt-8 md:pt-4">
+                        <ul className="m-0 p-0 flex gap-8 md:gap-6 max-md:justify-center">
+                          {socialLinksTransitions((style, item) => (
+                            <animated.li
+                              key={`fullscreen-${item._key}`}
+                              className="list-style-none"
+                              style={style}
+                            >
+                              <SocialLink
+                                {...item}
+                                className="text-white text-2xl md:text-5xl hover:text-accent-200/80 transition-all duration-300 ease-in-out"
+                              />
+                            </animated.li>
+                          ))}
+                        </ul>
+                      </li>
                     </ul>
-                  </li>
-                </ul>
+                  </div>
+                </div>
 
-                <AleciaLayingIllustration className="absolute bottom-0 right-0 w-1/2" />
+                <AleciaLayingIllustration className="pointer-events-none absolute bottom-0 right-0 w-full md:w-1/2 max-md:pl-6 z-[3]" />
 
                 {movingTextTransitions((style, item) =>
                   item ? (
-                    <animated.div className="absolute -top-4 left-1/3 h-full z-[-1]" style={style}>
-                      <LoopDeLoopText className="text-accent-300/30" />
+                    <animated.div
+                      className="absolute -top-4 left-2/3 md:left-1/3 h-full z-[-1]"
+                      style={style}
+                    >
+                      <LoopDeLoopText className="text-fuchsia-300/20 md:text-fuchsia-300/30" />
                     </animated.div>
                   ) : null,
                 )}
