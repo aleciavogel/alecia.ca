@@ -4,6 +4,8 @@ import { defineField, defineType } from 'sanity'
 
 import { count } from '@alecia/sanity-util'
 
+import { linkableResources } from '../fragments'
+
 export const navIcons = defineType({
   name: 'nav.icons',
   title: 'Nav Icons Block',
@@ -25,7 +27,7 @@ export const navIcons = defineType({
     defineField({
       name: 'links',
       type: 'array',
-      of: [{ type: 'link.internal' }],
+      of: [{ type: 'reference', to: linkableResources }],
       validation: (Rule) => Rule.required().max(4),
     }),
   ],

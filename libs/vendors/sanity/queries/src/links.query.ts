@@ -33,7 +33,7 @@ export const internalLinkQueryPartial = `
         ${experimentSlugPartial},
         null
       )
-    }.slug,
+    }.slug
   }
 `
 
@@ -42,5 +42,27 @@ export const linkListQueryPartial = `
     links[]{
       ${internalLinkQueryPartial}
     }
+  }
+`
+
+export const linkableReferencePartial = `
+  links[]{
+    ...,
+    'label': item->title,
+    'subtitle': item->subtitle,
+    'icon': item->icon.name,
+    'slug': item->{
+      'slug': select(
+        ${authorSlugPartial},
+        ${blogPostSlugPartial},
+        ${blogCategorySlugPartial},
+        ${courseSlugPartial},
+        ${courseChapterSlugPartial},
+        ${pageSlugPartial},
+        ${projectSlugPartial},
+        ${experimentSlugPartial},
+        '#'
+      )
+    }.slug
   }
 `

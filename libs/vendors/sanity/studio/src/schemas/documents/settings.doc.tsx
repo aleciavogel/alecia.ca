@@ -38,6 +38,20 @@ export const settings = defineType({
       group: 'navigation',
     }),
     defineField({
+      name: 'fullscreenMenu',
+      description: 'Appears when the fullscreen menu is opened.',
+      type: 'array',
+      group: 'navigation',
+      of: [{ type: 'link.internal' }],
+    }),
+    defineField({
+      name: 'wavyAdjectives',
+      description: 'Text that appears in the wavy section of the site headers.',
+      type: 'array',
+      group: 'navigation',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
       name: 'social',
       description: 'Links to social media profiles. Displays in the footer.',
       type: 'array',

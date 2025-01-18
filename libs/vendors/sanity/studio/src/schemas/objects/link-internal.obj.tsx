@@ -2,6 +2,8 @@ import { faLink } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
+import { linkableResources } from '../fragments'
+
 export const linkInternal = defineType({
   name: 'link.internal',
   title: 'Internal Link',
@@ -21,9 +23,8 @@ export const linkInternal = defineType({
       name: 'item',
       type: 'reference',
       to: [
-        { type: 'page' },
+        ...linkableResources,
         { type: 'blog.article' },
-        { type: 'blog.category' },
         { type: 'author' },
         { type: 'course' },
         { type: 'course.chapter' },

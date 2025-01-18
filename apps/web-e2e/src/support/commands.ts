@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+/* eslint-disable @typescript-eslint/no-namespace */
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -9,6 +11,7 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
+export {} // Make this file an external module
 
 declare global {
   namespace Cypress {

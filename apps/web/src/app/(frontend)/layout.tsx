@@ -5,6 +5,7 @@ import { draftMode } from 'next/headers'
 import * as twColors from 'tailwindcss/colors'
 
 import { VisualEditingControls } from '@alecia/sanity-ui'
+import { getSettings } from '@alecia/settings-data-access/server'
 import { Providers } from '@alecia/site-layout'
 import { eksellLarge, eksellSmall, silka } from '@alecia/ui-kit'
 
@@ -29,7 +30,8 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const isDraftMode = (await draftMode()).isEnabled
+  const isDraftMode = draftMode().isEnabled
+  const settings = await getSettings()
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -37,7 +39,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         id="root"
         className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}
       >
-        <Providers>{children}</Providers>
+        <Providers settings={settings}>{children}</Providers>
         {isDraftMode ? <VisualEditingControls /> : null}
       </body>
     </html>

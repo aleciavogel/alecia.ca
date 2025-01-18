@@ -12,9 +12,8 @@ export const FooterBottom: FC = () => {
       <p className="text-white text-xs lg:text-sm text-center md:absolute-center">
         <Copyright />
       </p>
-      <div id="footer-links" className="space-x-6 text-2xl text-center md:text-right">
-        <FooterSocialLinks />
-      </div>
+
+      <FooterSocialLinks />
     </div>
   )
 }

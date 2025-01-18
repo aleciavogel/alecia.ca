@@ -5,7 +5,7 @@ import { preview } from 'sanity-plugin-icon-picker'
 
 import { Illustrations } from '@alecia/constants'
 
-import { blockTypes, iconPickerOptions } from '../fragments'
+import { blockTypes, iconPickerOptions, linkableResourceFields } from '../fragments'
 
 export const page = defineType({
   name: 'page',
@@ -19,12 +19,7 @@ export const page = defineType({
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
-    defineField({
-      name: 'icon',
-      type: 'iconPicker',
-      options: iconPickerOptions,
-      group: 'content',
-    }),
+    ...linkableResourceFields,
     defineField({
       name: 'pretitle',
       description: 'Appears above the title in small uppercase text',
@@ -32,20 +27,6 @@ export const page = defineType({
       group: 'content',
       fieldset: 'heading',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'title',
-      type: 'string',
-      group: 'content',
-      fieldset: 'heading',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'subtitle',
-      description: 'Appears below the title in larger text than the content of the page',
-      type: 'string',
-      group: 'content',
-      fieldset: 'heading',
     }),
     defineField({
       name: 'headerBorder',

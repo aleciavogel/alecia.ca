@@ -49,7 +49,7 @@ export const typographyVariants = cva('font-normal leading-snug transition-dark-
         'font-serif-small md:font-serif',
         'text-4xl min-[800px]:text-5xl min-[970px]:text-6xl xl:text-7xl',
       ),
-      subtitle: 'text-base sm:text-lg min-[970px]:text-xl xl:text-2xl text-primary-100',
+      subtitle: 'text-base sm:text-lg md:text-xl lg:text-2xl text-primary-100',
       blockPretitle: cn('font-semibold uppercase text-primary-800 dark:text-primary-500'),
       blockTitle: cn(
         'scroll-m-20 font-serif text-4xl  md:text-5xl lg:text-7xl  text-primary',

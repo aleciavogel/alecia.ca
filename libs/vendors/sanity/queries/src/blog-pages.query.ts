@@ -1,4 +1,4 @@
-import { defineQuery, groq } from 'next-sanity'
+import { defineQuery } from 'next-sanity'
 
 import { blogArticleQueryPartial } from './blog-article.query'
 

@@ -2,7 +2,7 @@ import { faBookBookmark } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { imageBlock, limitedBlockTypes } from '../fragments'
+import { limitedBlockTypes } from '../fragments'
 
 /**
  * Course chapter

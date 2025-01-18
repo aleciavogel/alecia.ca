@@ -1,21 +1,23 @@
 'use client'
 
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 
 import { DarkModeProvider } from '@alecia/dark-mode'
+import { SettingsQueryResult } from '@alecia/sanity-types'
 import { FullscreenMenu, MenuSheet, MenuSheetPortal } from '@alecia/site-layout-ui'
 import { ScrollProvider } from '@alecia/site-scroll'
 
 interface ProvidersProps {
   children: React.ReactNode
+  settings: SettingsQueryResult
 }
 
 const queryClient = new QueryClient()
 
-export const Providers: FC<ProvidersProps> = ({ children }) => {
+export const Providers = ({ children, settings }: ProvidersProps) => {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
@@ -30,7 +32,11 @@ export const Providers: FC<ProvidersProps> = ({ children }) => {
           <MenuSheet open={open} onOpenChange={setOpen}>
             {children}
             <MenuSheetPortal forceMount>
-              <FullscreenMenu open={open} />
+              <FullscreenMenu
+                open={open}
+                fullScreenMenu={settings?.fullscreenMenu ? settings.fullscreenMenu : []}
+                social={settings?.social ? settings.social : []}
+              />
             </MenuSheetPortal>
           </MenuSheet>
         </DarkModeProvider>

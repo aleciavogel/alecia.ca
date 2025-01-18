@@ -1,17 +1,17 @@
-import { internalLinkQueryPartial } from './links.query'
+import { linkableReferencePartial } from './links.query'
 
 export const navCardQueryPartial = `
   _type == 'nav.card' => {
-    links[]{
-      ${internalLinkQueryPartial}
-    },
+    ...,
+    ${linkableReferencePartial},
     'image': image.asset->url,
-    'alt': image.alt,
-  }`
+    'alt': image.alt
+  }
+`
 
 export const navIconsQueryPartial = `
   _type == 'nav.icons' => {
-    links[]{
-      ${internalLinkQueryPartial}
-    }
-  }`
+    ...,
+    ${linkableReferencePartial}
+  }
+`

@@ -101,6 +101,7 @@
       "@alecia/search-ui": ["libs/domains/search/ui/src/index.ts"],
       "@alecia/settings-data-access": ["libs/domains/settings/data-access/src/index.ts"],
       "@alecia/settings-data-access/server": ["libs/domains/settings/data-access/src/server.ts"],
+      "@alecia/settings-types": ["libs/domains/settings/types/src/index.ts"],
       "@alecia/site-layout": ["libs/domains/site-layout/feature-layout/src/index.ts"],
       "@alecia/site-layout-ui": ["libs/domains/site-layout/ui/src/index.ts"],
       "@alecia/site-navigation": ["libs/domains/site-layout/feature-navigation/src/index.ts"],

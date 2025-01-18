@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 import { preview } from 'sanity-plugin-icon-picker'
 
-import { iconPickerField, iconPickerOptions } from '../fragments'
+import { iconPickerOptions, linkableResourceFields } from '../fragments'
 
 /**
  * Blog category
@@ -13,23 +13,18 @@ export const blogCategory = defineType({
   title: 'Blog category',
   type: 'document',
   icon: () => <FontAwesomeIcon icon={faFolderOpen} />,
-  groups: [{ name: 'seo', title: 'SEO' }],
+  fieldsets: [{ name: 'heading', title: 'Page Heading' }],
+  groups: [
+    { name: 'content', default: true },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
-    defineField({
-      name: 'title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'description',
-      type: 'text',
-    }),
+    ...linkableResourceFields,
     defineField({
       name: 'metadata',
       type: 'metadata',
       group: 'seo',
     }),
-    iconPickerField,
   ],
   preview: {
     select: {

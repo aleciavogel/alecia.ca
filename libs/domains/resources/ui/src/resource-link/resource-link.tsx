@@ -2,7 +2,8 @@ import { FC } from 'react'
 import * as React from 'react'
 
 import { ResourceLinkType } from '@alecia/resources-types'
-import { ResourceLinkWithHover } from '@alecia/resources-ui'
+
+import { ResourceLinkWithHover } from '../resource-link'
 
 export const ResourceLink: FC<ResourceLinkType> = (link) => {
   if (link.content || link.image) {

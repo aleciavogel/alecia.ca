@@ -1,6 +1,10 @@
 import { defineQuery } from 'next-sanity'
 
-import { internalLinkQueryPartial, linkListQueryPartial } from './links.query'
+import {
+  internalLinkQueryPartial,
+  linkListQueryPartial,
+  socialLinkQueryPartial,
+} from './links.query'
 
 export const settingsQuery = defineQuery(`
   *[_type == 'settings'][0]{
@@ -49,6 +53,13 @@ export const settingsQuery = defineQuery(`
         ...,
         ${linkListQueryPartial},
       }
+    },
+    'fullscreenMenu': fullscreenMenu[]{
+      ...,
+      ${internalLinkQueryPartial}
+    },
+    social[] {
+      ${socialLinkQueryPartial}
     },
     'ogimage': image.asset->url + '?w=1200'
   }

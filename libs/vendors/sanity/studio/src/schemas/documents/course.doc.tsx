@@ -1,8 +1,8 @@
 import { faGraduationCap } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
-import { imageBlock, limitedBlockTypes } from '../fragments'
+import { limitedBlockTypes } from '../fragments'
 
 /**
  * Blog post

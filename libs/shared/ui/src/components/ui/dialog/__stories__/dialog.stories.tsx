@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from '@alecia/ui-kit'
-
+import { Button } from '../../button'
 import {
   Dialog,
   DialogClose,

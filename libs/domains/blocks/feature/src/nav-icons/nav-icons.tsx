@@ -25,7 +25,7 @@ export const NavIcons: FC<NavCardProps> = ({
     <div
       className={cn(
         'container mx-auto',
-        'md:flex md:justify-center md:items-center',
+        'flex flex-col md:flex-row md:justify-center md:items-center',
         'gap-8 md:gap-24',
         'px-14 md:px-20',
         'relative',

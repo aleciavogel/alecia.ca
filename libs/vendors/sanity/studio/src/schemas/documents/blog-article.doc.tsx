@@ -12,18 +12,22 @@ export const article = defineType({
   title: 'Blog Article',
   icon: () => <FontAwesomeIcon icon={faNewspaper} />,
   type: 'document',
+  fieldsets: [{ name: 'heading', title: 'Heading' }],
   groups: [{ name: 'content', default: true }, { name: 'options' }, { name: 'seo', title: 'SEO' }],
   fields: [
     defineField({
       name: 'title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
       group: 'content',
+      fieldset: 'heading',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'subtitle',
+      description: 'Appears below the title in larger text than the content of the page',
       type: 'string',
       group: 'content',
+      fieldset: 'heading',
     }),
     defineField({
       name: 'previewText',

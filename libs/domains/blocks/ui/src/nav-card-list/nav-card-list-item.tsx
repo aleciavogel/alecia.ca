@@ -1,16 +1,14 @@
 import type { FC } from 'react'
 
-import { LinkInternal } from '@alecia/sanity-types'
+import { CenteredNavLink } from '..'
 
-import { CenteredNavLink } from '../centered-nav-link'
-
-export interface NavCardLinkProps extends LinkInternal {
+export interface NavCardLinkProps {
   _key?: string
+  label?: string
+  subtitle?: string
   slug?: string | null
 }
 
-export const NavCardListItem: FC<NavCardLinkProps> = ({ _key, slug, label, subtitle }) => (
-  <li key={_key}>
-    <CenteredNavLink href={slug ?? '#'} title={label ?? ''} description={subtitle ?? ''} />
-  </li>
+export const NavCardListItem: FC<NavCardLinkProps> = ({ slug, label, subtitle }) => (
+  <CenteredNavLink href={slug ?? '#'} title={label ?? ''} description={subtitle ?? ''} />
 )

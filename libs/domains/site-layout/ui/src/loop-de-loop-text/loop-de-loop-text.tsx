@@ -5,12 +5,22 @@ import { animated, easings, useSpring } from '@react-spring/web'
 import { VectorProps } from '@alecia/types'
 
 interface LoopDeLoopTextProps extends VectorProps {
-  text?: string
+  text?: string[]
   separator?: string
 }
 
 export const LoopDeLoopText = ({
-  text = 'ux enthusiast • advocate • writer • musician • award-winning baker • podcast host • problem-solver • designer • developer',
+  text = [
+    'ux enthusiast',
+    'advocate',
+    'writer',
+    'musician',
+    'award-winning baker',
+    'podcast host',
+    'problem-solver',
+    'designer',
+    'developer',
+  ],
   separator = ' • ',
   ...props
 }: LoopDeLoopTextProps) => {
@@ -25,7 +35,7 @@ export const LoopDeLoopText = ({
     }),
     loop: true, // Enable continuous animation
   })
-  const textWithSeparators = [...new Array(4)].map(() => text).join(separator)
+  const textWithSeparators = [...new Array(4)].map(() => text.join(separator)).join(separator)
 
   const AnimatedTextPath = animated('textPath') // Wrap textPath with animated()
 

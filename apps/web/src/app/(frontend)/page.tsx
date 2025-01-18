@@ -16,7 +16,7 @@ export default async function HomePage() {
         pretitle={data?.pretitle ?? 'Oh, hey!'}
         subtitle={data?.subtitle ?? 'Welcome to my little corner of the internet.'}
       />
-      <PageContents>
+      <PageContents className="pb-48">
         <RenderedBlocks modules={data?.modules} />
       </PageContents>
     </SiteWrapper>

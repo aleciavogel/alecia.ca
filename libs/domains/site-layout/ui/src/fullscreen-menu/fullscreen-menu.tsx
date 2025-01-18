@@ -1,6 +1,6 @@
 'use client'
 
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import {
   animated,
@@ -12,37 +12,35 @@ import {
 } from '@react-spring/web'
 import Link from 'next/link'
 
+import { FullScreenMenuType, SocialLinksType } from '@alecia/settings-types'
 import { AleciaLayingIllustration } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
 import { LoopDeLoopText } from '../loop-de-loop-text'
-import { MenuSheetClose, MenuSheetContent } from '../menu-sheet'
+import { MenuSheetClose, MenuSheetContent, MenuSheetTitle } from '../menu-sheet'
+import { SocialLink } from '../social-link'
+
+type MenuItem = NonNullable<FullScreenMenuType>[number]
 
 interface FullscreenMenuProps {
   animationDuration?: number
   open?: boolean
   className?: string
+  fullScreenMenu: FullScreenMenuType
+  social: SocialLinksType
 }
 
-const menuItems = [
-  { name: 'Home', link: '/' },
-  { name: 'About', link: '/about' },
-  { name: 'Blog', link: '/blog' },
-  { name: 'Portfolio', link: '/projects' },
-  { name: 'Coding 101', link: '/coding-101' },
-  { name: 'Advanced Projects', link: '/advanced-projects' },
-  { name: 'Experiments', link: '/experiments' },
-  { name: 'Resources', link: '/resources' },
-  { name: 'Resumé', link: '/about/resume' },
-  { name: 'Get In Touch', link: '/contact' },
-]
-
 export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
-  ({ animationDuration = 300, className, open = false, ...rest }, ref) => {
+  ({ fullScreenMenu, social, animationDuration = 300, className, open = false, ...rest }, ref) => {
     const navRef = useSpringRef()
     const liRef = useSpringRef()
     const closeButtonRef = useSpringRef()
     const movingTextRef = useSpringRef()
+    const socialLinksRef = useSpringRef()
+    const menuItems = useMemo<MenuItem[]>(
+      () => (fullScreenMenu ? fullScreenMenu : []),
+      [fullScreenMenu],
+    )
 
     const bgTransitions = useTransition(open, {
       ref: navRef,
@@ -61,8 +59,17 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
 
     const liTransitions = useTransition(open ? menuItems : [], {
       ref: liRef,
-      keys: (item) => item.name,
+      keys: (item: MenuItem) => item._key,
       trail: 400 / menuItems.length,
+      from: { opacity: 0, transform: 'translateY(20px)' },
+      enter: { opacity: 1, transform: 'translateY(0)' },
+      leave: { opacity: 0, transform: 'translateY(20px)' },
+    })
+
+    const socialLinksTransitions = useTransition(open ? (social ? social : []) : [], {
+      ref: socialLinksRef,
+      keys: (item) => item._key,
+      trail: 400 / (social?.length ?? 1),
       from: { opacity: 0, transform: 'translateY(20px)' },
       enter: { opacity: 1, transform: 'translateY(0)' },
       leave: { opacity: 0, transform: 'translateY(20px)' },
@@ -76,12 +83,13 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
 
     useChain(
       open
-        ? [navRef, liRef, movingTextRef, closeButtonRef]
-        : [liRef, movingTextRef, navRef, closeButtonRef],
+        ? [navRef, liRef, socialLinksRef, movingTextRef, closeButtonRef]
+        : [liRef, socialLinksRef, movingTextRef, navRef, closeButtonRef],
       [
         /** Time steps */
         0,
         open ? 0.4 : 0.1,
+        open ? 0.8 : 0.1,
         open ? 0.3 : 0.6,
         open ? 1 : 0.5,
       ],
@@ -100,20 +108,39 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
                 )}
                 style={navStyles}
               >
-                <ul className="m-0 p-0 space-y-6">
+                <MenuSheetTitle className="sr-only">
+                  <p>Site Menu</p>
+                </MenuSheetTitle>
+                <ul className="m-0 p-0 space-y-8">
                   {liTransitions((style, item) => (
-                    <animated.li key={item.name} className="list-style-none" style={style}>
+                    <animated.li key={item.label} className="list-style-none" style={style}>
                       <Link
-                        href={item.link}
+                        href={item.slug ?? '#'}
                         className={cn(
                           'text-white text-5xl font-serif zigzag-btn after:h-[4px] hover:text-accent-200/80',
                           'transition-all duration-300 ease-in-out',
                         )}
                       >
-                        {item.name}
+                        {item.label}
                       </Link>
                     </animated.li>
                   ))}
+                  <li className="pt-4">
+                    <ul className="m-0 p-0 flex gap-6">
+                      {socialLinksTransitions((style, item) => (
+                        <animated.li
+                          key={`fullscreen-${item._key}`}
+                          className="list-style-none"
+                          style={style}
+                        >
+                          <SocialLink
+                            {...item}
+                            className="text-white text-5xl hover:text-accent-200/80 transition-all duration-300 ease-in-out"
+                          />
+                        </animated.li>
+                      ))}
+                    </ul>
+                  </li>
                 </ul>
 
                 <AleciaLayingIllustration className="absolute bottom-0 right-0 w-1/2" />
