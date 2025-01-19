@@ -43,7 +43,7 @@ export const FooterNav = async (): Promise<JSX.Element> => {
                   const itemKey = `footer-menu-${String(index)}-item-${String(linkIndex)}`
 
                   return (
-                    <FooterLink key={itemKey} href={`/${link.slug ?? '/'}`}>
+                    <FooterLink key={itemKey} href={link.slug ?? '#'}>
                       {link.label ?? 'Untitled'}
                     </FooterLink>
                   )

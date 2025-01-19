@@ -22,7 +22,7 @@ export const FooterLink: FC<FooterLinkProps> = ({
     <Link
       className={cn('hover:text-white/60 transition-dark-mode', className)}
       {...props}
-      href={'/' + href}
+      href={href}
     >
       {children}
     </Link>
