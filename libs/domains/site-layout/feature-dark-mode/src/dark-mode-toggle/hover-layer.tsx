@@ -35,7 +35,7 @@ export const DarkModeToggleHoverLayer: FC = () => {
           <button
             tabIndex={0}
             className={cn(
-              'pointer-events-auto p-2 translate-x-1 md:translate-x-2',
+              'block pointer-events-auto p-2 translate-x-1 md:translate-x-2',
               'opacity-0 hover:opacity-100 transition-opacity ease-in-out duration-200',
               'text-primary-500 dark:text-primary-300',
             )}
