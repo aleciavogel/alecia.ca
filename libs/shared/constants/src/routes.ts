@@ -15,4 +15,7 @@ export const Routes = {
   Newsletters: {
     Subscribe: '/newsletter/subscribe',
   },
+  API: {
+    Captcha: '/api/captcha',
+  },
 }

@@ -5,8 +5,10 @@ import { Routes } from '@alecia/constants'
 import type { ContactFormValues } from '@alecia/contact-types'
 import { api } from '@alecia/util'
 
+type FormWithRecaptcha = ContactFormValues & { recaptcha?: string | null }
+
 interface UseSendContactFormOptions
-  extends Omit<UseMutationOptions<object, Error, ContactFormValues>, 'mutationFn'> {
+  extends Omit<UseMutationOptions<object, Error, FormWithRecaptcha>, 'mutationFn'> {
   onSuccess?: () => void
   onError?: (error: Error) => void
 }
@@ -17,14 +19,14 @@ interface UseSendContactFormOptions
  */
 export const useSendContactForm = (
   options: UseSendContactFormOptions = {},
-): UseMutationResult<object, Error, ContactFormValues> => {
+): UseMutationResult<object, Error, FormWithRecaptcha> => {
   const { onSuccess, onError, ...mutationOptions } = options
 
-  return useMutation<object, Error, ContactFormValues>({
+  return useMutation<object, Error, FormWithRecaptcha>({
     mutationFn: (payload) =>
       new Promise((resolve, reject) => {
         api
-          .post<ContactFormValues, object>(
+          .post<FormWithRecaptcha, object>(
             Routes.Emails.ContactFormSubmission,
             payload,
             (response) => {

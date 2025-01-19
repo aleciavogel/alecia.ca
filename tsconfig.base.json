@@ -78,6 +78,8 @@
       "@alecia/quizzes": ["libs/domains/quizzes/feature/src/index.ts"],
       "@alecia/quizzes-data-access": ["libs/domains/quizzes/data-access/src/index.ts"],
       "@alecia/quizzes-ui": ["libs/domains/quizzes/ui/src/index.ts"],
+      "@alecia/recaptcha-constants": ["libs/vendors/google-recaptcha/constants/src/index.ts"],
+      "@alecia/recaptcha-constants/server": ["libs/vendors/google-recaptcha/constants/src/server.ts"],
       "@alecia/resend-constants/server": ["libs/vendors/resend/constants/src/server.ts"],
       "@alecia/resend-data-access": ["libs/vendors/resend/data-access/src/index.ts"],
       "@alecia/resources": ["libs/domains/resources/feature/src/index.ts"],
