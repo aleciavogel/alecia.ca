@@ -58,7 +58,7 @@ export const PageContents: FC<PageContentsProps> = ({ children, variant, classNa
   >
     {children}
 
-    <div style={WAVY_BORDER_MASK} className={cn(pageVariants({ variant }))}>
+    <div className={cn(pageVariants({ variant }))}>
       <StickyNav className="text-primary-600 dark:text-primary-400" />
     </div>
   </main>

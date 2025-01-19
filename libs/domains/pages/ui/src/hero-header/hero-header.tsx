@@ -22,7 +22,7 @@ export const HeroHeader: FC<HeroHeaderProps> = ({ title, subtitle, tag, coverIma
   return (
     <section
       className={cn(
-        'relative z-0 flex items-center justify-items-center px-14',
+        'relative z-0 flex items-center justify-items-center page-content-padding',
         'transition-colors duration-300 ease-in-out',
         'hero-padding h-screen box-content',
         'bg-primary-700 dark:bg-primary-900',
@@ -48,7 +48,7 @@ export const HeroHeader: FC<HeroHeaderProps> = ({ title, subtitle, tag, coverIma
               href={tag.href ?? '#'}
               className={cn(
                 'uppercase font-bold tracking-wider',
-                'text-lg sm:text-base md:text-xl',
+                'text-sm md:text-xl',
                 'text-accent-300 hover:text-accent-500 transition-colors duration-300',
                 'text-center',
               )}
@@ -61,14 +61,14 @@ export const HeroHeader: FC<HeroHeaderProps> = ({ title, subtitle, tag, coverIma
         <h1
           className={cn(
             'font-serif capitalize text-white leading-snug',
-            'text-3xl md:text-5xl lg:text-7xl',
+            'text-lg sm:text-xl md:text-5xl lg:text-7xl',
             'text-center',
             'drop-shadow-lg',
           )}
         >
           {title}
         </h1>
-        <p className="text-white/90 text-lg md:text-2xl text-center max-w-[600px] mx-auto drop-shadow-lg">
+        <p className="text-white/90 text-base sm:text-lg md:text-2xl text-center max-w-[600px] mx-auto drop-shadow-lg">
           {subtitle}
         </p>
       </div>

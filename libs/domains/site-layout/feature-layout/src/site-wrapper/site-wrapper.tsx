@@ -8,14 +8,15 @@ interface AngledWrapperProps {
   primaryColor?: string
   accentColor?: string
   bodyColor?: string
+  showStaticNav?: boolean
 }
 
-export const SiteWrapper: FC<AngledWrapperProps> = ({ children }) => (
+export const SiteWrapper: FC<AngledWrapperProps> = ({ children, showStaticNav = true }) => (
   <div data-scroll-container id="site-wrapper" className={cn('relative h-full min-h-full w-full')}>
     <StickyNav />
     <StickyNavHoverLayer />
 
-    <StaticNav />
+    {showStaticNav ? <StaticNav /> : null}
 
     {children}
     <Footer />

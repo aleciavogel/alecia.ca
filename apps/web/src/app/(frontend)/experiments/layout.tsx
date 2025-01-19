@@ -2,14 +2,18 @@ import { ReactNode } from 'react'
 
 interface ExperimentLayoutProps {
   children: ReactNode
-  modal: ReactNode
+  // modal: ReactNode
 }
 
-export default function ExperimentLayout({ children, modal }: ExperimentLayoutProps) {
+// TODO: Intercept the modal prop
+export default function ExperimentLayout({
+  children,
+}: // modal
+ExperimentLayoutProps) {
   return (
     <>
       {children}
-      {modal}
+      {/*{modal}*/}
     </>
   )
 }
