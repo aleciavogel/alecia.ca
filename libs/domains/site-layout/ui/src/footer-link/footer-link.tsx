@@ -15,10 +15,15 @@ export const FooterLink: FC<FooterLinkProps> = ({
   children,
   listItemClassName,
   className,
+  href,
   ...props
 }) => (
   <li className={listItemClassName}>
-    <Link className={cn('hover:text-white/60 transition-dark-mode', className)} {...props}>
+    <Link
+      className={cn('hover:text-white/60 transition-dark-mode', className)}
+      {...props}
+      href={'/' + href}
+    >
       {children}
     </Link>
   </li>

@@ -35,7 +35,7 @@ export default async function BlogListPage({ searchParams }: BlogListPageProps) 
       <PageContents className="max-md:pt-56 pb-32 md:pb-48">
         <BlogCategoryFilters />
         {noPosts ? (
-          <EmptyState message="Looks like Sadie ate all my blog posts :(" />
+          <EmptyState message="Looks like Sadie ate all my blog posts..." />
         ) : (
           <BlogList posts={articles} />
         )}
