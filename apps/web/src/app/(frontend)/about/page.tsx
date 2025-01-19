@@ -23,7 +23,7 @@ export default async function AboutPage() {
       <ImageHeader
         pretitle={page.pretitle}
         title={page.title}
-        imageSrc={page.headerImage ? urlFor(page.headerImage).url() : undefined}
+        imageSrc={page.headerImageSrc ? urlFor(page.headerImageSrc).url() : page.headerImageSrc}
         imageAlt={page.headerImage?.alt}
       />
       <PageContents>

@@ -6,8 +6,8 @@ import { cn, getPlaceholderImage } from '@alecia/util'
 import { ImageHeaderIntro, type ImageHeaderIntroProps } from './image-header-intro'
 
 interface ImageHeaderProps extends ImageHeaderIntroProps {
-  imageSrc?: string
-  imageAlt?: string
+  imageSrc?: string | null
+  imageAlt?: string | null
 }
 
 export const ImageHeader: FC<ImageHeaderProps> = ({ imageSrc, imageAlt, ...props }) => (
@@ -50,6 +50,7 @@ export const ImageHeader: FC<ImageHeaderProps> = ({ imageSrc, imageAlt, ...props
               height={913}
               width={492}
               className="w-full object-fill"
+              priority
             />
           </div>
         </div>
