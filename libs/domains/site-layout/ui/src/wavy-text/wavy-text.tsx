@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { animated, easings, useSpring } from '@react-spring/web'
 
 import { VectorProps } from '@alecia/types'
@@ -17,9 +16,8 @@ export const WavyText = ({
   className,
   ...props
 }: WavyTextProps) => {
-  const [isAnimating, setIsAnimating] = useState(false)
   const spring = useSpring({
-    from: { startOffset: isAnimating ? '-118%' : '0%' },
+    from: { startOffset: '-118%' },
     to: { startOffset: '0%' },
     config: {
       duration: 80000,
@@ -31,11 +29,6 @@ export const WavyText = ({
   const textWithSeparators = [...new Array(4)].map(() => text).join(separator)
 
   const AnimatedTextPath = animated('textPath') // Wrap textPath with animated()
-
-  // Ensure that this mounts before animating
-  useEffect(() => {
-    setIsAnimating(true)
-  }, [])
 
   return (
     <svg
