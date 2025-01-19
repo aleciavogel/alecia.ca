@@ -49,6 +49,7 @@ export const PetImage: FC<PetImageProps> = ({ name, imageAlt, imageSrc, addition
       alt={imageAlt ?? ''}
       height={400}
       width={400}
+      loading="lazy"
       className="object-fill w-full"
     />
   </div>

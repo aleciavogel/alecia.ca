@@ -107,6 +107,7 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
                   'bg-gradient-to-b from-violet-950 from-30% to-fuchsia-600',
                 )}
                 style={navStyles}
+                aria-label="Primary Navigation"
               >
                 <MenuSheetTitle className="sr-only">
                   <p>Site Menu</p>

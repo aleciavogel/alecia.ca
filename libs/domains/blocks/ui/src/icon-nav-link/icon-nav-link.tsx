@@ -38,10 +38,10 @@ export const IconNavLink = ({
       )}
       {...rest}
     >
-      <h4 className="space-x-2 uppercase text-sm font-semibold">
+      <h3 className="space-x-2 uppercase text-sm font-semibold">
         <Icon name={iconName as IconName} />
         <span>{label}</span>
-      </h4>
+      </h3>
       <p>{subtitle}</p>
     </Link>
   )

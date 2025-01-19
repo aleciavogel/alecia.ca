@@ -45,6 +45,8 @@ export const LoopDeLoopText = ({
       viewBox="0 0 994 729"
       width={994}
       height={729}
+      role="img"
+      aria-label="Looping descriptive text animation"
       {...props}
     >
       <path

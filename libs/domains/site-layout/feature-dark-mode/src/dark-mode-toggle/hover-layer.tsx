@@ -17,7 +17,6 @@ export const DarkModeToggleHoverLayer: FC = () => {
 
   const toggleText = useMemo(() => {
     const isDarkMode: boolean = resolvedTheme === 'dark'
-
     return isDarkMode ? DARK_MODE_TEXT : LIGHT_MODE_TEXT
   }, [resolvedTheme])
 
@@ -33,28 +32,30 @@ export const DarkModeToggleHoverLayer: FC = () => {
             setIsTooltipAllowed(false)
           }}
         >
-          <div
+          <button
             tabIndex={0}
-            role="button"
             className={cn(
               'pointer-events-auto p-2 translate-x-1 md:translate-x-2',
               'opacity-0 hover:opacity-100 transition-opacity ease-in-out duration-200',
               'text-primary-500 dark:text-primary-300',
             )}
             id="theme-toggle"
+            aria-label={toggleText} // Add ARIA label
+            aria-describedby="theme-tooltip" // Associate tooltip with button
             onClick={() => {
               setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
                 setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
               }
             }}
           >
             <CurrentThemeIcon />
-          </div>
+          </button>
         </TooltipTrigger>
-        {isTooltipAllowed ? <TooltipContent>{toggleText}</TooltipContent> : null}
+        {isTooltipAllowed ? <TooltipContent id="theme-tooltip">{toggleText}</TooltipContent> : null}
       </Tooltip>
     </TooltipProvider>
   )

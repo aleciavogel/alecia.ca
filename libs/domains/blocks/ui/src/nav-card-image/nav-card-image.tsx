@@ -23,6 +23,7 @@ export const NavCardImage: FC<NavCardImageProps> = ({ image, alt = '' }): JSX.El
       src={image ?? getPlaceholderImage(500, 600)}
       alt={alt ?? ''}
       className="w-full"
+      loading="lazy"
       width={500}
       height={600}
     />

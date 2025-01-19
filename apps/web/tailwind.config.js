@@ -45,7 +45,6 @@ module.exports = {
   darkMode: ['selector'],
   content: [
     join(__dirname, 'src/**/*.{js,ts,jsx,tsx}'),
-    '../../libs/**/src/**/*.{js,ts,jsx,tsx}',
     ...createGlobPatternsForDependencies(__dirname),
   ],
   prefix: '',

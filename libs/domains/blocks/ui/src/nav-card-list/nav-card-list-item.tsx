@@ -10,5 +10,7 @@ export interface NavCardLinkProps {
 }
 
 export const NavCardListItem: FC<NavCardLinkProps> = ({ slug, label, subtitle }) => (
-  <CenteredNavLink href={slug ?? '#'} title={label ?? ''} description={subtitle ?? ''} />
+  <li>
+    <CenteredNavLink href={slug ?? '#'} title={label ?? ''} description={subtitle ?? ''} />
+  </li>
 )

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CenteredNavLink } from '../centered-nav-link'
+import { CenteredNavLink } from '..'
 
 const meta: Meta<typeof CenteredNavLink> = {
   title: 'Features/Blocks/UI/Centered Nav Link',
