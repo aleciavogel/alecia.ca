@@ -18,7 +18,7 @@ export const AccordionContent = forwardRef<
     )}
     {...props}
   >
-    <div className={cn('pb-4 pt-4 px-4 max-w-screen-sm', className)}>{children}</div>
+    <div className={cn('pb-4 pt-4 px-4 max-w-screen-sm space-y-6', className)}>{children}</div>
   </AccordionPrimitive.Content>
 ))
 
