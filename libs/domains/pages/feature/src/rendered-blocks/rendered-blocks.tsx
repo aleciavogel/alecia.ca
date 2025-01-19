@@ -1,17 +1,16 @@
 import { FC } from 'react'
 import * as React from 'react'
+import dynamic from 'next/dynamic'
 import type { PortableTextBlock } from 'next-sanity'
 
-import {
-  AccordionList,
-  CourseList,
-  GalleryPets,
-  NavCard,
-  NavIcons,
-  TextAsideList,
-  TextCTA,
-  TextIntro,
-} from '@alecia/blocks'
+const AccordionList = dynamic(() => import('@alecia/blocks').then((mod) => mod.AccordionList))
+const CourseList = dynamic(() => import('@alecia/blocks').then((mod) => mod.CourseList))
+const GalleryPets = dynamic(() => import('@alecia/blocks').then((mod) => mod.GalleryPets))
+const NavCard = dynamic(() => import('@alecia/blocks').then((mod) => mod.NavCard))
+const NavIcons = dynamic(() => import('@alecia/blocks').then((mod) => mod.NavIcons))
+const TextAsideList = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextAsideList))
+const TextCTA = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextCTA))
+const TextIntro = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextIntro))
 
 // TODO: attempt to fix the type later
 interface BlocksProps {

@@ -10,15 +10,19 @@ import {
   useSpringRef,
   useTransition,
 } from '@react-spring/web'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 
 import { FullScreenMenuType, SocialLinksType } from '@alecia/settings-types'
 import { AleciaLayingIllustration } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
-import { LoopDeLoopText } from '../loop-de-loop-text'
 import { MenuSheetClose, MenuSheetContent, MenuSheetTitle } from '../menu-sheet'
 import { SocialLink } from '../social-link'
+
+const LoopDeLoopText = dynamic(() =>
+  import('../loop-de-loop-text').then((mod) => mod.LoopDeLoopText),
+)
 
 type MenuItem = NonNullable<FullScreenMenuType>[number]
 

@@ -1,7 +1,6 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
+import dynamic from 'next/dynamic'
 
-import { WavyText } from '@alecia/site-layout-ui'
-import { WavyDescriptiveText } from '@alecia/ui-kit'
 import * as illustrations from '@alecia/ui-kit/components/vectors/illustrations'
 import { cn } from '@alecia/util'
 
@@ -10,6 +9,8 @@ import { WavyHeaderIntro, WavyHeaderIntroProps } from './wavy-header-intro'
 interface WavyHeaderProps extends WavyHeaderIntroProps {
   headerIllustration?: keyof typeof illustrations
 }
+
+const WavyText = dynamic(() => import('@alecia/site-layout-ui').then((mod) => mod.WavyText))
 
 export const WavyHeader: FC<WavyHeaderProps> = ({ headerIllustration, ...props }) => {
   const IllustrationSVG = illustrations[headerIllustration ?? 'AleciaWaveIllustration']
