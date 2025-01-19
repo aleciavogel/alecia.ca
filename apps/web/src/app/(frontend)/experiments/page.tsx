@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import { stegaClean } from 'next-sanity'
 
 import { ExperimentsList } from '@alecia/blocks'
 import { getExperimentsIndex } from '@alecia/experiments-data-access/server'
@@ -29,7 +28,7 @@ export default async function ExperimentsIndexPage() {
         subtitle={page.subtitle}
         headerIllustration={page.headerIllustration}
       />
-      <PageContents className="pt-56">
+      <PageContents className="md:pt-56 lg:pt-64">
         {noExperiments ? <EmptyState /> : <ExperimentsList experiments={experiments} />}
 
         <RenderedBlocks modules={page.modules} />

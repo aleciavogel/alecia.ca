@@ -1,4 +1,4 @@
-import { FocusEvent, forwardRef, ReactElement } from 'react'
+import type { FocusEvent } from 'react'
 import type { Control, FieldValues, Path } from 'react-hook-form'
 
 import { cn } from '@alecia/util'
@@ -21,55 +21,50 @@ interface TextInputProps<T extends FieldValues> {
   onBlur?: (e: FocusEvent<HTMLTextAreaElement>) => void
 }
 
-export const TextAreaField = forwardRef<HTMLTextAreaElement, TextInputProps<FieldValues>>(
-  (
-    {
-      control,
-      name,
-      id,
-      label,
-      placeholder,
-      helperText,
-      isReadOnly = false,
-      isDisabled = false,
-      autoComplete,
-      inputClassName,
-      onBlur,
-      className,
-    }: TextInputProps<FieldValues>,
-    ref,
-  ): ReactElement => {
-    return (
-      <FormField
-        control={control}
-        name={name}
-        render={({ field, fieldState }) => (
-          <FormItem className={className}>
-            {label ? <FormLabel htmlFor={name}>{label}</FormLabel> : null}
+export const TextAreaField = <T extends FieldValues>({
+  control,
+  name,
+  id,
+  label,
+  placeholder,
+  helperText,
+  isReadOnly = false,
+  isDisabled = false,
+  autoComplete,
+  inputClassName,
+  onBlur,
+  className,
+}: TextInputProps<T>) => {
+  return (
+    <FormField
+      control={control}
+      name={name}
+      render={({ field, fieldState }) => (
+        <FormItem className={className}>
+          {label ? <FormLabel htmlFor={name}>{label}</FormLabel> : null}
 
-            <FormControl>
-              <TextArea
-                {...field}
-                id={id ?? `${name}-input`}
-                placeholder={placeholder}
-                readOnly={isReadOnly}
-                disabled={isDisabled}
-                autoComplete={autoComplete}
-                className={cn(
-                  'border-gray-300 dark:border-primary-800 focus:border-primary dark:focus:border-primary-300',
-                  inputClassName,
-                  fieldState.error && 'border-red-600 dark:border-red-300',
-                )}
-                onBlur={onBlur}
-              />
-            </FormControl>
+          <FormControl>
+            <TextArea
+              {...field}
+              id={id ?? `${name}-input`}
+              placeholder={placeholder}
+              readOnly={isReadOnly}
+              disabled={isDisabled}
+              autoComplete={autoComplete}
+              className={cn(
+                'border-gray-300 dark:border-primary-800 focus:border-primary dark:focus:border-primary-300',
+                inputClassName,
+                fieldState.error && 'border-red-600 dark:border-red-300',
+              )}
+              onBlur={onBlur}
+            />
+          </FormControl>
 
-            {helperText ? <FormDescription>{helperText}</FormDescription> : null}
+          {helperText ? <FormDescription>{helperText}</FormDescription> : null}
 
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-    )
-  },
-)
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  )
+}

@@ -29,7 +29,7 @@ export const blogCategory = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'slug.current',
+      subtitle: 'metadata',
       iconProvider: 'icon.provider',
       iconName: 'icon.name',
     },

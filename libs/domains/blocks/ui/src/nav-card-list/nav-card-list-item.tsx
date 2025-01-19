@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import { CenteredNavLink } from '..'
 
 export interface NavCardLinkProps {
-  _key?: string
+  _id?: string
   label?: string
   subtitle?: string
   slug?: string | null

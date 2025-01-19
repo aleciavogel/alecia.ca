@@ -33,9 +33,9 @@ export const ExperimentDialog = ({
 }: ExperimentDialogProps) => (
   <Dialog defaultOpen={defaultOpen}>
     <DialogTrigger asChild>{children}</DialogTrigger>
-    <DialogContent className="p-0 max-w-screen-md overflow-hidden text-primary-800 shadow-flat shadow-flat-md shadow-red-600">
-      <div className="grid grid-cols-2">
-        <div className="col-span-1 h-full relative">
+    <DialogContent className="p-0 max-w-[90%] md:max-w-screen-sm lg:max-w-screen-md overflow-hidden text-primary-800 shadow-flat shadow-flat-md shadow-red-600">
+      <div className="grid md:grid-cols-2">
+        <div className="max-md:hidden col-span-1 h-full relative">
           <img
             src={imageSrc && imageSrc.length ? imageSrc : getPlaceholderImage(300, 400)}
             alt={imageAlt}

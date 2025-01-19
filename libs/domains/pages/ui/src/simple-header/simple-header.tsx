@@ -33,18 +33,18 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
   const hasHeaderIllustration =
     headerIllustration !== 'none' && headerIllustration !== undefined && headerIllustration !== null
   const headerClassNames = cn(
-    'z-[100] absolute bottom-0 right-0 w-[90%] -mb-[43%]',
+    'z-[100] md:absolute md:bottom-0 md:right-0 w-[90%] -mb-[43%]',
     classnames({
-      'w-[120%]': [
+      'w-[100%] md:w-[120%]': [
         Illustrations.HammondSleeping,
         Illustrations.AleciaCouch,
         Illustrations.SadieHammondCookies,
       ].includes(svgKey),
-      'w-[110%] -mb-[50%]': [Illustrations.PhoebeYarn].includes(svgKey),
-      'w-[100%] -mb-[30%]': [Illustrations.PhoebeLaptop].includes(svgKey),
-      'w-[120%] -mb-[48%]': [Illustrations.PhoebeSleeping].includes(svgKey),
-      '-mb-[35%]': [Illustrations.SadieHammondCookies].includes(svgKey),
-      'w-[100%] -mb-[55%]': [Illustrations.HammondScience].includes(svgKey),
+      'w-[110%] md:-mb-[50%] -mb-[65%]': [Illustrations.PhoebeYarn].includes(svgKey),
+      'w-[100%] md:-mb-[30%]': [Illustrations.PhoebeLaptop].includes(svgKey),
+      'w-[120%] md:-mb-[48%]': [Illustrations.PhoebeSleeping].includes(svgKey),
+      '-mb-[75%] md:-mb-[35%]': [Illustrations.SadieHammondCookies].includes(svgKey),
+      'w-[100%] -mb-[65%] md:-mb-[55%]': [Illustrations.HammondScience].includes(svgKey),
     }),
   )
 
@@ -53,7 +53,7 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
       className={cn(
         'relative',
         'flex items-center justify-items-center',
-        'px-8 md:px-20 pt-24 lg:pt-32',
+        'px-8 md:px-20 pt-48 lg:pt-32',
         'transition-dark-mode',
         'hero-padding',
         // 'bg-primary-800 dark:bg-primary-900',
@@ -83,9 +83,9 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
               </Typography>
             ) : null}
             <h1 className="w-full font-serif text-5xl md:text-6xl lg:text-8xl mb-2">{title}</h1>
-            <ZigZagAccent className="fill-primary-300 w-[175px] my-8" />
+            <ZigZagAccent className="fill-primary-300 w-[175px] my-8 mx-auto md:mx-0" />
             {subtitle ? (
-              <p className="text-left md:text-lg lg:text-2xl text-white/90 max-w-[400px]">
+              <p className="text-center md:text-left md:text-lg lg:text-2xl text-white/90 max-w-[400px]">
                 {subtitle}
               </p>
             ) : null}

@@ -42,10 +42,10 @@ export const NavCard: FC<NavLinksBlockProps> = (props) => {
           }),
         )}
       >
-        <Typography variant="blockPretitle" className="mb-2">
+        <Typography variant="blockPretitle" className="mb-2 dark:text-primary-600">
           {pretitle}
         </Typography>
-        <Typography variant="blockTitle" className="mb-8">
+        <Typography variant="blockTitle" className="mb-8 dark:text-primary-800">
           {title}
         </Typography>
         <NavCardList links={links} />

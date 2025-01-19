@@ -8,10 +8,10 @@ interface NavCardListProps {
   links?: NavCardLinkProps[] | null
 }
 
-export const NavCardList: FC<NavCardListProps> = ({ links }): JSX.Element => (
+export const NavCardList: FC<NavCardListProps> = ({ links = [] }): JSX.Element => (
   <ul className={cn('flex flex-col space-y-8')}>
     {links?.map((link) => (
-      <NavCardListItem key={link._key} {...link} />
+      <NavCardListItem key={link._id} {...link} />
     ))}
   </ul>
 )

@@ -32,9 +32,13 @@ export default async function BlogListPage({ searchParams }: BlogListPageProps) 
   return (
     <SiteWrapper>
       <BlogHeader {...page} />
-      <PageContents>
+      <PageContents className="max-md:pt-56 pb-32 md:pb-48">
         <BlogCategoryFilters />
-        {noPosts ? <EmptyState /> : <BlogList posts={articles} />}
+        {noPosts ? (
+          <EmptyState message="Looks like Sadie ate all my blog posts :(" />
+        ) : (
+          <BlogList posts={articles} />
+        )}
       </PageContents>
     </SiteWrapper>
   )

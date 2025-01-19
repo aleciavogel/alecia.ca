@@ -8,8 +8,8 @@ interface ExperimentsListProps {
 }
 
 export const ExperimentsList = ({ experiments }: ExperimentsListProps) => (
-  <div className="page-container mx-auto px-8 md:px-20">
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+  <div className="page-content-block">
+    <div className="columns-1 md:columns-2 lg:columns-3 space-y-6 space-x-6">
       {experiments.map((experiment) => (
         <div key={experiment._id} className="break-inside-avoid">
           <ExperimentLink {...experiment} />

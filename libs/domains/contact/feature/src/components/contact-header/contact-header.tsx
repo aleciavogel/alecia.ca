@@ -23,7 +23,7 @@ export const ContactHeader: FC<ContactHeaderProps> = ({
     className={cn(
       'relative',
       'flex items-center justify-items-center',
-      'px-8 md:px-20 pt-24 lg:pt-32',
+      'px-8 md:px-20 pt-48 lg:pt-32',
       'transition-dark-mode',
       'hero-padding',
       // 'bg-primary-800 dark:bg-primary-900',
@@ -39,7 +39,7 @@ export const ContactHeader: FC<ContactHeaderProps> = ({
         'gap-6 md:gap-10 pb-8',
       )}
     >
-      <div className={cn('relative h-full flex items-center', classnames('md:just-start'))}>
+      <div className={cn('relative h-full flex items-center md:just-start')}>
         <div>
           {pretitle ? (
             <Typography variant="pretitle" className="mb-2">
@@ -47,14 +47,14 @@ export const ContactHeader: FC<ContactHeaderProps> = ({
             </Typography>
           ) : null}
           <h1 className="w-full font-serif text-5xl md:text-6xl lg:text-8xl mb-2">{title}</h1>
-          <ZigZagAccent className="fill-primary-300 w-[175px] my-8" />
+          <ZigZagAccent className="fill-primary-300 w-[175px] my-8 max-md:mx-auto" />
           {subtitle ? (
-            <p className="text-left md:text-lg lg:text-2xl text-white/90 max-w-[400px]">
+            <p className="text-center md:text-left md:text-lg lg:text-2xl text-white/90 max-w-[400px]">
               {subtitle}
             </p>
           ) : null}
-          <div className="text-left space-y-6">
-            <p className="text-left md:text-lg lg:text-2xl text-white/90">
+          <div className="text-center md:text-left space-y-6">
+            <p className="text-center md:text-left md:text-lg lg:text-2xl text-white/90">
               Interested in working together? Send me a note or schedule a mutually convenient time
               to meet!
             </p>

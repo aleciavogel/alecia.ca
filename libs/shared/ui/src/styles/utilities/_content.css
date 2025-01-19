@@ -2,4 +2,17 @@
   .content-block {
     @apply w-full px-16 mx-auto md:max-w-screen-sm md:px-10 lg:max-w-screen-md;
   }
+
+  .page-content-padding {
+    @apply px-14 md:px-20;
+  }
+
+  .page-content {
+    @apply w-full container mx-auto page-content-padding;
+  }
+
+  .page-content-block {
+    @apply page-content;
+    @apply sm:max-w-screen-sm md:max-w-screen-lg lg:max-w-screen-xl;
+  }
 }

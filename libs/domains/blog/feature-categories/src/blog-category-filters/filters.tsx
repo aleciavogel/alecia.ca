@@ -38,7 +38,7 @@ export const BlogCategoryFilters = async (): Promise<JSX.Element | null> => {
         >
           Categories
         </Typography>
-        <ul className={cn('w-full flex flex-wrap gap-4 px-0 justify-start')}>
+        <ul className="w-full flex flex-wrap gap-4 px-0 justify-center md:justify-start">
           {filters.filter(Boolean).map((category, index) => (
             <li key={`filter-button-${String(index)}`}>
               <BlogCategoryFilterItem

@@ -14,9 +14,9 @@ export const ContactFormCard = () => {
   }
 
   return (
-    <Card className="w-full shadow-lg dark:bg-gray-900 border-primary-600">
-      <CardHeader>
-        <CardTitle className="text-primary-600 dark:text-primary-400 text-3xl">
+    <Card className="w-full shadow-lg dark:bg-gray-900 border-primary-600 max-w-screen-sm max-lg:mx-auto">
+      <CardHeader className="max-md:text-center">
+        <CardTitle className="text-primary-600 dark:text-primary-400 text-2xl md:text-3xl">
           Shoot Me A Message
         </CardTitle>
         <CardDescription>I&apos;ll try to get back to you as soon as I can.</CardDescription>

@@ -17,7 +17,7 @@ export const PetImage: FC<PetImageProps> = ({ name, imageAlt, imageSrc, addition
     {/* Name and ZigZag */}
     <div
       className={classNames('absolute bottom-10 left-10 z-10', {
-        'transition-transform duration-300 group-hover:-translate-y-[270px]':
+        'transition-all duration-300 group-hover:bottom-[80%]':
           additionalInfo && additionalInfo.length > 0,
       })}
     >
@@ -29,7 +29,7 @@ export const PetImage: FC<PetImageProps> = ({ name, imageAlt, imageSrc, addition
 
     {/* Additional Info */}
     {additionalInfo && (
-      <div className="text-white absolute top-[90px] left-0 pr-8 z-10 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+      <div className="text-white absolute top-[25%] left-0 pr-8 z-10 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
         <ul className="pl-10 list-disc list-inside space-y-4">
           {additionalInfo?.map((info, index) => (
             <li key={index} className="">

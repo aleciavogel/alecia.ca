@@ -16,11 +16,11 @@ import { AccordionPortableText } from './accordion-portable-text'
 
 export const AccordionList = ({ pretitle, heading, intro, items }: AccordionListProps) => {
   return (
-    <div className="max-w-screen-sm mx-auto space-y-10">
+    <div className="max-w-screen-sm page-content-padding box-content mx-auto space-y-10">
       <div className="text-center space-y-6">
         {pretitle ? <Typography variant="blockPretitle">{pretitle}</Typography> : null}
         {heading ? (
-          <Typography variant="blockTitle" className="text-4xl">
+          <Typography variant="blockTitle" className="">
             {heading}
           </Typography>
         ) : null}

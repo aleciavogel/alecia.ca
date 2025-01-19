@@ -39,12 +39,12 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
-      firstName: undefined,
-      lastName: undefined,
-      email: undefined,
-      phone: undefined,
-      subject: undefined,
-      message: undefined,
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: '',
     },
   })
 
@@ -63,20 +63,18 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} autoComplete="on">
-        <CardContent className="grid grid-cols-2 gap-5">
+        <CardContent className="grid md:grid-cols-2 gap-5">
           <TextField
             control={form.control}
             name="firstName"
             label="First Name"
             autoComplete="first-name"
-            className="col-span-1"
           />
           <TextField
             control={form.control}
             name="lastName"
             label="Last Name"
             autoComplete="family-name"
-            className="col-span-1"
           />
           <TextField
             control={form.control}
@@ -84,7 +82,7 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
             label="Email"
             type="email"
             autoComplete="email"
-            className="col-span-2"
+            className="lg:col-span-2"
           />
           <TextField
             control={form.control}
@@ -92,13 +90,13 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
             label="Phone Number"
             autoComplete="tel"
             type="tel"
-            className="col-span-2"
+            className="lg:col-span-2"
           />
           <SelectField
             control={form.control}
             name="subject"
             label="Subject"
-            className="col-span-2"
+            className="md:col-span-2"
             options={SUBJECT_OPTIONS.map((subject) => ({
               label: subject,
               value: subject,
@@ -108,7 +106,7 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
             control={form.control}
             name="message"
             label="Message"
-            className="col-span-2"
+            className="md:col-span-2"
           />
         </CardContent>
         <CardFooter className="flex justify-center">

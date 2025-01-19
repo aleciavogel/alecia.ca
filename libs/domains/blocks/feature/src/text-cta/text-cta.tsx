@@ -16,13 +16,12 @@ export const TextCTA: FC<TextCTAProps> = ({
 }) => (
   <div
     className={cn(
-      'container mx-auto',
-      'md:flex md:justify-center gap-8 md:gap-20',
-      'px-14 md:px-20',
+      'flex flex-col md:flex-row md:justify-center gap-10 md:gap-20',
+      'page-content-block',
       'relative',
     )}
   >
-    <div className="h-full md:flex md:max-w-[430px] md:items-center md:justify-self-stretch mt-8">
+    <div className="h-full md:flex md:max-w-[430px] md:items-center md:justify-self-stretch">
       <div className="max-md:text-center">
         {pretitle ? (
           <Typography variant="blockPretitle" className="mb-4">

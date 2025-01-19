@@ -16,7 +16,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
 }) => (
   <div
     className={cn(
-      'container mx-auto',
+      'page-content-block',
       'flex flex-col items-center justify-center',
       'gap-8',
       'w-full h-full',

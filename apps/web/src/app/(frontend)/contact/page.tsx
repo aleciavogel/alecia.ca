@@ -31,12 +31,12 @@ export default async function ContactPage() {
       >
         <ContactFormCard />
       </FormHeader>
-      <PageContents className="pt-28 lg:pb-48 px-8 md:px-20">
-        <div className="space-y-3 page-container">
+      <PageContents className="pt-80 lg:pt-28 pb-32 lg:pb-48">
+        <div className="space-y-6 page-container max-lg:hidden">
           <Typography variant="blockPretitle" className="text-primary-900">
             Connect with me
           </Typography>
-          <div className="space-x-6 text-4xl text-primary-600 dark:text-primary-300">
+          <div className="space-x-6 text-4xl text-primary-600 dark:text-primary-300 max-md:text-center">
             <FooterSocialLinks />
           </div>
         </div>

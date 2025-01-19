@@ -46,23 +46,16 @@ export const linkListQueryPartial = `
 `
 
 export const linkableReferencePartial = `
-  links[]{
-    ...,
-    'label': item->title,
-    'subtitle': item->subtitle,
-    'icon': item->icon.name,
-    'slug': item->{
-      'slug': select(
-        ${authorSlugPartial},
-        ${blogPostSlugPartial},
-        ${blogCategorySlugPartial},
-        ${courseSlugPartial},
-        ${courseChapterSlugPartial},
-        ${pageSlugPartial},
-        ${projectSlugPartial},
-        ${experimentSlugPartial},
-        '#'
-      )
-    }.slug
+  links[]->{
+    _id,
+    _type,
+    "label": coalesce(metadata.title, title),
+    "subtitle": subtitle,
+    "slug": select(
+      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,
+      _type == 'page' => '/' + metadata.slug.current,
+      null
+    ),
+    "icon": icon.name
   }
 `

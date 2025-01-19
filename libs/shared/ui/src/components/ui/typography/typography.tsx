@@ -31,7 +31,7 @@ export const typographyVariants = cva('font-normal leading-snug transition-dark-
       ),
       ul: 'my-6 ml-6 list-disc [&>li]:mt-2',
       ol: 'my-6 ml-6 list-decimal [&>li]:mt-2',
-      lead: 'text-xl text-muted-foreground',
+      lead: 'text-sm md:text-xl text-muted-foreground',
       large: 'text-lg font-semibold',
       small: 'text-xs md:text-sm leading-none',
       strike: 'text-accent',

@@ -32,6 +32,6 @@ export const ImageHeaderIntro: FC<ImageHeaderIntroProps> = ({
         {subtitle}
       </Typography>
     ) : null}
-    <ZigZagAccent className="fill-primary-300 w-[175px] mt-8" />
+    <ZigZagAccent className="fill-primary-300 w-[175px] mt-8 mx-auto md:mx-0" />
   </div>
 )

@@ -14,7 +14,7 @@ export const MenuSheetContent = forwardRef<
 >(({ className, children, ...props }, ref) => (
   <SheetPrimitive.Content
     ref={ref}
-    className={cn('fixed inset-0 p-0 m-0 z-50 border-none', className)}
+    className={cn('fixed inset-0 p-0 m-0 z-[200] border-none', className)}
     {...props}
   >
     {children}

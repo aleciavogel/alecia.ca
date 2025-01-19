@@ -13,7 +13,7 @@ export const FooterBottom: FC = () => {
         <Copyright />
       </p>
 
-      <FooterSocialLinks />
+      <FooterSocialLinks className="text-2xl text-center md:text-right" id="footer-social-links" />
     </div>
   )
 }

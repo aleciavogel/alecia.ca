@@ -52,7 +52,7 @@ export const PageContents: FC<PageContentsProps> = ({ children, variant, classNa
       'pb-28',
       'h-full min-h-[500px]',
       'z-40',
-      'flex flex-col gap-36',
+      'flex flex-col gap-24 lg:gap-36',
       className,
     )}
   >
