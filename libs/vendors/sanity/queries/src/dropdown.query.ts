@@ -6,7 +6,7 @@ export const blogDropdownQueryPartial = `
     links[]{
       _type == 'reference' => @->{
         ...,
-        "slug": '/blog?category=' + slug.current,
+        "slug": '/blog?category=' + metadata.slug.current,
         "icon": icon.name
       }
     }
