@@ -15,7 +15,8 @@
     "build": {
       "executor": "@nx/next:build",
       "options": {
-        "postcssConfig": "apps/web/postcss.config.js"
+        "postcssConfig": "apps/web/postcss.config.js",
+        "outputPath": "dist/apps/web"
       }
     }
   }
