@@ -20,7 +20,6 @@ export async function loadQuery<T>(query: string, { params = {}, tags }: FetchSa
   return sanityClient.fetch<T>(
     query,
     params,
-    // @ts-expect-error -- TODO: this is dumb and I hate it
     preview
       ? {
           stega: true,

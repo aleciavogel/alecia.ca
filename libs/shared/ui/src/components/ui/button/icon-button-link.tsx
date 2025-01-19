@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from 'react'
+import { IconName } from '@fortawesome/pro-solid-svg-icons'
 import type { VariantProps } from 'class-variance-authority'
 import Link from 'next/link'
 
@@ -27,7 +28,7 @@ export const IconButtonLink: FC<IconButtonLinkProps> = ({
     >
       <span>{children}</span>
       <Icon
-        name={iconName}
+        name={(iconName ? iconName : 'faRocket') as IconName}
         className={cn('group-hover/link:translate-x-1 transform translate-x-0')}
       />
     </Link>

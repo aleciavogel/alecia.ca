@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import type { VectorProps } from '@aleciatypes'
+import type { VectorProps } from '@alecia/types'
 
 export const SadieHammondCookiesIllustration: FC<VectorProps> = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 807 561" {...props}>
