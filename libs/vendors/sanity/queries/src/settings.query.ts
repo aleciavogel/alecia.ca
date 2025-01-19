@@ -1,6 +1,12 @@
 import { defineQuery } from 'next-sanity'
 
 import {
+  aboutDropdownQueryPartial,
+  blogDropdownQueryPartial,
+  promoDropdownQueryPartial,
+  quoteDropdownQueryPartial,
+} from './dropdown.query'
+import {
   internalLinkQueryPartial,
   linkListQueryPartial,
   socialLinkQueryPartial,
@@ -13,39 +19,10 @@ export const settingsQuery = defineQuery(`
       items[]{
         ${internalLinkQueryPartial},
         ${linkListQueryPartial},
-
-        _type == 'dropdown.about' => {
-          ...,
-          'image': image.asset->url,
-          links[]{
-            ${internalLinkQueryPartial}
-          }
-        },
-
-        _type == 'dropdown.blog' => {
-          ...,
-          links[]{
-            _type == 'reference' => @->{
-              ...,
-              "slug": '/blog?category=' + slug.current,
-              "icon": icon.name
-            }
-          }
-        },
-
-        _type == 'dropdown.promo' => {
-          ...,
-          links[]{
-            ${internalLinkQueryPartial}
-          }
-        },
-
-        _type == 'dropdown.quote' => {
-          ...,
-          links[]{
-            ${internalLinkQueryPartial}
-          }
-        }
+        ${aboutDropdownQueryPartial},
+        ${blogDropdownQueryPartial},
+        ${promoDropdownQueryPartial},
+        ${quoteDropdownQueryPartial}
       }
     },
     secondaryMenu{
