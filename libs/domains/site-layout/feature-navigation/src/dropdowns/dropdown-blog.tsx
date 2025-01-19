@@ -25,7 +25,7 @@ export const DropdownBlog: FC<DropdownBlogProps> = ({ label, links }) => (
             href={item.slug === '/blog?category=all' ? '/blog' : item.slug ?? '#'}
             label={item.title ?? ''}
             iconName={item.icon ?? undefined}
-            description={item.description}
+            description={item.subtitle}
           />
         ))}
       </ul>

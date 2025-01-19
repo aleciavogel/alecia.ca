@@ -25,7 +25,7 @@ export const WavyHeader: FC<WavyHeaderProps> = ({ headerIllustration, ...props }
         'after:bg-gradient-to-b after:from-primary-950 after:from-20% after:to-fuchsia-600',
       )}
     >
-      <div className="w-full text-white/30 absolute top-1/2 md:top-[10%] md:visible overflow-hidden">
+      <div className="w-full h-full overflow-hidden text-white/30 absolute top-1/2 md:top-[10%] md:visible">
         <WavyText className="-translate-x-12 md:-translate-x-72 absolute z-10 w-[200%] md:w-[150%]" />
       </div>
       <div className={cn('flex items-center justify-items-center px-8 md:px-20 page-container')}>

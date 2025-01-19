@@ -22,8 +22,7 @@ export const IconNavLink = ({
   className,
   ...rest
 }: IconNavLinkProps) => {
-  const iconName =
-    icon !== null && typeof icon === 'string' ? (stegaClean(icon) as IconName) : 'faRocket'
+  const iconName = stegaClean(icon)
 
   return (
     <Link
