@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { usePathname } from 'next/navigation'
 
 import { DarkModeProvider } from '@alecia/dark-mode'
@@ -38,6 +39,7 @@ export const Providers = ({ children, settings }: ProvidersProps) => {
                 social={settings?.social ? settings.social : []}
               />
             </MenuSheetPortal>
+            <SpeedInsights />
           </MenuSheet>
         </DarkModeProvider>
       </ScrollProvider>
