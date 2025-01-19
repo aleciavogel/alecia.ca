@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "tree": "tree . -I 'node_modules|dist|.git|.nx|.vscode|src' -d"
+    "tree": "tree . -I 'node_modules|dist|.git|.nx|.vscode|src' -d",
+    "build:web": "doppler run --command='nx build web'"
   },
   "private": true,
   "dependencies": {
