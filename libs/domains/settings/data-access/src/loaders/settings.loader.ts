@@ -7,4 +7,5 @@ import { loadQuery } from '@alecia/sanity-util/server'
 /**
  * Fetches the settings singleton from Sanity.
  */
-export const getSettings = async () => loadQuery<SettingsQueryResult>(settingsQuery)
+export const getSettings = async () =>
+  loadQuery<SettingsQueryResult>(settingsQuery, { tags: ['settings'] })

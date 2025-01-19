@@ -7,7 +7,7 @@ import { loadQuery } from '@alecia/sanity-util/server'
  */
 export const getProjectIndex = async () =>
   loadQuery<ProjectIndexQueryResult>(projectIndexQuery, {
-    tags: ['projects'],
+    tags: ['page:projects'],
   })
 
 /**
@@ -18,5 +18,5 @@ export const getProject = async (slug: string) =>
     params: {
       slug,
     },
-    tags: ['projects'],
+    tags: [`project:${slug}`],
   })

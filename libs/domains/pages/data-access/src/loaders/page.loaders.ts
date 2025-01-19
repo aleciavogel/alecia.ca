@@ -6,16 +6,16 @@ import { loadQuery } from '@alecia/sanity-util/server'
  * Fetches the home page from Sanity.
  */
 export const getHomePage = async () =>
-  loadQuery<HomePageQueryResult>(homePageQuery, { tags: ['homepage'] })
+  loadQuery<HomePageQueryResult>(homePageQuery, { tags: ['page:index'] })
 
 /**
  * Fetches a page from Sanity.
  * @param slug - The slug of the page to fetch.
  */
 export const getPage = async (slug: string) =>
-  loadQuery<PageQueryResult>(pageQuery, { params: { slug }, tags: ['page'] })
+  loadQuery<PageQueryResult>(pageQuery, { params: { slug }, tags: [`page:${slug}`] })
 
 /**
  * Fetches all slugs for pages from Sanity.
  */
-export const getPageSlugs = async () => loadQuery<string[]>(pageSlugQuery)
+export const getPageSlugs = async () => loadQuery<string[]>(pageSlugQuery, { tags: ['page'] })

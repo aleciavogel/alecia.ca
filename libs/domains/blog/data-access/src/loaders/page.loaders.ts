@@ -11,7 +11,7 @@ export const getBlogIndexPage = async (categorySlug?: string) =>
     params: {
       slug: categorySlug ?? null,
     },
-    tags: ['blog-index'],
+    tags: ['page:blog', `blog.category:${categorySlug ?? 'all-posts'}`],
   })
 
 /**
@@ -23,5 +23,5 @@ export const getBlogArticlePage = async (slug: string) =>
     params: {
       slug,
     },
-    tags: ['blog-article'],
+    tags: [`blog.article:${slug}`],
   })

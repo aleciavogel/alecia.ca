@@ -7,5 +7,5 @@ import { loadQuery } from '@alecia/sanity-util/server'
  */
 export const getResourcesPage = async (categorySlug?: string) =>
   loadQuery<ResourcesIndexQueryResult>(resourcesIndexQuery, {
-    tags: ['resources'],
+    tags: ['page:resources', 'resource'],
   })

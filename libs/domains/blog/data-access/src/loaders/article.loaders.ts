@@ -10,7 +10,7 @@ import { loadQuery } from '@alecia/sanity-util/server'
  */
 export const getAllBlogPosts = async () =>
   loadQuery<AllBlogArticlesQueryResult>(allBlogArticlesQuery, {
-    tags: ['posts'],
+    tags: ['blog.article'],
   })
 
 /**
@@ -21,5 +21,5 @@ export const getBlogArticlesForCategory = async (category: string) =>
     params: {
       category,
     },
-    tags: ['posts'],
+    tags: [`blog.category:${category}`],
   })

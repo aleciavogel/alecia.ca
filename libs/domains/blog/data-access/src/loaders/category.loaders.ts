@@ -7,5 +7,5 @@ import { loadQuery } from '@alecia/sanity-util/server'
  */
 export const getBlogCategories = async () =>
   loadQuery<BlogCategoriesQueryResult>(blogCategoriesQuery, {
-    tags: ['blog-categories'],
+    tags: ['blog.category', 'blog.article'],
   })
