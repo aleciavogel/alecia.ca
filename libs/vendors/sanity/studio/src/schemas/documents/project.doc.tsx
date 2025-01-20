@@ -28,6 +28,9 @@ export const project = defineType({
       title: 'Main image',
       type: 'image',
       group: 'content',
+      options: {
+        hotspot: true,
+      },
       fields: [
         defineField({
           name: 'alt',

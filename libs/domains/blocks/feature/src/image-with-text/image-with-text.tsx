@@ -25,8 +25,8 @@ export const ImageWithText = ({ image, layout, side, ...rest }: ImageWithTextPro
     imageSrc={
       image
         ? urlFor(image)
-            .width(image.dimensions?.width ?? 800)
-            .height(image.dimensions?.height ?? 600)
+            .width(image.dimensions?.width ?? 1200)
+            .height(image.dimensions?.height ?? 720)
             .fit('crop')
             .url()
         : getPlaceholderImage(800, 600)

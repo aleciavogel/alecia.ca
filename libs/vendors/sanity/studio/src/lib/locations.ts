@@ -28,7 +28,7 @@ export const locations: DocumentLocationResolver = (params, context) => {
             segment = '/courses'
             break
           case 'project':
-            segment = '/portfolio'
+            segment = '/projects'
             break
         }
 
