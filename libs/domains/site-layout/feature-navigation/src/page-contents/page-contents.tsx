@@ -1,44 +1,26 @@
 import type { FC, ReactNode } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 import classNames from 'classnames'
 
+import { pageVariants } from '@alecia/pages-constants'
 import { calcWavyBorderMask, cn } from '@alecia/util'
 
 import { StickyNav } from '../sticky-nav'
-
-export const pageVariants = cva(
-  cn(
-    'absolute top-0 left-0',
-    'h-full w-full',
-    'transition-all duration-200 ease-in-out',
-    'z-[-1]',
-    'pointer-events-none',
-    'border-0 border-transparent',
-    'bg-primary-100 dark:bg-gray-900',
-  ),
-  {
-    variants: {
-      variant: {
-        angled: 'clip-angled',
-        rectangular: 'clip-rect',
-        'angled-reverse': 'clip-angled-inverse',
-        chevron: 'clip-chevron',
-      },
-    },
-    defaultVariants: {
-      variant: 'angled',
-    },
-  },
-)
 
 const WAVY_BORDER_MASK = { mask: calcWavyBorderMask({ position: 'bottom' }) }
 
 interface PageContentsProps extends VariantProps<typeof pageVariants> {
   children: ReactNode
   className?: string
+  isWavy?: boolean
 }
 
-export const PageContents: FC<PageContentsProps> = ({ children, variant, className }) => (
+export const PageContents: FC<PageContentsProps> = ({
+  children,
+  variant,
+  className,
+  isWavy = true,
+}) => (
   <main
     className={cn(
       'w-full',
@@ -58,7 +40,7 @@ export const PageContents: FC<PageContentsProps> = ({ children, variant, classNa
   >
     {children}
 
-    <div className={cn(pageVariants({ variant }))} style={WAVY_BORDER_MASK}>
+    <div className={cn(pageVariants({ variant }))} style={isWavy ? WAVY_BORDER_MASK : undefined}>
       <StickyNav className="text-primary-600 dark:text-primary-400" />
     </div>
   </main>

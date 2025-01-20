@@ -82,7 +82,10 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
           <div className="text-center md:text-left">
             {pretitle && pretitleLink ? (
               <Link href={pretitleLink}>
-                <Typography variant="pretitle" className="mb-2">
+                <Typography
+                  variant="pretitle"
+                  className="mb-2 text-primary-200 hover:text-accent-300 inline-block"
+                >
                   {pretitle}
                 </Typography>
               </Link>

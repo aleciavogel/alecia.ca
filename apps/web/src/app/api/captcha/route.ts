@@ -1,23 +1,28 @@
-import { RECAPTCHA_SECRET } from '@alecia/recaptcha-constants/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function POST(req: Request) {
+import { CLOUDFLARE_TURNSTILE_ROUTE, TURNSTILE_SECRET } from '@alecia/cloudflare-constants/server'
+
+export async function POST(req: NextRequest) {
   const data = await req.json()
   const { token } = data
 
   if (!token) {
-    return new Response(JSON.stringify({ message: 'Token not found' }), {
-      status: 405,
-    })
+    return NextResponse.json(
+      { message: 'Token not found' },
+      {
+        status: 405,
+      },
+    )
   }
 
   try {
-    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
+    const response = await fetch(CLOUDFLARE_TURNSTILE_ROUTE, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        secret: RECAPTCHA_SECRET,
+        secret: TURNSTILE_SECRET,
         response: token,
       }),
     })
@@ -25,17 +30,30 @@ export async function POST(req: Request) {
     const responseData = await response.json()
 
     if (responseData.success) {
-      return new Response(JSON.stringify({ message: 'Success' }), {
-        status: 200,
-      })
+      return NextResponse.json(
+        { message: 'Success' },
+        {
+          status: 200,
+        },
+      )
     } else {
-      return new Response(JSON.stringify({ message: 'Failed to verify' }), {
-        status: 405,
-      })
+      return NextResponse.json(
+        { message: 'Failed to verify' },
+        {
+          status: 405,
+        },
+      )
     }
-  } catch (error) {
-    return new Response(JSON.stringify({ message: 'Internal Server Error' }), {
-      status: 500,
-    })
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(error)
+    }
+
+    return NextResponse.json(
+      { message: 'Internal Server Error' },
+      {
+        status: 500,
+      },
+    )
   }
 }

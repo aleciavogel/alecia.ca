@@ -11,6 +11,7 @@ const NavIcons = dynamic(() => import('@alecia/blocks').then((mod) => mod.NavIco
 const TextAsideList = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextAsideList))
 const TextCTA = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextCTA))
 const TextIntro = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextIntro))
+const ImageBlock = dynamic(() => import('@alecia/blocks').then((mod) => mod.ImageWithText))
 
 // TODO: attempt to fix the type later
 interface BlocksProps {
@@ -24,6 +25,8 @@ export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
         return <AccordionList key={module._key} {...module} />
       case 'gallery.pets':
         return <GalleryPets key={module._key} {...module} />
+      case 'image-with-text':
+        return <ImageBlock key={module._key} {...module} />
       case 'nav.card':
         return <NavCard key={module._key} {...module} />
       case 'nav.icons':

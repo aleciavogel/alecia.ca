@@ -41,7 +41,7 @@ export const typographyVariants = cva('font-normal leading-snug transition-dark-
       'footer-nav-title': 'font-semibold text-primary-300 uppercase',
       pretitle: cn(
         'font-semibold',
-        'text-primary-200 md:text-primary-100',
+        'text-primary-200',
         'text-base min-[970px]:text-lg',
         'uppercase tracking-widest',
       ),
