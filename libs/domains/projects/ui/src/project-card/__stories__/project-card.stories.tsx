@@ -5,21 +5,24 @@ import { getPlaceholderImage } from '@alecia/util'
 import { ProjectCard } from '../project-card'
 
 const meta: Meta<typeof ProjectCard> = {
-  title: 'Features/Projects/UI/Project Card',
+  title: 'Features/Projects/Project Card',
   component: ProjectCard,
   argTypes: {},
   args: {
-    url: '@/',
+    slug: '#',
     tags: [
       {
-        text: 'Web Development',
-        href: '#',
+        label: 'Web Development',
+        slug: '#',
+        _id: '',
+        _type: 'project.tag',
+        _createdAt: '',
+        _updatedAt: '',
+        _rev: '',
+        icon: null,
       },
     ],
-    image: {
-      src: getPlaceholderImage(1200, 500),
-      alt: '',
-    },
+    imageSrc: getPlaceholderImage(1200, 500),
   },
   render: (args) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -33,6 +36,4 @@ export default meta
 
 type Story = StoryObj<typeof ProjectCard>
 
-export const Default: Story = {
-  args: {},
-}
+export const Default: Story = {}

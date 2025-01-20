@@ -5,11 +5,14 @@ import { modulesQueryPartial } from './modules.query'
 export const projectQueryPartial = `
     ...,
     'slug': '/projects/' + metadata.slug.current,
-    'imageSrc': mainImage.asset->url,
-    'imageAlt': mainImage.alt,
+    mainImage{
+      ...,
+      'src': asset->url,
+      'dimensions': asset->metadata.dimensions,
+      'bgColor': asset->metadata.palette.dominant.background
+    },
     tags[]-> {
-      _key,
-      title,
+      ...,
       'slug': '/projects?tag=' + slug.current,
       'icon': icon.name
     }
@@ -28,8 +31,6 @@ export const projectIndexQuery = defineQuery(`
     pretitle,
     title,
     subtitle,
-    'imageSrc': mainImage.asset->url,
-    'imageAlt': mainImage.alt,
     modules[]{
       ${modulesQueryPartial}
     },

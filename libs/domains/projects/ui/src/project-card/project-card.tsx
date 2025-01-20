@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import { faArrowRightLong } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
@@ -13,25 +12,29 @@ type SingleProject = AllProjectsQueryResult[number]
 interface ProjectProps extends SingleProject {
   changeOnDarkMode?: boolean
   className?: string
+  imageSrc?: string | null
 }
 
-export const ProjectCard: FC<ProjectProps> = ({
+export const ProjectCard = ({
   className,
   slug = '#',
   title = 'Untitled',
   changeOnDarkMode = false,
-  imageAlt,
-  imageSrc,
   tags,
-}) => (
+  imageSrc,
+  mainImage,
+}: ProjectProps) => (
   <CardItem
     href={slug ?? '#'}
     className={cn('pb-16 group/card', className)}
     changeOnDarkMode={changeOnDarkMode}
     tags={
-      tags?.map((tag) => ({ text: tag.title ?? '', href: tag.slug ?? '#', icon: tag.icon })) ?? []
+      tags?.map((tag) => ({ text: tag.label ?? '', href: tag.slug ?? '#', icon: tag.icon })) ?? []
     }
-    image={{ src: imageSrc ?? getPlaceholderImage(1200, 500), alt: imageAlt ?? '' }}
+    image={{
+      src: imageSrc ?? getPlaceholderImage(1200, 500),
+      alt: mainImage?.alt ?? '',
+    }}
   >
     <div
       className={cn(

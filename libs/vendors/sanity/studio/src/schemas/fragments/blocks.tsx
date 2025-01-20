@@ -15,6 +15,7 @@ export const blockTypes = [
 
   // Image gallery types
   { type: 'gallery.pets' },
+  { type: 'image-with-text' },
 
   /** Navigation */
   { type: 'nav.card' },
