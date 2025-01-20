@@ -27,13 +27,12 @@ export const ProjectPreFooter = ({ relatedProjects = [] }: ProjectPreFooterProps
         'md:pt-[200px]',
         '-mt-[var(--triangle-height)]',
         'mb-[-25px]',
-        'pb-28 md:pb-48',
-        'h-full min-h-[500px]',
+        'pb-16 md:pb-48',
         'z-50',
         'flex flex-col gap-24 lg:gap-36',
       )}
     >
-      <div className="page-container max-lg:page-content-block space-y-6 lg:space-y-12">
+      <div className="page-container max-xl:page-content-block space-y-6 lg:space-y-12">
         <div className="grid md:grid-cols-2 max-md:gap-12">
           <Typography variant="h2" as="h3" className="text-white max-md:text-center">
             More Projects

@@ -38,7 +38,7 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
         pretitleLink={Routes.Projects.Index}
       />
       <PageContents variant="rectangular" className="mb-0 pb-[300px]" isWavy={false}>
-        <div className="space-y-6 md:space-y-16 page-container max-lg:page-content-padding mx-auto">
+        <div className="space-y-6 md:space-y-16 page-container max-xl:page-content-padding mx-auto">
           <div className="space-y-4">
             <Typography variant="blockPretitle" as="h2">
               The Objective
@@ -50,7 +50,6 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
           <div>
             {project.mainImage ? (
               <Image
-                loading="priority"
                 src={urlFor(project.mainImage)
                   .width(project.mainImage.dimensions?.width ?? 800)
                   .height(project.mainImage.dimensions?.height ?? 600)
@@ -60,17 +59,18 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
                 width={project.mainImage.dimensions?.width}
                 height={project.mainImage.dimensions?.height}
                 className="w-full"
+                priority
               />
             ) : (
               <img src={getPlaceholderImage(800, 600)} alt="Placeholder" className="w-full" />
             )}
           </div>
-          <div className="space-y-16">
+          <div className="space-y-24">
             <RenderedBlocks modules={project.modules} />
           </div>
         </div>
       </PageContents>
-      <ProjectPreFooter relatedProjects={project.relatedProjects} />
+      <ProjectPreFooter relatedProjects={[]} />
     </SiteWrapper>
   )
 }
