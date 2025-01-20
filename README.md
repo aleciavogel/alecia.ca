@@ -38,8 +38,8 @@ Whether you're here to learn, contribute, or just take a peek, I hope you find s
 - [Running Tests](#running-tests)
 - [Linting](#linting)
 - [Known Issues](#known-issues)
-- [License](#license)
 - [Contributing](#contributing)
+- [License](#license)
 
 ## Getting Started
 
@@ -159,11 +159,6 @@ You can find the name of the project in the `project.json` file of the respectiv
 - **High Memory Usage**: Due to the complexity of the project, you'll need at least 7GB of RAM for development.
 - **Environment Setup**: Ensure all API keys are correctly configured in Doppler. Missing keys **will** result in errors.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-You are free to use, modify, and distribute this project, provided you include the original copyright and license.
-
 ## Contributing
 
 Contributions are welcome! 🎉
@@ -176,3 +171,8 @@ To contribute:
 5. Create a pull request, and I’ll review it as soon as possible!
 
 Please ensure your code follows the existing style and includes tests for any new functionality.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+You are free to use, modify, and distribute this project, provided you include the original copyright and license.
