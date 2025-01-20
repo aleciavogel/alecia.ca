@@ -27,7 +27,6 @@ You'll need a GitHub account to participate.
 Whether you're here to learn, contribute, or just take a peek, I hope you find something useful. 😄
 
 ## Table of Contents
-- [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Install Dependencies](#1-install-dependencies)
@@ -41,21 +40,6 @@ Whether you're here to learn, contribute, or just take a peek, I hope you find s
 - [Known Issues](#known-issues)
 - [License](#license)
 - [Contributing](#contributing)
-
-## Technologies Used
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [React](https://reactjs.org/)
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Giscus](https://giscus.app)
-- [Resend](https://resend.com)
-- [React Email](https://react.email)
-- [React Spring](https://react-spring.dev)
-- [Doppler](https://doppler.com)
-- [FontAwesome](https://fontawesome.com)
-- [Nx](https://nx.dev)
-- [Bun.sh](https://bun.sh)
 
 ## Getting Started
 
