@@ -10,9 +10,8 @@ export const SITE_BASE_URL =
 export const Routes = {
   API: {
     Captcha: '/api/captcha',
-    Emails: {
-      ContactFormSubmission: '/api/contact/send',
-      ContactFormConfirmation: '/api/contact/confirm',
+    Contact: {
+      Send: '/api/contact/send',
     },
     Newsletters: {
       // TODO: create this route for buttondown

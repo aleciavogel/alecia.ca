@@ -25,20 +25,12 @@ export const useSendContactForm = (
   return useMutation<object, Error, FormWithRecaptcha>({
     mutationFn: (payload) =>
       new Promise((resolve, reject) => {
-        api
-          .post<FormWithRecaptcha, object>(
-            Routes.API.Emails.ContactFormSubmission,
-            payload,
-            (response) => {
-              resolve(response)
-            },
-          )
-          .catch((error: unknown) => {
-            if (error instanceof Error) {
-              reject(error)
-              return error
-            }
-          })
+        api.post<FormWithRecaptcha>(Routes.API.Contact.Send, payload).catch((error: unknown) => {
+          if (error instanceof Error) {
+            reject(error)
+            return error
+          }
+        })
       }),
     onSuccess: () => {
       onSuccess?.()

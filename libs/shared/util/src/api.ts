@@ -1,37 +1,24 @@
 /**
  * Get method
  * @param path - the path to the api endpoint
- * @param callback - the callback function to run after the response is received
  */
-
-async function get<R>(path: string, callback: (response: R) => void): Promise<void> {
-  const response = await fetch(path, {
+async function get(path: string): Promise<Response> {
+  return await fetch(path, {
+    mode: 'cors',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-
-  if (!response.ok) {
-    throw new Error(`${response.status.toString()} Error: ${response.statusText}`)
-  }
-
-  const data = (await response.json()) as R
-  callback(data)
 }
 
 /**
  * Post method
  * @param path - the path to the api endpoint
  * @param payload - the payload to send to the api
- * @param callback - the callback function to run after the response is received
  */
-async function post<P, R>(
-  path: string,
-  payload: P,
-  callback: (response: R) => void,
-): Promise<void> {
-  const response = await fetch(path, {
+async function post<P = unknown>(path: string, payload: P): Promise<Response> {
+  return await fetch(path, {
     mode: 'cors',
     method: 'POST',
     headers: {
@@ -39,32 +26,43 @@ async function post<P, R>(
     },
     body: JSON.stringify(payload),
   })
-
-  if (!response.ok) {
-    throw new Error(`${response.status.toString()} Error: ${response.statusText}`)
-  }
-
-  const data = (await response.json()) as R
-  callback(data)
 }
 
 /**
  * Put method that emulates a PUT request through POST due to browser limitations with CORS
  * @param path - the path to the api endpoint
  * @param payload - the payload to send to the api
- * @param callback - the callback function to run after the response is received
  */
-async function put<P, R>(path: string, payload: P, callback: (response: R) => void): Promise<void> {
-  // Emulate PUT request through POST by appending a query parameter
-  const modifiedPath = `${path}?_method=PUT`
+async function put<P = unknown>(path: string, payload: P): Promise<Response> {
+  return await fetch(path, {
+    mode: 'cors',
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+}
 
-  // You could directly call the static POST method here since the logic is the same.
-  // Ensure that any payload modifications specific to PUT requests are handled before this call.
-  await post(modifiedPath, payload, callback)
+/**
+ * Delete method
+ * @param path - the path to the api endpoint
+ * @param payload - the payload to send to the api
+ */
+async function del<P = unknown>(path: string, payload: P): Promise<Response> {
+  return await fetch(path, {
+    mode: 'cors',
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
 }
 
 export const api = {
   get,
   post,
   put,
+  del,
 }

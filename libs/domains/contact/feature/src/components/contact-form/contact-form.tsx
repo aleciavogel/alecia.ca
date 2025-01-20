@@ -1,17 +1,16 @@
 'use client'
 
-import React, { useCallback, useRef, useState } from 'react'
-import Recaptcha from 'react-google-recaptcha'
+import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Turnstile, { useTurnstile } from 'react-turnstile'
 import { faSpinner } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTheme } from 'next-themes'
 
+import { TURNSTILE_SITE_KEY } from '@alecia/cloudflare-constants'
 import { Routes } from '@alecia/constants'
 import { useSendContactForm } from '@alecia/contact-data-access'
 import { ContactFormSchema, type ContactFormValues } from '@alecia/contact-types'
-import { RECAPTCHA_KEY } from '@alecia/recaptcha-constants'
 import {
   Button,
   CardContent,
@@ -40,7 +39,7 @@ interface ContactFormProps {
 
 export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
   const [isVerified, setIsVerified] = useState(false)
-  const captchaRef = useRef<Recaptcha>(null)
+  const turnstile = useTurnstile()
   const { mutate: submitForm, isPending } = useSendContactForm()
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactFormSchema),
@@ -53,7 +52,6 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
       message: '',
     },
   })
-  const { theme } = useTheme()
 
   const handleCaptchaSubmission = useCallback(async (token: string | null) => {
     try {
@@ -79,14 +77,12 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
   }, [])
 
   const handleSubmit = (data: ContactFormValues): void => {
-    const recaptchaValue = captchaRef.current?.getValue()
-
     submitForm(
-      { ...data, recaptcha: recaptchaValue },
+      { ...data, recaptcha: turnstile.getResponse() },
       {
         onSuccess: () => {
           form.reset()
-          captchaRef.current?.reset()
+          turnstile.reset()
           onSuccess?.(data)
         },
         onError: (error) => {
@@ -144,12 +140,13 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
             label="Message"
             className="md:col-span-2"
           />
-          <Recaptcha
-            sitekey={RECAPTCHA_KEY}
-            ref={captchaRef}
-            theme={theme === 'dark' ? 'dark' : 'light'}
-            onChange={handleCaptchaSubmission}
-            onExpired={handleExpiredCaptcha}
+          {/* Recaptcha */}
+          <Turnstile
+            sitekey={TURNSTILE_SITE_KEY}
+            onVerify={handleCaptchaSubmission}
+            onExpire={handleExpiredCaptcha}
+            onError={(error) => onError?.(error)}
+            onUnsupported={() => onError?.(new Error('Captcha unsupported'))}
           />
         </CardContent>
         <CardFooter className="flex justify-center">
