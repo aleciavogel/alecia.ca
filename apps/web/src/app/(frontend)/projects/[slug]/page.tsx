@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation'
 import { Image } from 'next-sanity/image'
+import { Image as SanityImage } from 'sanity'
 
 import { Routes } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { SimpleHeader } from '@alecia/pages-ui'
 import { getProject } from '@alecia/projects-data-access/server'
 import { ProjectPreFooter } from '@alecia/projects-ui'
-import { urlFor } from '@alecia/sanity-util'
+import { getCroppedImageSrc, urlFor } from '@alecia/sanity-util'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 import { Typography } from '@alecia/ui-kit'
@@ -29,6 +30,14 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
 
   if (!project) notFound()
 
+  const {
+    width = 800,
+    height = 600,
+    src = getPlaceholderImage(800, 600),
+  } = project.mainImage !== undefined && project.mainImage !== null
+    ? getCroppedImageSrc(project.mainImage as SanityImage) ?? {}
+    : {}
+
   return (
     <SiteWrapper>
       <SimpleHeader
@@ -47,14 +56,10 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
           <div>
             {project.mainImage ? (
               <Image
-                src={urlFor(project.mainImage)
-                  .width(project.mainImage.dimensions?.width ?? 800)
-                  .height(project.mainImage.dimensions?.height ?? 600)
-                  .fit('crop')
-                  .url()}
+                src={src}
                 alt="Placeholder"
-                width={project.mainImage.dimensions?.width}
-                height={project.mainImage.dimensions?.height}
+                width={width}
+                height={height}
                 className="w-full"
                 priority
               />

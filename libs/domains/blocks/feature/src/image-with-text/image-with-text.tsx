@@ -2,7 +2,7 @@ import { stegaClean } from '@sanity/client/stega'
 import type { PortableTextBlock } from 'next-sanity'
 
 import { ImageBlock, ImageBlockLayout, ImageBlockSide } from '@alecia/blocks-ui'
-import { urlFor } from '@alecia/sanity-util'
+import { getCroppedImageSrc } from '@alecia/sanity-util'
 import { ExtendedImage } from '@alecia/types'
 import { getPlaceholderImage } from '@alecia/util'
 
@@ -16,23 +16,34 @@ export interface ImageWithTextProps {
   centeredText?: boolean | null
 }
 
-export const ImageWithText = ({ image, layout, side, ...rest }: ImageWithTextProps) => (
-  <ImageBlock
-    {...rest}
-    side={stegaClean(side) as ImageBlockSide | null}
-    layout={stegaClean(layout) as ImageBlockLayout | null}
-    imageAlt={image?.alt ?? ''}
-    imageSrc={
-      image
-        ? urlFor(image)
-            .width(image.dimensions?.width ?? 1200)
-            .height(image.dimensions?.height ?? 720)
-            .fit('crop')
-            .url()
-        : getPlaceholderImage(800, 600)
-    }
-    width={image?.dimensions?.width}
-    height={image?.dimensions?.height}
-    imgBgColor={image?.bgColor}
-  />
-)
+export const ImageWithText = ({ image, layout, side, ...rest }: ImageWithTextProps) => {
+  if (!image) {
+    return (
+      <ImageBlock
+        {...rest}
+        side={stegaClean(side) as ImageBlockSide | null}
+        layout={stegaClean(layout) as ImageBlockLayout | null}
+        imageAlt={''}
+        imageSrc={getPlaceholderImage(800, 600)}
+        width={800}
+        height={600}
+        imgBgColor={null}
+      />
+    )
+  }
+
+  const { width, height, src } = getCroppedImageSrc(image) ?? {}
+
+  return (
+    <ImageBlock
+      {...rest}
+      side={stegaClean(side) as ImageBlockSide | null}
+      layout={stegaClean(layout) as ImageBlockLayout | null}
+      imageAlt={image?.alt ?? ''}
+      imageSrc={src ?? getPlaceholderImage(800, 600)}
+      width={width}
+      height={height}
+      imgBgColor={image?.bgColor}
+    />
+  )
+}
