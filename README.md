@@ -171,7 +171,7 @@ Contributions are welcome! 🎉
 To contribute:
 1. Fork this repository.
 2. Create a new branch for your feature or bugfix: `git checkout -b feature/my-feature`.
-3. Make your changes and commit them: `git commit -m "feat: Add my feature"`.
+3. Make your changes and commit them: `git add . && git cz`.
 4. Push to your fork: `git push origin feature/my-feature`.
 5. Create a pull request, and I’ll review it as soon as possible!
 
