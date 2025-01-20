@@ -27,7 +27,7 @@ export const useSendContactForm = (
       new Promise((resolve, reject) => {
         api
           .post<FormWithRecaptcha, object>(
-            Routes.Emails.ContactFormSubmission,
+            Routes.API.Emails.ContactFormSubmission,
             payload,
             (response) => {
               resolve(response)

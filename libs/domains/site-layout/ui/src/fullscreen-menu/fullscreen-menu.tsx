@@ -166,7 +166,7 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
                 {movingTextTransitions((style, item) =>
                   item ? (
                     <animated.div
-                      className="absolute -top-4 left-2/3 md:left-1/3 h-full z-[-1]"
+                      className="absolute -top-4 max-md:left-2/3 md:right-0 h-full z-[-1]"
                       style={style}
                     >
                       <LoopDeLoopText className="text-fuchsia-300/20 md:text-fuchsia-300/30" />

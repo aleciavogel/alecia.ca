@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 
+import { Routes } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { SimpleHeader } from '@alecia/pages-ui'
 import { getProject } from '@alecia/projects-data-access/server'
@@ -27,7 +28,12 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
 
   return (
     <SiteWrapper>
-      <SimpleHeader pretitle="Projects" title={project.title} subtitle={project.subtitle} />
+      <SimpleHeader
+        pretitle="Projects"
+        title={project.title}
+        subtitle={project.subtitle}
+        pretitleLink={Routes.Projects.Index}
+      />
       <PageContents variant="rectangular">
         <div className="space-y-16 page-container mx-auto">
           <div className="space-y-4">

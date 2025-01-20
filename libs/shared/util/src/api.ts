@@ -1,5 +1,3 @@
-const API_URL = '/api'
-
 /**
  * Get method
  * @param path - the path to the api endpoint
@@ -7,7 +5,7 @@ const API_URL = '/api'
  */
 
 async function get<R>(path: string, callback: (response: R) => void): Promise<void> {
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(path, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -33,7 +31,7 @@ async function post<P, R>(
   payload: P,
   callback: (response: R) => void,
 ): Promise<void> {
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(path, {
     mode: 'cors',
     method: 'POST',
     headers: {
@@ -60,7 +58,7 @@ async function put<P, R>(path: string, payload: P, callback: (response: R) => vo
   // Emulate PUT request through POST by appending a query parameter
   const modifiedPath = `${path}?_method=PUT`
 
-  // You could directly call the static post method here since the logic is the same.
+  // You could directly call the static POST method here since the logic is the same.
   // Ensure that any payload modifications specific to PUT requests are handled before this call.
   await post(modifiedPath, payload, callback)
 }

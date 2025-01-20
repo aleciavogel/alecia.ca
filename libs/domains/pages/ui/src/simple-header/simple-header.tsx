@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import classnames from 'classnames'
+import Link from 'next/link'
 import { stegaClean } from 'next-sanity'
 
 import { Illustrations } from '@alecia/constants'
@@ -9,6 +10,7 @@ import * as illustrations from '@alecia/ui-kit/components/vectors/illustrations'
 import { cn } from '@alecia/util'
 
 interface SimpleHeaderProps {
+  pretitleLink?: string
   pretitle?: string | null
   title?: string | null
   subtitle?: string | null
@@ -19,6 +21,7 @@ interface SimpleHeaderProps {
 const DEFAULT_ILLUSTRATION: Illustrations = Illustrations.AleciaCouch
 
 export const SimpleHeader: FC<SimpleHeaderProps> = ({
+  pretitleLink,
   pretitle = 'Pretitle',
   title = 'Untitled',
   subtitle,
@@ -77,7 +80,14 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
         ) : null}
         <div className={cn('h-full flex items-center', classnames('md:just-start'))}>
           <div className="text-center md:text-left">
-            {pretitle ? (
+            {pretitle && pretitleLink ? (
+              <Link href={pretitleLink}>
+                <Typography variant="pretitle" className="mb-2">
+                  {pretitle}
+                </Typography>
+              </Link>
+            ) : null}
+            {pretitle && !pretitleLink ? (
               <Typography variant="pretitle" className="mb-2">
                 {pretitle}
               </Typography>

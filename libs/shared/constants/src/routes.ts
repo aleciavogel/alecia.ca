@@ -8,14 +8,37 @@ export const SITE_BASE_URL =
  * Non-webhook API Routes for the application
  */
 export const Routes = {
-  Emails: {
-    ContactFormSubmission: '/contact/send',
-    ContactFormConfirmation: '/contact/confirm',
-  },
-  Newsletters: {
-    Subscribe: '/newsletter/subscribe',
-  },
   API: {
     Captcha: '/api/captcha',
+    Emails: {
+      ContactFormSubmission: '/api/contact/send',
+      ContactFormConfirmation: '/api/contact/confirm',
+    },
+    Newsletters: {
+      // TODO: create this route for buttondown
+      Subscribe: '/newsletter/subscribe',
+    },
   },
+  Home: '/',
+  About: '/about',
+  Resume: '/resume',
+  Blog: {
+    Index: '/blog',
+    Article: '/blog/{slug}',
+  },
+  Contact: '/contact',
+  Courses: {
+    Index: '/courses',
+    Course: '/courses/{slug}',
+    Chapter: '/courses/{slug}/{chapter}',
+  },
+  Experiments: {
+    Index: '/experiments',
+    Experiment: '/experiments/{slug}',
+  },
+  Projects: {
+    Index: '/projects',
+    Project: '/projects/{slug}',
+  },
+  Resources: '/resources',
 }
