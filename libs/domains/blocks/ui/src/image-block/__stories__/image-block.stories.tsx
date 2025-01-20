@@ -186,3 +186,27 @@ export const ColumnWithReverseMargin: Story = {
     )
   },
 }
+
+export const ColumnWithCenteredText: Story = {
+  args: {
+    side: 'left' as ImageBlockSide,
+    layout: 'column' as ImageBlockLayout,
+    centeredText: true,
+    body: [
+      {
+        _key: '1',
+        _type: 'block',
+        children: [
+          {
+            _key: '2',
+            _type: 'span',
+            marks: [],
+            text: 'This is the first paragraph of a placeholder image block. It provides an introduction to the topic being discussed and sets the tone for the content that follows.',
+          },
+        ],
+        markDefs: [],
+        style: 'normal',
+      },
+    ],
+  },
+}

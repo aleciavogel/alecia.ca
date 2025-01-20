@@ -9145,6 +9145,13 @@
           },
           "optional": true
         },
+        "centeredText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "reverseMargin": {
           "type": "objectAttribute",
           "value": {

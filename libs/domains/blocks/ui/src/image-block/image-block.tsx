@@ -4,13 +4,6 @@ import { Image } from 'next-sanity/image'
 
 import { BasicBlockContent } from '@alecia/ui-kit'
 
-interface ImageBlockProps {
-  imageSrc: string
-  imageAlt: string
-  body?: PortableTextBlock[] | null
-  caption?: string | null // New optional caption
-}
-
 export enum ImageBlockLayout {
   Float = 'float',
   Column = 'column',
@@ -30,8 +23,9 @@ interface ImageBlockProps {
   layout?: ImageBlockLayout | null
   side?: ImageBlockSide | null
   reverseMargin?: boolean | null
-  caption?: string | null // New optional caption
+  caption?: string | null
   imgBgColor?: string | null
+  centeredText?: boolean | null
 }
 
 export const ImageBlock = ({
@@ -45,6 +39,7 @@ export const ImageBlock = ({
   side = ImageBlockSide.Left,
   reverseMargin = false,
   imgBgColor,
+  centeredText = false,
 }: ImageBlockProps) => {
   const isLeft = side === ImageBlockSide.Left
   const isRight = side === ImageBlockSide.Right
@@ -99,7 +94,11 @@ export const ImageBlock = ({
         )}
       </div>
       {isColumn ? (
-        <div className="md:col-span-1 space-y-6">
+        <div
+          className={classNames('md:col-span-1 space-y-6', {
+            'md:flex md:flex-col md:justify-center': centeredText,
+          })}
+        >
           <BasicBlockContent value={body ?? []} />
         </div>
       ) : (

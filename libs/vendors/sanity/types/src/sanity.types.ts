@@ -1418,6 +1418,7 @@ export type ImageWithText = {
   }>
   layout?: 'float' | 'column'
   side?: 'left' | 'right'
+  centeredText?: boolean
   reverseMargin?: boolean
 }
 
@@ -2615,6 +2616,7 @@ export type ExperimentIndexQueryResult = {
           }>
           layout?: 'column' | 'float'
           side?: 'left' | 'right'
+          centeredText?: boolean
           reverseMargin?: boolean
         }
       | {
@@ -3529,6 +3531,7 @@ export type HomePageQueryResult = {
         }>
         layout?: 'column' | 'float'
         side?: 'left' | 'right'
+        centeredText?: boolean
         reverseMargin?: boolean
       }
     | {
@@ -4269,6 +4272,7 @@ export type PageQueryResult = {
         }>
         layout?: 'column' | 'float'
         side?: 'left' | 'right'
+        centeredText?: boolean
         reverseMargin?: boolean
       }
     | {
@@ -5115,6 +5119,7 @@ export type ProjectIndexQueryResult = {
           }>
           layout?: 'column' | 'float'
           side?: 'left' | 'right'
+          centeredText?: boolean
           reverseMargin?: boolean
         }
       | {

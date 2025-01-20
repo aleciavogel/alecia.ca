@@ -34,7 +34,6 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
       <SimpleHeader
         pretitle="Projects"
         title={project.title}
-        subtitle={project.subtitle}
         pretitleLink={Routes.Projects.Index}
       />
       <PageContents variant="rectangular" className="mb-0 pb-[300px]" isWavy={false}>
@@ -43,9 +42,7 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
             <Typography variant="blockPretitle" as="h2">
               The Objective
             </Typography>
-            <Typography variant="blockTitle">
-              Could be a title to hint at further details
-            </Typography>
+            <Typography variant="blockTitle">{project.subtitle}</Typography>
           </div>
           <div>
             {project.mainImage ? (

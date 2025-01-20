@@ -67,6 +67,15 @@ export const imageWithTextBlock = defineType({
       initialValue: 'left',
     },
     {
+      name: 'centeredText',
+      title: 'Centered Text',
+      description: 'Center the text content in the column layout.',
+      type: 'boolean',
+      options: {
+        hidden: ({ parent }: any) => parent?.layout !== 'column',
+      },
+    },
+    {
       name: 'reverseMargin',
       title: 'Reverse Margin',
       type: 'boolean',

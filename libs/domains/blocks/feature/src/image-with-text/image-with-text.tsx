@@ -13,6 +13,7 @@ export interface ImageWithTextProps {
   layout?: string | null
   body?: PortableTextBlock[]
   image?: ExtendedImage | null
+  centeredText?: boolean | null
 }
 
 export const ImageWithText = ({ image, layout, side, ...rest }: ImageWithTextProps) => (

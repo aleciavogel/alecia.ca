@@ -154,6 +154,16 @@ nx lint <project>
 
 You can find the name of the project in the `project.json` file of the respective library or app folder.
 
+## Generate Sanity types
+
+Run the following command to generate types for Sanity:
+
+```bash
+nx typegen sanity-studio
+```
+
+This will extract and validate the schema as well as generate types for the Sanity project.
+
 ## Known Issues
 
 - **High Memory Usage**: Due to the complexity of the project, you'll need at least 7GB of RAM for development.
