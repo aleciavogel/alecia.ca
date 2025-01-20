@@ -1,7 +1,7 @@
 'use server'
 
 import { draftMode } from 'next/headers'
-import { type QueryOptions, type QueryParams } from 'next-sanity'
+import { type QueryParams } from 'next-sanity'
 
 import { IS_DEV_MODE } from '@alecia/constants'
 import { sanityClient } from '@alecia/sanity-client'
