@@ -16,10 +16,31 @@
 </p>
 
 
-This is the source code for my personal website, [alecia.ca](https://alecia.ca). I'm making this project open-source
-so that others can learn from it, I can receive feedback, and so that potential clients can see my work.
+This is the source code for my personal website, [alecia.ca](https://alecia.ca). 
+I'm sharing it as an open-source project so others can explore how it’s built, learn from it, or even contribute if they’d like. 
+It’s also a great way for me to gather feedback and improve over time.
 
-As a bonus, it powers my blog's comment sections via GitHub Discussions. 😄
+One of the cool features of this website is that the blog comments are powered by this repository's GitHub Discussions. 
+It keeps things simple and connected, letting readers share their thoughts while staying part of the development process.
+You'll need a GitHub account to participate.
+
+Whether you're here to learn, contribute, or just take a peek, I hope you find something useful. 😄
+
+## Table of Contents
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Install Dependencies](#1-install-dependencies)
+  - [Update Your `etc/hosts` File](#2-update-your-etchosts-file)
+  - [Set Up Doppler Secrets](#3-set-up-doppler-secrets)
+  - [Collect Required Environment Variables](#4-collect-required-environment-variables)
+- [Running the Project](#running-the-project)
+- [Running Storybook](#running-storybook)
+- [Running Tests](#running-tests)
+- [Linting](#linting)
+- [Known Issues](#known-issues)
+- [License](#license)
+- [Contributing](#contributing)
 
 ## Technologies Used
 
@@ -102,4 +123,72 @@ Run the following command to start the project in development mode:
 nx dev web
 ```
 
-You will be able to access the project at [https://alecia.local:3000](http://alecia.local:3000).
+Visit [https://alecia.local:3000](http://alecia.local:3000) to access the site.
+
+## Running Storybook
+
+To run Storybook, use the following command:
+
+```bash
+nx storybook design-system
+```
+
+This will load all story files across all libs and apps. You will be able to access it from [http://localhost:4400](http://localhost:4400).
+
+## Running Tests
+
+You can run tests for all libraries and the web app using the following command:
+
+```bash
+nx run-many -t test
+```
+
+Or, you can run tests for a specific library or app:
+
+```bash
+nx test <project>
+```
+
+You can find the name of the project in the `project.json` file of the respective library or app folder.
+
+## Linting
+
+If you are using an IDE that supports Eslint & Prettier, I highly recommend enabling automatic linting on save. 
+This will ensure that any code you write adheres to the code style I've set up for this project (meaning fewer headaches for everyone!)
+
+To lint the project, run the following command:
+
+```bash
+nx run-many -t lint
+```
+
+Or, you can link specific libraries or apps:
+
+```bash
+nx lint <project>
+```
+
+You can find the name of the project in the `project.json` file of the respective library or app folder.
+
+## Known Issues
+
+- **High Memory Usage**: Due to the complexity of the project, you'll need at least 7GB of RAM for development.
+- **Environment Setup**: Ensure all API keys are correctly configured in Doppler. Missing keys **will** result in errors.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+You are free to use, modify, and distribute this project, provided you include the original copyright and license.
+
+## Contributing
+
+Contributions are welcome! 🎉
+
+To contribute:
+1. Fork this repository.
+2. Create a new branch for your feature or bugfix: `git checkout -b feature/my-feature`.
+3. Make your changes and commit them: `git commit -m "feat: Add my feature"`.
+4. Push to your fork: `git push origin feature/my-feature`.
+5. Create a pull request, and I’ll review it as soon as possible!
+
+Please ensure your code follows the existing style and includes tests for any new functionality.
