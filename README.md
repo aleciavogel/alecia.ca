@@ -56,3 +56,50 @@ You will need the following installed on your machine:
 - [Node.js](https://nodejs.org/en/) (I use v22.11.0)
 - [Doppler CLI](https://docs.doppler.com/docs/install-cli)
 - [Bun.sh](https://bun.sh/docs/installation)
+
+### 1. Install dependencies 
+Run the following command to install the project's dependencies:
+
+```bash
+bun install
+```
+
+### 2. Update Your `etc/hosts` File
+To enable local development, you'll need to update your `etc/hosts` file to include the following entry:
+
+```plaintext
+127.0.0.1 alecia.local
+```
+
+### 3. Set Up Doppler Secrets
+To configure environment secrets, use Doppler. You can upload the basic configuration from the .env.dist file included in this repository:
+
+```bash
+doppler secrets upload .env.dist --config dev
+```
+
+This will populate Doppler with the environment variables needed for local development.
+
+### 4. Collect required environment variables
+Before running the project, you'll need to acquire the following keys and API credentials:
+
+- **Cloudflare Turnstile Key**:  
+  Sign up on [Cloudflare Turnstile](https://www.cloudflare.com/turnstile/) and obtain your key.
+
+- **Sanity Project Details**:  
+  Create an account on [Sanity](https://sanity.io), set up a project, and retrieve the required values, such as the project ID and dataset name.
+
+- **Resend API Key**:  
+  Sign up on [Resend](https://resend.com) and generate an API key.
+
+Once obtained, add these credentials to your Doppler configuration.
+
+## Running the Project
+
+Run the following command to start the project in development mode:
+
+```bash
+nx dev web
+```
+
+You will be able to access the project at [https://alecia.local:3000](http://alecia.local:3000).
