@@ -1,5 +1,5 @@
 <p align="center">
-  ![alt text](./docs/images/av_logo.png "Alecia Vogel")
+  <img src="./docs/images/av_logo.png" title="Alecia Vogel's logo" />
 </p>
   
 <h1 align="center">alecia.ca</h1>
@@ -35,7 +35,8 @@ As a bonus, it powers my blog's comment sections via GitHub Discussions. 😄
 
   YMMV, but you will likely need to 
   [increase WebStorm's memory heap](https://www.jetbrains.com/help/webstorm/how-to-improve-product-performance.html#ws_improve_performance_increase_memory_heap_via_ide) 
-  to 4096MiB. The default of 2048MiB was not enough *for me* to run this project.
+  to 4096MiB. 
+  The default memory heap wasn't enough for me to run this on my own machine.
   Sowwy 🥺👉👈
 </details>
 
