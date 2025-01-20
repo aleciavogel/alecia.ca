@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/sanity-%23F03E2F?style=for-the-badge&logo=sanity&logoColor=white" title="Sanity CMS" />
   <img src="https://img.shields.io/badge/nx-%23143055?style=for-the-badge&logo=nx&logoColor=white" title="Nx" />
   <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" title="TypeScript" />
-  <img src="https;//img.shields.io/badge/tailwindcss-%2306B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" title="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/tailwindcss-%2306B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" title="Tailwind CSS" />
   
 </p>
 
