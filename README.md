@@ -4,8 +4,12 @@
   
 <h1 align="center">alecia.ca</h1>
 <p align="center">
-  <img src="https://img.shields.io/badge/sanity-%23F03E2F.svg?style=for-the-badge&logo=sanity&logoColor=white" title="Sanity CMS" />
-  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" title="TypeScript" />
+  <img src="https://img.shields.io/badge/next.js-black?logo=nextdotjs&logoColor=white" title="Next.js" />
+  <img src="https://img.shields.io/badge/sanity-%23F03E2F?logo=sanity&logoColor=white" title="Sanity CMS" />
+  <img src="https://img.shields.io/badge/nx-%23143055?logo=nx&logoColor=white" title="Nx" />
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?logo=typescript&logoColor=white" title="TypeScript" />
+  <img src="https;//img.shields.io/badge/tailwindcss-%2306B6D4?logo=tailwindcss&logoColor=white" title="Tailwind CSS" />
+  
 </p>
 
 
