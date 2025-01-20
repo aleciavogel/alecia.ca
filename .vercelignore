@@ -1,0 +1,14 @@
+.vscode/**
+.github/**
+.husky/**
+docs/**
+
+README.md
+commitlint.config.ts
+doppler.yaml
+jest.config.js
+jest.preset.js
+.editorconfig
+.env.dist
+.prettierignore
+.prettierrc
