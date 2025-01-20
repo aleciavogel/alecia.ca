@@ -17,7 +17,11 @@
       "options": {
         "postcssConfig": "apps/web/postcss.config.js",
         "outputPath": "dist/apps/web"
-      }
+      },
+      "dependsOn": [{
+        "projects": ["tw-dynamic-themes"],
+        "target": "build"
+      }]
     }
   }
 }
