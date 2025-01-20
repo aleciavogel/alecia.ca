@@ -24,7 +24,7 @@ export const ProjectPreFooter = ({ relatedProjects = [] }: ProjectPreFooterProps
       className={cn(
         'w-full',
         'relative',
-        'pt-[200px]',
+        'md:pt-[200px]',
         '-mt-[var(--triangle-height)]',
         'mb-[-25px]',
         'pb-28 md:pb-48',
@@ -34,12 +34,12 @@ export const ProjectPreFooter = ({ relatedProjects = [] }: ProjectPreFooterProps
       )}
     >
       <div className="page-container max-lg:page-content-block space-y-6 lg:space-y-12">
-        <div className="grid md:grid-cols-2">
-          <Typography variant="h2" as="h3" className="text-white">
+        <div className="grid md:grid-cols-2 max-md:gap-12">
+          <Typography variant="h2" as="h3" className="text-white max-md:text-center">
             More Projects
           </Typography>
           <div className="relative max-md:order-first max-md:flex max-md:justify-center">
-            <HammondSleepingIllustration className="w-[110%] md:w-full absolute -mt-[100%] md:-mt-[43%]" />
+            <HammondSleepingIllustration className="w-full md:-mt-[43%]" />
           </div>
         </div>
 
