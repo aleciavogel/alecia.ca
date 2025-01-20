@@ -147,6 +147,7 @@ export const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
             onExpire={handleExpiredCaptcha}
             onError={(error) => onError?.(error)}
             onUnsupported={() => onError?.(new Error('Captcha unsupported'))}
+            fixedSize
           />
         </CardContent>
         <CardFooter className="flex justify-center">
