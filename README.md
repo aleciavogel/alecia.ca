@@ -1,5 +1,5 @@
 <p align="center">
-  ![alt text](./docs/images/av_logo.png "Alecia Vogel")
+  <img src="/docs/images/av_logo.png" title="Alecia Vogel" />
 </p>
   
 <h1 align="center">alecia.ca</h1>
