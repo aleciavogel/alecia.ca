@@ -30,7 +30,6 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
 
   if (!project) notFound()
 
-  // Handle cropped images
   const {
     width = 800,
     height = 600,
