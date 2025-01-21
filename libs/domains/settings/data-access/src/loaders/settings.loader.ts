@@ -9,4 +9,3 @@ import { loadQuery } from '@alecia/sanity-util/server'
  */
 export const getSettings = async () =>
   loadQuery<SettingsQueryResult>(settingsQuery, { tags: ['settings'] })
-getSettings
