@@ -19,7 +19,7 @@ export const textRich = defineType({
     defineField({
       name: 'content',
       type: 'array',
-      of: [{ type: 'block' }, imageBlock],
+      of: [{ type: 'block' }, imageBlock, { type: 'text.blockquote' }],
       group: 'content',
     }),
   ],

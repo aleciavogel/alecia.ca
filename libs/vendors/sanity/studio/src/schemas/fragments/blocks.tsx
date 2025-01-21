@@ -42,6 +42,7 @@ export const blockTypes = [
   { type: 'text.intro' }, // Intro text for home + about pages
   { type: 'text.rich' }, // Rich text editor
   { type: 'text.aside-list' }, // Text with an unordered list on the side
+  { type: 'text.blockquote' }, // Blockquote
 ]
 
 export const limitedBlockTypes = [

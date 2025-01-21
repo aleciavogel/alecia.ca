@@ -15,3 +15,9 @@ export const textAsideListQueryPartial = `
     'listItems': listItems[]->,
   }
 `
+
+export const blockquoteQueryPartial = `
+  _type == 'text.blockquote' => {
+    ...
+  }
+`

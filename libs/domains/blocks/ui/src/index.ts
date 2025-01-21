@@ -1,4 +1,5 @@
 export * from './aside-list'
+export * from './blockquote'
 export * from './centered-nav-link'
 export * from './icon-nav-link'
 export * from './icon-nav-list'

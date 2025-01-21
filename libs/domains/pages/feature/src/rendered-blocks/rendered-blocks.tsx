@@ -12,6 +12,7 @@ const TextAsideList = dynamic(() => import('@alecia/blocks').then((mod) => mod.T
 const TextCTA = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextCTA))
 const TextIntro = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextIntro))
 const ImageBlock = dynamic(() => import('@alecia/blocks').then((mod) => mod.ImageWithText))
+const TextBlockquote = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextBlockquote))
 
 // TODO: attempt to fix the type later
 interface BlocksProps {
@@ -23,6 +24,8 @@ export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
     switch (module._type) {
       case 'accordion-list':
         return <AccordionList key={module._key} {...module} />
+      case 'course-list':
+        return <CourseList key={module._key} {...module} />
       case 'gallery.pets':
         return <GalleryPets key={module._key} {...module} />
       case 'image-with-text':
@@ -31,16 +34,16 @@ export const RenderedBlocks: FC<BlocksProps> = ({ modules }) =>
         return <NavCard key={module._key} {...module} />
       case 'nav.icons':
         return <NavIcons key={module._key} {...module} />
-      case 'text.intro':
-        return <TextIntro key={module._key} {...module} body={module.body as PortableTextBlock[]} />
-      case 'text.cta':
-        return <TextCTA key={module._key} {...module} body={module.body as PortableTextBlock[]} />
       case 'text.aside-list':
         return (
           <TextAsideList key={module._key} {...module} body={module.text as PortableTextBlock[]} />
         )
-      case 'course-list':
-        return <CourseList key={module._key} {...module} />
+      case 'text.cta':
+        return <TextCTA key={module._key} {...module} body={module.body as PortableTextBlock[]} />
+      case 'text.intro':
+        return <TextIntro key={module._key} {...module} body={module.body as PortableTextBlock[]} />
+      case 'text.blockquote':
+        return <TextBlockquote key={module._key} {...module} />
       default:
         return null
     }

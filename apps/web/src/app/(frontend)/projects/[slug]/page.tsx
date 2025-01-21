@@ -37,7 +37,7 @@ export async function generateStaticParams() {
   return await sanityClient.fetch<ProjectSlugsQueryResult>(projectSlugsQuery)
 }
 
-async function getProject(params: { slug?: string }) {
+async function getProject(params: { slug: string }) {
   return await sanityClient.fetch<ProjectPageQueryResult>(projectPageQuery, params)
 }
 

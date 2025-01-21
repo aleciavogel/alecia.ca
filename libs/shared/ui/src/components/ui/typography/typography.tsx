@@ -29,6 +29,7 @@ export const typographyVariants = cva('font-normal leading-snug transition-dark-
         "after:content-[''] after:block after:relative after:mx-auto after:zigzag-base after:max-w-[300px] after:zigzag-bg-primary",
         "before:content-[''] before:block before:relative before:mx-auto before:zigzag-base before:max-w-[300px] before:zigzag-bg-primary",
       ),
+      author: 'text-lg font-sans-serif mt-3',
       ul: 'my-6 ml-6 list-disc [&>li]:mt-2',
       ol: 'my-6 ml-6 list-decimal [&>li]:mt-2',
       lead: 'text-sm md:text-xl text-muted-foreground',
@@ -118,6 +119,7 @@ export const typographyVariantMap: Record<string, ElementType> = {
   h4: 'h4',
   p: 'p',
   blockquote: 'blockquote',
+  author: 'p',
   ul: 'ul',
   ol: 'ol',
   li: 'li',
@@ -149,7 +151,7 @@ export const Typography: FC<TypographyProps> = ({
   const Component = as ?? DefaultComponent
   const child =
     Component === 'blockquote' ? (
-      <p className="leading-tight px-0 lg:px-4 py-12">{children}</p>
+      <div className="leading-tight px-0 lg:px-4 py-12">{children}</div>
     ) : (
       children
     )

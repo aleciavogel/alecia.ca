@@ -32,11 +32,7 @@ export async function POST(req: NextRequest): Promise<Response | undefined> {
   try {
     const { body, isValidSignature } = await parseBody<{
       _type: string
-      metadata?: {
-        slug?: {
-          current?: string
-        }
-      }
+      slug?: string | null
     }>(req, SANITY_REVALIDATE_SECRET)
     if (!isValidSignature) {
       const message = 'Invalid signature'
@@ -48,8 +44,8 @@ export async function POST(req: NextRequest): Promise<Response | undefined> {
     }
 
     revalidateTag(body._type)
-    if (body.metadata?.slug?.current) {
-      revalidateTag(`${body._type}:${body.metadata?.slug?.current}`)
+    if (body.slug) {
+      revalidateTag(`${body._type}:${body.slug}`)
     }
     return NextResponse.json({
       status: 200,
