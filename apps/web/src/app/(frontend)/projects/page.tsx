@@ -29,7 +29,7 @@ export default async function ProjectsPage() {
         subtitle={page.subtitle}
         headerIllustration={page.headerIllustration}
       />
-      <PageContents className="pt-56">
+      <PageContents className="pt-64">
         {noProjects ? <EmptyState /> : <ProjectList projects={projects} />}
         <RenderedBlocks modules={page.modules} />
       </PageContents>
