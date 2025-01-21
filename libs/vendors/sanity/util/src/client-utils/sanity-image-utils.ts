@@ -23,12 +23,12 @@ export const urlFor = (source: SanityImageSource): ImageUrlBuilder => {
   return imgBuilder.image(source)
 }
 
-export const getCroppedImageSrc = (image: Image) => {
-  const crop = image.crop
-
+export const getCroppedImageSrc = (image: Image | null) => {
   if (!image || !image.asset) {
     return
   }
+
+  const crop = image.crop
 
   // get the image's og dimensions
   const { width, height } = getImageDimensions(image.asset)

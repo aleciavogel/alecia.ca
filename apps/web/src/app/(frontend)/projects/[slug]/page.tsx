@@ -2,19 +2,30 @@ import { notFound } from 'next/navigation'
 import { Image } from 'next-sanity/image'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes } from '@alecia/constants'
+import { Routes, ThumbnailDimensions } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { ProjectHeader } from '@alecia/pages-ui'
 import { ProjectPreFooter } from '@alecia/projects-ui'
 import { sanityClient } from '@alecia/sanity-client'
 import { projectPageQuery, projectSlugsQuery } from '@alecia/sanity-queries'
-import { ProjectPageQueryResult, ProjectSlugsQueryResult } from '@alecia/sanity-types'
+import {
+  AllProjectsQueryResult,
+  ProjectPageQueryResult,
+  ProjectSlugsQueryResult,
+} from '@alecia/sanity-types'
 import { getCroppedImageSrc } from '@alecia/sanity-util'
 import { processMetadata } from '@alecia/settings-data-access/server'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
+import { ExtendedImage } from '@alecia/types'
 import { Typography } from '@alecia/ui-kit'
 import { buildRoute, getPlaceholderImage } from '@alecia/util'
+
+type SingleProject = AllProjectsQueryResult[number]
+
+interface RelatedProject extends SingleProject {
+  imageSrc?: string
+}
 
 interface ProjectPageProps {
   params: {
@@ -58,6 +69,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     ? getCroppedImageSrc(project.mainImage as SanityImage) ?? {}
     : {}
 
+  const morePosts = [project.prevProject, project.nextProject]
+    .filter(Boolean)
+    .reduce((uniquePosts: NonNullable<SingleProject>[], proj) => {
+      if (!uniquePosts.some((p) => p._id === proj?._id)) {
+        if (proj) uniquePosts.push(proj)
+      }
+      return uniquePosts
+    }, [])
+    .map((proj) => ({
+      ...proj,
+      imageSrc:
+        getCroppedImageSrc(proj.mainImage as Omit<ExtendedImage, 'crop'> | null)?.src ??
+        getPlaceholderImage(ThumbnailDimensions.Width, ThumbnailDimensions.Height),
+    })) as RelatedProject[]
+
   return (
     <SiteWrapper>
       <ProjectHeader
@@ -92,7 +118,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
       </PageContents>
-      <ProjectPreFooter relatedProjects={[]} />
+      <ProjectPreFooter relatedProjects={morePosts} />
     </SiteWrapper>
   )
 }

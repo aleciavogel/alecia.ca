@@ -53,7 +53,23 @@ export const projectIndexQuery = defineQuery(`
 export const projectPageQuery = defineQuery(`
   *[_type == 'project' && metadata.slug.current == $slug && !(_id in path('drafts.**'))] | order(publishDate desc)[0]{
     ...,
-    ${projectQueryPartial}
+    ${projectQueryPartial},
+    "prevProject": coalesce(
+      *[_type == "project" && ^.publishDate > publishDate && _id != ^._id] | order(publishDate desc)[0]{
+        ${projectQueryPartial}
+      },
+      *[_type == "project" && _id != ^._id] | order(publishDate asc)[0]{
+        ${projectQueryPartial}
+      }
+    ),
+    "nextProject": coalesce(
+      *[_type == "project" && ^.publishDate < publishDate && _id != ^._id] | order(publishDate asc)[0]{
+        ${projectQueryPartial}
+      },
+      *[_type == "project" && _id != ^._id] | order(publishDate desc)[0]{
+        ${projectQueryPartial}
+      }
+    )
   }
 `)
 
