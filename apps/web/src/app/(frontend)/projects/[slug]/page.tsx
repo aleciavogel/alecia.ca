@@ -6,14 +6,10 @@ import { Routes, ThumbnailDimensions } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { ProjectHeader } from '@alecia/pages-ui'
 import { ProjectPreFooter } from '@alecia/projects-ui'
-import { sanityClient } from '@alecia/sanity-client'
 import { projectPageQuery, projectSlugsQuery } from '@alecia/sanity-queries'
-import {
-  AllProjectsQueryResult,
-  ProjectPageQueryResult,
-  ProjectSlugsQueryResult,
-} from '@alecia/sanity-types'
+import { AllProjectsQueryResult, ProjectPageQueryResult } from '@alecia/sanity-types'
 import { getCroppedImageSrc } from '@alecia/sanity-util'
+import { client, getData } from '@alecia/sanity-util/server'
 import { processMetadata } from '@alecia/settings-data-access/server'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
@@ -34,16 +30,22 @@ interface ProjectPageProps {
 }
 
 export async function generateStaticParams() {
-  return await sanityClient.fetch<ProjectSlugsQueryResult>(projectSlugsQuery)
-}
-
-async function getProject(params: { slug: string }) {
-  return await sanityClient.fetch<ProjectPageQueryResult>(projectPageQuery, params)
+  return await client.fetch(
+    projectSlugsQuery,
+    {},
+    {
+      next: {
+        tags: ['project'],
+      },
+    },
+  )
 }
 
 // Combine settings data and project data to generate metadata
 export async function generateMetadata({ params }: ProjectPageProps) {
-  const project = await getProject(params)
+  const project = await getData<ProjectPageQueryResult>(projectPageQuery, params, [
+    `project:${params.slug}`,
+  ])
   if (!project) notFound()
   const meta = await processMetadata({
     metadata: project.metadata,
@@ -57,7 +59,10 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = await getProject(params)
+  const project = await getData<ProjectPageQueryResult>(projectPageQuery, params, [
+    `project:${params.slug}`,
+    'project',
+  ])
 
   if (!project) notFound()
 

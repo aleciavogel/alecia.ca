@@ -24,6 +24,12 @@ export const projectQueryPartial = `
     }
 `
 
+export const allProjectsQuery = defineQuery(`
+  *[_type == 'project'] | order(publishDate desc) {
+    ${projectQueryPartial},
+  }
+`)
+
 export const projectIndexQuery = defineQuery(`
 {
   'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{
