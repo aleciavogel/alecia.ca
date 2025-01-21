@@ -20,7 +20,7 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudId": "678095b1a357c72430224748",
+  "nxCloudId": "678f191b6aac339325754149",
   "plugins": [
     {
       "plugin": "@nx/next/plugin",
@@ -49,23 +49,11 @@
         "ciTargetName": "e2e-ci"
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
-    }
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    { "plugin": "@nx/jest/plugin", "options": { "targetName": "test" } }
   ],
   "targetDefaults": {
-    "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
-    },
+    "e2e-ci--**/*": { "dependsOn": ["^build"] },
     "@nx/js:swc": {
       "cache": true,
       "dependsOn": ["^build"],
@@ -73,23 +61,8 @@
     }
   },
   "generators": {
-    "@nx/next": {
-      "application": {
-        "style": "tailwind",
-        "linter": "eslint"
-      }
-    },
-    "@nx/js": {
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nx/react": {
-      "library": {
-        "bundler": "none",
-        "unitTestRunner": "jest",
-        "linter": "eslint"
-      }
-    }
+    "@nx/next": { "application": { "style": "tailwind", "linter": "eslint" } },
+    "@nx/js": { "library": { "linter": "eslint" } },
+    "@nx/react": { "library": { "bundler": "none", "unitTestRunner": "jest", "linter": "eslint" } }
   }
 }
