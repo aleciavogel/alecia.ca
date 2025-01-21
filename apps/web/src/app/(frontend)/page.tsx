@@ -1,6 +1,3 @@
-import * as React from 'react'
-import dynamic from 'next/dynamic'
-
 import { RenderedBlocks } from '@alecia/pages'
 import { getHomePage } from '@alecia/pages-data-access/server'
 import { WavyHeader } from '@alecia/pages-ui'

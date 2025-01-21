@@ -4,7 +4,7 @@
 export const SITE_BASE_URL =
   process.env['NEXT_PUBLIC_VERCEL_URL'] ??
   process.env['NEXT_PUBLIC_BASE_URL'] ??
-  'https://alecia.local:3000'
+  'alecia.local:3000'
 
 /**
  * Non-webhook API Routes for the application

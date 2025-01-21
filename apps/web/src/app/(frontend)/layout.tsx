@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import type { Metadata, Viewport } from 'next'
 import { draftMode } from 'next/headers'
-import * as twColors from 'tailwindcss/colors'
 
 import { VisualEditingControls } from '@alecia/sanity-ui'
 import { getSettings } from '@alecia/settings-data-access/server'
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: twColors.violet[600],
+  themeColor: '#7c3aed',
 }
 
 interface RootLayoutProps {
