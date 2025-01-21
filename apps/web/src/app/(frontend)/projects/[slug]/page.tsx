@@ -5,8 +5,10 @@ import { Image as SanityImage } from 'sanity'
 import { Routes } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { ProjectHeader } from '@alecia/pages-ui'
-import { getProject, getProjectSlugs } from '@alecia/projects-data-access/server'
 import { ProjectPreFooter } from '@alecia/projects-ui'
+import { sanityClient } from '@alecia/sanity-client'
+import { projectPageQuery, projectSlugsQuery } from '@alecia/sanity-queries'
+import { ProjectPageQueryResult, ProjectSlugsQueryResult } from '@alecia/sanity-types'
 import { getCroppedImageSrc } from '@alecia/sanity-util'
 import { processMetadata } from '@alecia/settings-data-access/server'
 import { SiteWrapper } from '@alecia/site-layout'
@@ -20,14 +22,17 @@ interface ProjectPageProps {
   }
 }
 
-// Statically generate project routes at build time
 export async function generateStaticParams() {
-  return await getProjectSlugs()
+  return await sanityClient.fetch<ProjectSlugsQueryResult>(projectSlugsQuery)
+}
+
+async function getProject(params: { slug?: string }) {
+  return await sanityClient.fetch<ProjectPageQueryResult>(projectPageQuery, params)
 }
 
 // Combine settings data and project data to generate metadata
 export async function generateMetadata({ params }: ProjectPageProps) {
-  const project = await getProject(params.slug)
+  const project = await getProject(params)
   if (!project) notFound()
   const meta = await processMetadata({
     metadata: project.metadata,
@@ -40,8 +45,8 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   }
 }
 
-export default async function ProjectPage({ params: { slug } }: ProjectPageProps) {
-  const project = await getProject(slug)
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const project = await getProject(params)
 
   if (!project) notFound()
 

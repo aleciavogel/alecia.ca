@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 import { IS_VERCEL_PREVIEW, SITE_BASE_URL } from '@alecia/constants'
+import { sanityClient } from '@alecia/sanity-client'
+import { settingsQuery } from '@alecia/sanity-queries'
 import { urlFor } from '@alecia/sanity-util'
 
 import { getSettings } from '../loaders'
@@ -23,7 +25,7 @@ export async function processMetadata({
   slug,
   fallbackTitle,
 }: ProcessMetadataArgs): Promise<Metadata> {
-  const settings = await getSettings()
+  const settings = await sanityClient.fetch(settingsQuery)
   const BASE_URL = `https://${SITE_BASE_URL}`
   const DEFAULT_META = {
     metadataBase: new URL(BASE_URL),

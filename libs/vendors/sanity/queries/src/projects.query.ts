@@ -52,7 +52,7 @@ export const projectPageQuery = defineQuery(`
 `)
 
 export const projectSlugsQuery = defineQuery(`
-  *[_type == 'project']{
+  *[_type == 'project' && defined(metadata.slug.current)]{
     'slug': metadata.slug.current
   }
 `)
