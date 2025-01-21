@@ -32,7 +32,7 @@ export const allProjectsQuery = defineQuery(`
 
 export const projectIndexQuery = defineQuery(`
 {
-  'page': *[_type == 'page' && metadata.slug.current == 'projects' && !(_id in path('drafts.**'))][0]{
+  'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{
     ...,
     pretitle,
     title,
@@ -45,13 +45,13 @@ export const projectIndexQuery = defineQuery(`
       'ogimage': image.asset->url + '?w=1200'
     }
   },
-  'projects': *[_type == 'project' && defined(metadata.slug.current) && !(_id in path('drafts.**'))] | order(publishDate desc) {
+  'projects': *[_type == 'project'] | order(publishDate desc) {
     ${projectQueryPartial},
   }
 }`)
 
 export const projectPageQuery = defineQuery(`
-  *[_type == 'project' && metadata.slug.current == $slug && !(_id in path('drafts.**'))] | order(publishDate desc)[0]{
+  *[_type == 'project' && metadata.slug.current == $slug] | order(publishDate desc)[0]{
     ...,
     ${projectQueryPartial},
     "prevProject": coalesce(
