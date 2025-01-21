@@ -4,10 +4,10 @@ import { Image as SanityImage } from 'sanity'
 
 import { Routes } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
-import { SimpleHeader } from '@alecia/pages-ui'
+import { ProjectHeader, SimpleHeader } from '@alecia/pages-ui'
 import { getProject } from '@alecia/projects-data-access/server'
 import { ProjectPreFooter } from '@alecia/projects-ui'
-import { getCroppedImageSrc, urlFor } from '@alecia/sanity-util'
+import { getCroppedImageSrc } from '@alecia/sanity-util'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 import { Typography } from '@alecia/ui-kit'
@@ -40,7 +40,7 @@ export default async function ProjectPage({ params: { slug } }: ProjectPageProps
 
   return (
     <SiteWrapper>
-      <SimpleHeader
+      <ProjectHeader
         pretitle="Projects"
         title={project.title}
         pretitleLink={Routes.Projects.Index}
