@@ -55,9 +55,15 @@ const portableTextComponents: PortableTextComponents = {
 
   marks: {
     // code: ({ children }) => <code className="bg-gray-100 p-1 rounded">{children}</code>,
-    link: ({ children, value }) => (
-      <AnchorTag href={(value as string | undefined) ?? '#'}>{children}</AnchorTag>
-    ),
+    link: ({ children, value }) => {
+      const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+
+      return (
+        <AnchorTag href={value.href} rel={rel}>
+          {children}
+        </AnchorTag>
+      )
+    },
   },
 
   types: {
