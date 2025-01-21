@@ -5,7 +5,7 @@ import { Image as SanityImage } from 'sanity'
 import { Routes } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { ProjectHeader } from '@alecia/pages-ui'
-import { getProject } from '@alecia/projects-data-access/server'
+import { getProject, getProjectSlugs } from '@alecia/projects-data-access/server'
 import { ProjectPreFooter } from '@alecia/projects-ui'
 import { getCroppedImageSrc } from '@alecia/sanity-util'
 import { processMetadata } from '@alecia/settings-data-access/server'
@@ -20,6 +20,12 @@ interface ProjectPageProps {
   }
 }
 
+// Statically generate project routes at build time
+export async function generateStaticParams() {
+  return await getProjectSlugs()
+}
+
+// Combine settings data and project data to generate metadata
 export async function generateMetadata({ params }: ProjectPageProps) {
   const project = await getProject(params.slug)
   if (!project) notFound()

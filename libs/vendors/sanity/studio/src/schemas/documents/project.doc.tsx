@@ -86,7 +86,7 @@ export const project = defineType({
       featured: 'featured',
       title: 'title',
       subtitle: 'publishDate',
-      media: 'mainImage.image',
+      media: 'mainImage',
     },
     prepare: ({ title, subtitle, media, featured }) => ({
       title: [featured && '★', title].filter(Boolean).join(' '),

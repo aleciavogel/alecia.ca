@@ -50,3 +50,9 @@ export const projectPageQuery = defineQuery(`
     ${projectQueryPartial}
   }
 `)
+
+export const projectSlugsQuery = defineQuery(`
+  *[_type == 'project']{
+    'slug': '/projects/' + metadata.slug.current,
+  }
+`)

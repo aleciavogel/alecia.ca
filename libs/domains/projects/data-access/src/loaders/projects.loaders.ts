@@ -1,5 +1,9 @@
-import { projectIndexQuery, projectPageQuery } from '@alecia/sanity-queries'
-import { ProjectIndexQueryResult, ProjectPageQueryResult } from '@alecia/sanity-types'
+import { projectIndexQuery, projectPageQuery, projectSlugsQuery } from '@alecia/sanity-queries'
+import {
+  ProjectIndexQueryResult,
+  ProjectPageQueryResult,
+  ProjectSlugsQueryResult,
+} from '@alecia/sanity-types'
 import { loadQuery } from '@alecia/sanity-util/server'
 
 /**
@@ -11,7 +15,7 @@ export const getProjectIndex = async () =>
   })
 
 /**
- * Fetches all projects from Sanity, sorted by published date.
+ * Fetches a specific project from Sanity via slug
  */
 export const getProject = async (slug: string) =>
   loadQuery<ProjectPageQueryResult>(projectPageQuery, {
@@ -19,4 +23,12 @@ export const getProject = async (slug: string) =>
       slug,
     },
     tags: [`project:${slug}`],
+  })
+
+/**
+ * Fetches all project slugs for generating params
+ */
+export const getProjectSlugs = async () =>
+  loadQuery<ProjectSlugsQueryResult>(projectSlugsQuery, {
+    tags: [`project`],
   })
