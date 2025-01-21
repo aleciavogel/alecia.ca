@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import Link from 'next/link'
 
+import { ThumbnailDimensions } from '@alecia/constants'
 import { AllProjectsQueryResult } from '@alecia/sanity-types'
 import { CardItem, Typography } from '@alecia/ui-kit'
 import { cn, getPlaceholderImage } from '@alecia/util'
@@ -13,6 +14,7 @@ interface ProjectProps extends SingleProject {
   changeOnDarkMode?: boolean
   className?: string
   imageSrc?: string | null
+  imageAlt?: string | null
 }
 
 export const ProjectCard = ({
@@ -22,7 +24,7 @@ export const ProjectCard = ({
   changeOnDarkMode = false,
   tags,
   imageSrc,
-  mainImage,
+  imageAlt,
 }: ProjectProps) => (
   <CardItem
     href={slug ?? '#'}
@@ -32,8 +34,10 @@ export const ProjectCard = ({
       tags?.map((tag) => ({ text: tag.label ?? '', href: tag.slug ?? '#', icon: tag.icon })) ?? []
     }
     image={{
-      src: imageSrc ?? getPlaceholderImage(1200, 500),
-      alt: mainImage?.alt ?? '',
+      src: imageSrc
+        ? imageSrc
+        : getPlaceholderImage(ThumbnailDimensions.Width, ThumbnailDimensions.Height),
+      alt: imageAlt ? imageAlt : '',
     }}
   >
     <div

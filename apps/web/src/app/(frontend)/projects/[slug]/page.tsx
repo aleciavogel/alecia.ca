@@ -4,24 +4,33 @@ import { Image as SanityImage } from 'sanity'
 
 import { Routes } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
-import { ProjectHeader, SimpleHeader } from '@alecia/pages-ui'
+import { ProjectHeader } from '@alecia/pages-ui'
 import { getProject } from '@alecia/projects-data-access/server'
 import { ProjectPreFooter } from '@alecia/projects-ui'
 import { getCroppedImageSrc } from '@alecia/sanity-util'
+import { processMetadata } from '@alecia/settings-data-access/server'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 import { Typography } from '@alecia/ui-kit'
-import { getPlaceholderImage } from '@alecia/util'
-
-// TODO: pull metadata from sanity
-export const metadata = {
-  title: 'Project | alecia.ca',
-  description: 'A showcase of my past and present work.',
-}
+import { buildRoute, getPlaceholderImage } from '@alecia/util'
 
 interface ProjectPageProps {
   params: {
     slug: string
+  }
+}
+
+export async function generateMetadata({ params }: ProjectPageProps) {
+  const project = await getProject(params.slug)
+  if (!project) notFound()
+  const meta = await processMetadata({
+    metadata: project.metadata,
+    slug: buildRoute(Routes.Projects.Project, params),
+    fallbackTitle: project.title,
+  })
+
+  return {
+    ...meta,
   }
 }
 
