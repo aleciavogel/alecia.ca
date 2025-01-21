@@ -21,22 +21,18 @@ const preview = <R = any>(
     throw new Error('The `SANITY_PREVIEW_TOKEN` environment variable is required.')
   }
 
-  return (
-    rawClient
-      .withConfig({
-        useCdn: false,
-        perspective: 'previewDrafts',
-        token: options.token ?? SANITY_TOKEN,
-      })
-      // @ts-expect-error -- tags are undefined for some reason
-      .fetch<R>(query, params, {
-        cache: 'no-store',
-        next: {
-          // @ts-expect-error -- tags are not in the types for some reason
-          tags: options.next?.tags ?? DEFAULT_TAGS,
-        },
-      })
-  )
+  return rawClient
+    .withConfig({
+      useCdn: false,
+      perspective: 'previewDrafts',
+      token: options.token ?? SANITY_TOKEN,
+    })
+    .fetch<R>(query, params, {
+      cache: 'no-store',
+      next: {
+        tags: options.next?.tags ?? DEFAULT_TAGS,
+      },
+    })
 }
 
 const client = {
@@ -56,9 +52,7 @@ export const getData = async <T>(
   const fetcher = !IS_PRODUCTION_MODE || isDraftMode ? client.preview : client.fetch
 
   return fetcher<T>(query, params, {
-    // @ts-expect-error -- cache is not in the types for some reason
     cache: 'default',
-    // @ts-expect-error -- tags are not in the types for some reason
     next: {
       tags,
     },
