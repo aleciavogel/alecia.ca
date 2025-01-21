@@ -40,6 +40,24 @@ export const project = defineType({
       ],
     }),
     defineField({
+      name: 'secondaryImage',
+      title: 'Secondary Image',
+      description:
+        'An optional secondary image to display on the project page as the "before" image.',
+      type: 'image',
+      group: 'content',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
       name: 'modules',
       type: 'array',
       of: blockTypes,

@@ -12,10 +12,9 @@ export const AnchorTag: FC<HTMLProps<HTMLAnchorElement>> = ({
 }) => {
   const isExternal = (url: string): boolean => {
     return (
-      Boolean(url.startsWith('http://')) ||
-      Boolean(url.startsWith('https://')) ||
-      Boolean(url.startsWith('//')) ||
-      Boolean(SITE_BASE_URL && !url.startsWith(SITE_BASE_URL))
+      Boolean(url.match(/^https?:\/\//)) ||
+      Boolean(url.match(/^\/\//)) ||
+      Boolean(SITE_BASE_URL && !url.includes(SITE_BASE_URL))
     )
   }
 

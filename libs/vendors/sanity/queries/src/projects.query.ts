@@ -11,6 +11,12 @@ export const projectQueryPartial = `
       'dimensions': asset->metadata.dimensions,
       'bgColor': asset->metadata.palette.dominant.background
     },
+    secondaryImage{
+      ...,
+      'src': asset->url,
+      'dimensions': asset->metadata.dimensions,
+      'bgColor': asset->metadata.palette.dominant.background
+    },
     tags[]-> {
       ...,
       'slug': '/projects?tag=' + slug.current,
