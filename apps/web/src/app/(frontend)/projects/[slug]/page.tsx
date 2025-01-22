@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         pretitleLink={Routes.Projects.Index}
       />
       <PageContents variant="rectangular" className="mb-0 pb-[300px]" isWavy={false}>
-        <div className="space-y-6 md:space-y-16 page-container max-xl:page-content-padding mx-auto">
+        <div className="space-y-6 md:space-y-16 page-container page-content-padding">
           <div className="space-y-4">
             <Typography variant="blockPretitle" as="h2">
               The Objective
