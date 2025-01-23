@@ -56,10 +56,12 @@ const portableTextComponents: PortableTextComponents = {
   marks: {
     // code: ({ children }) => <code className="bg-gray-100 p-1 rounded">{children}</code>,
     link: ({ children, value }) => {
-      const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+      const isExternal = !value.href.startsWith('/')
+      const rel = isExternal ? 'noreferrer noopener' : undefined
+      const target = isExternal ? '_blank' : undefined
 
       return (
-        <AnchorTag href={value.href} rel={rel}>
+        <AnchorTag href={value.href} rel={rel} target={target}>
           {children}
         </AnchorTag>
       )
