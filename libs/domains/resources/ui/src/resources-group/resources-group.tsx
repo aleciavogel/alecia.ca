@@ -14,7 +14,7 @@ export const ResourcesGroup: FC<SingleResourceCategory> = ({ _id, title, links }
     </Typography>
     <ul>
       {links ? (
-        <ul className="space-y-4 list-square list-inside pl-0.5 text-primary-950">
+        <ul className="space-y-4 list-square list-outside pl-5 text-primary-950">
           {links.map((link, index) => (
             <ResourceLink key={`${_id}-${index}`} {...link} />
           ))}

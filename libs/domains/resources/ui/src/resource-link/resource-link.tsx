@@ -14,7 +14,7 @@ export const ResourceLink: FC<ResourceLinkType> = (link) => {
     <li>
       <a
         href={link.url ?? '#'}
-        className="underline hover:text-accent-600 dark:hover:text-accent-300"
+        className="inline-block underline hover:text-accent-600 dark:hover:text-accent-300"
         target="_blank"
         rel="nofollow noreferrer"
       >
