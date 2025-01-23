@@ -42,7 +42,7 @@ export const HeroHeader = ({ title, subtitle, tag, coverImage }: HeroHeaderProps
           className="absolute inset-0 h-full z-[-1] bg-cover bg-center"
           style={{
             backgroundImage: `url(${coverImage})`,
-            opacity: `${100 - scrollYProgress * 2}%`,
+            opacity: `${100 - scrollYProgress * 3}%`,
           }}
         />
       ) : null}

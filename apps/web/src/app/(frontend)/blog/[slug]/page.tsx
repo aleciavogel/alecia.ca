@@ -81,6 +81,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       type: 'article',
       section: articleTags[0] ?? 'Uncategorized',
       url:
+        'https://' +
         SITE_BASE_URL +
         buildRoute(Routes.Blog.Article, { slug: article.metadata?.slug?.current ?? '/' }),
       publishedTime: article._createdAt,
@@ -145,7 +146,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <SiteWrapper>
       <HeroHeader title={article.title} subtitle={article.subtitle} coverImage={src} tag={tag} />
       <ReadingProgress />
-      <PageContents className="pt-32 md:pt-56 lg:pt-64">
+      <PageContents className="pt-48 md:pt-56 lg:pt-64 pb-48">
         <ArticleInfo
           date={article.publishDate ?? new Date().toDateString()}
           timeToRead={article.estimatedReadingTime}
