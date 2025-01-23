@@ -22,8 +22,6 @@ export const TextCTA = ({
 }: TextCtaModule) => {
   const cleanedLink = stegaClean(link)
 
-  console.log(cleanedLink)
-
   return (
     <div
       className={cn(
