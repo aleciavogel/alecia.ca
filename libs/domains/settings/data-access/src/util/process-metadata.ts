@@ -5,18 +5,16 @@ import { sanityClient } from '@alecia/sanity-client'
 import { settingsQuery } from '@alecia/sanity-queries'
 import { urlFor } from '@alecia/sanity-util'
 
-import { getSettings } from '../loaders'
-
 interface SiteMetadata {
-  title?: string
-  description?: string
-  ogimage?: string
+  title?: string | null
+  description?: string | null
+  ogimage?: string | null
   noIndex?: boolean | null
 }
 
 interface ProcessMetadataArgs {
-  metadata?: SiteMetadata
-  slug: string
+  metadata?: SiteMetadata | null
+  slug: string | null
   fallbackTitle?: string | null
 }
 
@@ -47,9 +45,9 @@ export async function processMetadata({
     description,
     openGraph: {
       type: 'website',
-      url: DEFAULT_META + (slug.includes('/') ? slug : `/${slug}`),
+      url: DEFAULT_META + (slug ? (slug.includes('/') ? slug : `/${slug}`) : ''),
       title: `${title} | ${settings.title}`,
-      description,
+      description: description ?? undefined,
       images: ogimage
         ? { url: urlFor(ogimage).width(1200).height(630).fit('crop').url() }
         : currentOgimage,
