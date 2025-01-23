@@ -46,7 +46,7 @@ export const projectIndexQuery = defineQuery(`
     }
   },
   'projects': *[_type == 'project'] | order(publishDate desc) {
-    ${projectQueryPartial},
+    ${projectQueryPartial}
   }
 }`)
 
@@ -54,6 +54,9 @@ export const projectPageQuery = defineQuery(`
   *[_type == 'project' && metadata.slug.current == $slug] | order(publishDate desc)[0]{
     ...,
     ${projectQueryPartial},
+    modules[]{
+      ${modulesQueryPartial}
+    },
     "prevProject": coalesce(
       *[_type == "project" && ^.publishDate > publishDate && _id != ^._id] | order(publishDate desc)[0]{
         ${projectQueryPartial}
