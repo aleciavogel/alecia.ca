@@ -12,10 +12,10 @@ interface LoopDeLoopTextProps extends VectorProps {
 export const LoopDeLoopText = ({
   text = [
     'ux enthusiast',
-    'advocate',
-    'writer',
-    'musician',
-    'award-winning baker',
+    'collaborator',
+    'bug whisperer',
+    'technophile',
+    'generalist',
     'podcast host',
     'problem-solver',
     'designer',
