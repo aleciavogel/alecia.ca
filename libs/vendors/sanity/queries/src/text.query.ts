@@ -13,7 +13,7 @@ export const textCtaQueryPartial = `
 export const textAsideListQueryPartial = `
   _type == 'text.aside-list' => {
     ...,
-    'listItems': listItems[]->,
+    'listItems': listItems[],
   }
 `
 

@@ -43,6 +43,9 @@ export const SimpleHeader: FC<SimpleHeaderProps> = ({
         Illustrations.AleciaCouch,
         Illustrations.SadieHammondCookies,
       ].includes(svgKey),
+      'w-[100%] md:w-[120%] -mb-[70%] md:-mb-[43%]': [Illustrations.HammondSleeping].includes(
+        svgKey,
+      ),
       'w-[110%] md:-mb-[50%] -mb-[65%]': [Illustrations.PhoebeYarn].includes(svgKey),
       'w-[100%] md:-mb-[30%]': [Illustrations.PhoebeLaptop].includes(svgKey),
       'w-[120%] md:-mb-[48%]': [Illustrations.PhoebeSleeping].includes(svgKey),

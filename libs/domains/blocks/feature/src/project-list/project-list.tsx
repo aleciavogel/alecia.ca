@@ -13,7 +13,7 @@ interface ProjectListProps {
 export const ProjectList: FC<ProjectListProps> = ({ projects }) => {
   return (
     <div
-      className={cn('container mx-auto', 'grid grid-cols-1 gap-8 md:grid-cols-2', 'px-8 md:px-20')}
+      className={cn('page-content-block', 'grid grid-cols-1 gap-8 md:grid-cols-2', 'px-8 md:px-20')}
     >
       {projects?.map((project) => (
         <ProjectCard

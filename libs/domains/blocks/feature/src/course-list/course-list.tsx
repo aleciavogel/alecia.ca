@@ -15,7 +15,7 @@ export const CourseList: FC<CourseListProps> = ({ courses }) => {
   return (
     <div
       className={cn(
-        'container mx-auto',
+        'page-content-block',
         'grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3',
         'px-8 md:px-20',
       )}

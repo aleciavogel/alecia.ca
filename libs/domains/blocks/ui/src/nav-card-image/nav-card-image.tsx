@@ -14,7 +14,7 @@ export const NavCardImage: FC<NavCardImageProps> = ({ image, alt = '' }): JSX.El
       'mx-auto',
       'overflow-hidden rounded-md grow-0 shadow-lg',
       'w-[70vw]',
-      'relative z-[3] md:-mt-10 max-md:-mb-20',
+      'relative z-[3] md:-mt-10',
     )}
     data-scroll
     data-scroll-speed={1.75}
