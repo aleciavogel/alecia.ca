@@ -61,7 +61,7 @@ const basicPortableTextComponents = (): PortableTextComponents => ({
     normal: ({ children }) => (
       <Typography
         variant="p"
-        className="w-full max-w-screen-sm mx-auto md:leading-relaxed text-primary-950 dark:text-primary-300"
+        className=" w-full max-w-screen-sm mx-auto md:leading-relaxed text-primary-950 dark:text-primary-300"
       >
         {children}
       </Typography>

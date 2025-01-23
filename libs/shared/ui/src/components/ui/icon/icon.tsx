@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface IconProps {
   className?: string
-  name?: (BrandIconName & IconName) | null
+  name?: BrandIconName | IconName | null
 }
 
 export const Icon: FC<IconProps> = ({ name, className }: IconProps) => {

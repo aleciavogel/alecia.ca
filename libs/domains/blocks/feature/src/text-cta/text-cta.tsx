@@ -1,8 +1,10 @@
 import type { FC } from 'react'
+import { PortableTextBlock } from 'next-sanity'
 
-import { BasicBlockContent, IconButtonLink, Typography } from '@alecia/ui-kit'
+import { IconButtonLink, Typography } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
+import { IntroPortableText } from '../text-intro'
 import type { TextCTAProps } from './types'
 
 export const TextCTA: FC<TextCTAProps> = ({
@@ -45,7 +47,7 @@ export const TextCTA: FC<TextCTAProps> = ({
       </div>
     </div>
     <div className="flex-grow space-y-6 max-w-screen-sm">
-      <BasicBlockContent value={body} />
+      <IntroPortableText value={body as PortableTextBlock[]} />
     </div>
   </div>
 )
