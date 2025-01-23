@@ -28,7 +28,7 @@ export const HeroHeader: FC<HeroHeaderProps> = ({ title, subtitle, tag, coverIma
         'bg-primary-700 dark:bg-primary-900',
         classnames({
           'bg-center bg-cover': coverImage,
-          'after:content-[""] after:absolute after:inset-0 after:bg-primary-900 after:z-[-1] after:opacity-75':
+          'after:content-[""] after:absolute after:inset-0 after:bg-primary-900 after:z-[-1] after:opacity-80':
             coverImage,
         }),
       )}

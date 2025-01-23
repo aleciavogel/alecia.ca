@@ -1,51 +1,51 @@
-import type { FC } from 'react'
 import { faClock } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { Image } from 'next-sanity/image'
 
-import { Avatar, CardItem, TagProps, Typography } from '@alecia/ui-kit'
+import { ThumbnailDimensions } from '@alecia/constants'
+import { AllBlogArticlesQueryResult } from '@alecia/sanity-types'
+import { getCroppedImageSrc } from '@alecia/sanity-util'
+import { ExtendedImage } from '@alecia/types'
+import { Avatar, CardItem, Typography } from '@alecia/ui-kit'
 import { cn, getPlaceholderImage } from '@alecia/util'
 
-interface PostProps {
-  timeToRead?: string | null
-  authorImageSrc?: string | null
-  authorName?: string | null
-  title?: string | null
-  slug?: string | null
-  previewText?: string | null
+type SingleArticle = NonNullable<AllBlogArticlesQueryResult[number]>
+
+interface BlogCardProps extends SingleArticle {
   changeOnDarkMode?: boolean
   className?: string
-  tags?: TagProps[]
-  image?: {
-    src?: string | null
-    alt?: string | null
-  }
+  imageSrc: string | null
+  imageAlt: string | null
 }
 
 const DEFAULT_AVATAR = 'https://github.com/aleciavogel.png'
 
-export const BlogCard: FC<PostProps> = ({
+export const BlogCard = ({
   className,
   slug = '/',
   title = 'Untitled',
   previewText = '',
-  timeToRead = '0 min read',
-  authorImageSrc = DEFAULT_AVATAR,
-  authorName = 'Alecia Vogel',
+  estimatedReadingTime = 0,
   changeOnDarkMode = false,
-  image: { src, alt } = {},
-  tags,
-}) => (
+  mainImage,
+  categories,
+}: BlogCardProps) => (
   <CardItem
     href={slug ? slug : '/'}
     className={cn('pb-7', className)}
     changeOnDarkMode={changeOnDarkMode}
-    tags={tags}
+    tags={
+      categories
+        ? categories.map((category) => ({ text: category.title, href: category.slug }))
+        : []
+    }
     image={{
-      src: src ? src : getPlaceholderImage(1200, 628),
-      alt: alt ? alt : 'Blog post image',
+      src:
+        getCroppedImageSrc(mainImage as Omit<ExtendedImage, 'crop'> | null)?.src ??
+        getPlaceholderImage(ThumbnailDimensions.Width, ThumbnailDimensions.Height),
+      alt: mainImage?.alt ? mainImage.alt : '',
     }}
   >
     <div
@@ -97,14 +97,9 @@ export const BlogCard: FC<PostProps> = ({
           )}
         >
           <Avatar className="h-7 w-7">
-            <Image
-              src={authorImageSrc ? authorImageSrc : DEFAULT_AVATAR}
-              alt={authorName ? authorName : 'Alecia Vogel'}
-              width={100}
-              height={100}
-            />
+            <Image src={DEFAULT_AVATAR} alt={'Alecia Vogel'} width={100} height={100} />
           </Avatar>
-          <span>{authorName}</span>
+          <span>Alecia Vogel</span>
         </Typography>
       </div>
 
@@ -127,7 +122,7 @@ export const BlogCard: FC<PostProps> = ({
               }),
             )}
           />
-          <span>{timeToRead}</span>
+          <span>{estimatedReadingTime} min read</span>
         </p>
       </div>
     </div>

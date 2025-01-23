@@ -19,11 +19,6 @@ export const BlogCategoryFilters = async (): Promise<JSX.Element | null> => {
   )[0]
 
   const rest = categories.filter((category) => {
-    console.log(
-      'Category',
-      stegaClean(category.slug),
-      !ALL_POSTS_SLUGS.includes(stegaClean(category.slug)?.toLowerCase() ?? ''),
-    )
     return !ALL_POSTS_SLUGS.includes(stegaClean(category.slug)?.toLowerCase() ?? '')
   })
   const filters = [allCategory, ...rest]

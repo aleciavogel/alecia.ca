@@ -17,7 +17,7 @@ interface SiteMetadata {
 interface ProcessMetadataArgs {
   metadata?: SiteMetadata
   slug: string
-  fallbackTitle?: string
+  fallbackTitle?: string | null
 }
 
 export async function processMetadata({
@@ -48,7 +48,7 @@ export async function processMetadata({
     openGraph: {
       type: 'website',
       url: DEFAULT_META + (slug.includes('/') ? slug : `/${slug}`),
-      title,
+      title: `${title} | ${settings.title}`,
       description,
       images: ogimage
         ? { url: urlFor(ogimage).width(1200).height(630).fit('crop').url() }

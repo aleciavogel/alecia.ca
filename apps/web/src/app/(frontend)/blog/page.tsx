@@ -21,7 +21,12 @@ interface BlogListPageProps {
 }
 
 export default async function BlogListPage({ searchParams }: BlogListPageProps) {
-  const { articles, page } = (await fetchPageData(searchParams?.category)) ?? {}
+  const hasCategory =
+    searchParams?.category &&
+    searchParams.category !== 'all' &&
+    searchParams.category !== 'all-posts'
+  const { articles, page } =
+    (await fetchPageData(hasCategory ? searchParams?.category : undefined)) ?? {}
 
   if (!page) {
     notFound()
