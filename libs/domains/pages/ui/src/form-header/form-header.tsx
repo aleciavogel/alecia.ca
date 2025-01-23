@@ -27,7 +27,7 @@ export const FormHeader: FC<FormHeaderProps> = ({
     className={cn(
       'relative',
       'flex items-center justify-items-center',
-      'px-8 md:px-20 pt-32',
+      'pt-32',
       'transition-dark-mode',
       'hero-padding',
       // 'bg-primary-800 dark:bg-primary-900',
@@ -63,7 +63,7 @@ export const FormHeader: FC<FormHeaderProps> = ({
         </div>
       </div>
       <div className="relative h-full">
-        <div className="z-[100] relative lg:absolute lg:top-0 lg:right-0 lg:w-full max-lg:-mb-72 max-lg:px-2">
+        <div className="z-[100] relative lg:absolute lg:top-0 lg:right-0 w-full max-lg:-mb-72 max-lg:px-2">
           {children}
         </div>
       </div>
