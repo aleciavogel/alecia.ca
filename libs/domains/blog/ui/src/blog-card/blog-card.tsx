@@ -16,8 +16,6 @@ type SingleArticle = NonNullable<AllBlogArticlesQueryResult[number]>
 interface BlogCardProps extends SingleArticle {
   changeOnDarkMode?: boolean
   className?: string
-  imageSrc: string | null
-  imageAlt: string | null
 }
 
 const DEFAULT_AVATAR = 'https://github.com/aleciavogel.png'

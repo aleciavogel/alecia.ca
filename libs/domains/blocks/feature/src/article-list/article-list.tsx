@@ -1,6 +1,4 @@
 import type { FC } from 'react'
-import type { IconName } from '@fortawesome/fontawesome-svg-core'
-import { stegaClean } from '@sanity/client/stega'
 
 import { BlogCard } from '@alecia/blog-ui'
 import type { AllBlogArticlesQueryResult } from '@alecia/sanity-types'
@@ -20,20 +18,7 @@ export const BlogList: FC<BlogListProps> = ({ posts }) => {
       )}
     >
       {posts?.map((post) => (
-        <BlogCard
-          key={`post-${post._id ?? ''}`}
-          {...post}
-          changeOnDarkMode
-          image={{ src: post.imageSrc, alt: post.imageAlt }}
-          timeToRead={`${String(post.estimatedReadingTime ?? 0)} min read`}
-          tags={post.categories?.map((category) => {
-            return {
-              text: category.title ?? 'Untitled Category',
-              href: category.slug ?? '#',
-              icon: category.icon ? (stegaClean(category.icon) as IconName) : undefined,
-            }
-          })}
-        />
+        <BlogCard key={post._id} {...post} changeOnDarkMode />
       ))}
     </div>
   )
