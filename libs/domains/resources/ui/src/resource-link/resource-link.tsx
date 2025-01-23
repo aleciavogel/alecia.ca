@@ -11,7 +11,7 @@ export const ResourceLink: FC<ResourceLinkType> = (link) => {
   }
 
   return (
-    <li key={`link-${link._id}`}>
+    <li>
       <a
         href={link.url ?? '#'}
         className="underline hover:text-accent-600 dark:hover:text-accent-300"

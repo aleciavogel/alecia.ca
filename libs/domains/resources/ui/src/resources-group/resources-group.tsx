@@ -7,7 +7,7 @@ import { ResourceLink } from '../resource-link'
 
 type SingleResourceCategory = NonNullable<ResourcesIndexQueryResult['resources']>[number]
 
-export const ResourcesGroup: FC<SingleResourceCategory> = ({ title, links }) => (
+export const ResourcesGroup: FC<SingleResourceCategory> = ({ _id, title, links }) => (
   <div className="rounded-lg bg-white p-8 space-y-4">
     <Typography variant="blockPretitle" as="h3">
       {title}
@@ -16,7 +16,7 @@ export const ResourcesGroup: FC<SingleResourceCategory> = ({ title, links }) => 
       {links ? (
         <ul className="space-y-4 list-square list-inside pl-0.5 text-primary-950">
           {links.map((link, index) => (
-            <ResourceLink key={`link-${link._id}`} {...link} />
+            <ResourceLink key={`${_id}-${index}`} {...link} />
           ))}
         </ul>
       ) : null}
