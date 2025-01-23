@@ -5,7 +5,9 @@ import { BlogList } from '@alecia/blocks'
 import { BlogCategoryFilters } from '@alecia/blog-categories'
 import { getBlogIndexPage } from '@alecia/blog-data-access/server'
 import { BlogHeader } from '@alecia/pages-ui'
-import { BlogIndexQueryResult } from '@alecia/sanity-types'
+import { blogArticlePageQuery, blogIndexQuery } from '@alecia/sanity-queries'
+import { BlogArticlePageQueryResult, BlogIndexQueryResult } from '@alecia/sanity-types'
+import { getData } from '@alecia/sanity-util/server'
 import { SiteWrapper } from '@alecia/site-layout'
 import { EmptyState } from '@alecia/site-layout-ui'
 import { PageContents } from '@alecia/site-navigation'
@@ -25,8 +27,16 @@ export default async function BlogListPage({ searchParams }: BlogListPageProps) 
     searchParams?.category &&
     searchParams.category !== 'all' &&
     searchParams.category !== 'all-posts'
-  const { articles, page } =
-    (await fetchPageData(hasCategory ? searchParams?.category : undefined)) ?? {}
+
+  const { articles, page } = await getData<BlogIndexQueryResult>(
+    blogIndexQuery,
+    { slug: hasCategory ? searchParams?.category : null },
+    [
+      hasCategory ? `blog.category:${searchParams?.category}` : 'page:blog',
+      'blog.category',
+      'blog.article',
+    ],
+  )
 
   if (!page) {
     notFound()
