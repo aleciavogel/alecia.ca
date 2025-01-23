@@ -1,7 +1,10 @@
-import type { FC } from 'react'
+'use client'
+
+import { animated } from '@react-spring/web'
 import classnames from 'classnames'
 import Link from 'next/link'
 
+import { useScrollListener } from '@alecia/site-scroll'
 import { ReadMoreArrowIcon, type TagProps } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
@@ -10,31 +13,42 @@ interface HeroHeaderProps {
   subtitle?: string | null
   tag?: TagProps
   coverImage?: string | null
+  coverImageAlt?: string | null
+  coverImageWidth?: number
+  coverImageHeight?: number
 }
 
-export const HeroHeader: FC<HeroHeaderProps> = ({ title, subtitle, tag, coverImage }) => {
-  const sectionStyle = coverImage
-    ? {
-        backgroundImage: `url(${coverImage})`,
-      }
-    : {}
+export const HeroHeader = ({ title, subtitle, tag, coverImage }: HeroHeaderProps) => {
+  const { scrollYProgress } = useScrollListener({})
 
   return (
     <section
+      data-scroll-container
       className={cn(
         'relative z-0 flex items-center justify-items-center page-content-padding',
         'transition-colors duration-300 ease-in-out',
         'hero-padding h-screen box-content',
         'bg-primary-700 dark:bg-primary-900',
         classnames({
-          'bg-center bg-cover': coverImage,
           'after:content-[""] after:absolute after:inset-0 after:bg-primary-900 after:z-[-1] after:opacity-80':
             coverImage,
         }),
       )}
-      style={sectionStyle}
     >
+      {coverImage ? (
+        <animated.div
+          data-scroll
+          data-scroll-speed="-1.5"
+          className="absolute inset-0 h-full z-[-1] bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${coverImage})`,
+            opacity: `${100 - scrollYProgress * 2}%`,
+          }}
+        />
+      ) : null}
       <div
+        data-scroll
+        data-scroll-speed="1"
         className={cn(
           'mx-auto space-y-2 md:space-y-4',
           'text-center lg:text-left',
@@ -61,7 +75,7 @@ export const HeroHeader: FC<HeroHeaderProps> = ({ title, subtitle, tag, coverIma
         <h1
           className={cn(
             'font-serif capitalize text-white leading-snug',
-            'text-lg sm:text-xl md:text-5xl lg:text-7xl',
+            'text-3xl md:text-5xl lg:text-7xl',
             'text-center',
             'drop-shadow-lg',
           )}
