@@ -11,7 +11,7 @@ interface WavyTextProps extends VectorProps {
 }
 
 export const WavyText = ({
-  text = 'ux enthusiast • advocate • writer • musician • award-winning baker • podcast host • problem-solver • designer • developer',
+  text = 'ux enthusiast • collaborator • bug whisperer • technophile • generalist • podcast host • problem-solver • designer • developer',
   separator = ' • ',
   className,
   ...props
