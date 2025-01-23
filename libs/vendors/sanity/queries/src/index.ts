@@ -1,6 +1,5 @@
 export * from './blog-article.query'
 export * from './blog-category.query'
-export * from './blog-pages.query'
 export * from './courses.query'
 export * from './dropdown.query'
 export * from './experiments.query'

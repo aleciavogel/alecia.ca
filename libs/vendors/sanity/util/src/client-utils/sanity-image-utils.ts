@@ -57,3 +57,9 @@ export const getCroppedImageSrc = (image: Image | null) => {
     src: urlFor(image.asset).url(),
   }
 }
+
+export function urlForOpenGraphImage(image: Image | null) {
+  if (!image) return
+
+  return urlFor(image)?.width(1200).height(627).fit('crop').url()
+}

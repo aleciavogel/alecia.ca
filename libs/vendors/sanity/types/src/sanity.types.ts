@@ -1678,6 +1678,7 @@ export type Metadata = {
     crop?: SanityImageCrop
     _type: 'image'
   }
+  keywords?: Array<string>
   noIndex?: boolean
 }
 
@@ -1913,7 +1914,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ../../../../../libs/vendors/sanity/queries/src/blog-article.query.ts
 // Variable: allBlogArticlesQuery
-// Query: *[ _type == 'blog.article' ] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    }  }
+// Query: *[ _type == 'blog.article' ] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    }  }
 export type AllBlogArticlesQueryResult = Array<{
   _id: string
   title: string | null
@@ -1938,9 +1939,28 @@ export type AllBlogArticlesQueryResult = Array<{
     slug: string | null
     icon: string | null
   }> | null
+  metadata: {
+    _type: 'metadata'
+    slug?: Slug
+    title?: string
+    description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
+    noIndex?: boolean
+  } | null
 }>
 // Variable: blogArticlesForCategoryQuery
-// Query: *[ _type == 'blog.article' && references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id) ] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    }  }
+// Query: *[ _type == 'blog.article' && references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id) ] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    }  }
 export type BlogArticlesForCategoryQueryResult = Array<{
   _id: string
   title: string | null
@@ -1965,6 +1985,25 @@ export type BlogArticlesForCategoryQueryResult = Array<{
     slug: string | null
     icon: string | null
   }> | null
+  metadata: {
+    _type: 'metadata'
+    slug?: Slug
+    title?: string
+    description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
+    noIndex?: boolean
+  } | null
 }>
 // Variable: articleSlugsQuery
 // Query: *[_type == 'blog.article' && defined(metadata.slug.current)]{    'slug': metadata.slug.current  }
@@ -1991,7 +2030,7 @@ export type BlogCategoriesQueryResult = Array<{
 
 // Source: ../../../../../libs/vendors/sanity/queries/src/blog-pages.query.ts
 // Variable: blogIndexQuery
-// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{    pretitle,    title,    subtitle,    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },  }}
+// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{    pretitle,    title,    subtitle,    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    },  }}
 export type BlogIndexQueryResult = {
   page: {
     pretitle: string | null
@@ -2013,6 +2052,7 @@ export type BlogIndexQueryResult = {
         crop?: SanityImageCrop
         _type: 'image'
       }
+      keywords?: Array<string>
       noIndex?: boolean
       ogimage: string | null
     } | null
@@ -2041,10 +2081,29 @@ export type BlogIndexQueryResult = {
       slug: string | null
       icon: string | null
     }> | null
+    metadata: {
+      _type: 'metadata'
+      slug?: Slug
+      title?: string
+      description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      keywords?: Array<string>
+      noIndex?: boolean
+    } | null
   }>
 }
 // Variable: blogArticlePageQuery
-// Query: *[_type == 'blog.article' && metadata.slug.current == $slug][0]{    ...,        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    }  }
+// Query: *[_type == 'blog.article' && metadata.slug.current == $slug][0]{    ...,        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    }  }
 export type BlogArticlePageQueryResult = {
   _id: string
   _type: 'blog.article'
@@ -2125,7 +2184,25 @@ export type BlogArticlePageQueryResult = {
   publishDate?: string
   featured?: boolean
   hideTableOfContents?: boolean
-  metadata?: Metadata
+  metadata: {
+    _type: 'metadata'
+    slug?: Slug
+    title?: string
+    description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
+    noIndex?: boolean
+  } | null
   slug: string | null
   estimatedReadingTime: number
 } | null
@@ -3066,6 +3143,7 @@ export type ExperimentIndexQueryResult = {
         crop?: SanityImageCrop
         _type: 'image'
       }
+      keywords?: Array<string>
       noIndex?: boolean
       ogimage: string | null
     } | null
@@ -3990,6 +4068,7 @@ export type HomePageQueryResult = {
       crop?: SanityImageCrop
       _type: 'image'
     }
+    keywords?: Array<string>
     noIndex?: boolean
     ogimage: string | null
   } | null
@@ -4740,6 +4819,7 @@ export type PageQueryResult = {
       crop?: SanityImageCrop
       _type: 'image'
     }
+    keywords?: Array<string>
     noIndex?: boolean
     ogimage: string | null
   } | null
@@ -5614,6 +5694,7 @@ export type ProjectIndexQueryResult = {
         crop?: SanityImageCrop
         _type: 'image'
       }
+      keywords?: Array<string>
       noIndex?: boolean
       ogimage: string | null
     } | null
@@ -6832,6 +6913,7 @@ export type ResourcesIndexQueryResult = {
         crop?: SanityImageCrop
         _type: 'image'
       }
+      keywords?: Array<string>
       noIndex?: boolean
       ogimage: string | null
     } | null
@@ -7383,12 +7465,12 @@ export type SettingsQueryResult = {
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
-    "\n  *[ _type == 'blog.article' ] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    }\n\n  }": AllBlogArticlesQueryResult
-    "\n  *[ _type == 'blog.article' && references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id) ] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    }\n\n  }": BlogArticlesForCategoryQueryResult
+    "\n  *[ _type == 'blog.article' ] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n\n  }": AllBlogArticlesQueryResult
+    "\n  *[ _type == 'blog.article' && references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id) ] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n\n  }": BlogArticlesForCategoryQueryResult
     "\n  *[_type == 'blog.article' && defined(metadata.slug.current)]{\n    'slug': metadata.slug.current\n  }\n": ArticleSlugsQueryResult
     "\n  *[ _type == 'blog.category' ] {\n    ...,\n    'slug': metadata.slug.current,\n    'href': '/blog?category=' + metadata.slug.current,\n    'icon': icon.name\n  }": BlogCategoriesQueryResult
-    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{\n    pretitle,\n    title,\n    subtitle,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": BlogIndexQueryResult
-    "\n  *[_type == 'blog.article' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    }\n\n  }\n": BlogArticlePageQueryResult
+    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{\n    pretitle,\n    title,\n    subtitle,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n,\n  }\n}": BlogIndexQueryResult
+    "\n  *[_type == 'blog.article' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n\n  }\n": BlogArticlePageQueryResult
     "\n  *[_type == 'course' && difficulty == $difficulty] | order(publishedAt desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n,\n  }\n": CoursesByDifficultyQueryResult
     "\n  *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n": AllExperimentsQueryResult
     "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[]->,\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'experiments': *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": ExperimentIndexQueryResult

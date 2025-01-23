@@ -18,7 +18,7 @@ const preview = <R = any>(
   options: FilteredResponseQueryOptions | undefined = {},
 ): Promise<R> => {
   if (!SANITY_TOKEN && !options.token) {
-    throw new Error('The `SANITY_PREVIEW_TOKEN` environment variable is required.')
+    throw new Error('The `SANITY_TOKEN` environment variable is required.')
   }
 
   return rawClient
@@ -46,14 +46,19 @@ export const getData = async <T>(
   query: string,
   params: QueryParams = {},
   tags: string[] = [],
+  options: FilteredResponseQueryOptions = {},
 ): Promise<T> => {
   const isDraftMode = draftMode().isEnabled
 
   const fetcher = !IS_PRODUCTION_MODE || isDraftMode ? client.preview : client.fetch
 
+  const nextOptions = options.next ?? {}
+
   return fetcher<T>(query, params, {
+    ...options,
     cache: 'default',
     next: {
+      ...nextOptions,
       tags,
     },
   })

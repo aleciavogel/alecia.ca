@@ -23,7 +23,7 @@ export async function processMetadata({
   slug,
   fallbackTitle,
 }: ProcessMetadataArgs): Promise<Metadata> {
-  const settings = await sanityClient.fetch(settingsQuery)
+  const settings = await sanityClient.fetch(settingsQuery, {}, { stega: false })
   const BASE_URL = `https://${SITE_BASE_URL}`
   const DEFAULT_META = {
     metadataBase: new URL(BASE_URL),
@@ -35,8 +35,8 @@ export async function processMetadata({
 
   const { title = fallbackTitle, description, ogimage, noIndex } = metadata ?? {}
 
-  const currentOgimage = settings.ogimage
-    ? { url: urlFor(settings.ogimage).width(1200).height(630).url() }
+  const currentOgimageSrc = settings.ogimage
+    ? { url: urlFor(settings.ogimage).width(1200).height(627).url() }
     : undefined
 
   return {
@@ -49,8 +49,8 @@ export async function processMetadata({
       title: `${title} | ${settings.title}`,
       description: description ?? undefined,
       images: ogimage
-        ? { url: urlFor(ogimage).width(1200).height(630).fit('crop').url() }
-        : currentOgimage,
+        ? { url: urlFor(ogimage).width(1200).height(627).fit('crop').url() }
+        : currentOgimageSrc,
     },
     robots: {
       index: noIndex || IS_VERCEL_PREVIEW ? false : undefined,

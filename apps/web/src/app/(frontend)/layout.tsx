@@ -15,7 +15,10 @@ import './global.css'
 config.autoAddCss = false
 
 export const metadata: Metadata = {
-  title: 'Alecia.ca',
+  title: {
+    template: `%s | alecia.ca`,
+    default: 'Home | alecia.ca',
+  },
   description:
     'The personal website of Alecia Vogel, a senior full-stack developer in Edmonton, AB.',
 }

@@ -10873,6 +10873,16 @@
           },
           "optional": true
         },
+        "keywords": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "string"
+            }
+          },
+          "optional": true
+        },
         "noIndex": {
           "type": "objectAttribute",
           "value": {

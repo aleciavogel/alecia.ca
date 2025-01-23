@@ -12,6 +12,9 @@ export const blogArticleQueryPartial = `
       title,
       'slug': '/blog?category=' + metadata.slug.current,
       'icon': icon.name
+    },
+    metadata {
+      ...,
     }
 `
 
@@ -28,5 +31,28 @@ export const blogArticlesForCategoryQuery = defineQuery(`
 export const articleSlugsQuery = defineQuery(`
   *[_type == 'blog.article' && defined(metadata.slug.current)]{
     'slug': metadata.slug.current
+  }
+`)
+
+export const blogIndexQuery = defineQuery(`
+{
+  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{
+    pretitle,
+    title,
+    subtitle,
+    metadata {
+      ...,
+      'ogimage': image.asset->url + '?w=1200'
+    }
+  },
+  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {
+    ${blogArticleQueryPartial},
+  }
+}`)
+
+export const blogArticlePageQuery = defineQuery(`
+  *[_type == 'blog.article' && metadata.slug.current == $slug][0]{
+    ...,
+    ${blogArticleQueryPartial}
   }
 `)
