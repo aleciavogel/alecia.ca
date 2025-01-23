@@ -8,7 +8,7 @@ import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 
 export const metadata = {
-  title: 'My Resumé | alecia.ca',
+  title: 'My Resumé',
   description: 'Generate a custom version of my CV.',
 }
 

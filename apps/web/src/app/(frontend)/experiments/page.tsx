@@ -10,7 +10,7 @@ import { PageContents } from '@alecia/site-navigation'
 
 // TODO: pull metadata from sanity
 export const metadata = {
-  title: 'Experiments | alecia.ca',
+  title: 'Experiments',
   description: 'My personal sandbox for trying new things.',
 }
 

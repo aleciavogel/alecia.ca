@@ -12,7 +12,7 @@ import { Typography } from '@alecia/ui-kit'
 
 // TODO: pull metadata from sanity
 export const metadata = {
-  title: 'Get In Touch | alecia.ca',
+  title: 'Get In Touch',
   description: 'Contact me to discuss your project or to learn more about my work.',
 }
 

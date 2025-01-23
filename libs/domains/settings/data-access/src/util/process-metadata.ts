@@ -41,12 +41,12 @@ export async function processMetadata({
 
   return {
     ...DEFAULT_META,
-    title: `${title} | ${settings.title}`,
+    title: `${title}`,
     description,
     openGraph: {
       type: 'website',
       url: DEFAULT_META + (slug ? (slug.includes('/') ? slug : `/${slug}`) : ''),
-      title: `${title} | ${settings.title}`,
+      title: `${title}`,
       description: description ?? undefined,
       images: ogimage
         ? { url: urlFor(ogimage).width(1200).height(627).fit('crop').url() }

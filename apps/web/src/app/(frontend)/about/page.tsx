@@ -9,7 +9,7 @@ import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 
 export const metadata = {
-  title: 'About Alecia | alecia.ca',
+  title: 'About Alecia',
   description: 'Learn more about Alecia',
 }
 
