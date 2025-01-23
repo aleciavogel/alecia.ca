@@ -1,11 +1,9 @@
 import type { FC } from 'react'
 import type { PortableTextBlock } from 'next-sanity'
 
+import { BlogPortableText } from '@alecia/blog'
 import { Typography } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
-
-// TODO: move this to @alecia/ui-kit
-import { IntroPortableText } from './intro-portable-text'
 
 interface IntroTextProps {
   _type: 'text.intro'
@@ -48,7 +46,7 @@ export const TextIntro: FC<IntroTextProps> = ({
         </div>
         <div className="hidden" />
         <div className="col-span-2">
-          <IntroPortableText value={body} />
+          <BlogPortableText value={body} />
         </div>
       </div>
     </div>

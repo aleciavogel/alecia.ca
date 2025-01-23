@@ -1,11 +1,10 @@
 import { stegaClean } from '@sanity/client/stega'
 import { PortableTextBlock } from 'next-sanity'
 
+import { BlogPortableText } from '@alecia/blog'
 import { PageQueryResult } from '@alecia/sanity-types'
 import { IconButtonLink, Typography } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
-
-import { IntroPortableText } from '../text-intro'
 
 type Modules = NonNullable<PageQueryResult>['modules']
 type SingleModule = NonNullable<Modules>[number]
@@ -54,7 +53,7 @@ export const TextCTA = ({
         </div>
       </div>
       <div className="flex-grow space-y-6 max-w-screen-sm">
-        <IntroPortableText value={body as PortableTextBlock[]} />
+        <BlogPortableText value={body as PortableTextBlock[]} />
       </div>
     </div>
   )
