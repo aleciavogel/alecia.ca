@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import { stegaClean } from '@sanity/client/stega'
 import { PortableTextBlock } from 'next-sanity'
 
