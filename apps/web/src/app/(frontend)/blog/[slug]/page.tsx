@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   ]
 
   return {
-    metadataBase: new URL(SITE_BASE_URL),
+    metadataBase: new URL('https://' + SITE_BASE_URL),
     title: article.metadata?.title ?? article.title,
     description: article.metadata?.description ?? article.previewText,
     applicationName: settings?.title,

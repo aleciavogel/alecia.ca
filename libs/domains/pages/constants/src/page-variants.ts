@@ -9,8 +9,8 @@ export const pageVariants = cva(
     'transition-all duration-200 ease-in-out',
     'z-[-1]',
     'pointer-events-none',
-    'border-0 border-transparent',
     'bg-primary-100 dark:bg-gray-900',
+    'border-none box-content',
   ),
   {
     variants: {

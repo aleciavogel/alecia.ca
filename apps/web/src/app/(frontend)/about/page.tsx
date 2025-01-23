@@ -26,7 +26,7 @@ export default async function AboutPage() {
         imageSrc={page.headerImageSrc ? urlFor(page.headerImageSrc).url() : page.headerImageSrc}
         imageAlt={page.headerImage?.alt}
       />
-      <PageContents>
+      <PageContents className="max-md:pt-56 pb-32 md:pb-48">
         <RenderedBlocks modules={page.modules} />
       </PageContents>
     </SiteWrapper>

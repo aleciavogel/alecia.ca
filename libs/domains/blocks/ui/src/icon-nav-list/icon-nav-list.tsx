@@ -12,11 +12,11 @@ interface IconNavListProps {
 
 export const IconNavList: FC<IconNavListProps> = ({ links }): JSX.Element => (
   <ul className={cn('flex flex-col gap-6 max-md:text-center')}>
-    {links?.map((link) =>
-      stegaClean(link.icon) === 'faTransporterEmpty' ? (
-        <TeleportNavLink key={`tp-${link._key}`} {...link} />
+    {links?.map((link, index) =>
+      link?.icon && stegaClean(link.icon) === 'faTransporterEmpty' ? (
+        <TeleportNavLink key={`icon-nav${link?._key}-${index}`} {...link} />
       ) : (
-        <IconNavLink key={`icon-nav-${link._key}`} {...link} />
+        <IconNavLink key={`icon-nav${link?._key}-${index}`} {...link} />
       ),
     )}
   </ul>

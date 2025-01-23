@@ -9,7 +9,6 @@ import { Providers } from '@alecia/site-layout'
 import { eksellLarge, eksellSmall, silka } from '@alecia/ui-kit'
 
 import 'locomotive-scroll/dist/locomotive-scroll.min.css'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import '@alecia/ui-kit/styles/global.css'
 import './global.css'
 config.autoAddCss = false

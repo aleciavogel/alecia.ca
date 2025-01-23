@@ -32,9 +32,12 @@ export const PageContents: FC<PageContentsProps> = ({
       '-mt-[var(--triangle-height)]',
       'mb-[-25px]',
       'pb-28',
-      'h-full min-h-[500px]',
+      'min-h-[500px]',
       'z-40',
       'flex flex-col gap-24 lg:gap-36',
+      'box-content',
+      'border-none',
+      'border-0',
       className,
     )}
   >
