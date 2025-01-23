@@ -24,7 +24,7 @@ export const BlogCategoryFilters = async (): Promise<JSX.Element | null> => {
   const filters = [allCategory, ...rest]
 
   return (
-    <div className="container mx-auto px-8 md:px-20 grid grid-cols-1 md:grid-cols-3">
+    <div className="page-content-block grid grid-cols-1 md:grid-cols-3">
       <nav aria-labelledby="blog-nav-heading" className={cn('space-y-3 w-full col-span-1')}>
         <Typography
           variant="pretitle"

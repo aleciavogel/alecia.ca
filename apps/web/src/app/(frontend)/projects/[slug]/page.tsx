@@ -97,14 +97,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         pretitleLink={Routes.Projects.Index}
       />
       <PageContents variant="rectangular" className="mb-0 pb-[300px]" isWavy={false}>
-        <div className="space-y-6 md:space-y-16 page-container page-content-padding">
-          <div className="space-y-4">
+        <div className="space-y-6 md:space-y-16">
+          <div className="space-y-4 page-content-block">
             <Typography variant="blockPretitle" as="h2">
               The Objective
             </Typography>
             <Typography variant="blockTitle">{project.subtitle}</Typography>
           </div>
-          <div>
+          <div className="page-content-block">
             {project.mainImage ? (
               <Image
                 src={src}

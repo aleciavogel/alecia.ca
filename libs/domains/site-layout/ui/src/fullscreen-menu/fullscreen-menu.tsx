@@ -17,7 +17,12 @@ import { FullScreenMenuType, SocialLinksType } from '@alecia/settings-types'
 import { AleciaLayingIllustration } from '@alecia/ui-kit'
 import { cn } from '@alecia/util'
 
-import { MenuSheetClose, MenuSheetContent, MenuSheetTitle } from '../menu-sheet'
+import {
+  MenuSheetClose,
+  MenuSheetContent,
+  MenuSheetDescription,
+  MenuSheetTitle,
+} from '../menu-sheet'
 import { SocialLink } from '../social-link'
 
 const LoopDeLoopText = dynamic(() =>
@@ -113,9 +118,8 @@ export const FullscreenMenu = forwardRef<HTMLElement, FullscreenMenuProps>(
                 style={navStyles}
                 aria-label="Primary Navigation"
               >
-                <MenuSheetTitle className="sr-only">
-                  <p>Site Menu</p>
-                </MenuSheetTitle>
+                <MenuSheetTitle className="sr-only">Site Menu</MenuSheetTitle>
+                <MenuSheetDescription className="sr-only">Site Navigation</MenuSheetDescription>
 
                 <div className="h-screen overflow-y-scroll w-full flex items-center">
                   <div

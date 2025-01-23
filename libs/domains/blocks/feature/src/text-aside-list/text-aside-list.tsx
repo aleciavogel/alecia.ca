@@ -13,7 +13,7 @@ interface TextAsideListProps {
 }
 
 export const TextAsideList: FC<TextAsideListProps> = ({ reverse = false, body = [], ...rest }) => (
-  <div className="grid md:grid-cols-3 gap-6 md:gap-16">
+  <div className="page-content-block grid md:grid-cols-3 gap-6 md:gap-16">
     <AsideList
       {...rest}
       className={classNames({

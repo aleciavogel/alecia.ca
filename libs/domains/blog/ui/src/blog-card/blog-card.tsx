@@ -55,7 +55,7 @@ export const BlogCard = ({
         }),
       )}
     >
-      <Link href={slug ? slug : '#'} className="mb-4 space-y-3 line-clamp-4 md:line-clamp-5">
+      <Link href={slug ? slug : '#'} className="mb-4 space-y-3 line-clamp-6 md:line-clamp-5">
         <Typography
           variant="h3"
           size="2xl"
@@ -87,7 +87,7 @@ export const BlogCard = ({
         <Typography
           variant="small"
           className={cn(
-            'flex gap-2 items-center text-xs',
+            'flex gap-2 items-center text-sm',
             classNames({
               'text-primary-800 dark:text-primary-300': changeOnDarkMode,
               'text-primary-800': !changeOnDarkMode,

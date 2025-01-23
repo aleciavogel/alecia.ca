@@ -19,31 +19,35 @@ export interface ImageWithTextProps {
 export const ImageWithText = ({ image, layout, side, ...rest }: ImageWithTextProps) => {
   if (!image) {
     return (
-      <ImageBlock
-        {...rest}
-        side={stegaClean(side) as ImageBlockSide | null}
-        layout={stegaClean(layout) as ImageBlockLayout | null}
-        imageAlt={''}
-        imageSrc={getPlaceholderImage(800, 600)}
-        width={800}
-        height={600}
-        imgBgColor={null}
-      />
+      <div className="page-content-block">
+        <ImageBlock
+          {...rest}
+          side={stegaClean(side) as ImageBlockSide | null}
+          layout={stegaClean(layout) as ImageBlockLayout | null}
+          imageAlt={''}
+          imageSrc={getPlaceholderImage(800, 600)}
+          width={800}
+          height={600}
+          imgBgColor={null}
+        />
+      </div>
     )
   }
 
   const { width, height, src } = getCroppedImageSrc(image) ?? {}
 
   return (
-    <ImageBlock
-      {...rest}
-      side={stegaClean(side) as ImageBlockSide | null}
-      layout={stegaClean(layout) as ImageBlockLayout | null}
-      imageAlt={image?.alt ?? ''}
-      imageSrc={src ?? getPlaceholderImage(800, 600)}
-      width={width}
-      height={height}
-      imgBgColor={image?.bgColor}
-    />
+    <div className="page-content-block">
+      <ImageBlock
+        {...rest}
+        side={stegaClean(side) as ImageBlockSide | null}
+        layout={stegaClean(layout) as ImageBlockLayout | null}
+        imageAlt={image?.alt ?? ''}
+        imageSrc={src ?? getPlaceholderImage(800, 600)}
+        width={width}
+        height={height}
+        imgBgColor={image?.bgColor}
+      />
+    </div>
   )
 }

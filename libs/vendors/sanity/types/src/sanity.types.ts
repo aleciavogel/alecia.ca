@@ -1464,63 +1464,6 @@ export type GalleryPets = {
   }>
 }
 
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
-}
-
-export type SanityImageAsset = {
-  _id: string
-  _type: 'sanity.imageAsset'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  originalFilename?: string
-  label?: string
-  title?: string
-  description?: string
-  altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
-  uploadId?: string
-  path?: string
-  url?: string
-  metadata?: SanityImageMetadata
-  source?: SanityAssetSourceData
-}
-
-export type SanityAssetSourceData = {
-  _type: 'sanity.assetSourceData'
-  name?: string
-  id?: string
-  url?: string
-}
-
-export type SanityImageMetadata = {
-  _type: 'sanity.imageMetadata'
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
-
 export type CustomHtml = {
   _type: 'custom-html'
   uid?: Uid
@@ -1662,11 +1605,80 @@ export type BlogCategory = {
   metadata?: Metadata
 }
 
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
+export type SanityImageAsset = {
+  _id: string
+  _type: 'sanity.imageAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
+
+export type SanityAssetSourceData = {
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
+}
+
+export type SanityImageMetadata = {
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
+}
+
 export type Metadata = {
   _type: 'metadata'
   slug?: Slug
   title?: string
   description?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  keywords?: Array<string>
   noIndex?: boolean
 }
 
@@ -1873,11 +1885,6 @@ export type AllSanitySchemaTypes =
   | LogoList
   | ImageWithText
   | GalleryPets
-  | SanityImageCrop
-  | SanityImageHotspot
-  | SanityImageAsset
-  | SanityAssetSourceData
-  | SanityImageMetadata
   | CustomHtml
   | CourseList
   | CourseCategory
@@ -1887,6 +1894,11 @@ export type AllSanitySchemaTypes =
   | BlogFrontpage
   | BlogList
   | BlogCategory
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
   | Metadata
   | BlogPostContent
   | AccordionList
@@ -1932,6 +1944,18 @@ export type AllBlogArticlesQueryResult = Array<{
     slug?: Slug
     title?: string
     description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
     noIndex?: boolean
   } | null
 }>
@@ -1966,6 +1990,18 @@ export type BlogArticlesForCategoryQueryResult = Array<{
     slug?: Slug
     title?: string
     description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
     noIndex?: boolean
   } | null
 }>
@@ -1986,8 +2022,20 @@ export type BlogIndexQueryResult = {
       slug?: Slug
       title?: string
       description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      keywords?: Array<string>
       noIndex?: boolean
-      ogimage: null
+      ogimage: string | null
     } | null
   } | null
   articles: Array<{
@@ -2019,6 +2067,18 @@ export type BlogIndexQueryResult = {
       slug?: Slug
       title?: string
       description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      keywords?: Array<string>
       noIndex?: boolean
     } | null
   }>
@@ -2110,6 +2170,18 @@ export type BlogArticlePageQueryResult = {
     slug?: Slug
     title?: string
     description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
     noIndex?: boolean
   } | null
   slug: string | null
@@ -2220,7 +2292,17 @@ export type CoursesByDifficultyQueryResult = Array<{
   metadata: {
     title: string | null
     description: string | null
-    image: null
+    image: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    } | null
   } | null
   numChapters: number | null
   slug: string | null
@@ -2583,7 +2665,17 @@ export type ExperimentIndexQueryResult = {
             metadata: {
               title: string | null
               description: string | null
-              image: null
+              image: {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                _type: 'image'
+              } | null
             } | null
             numChapters: number | null
             slug: string | null
@@ -3038,8 +3130,20 @@ export type ExperimentIndexQueryResult = {
       slug?: Slug
       title?: string
       description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      keywords?: Array<string>
       noIndex?: boolean
-      ogimage: null
+      ogimage: string | null
     } | null
     imageSrc: null
     imageAlt: null
@@ -3486,7 +3590,17 @@ export type HomePageQueryResult = {
           metadata: {
             title: string | null
             description: string | null
-            image: null
+            image: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+            } | null
           } | null
           numChapters: number | null
           slug: string | null
@@ -3941,8 +4055,20 @@ export type HomePageQueryResult = {
     slug?: Slug
     title?: string
     description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
     noIndex?: boolean
-    ogimage: null
+    ogimage: string | null
   } | null
 } | null
 // Variable: pageQuery
@@ -4215,7 +4341,17 @@ export type PageQueryResult = {
           metadata: {
             title: string | null
             description: string | null
-            image: null
+            image: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+            } | null
           } | null
           numChapters: number | null
           slug: string | null
@@ -4670,8 +4806,20 @@ export type PageQueryResult = {
     slug?: Slug
     title?: string
     description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
     noIndex?: boolean
-    ogimage: null
+    ogimage: string | null
   } | null
   headerImageSrc: string | null
   headerImageAlt: string | null
@@ -5068,7 +5216,17 @@ export type ProjectIndexQueryResult = {
             metadata: {
               title: string | null
               description: string | null
-              image: null
+              image: {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                _type: 'image'
+              } | null
             } | null
             numChapters: number | null
             slug: string | null
@@ -5523,8 +5681,20 @@ export type ProjectIndexQueryResult = {
       slug?: Slug
       title?: string
       description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      keywords?: Array<string>
       noIndex?: boolean
-      ogimage: null
+      ogimage: string | null
     } | null
   } | null
   projects: Array<{
@@ -5913,7 +6083,17 @@ export type ProjectPageQueryResult = {
           metadata: {
             title: string | null
             description: string | null
-            image: null
+            image: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+            } | null
           } | null
           numChapters: number | null
           slug: string | null
@@ -6720,8 +6900,20 @@ export type ResourcesIndexQueryResult = {
       slug?: Slug
       title?: string
       description?: string
+      image?: {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+      }
+      keywords?: Array<string>
       noIndex?: boolean
-      ogimage: null
+      ogimage: string | null
     } | null
   } | null
   resources: Array<{

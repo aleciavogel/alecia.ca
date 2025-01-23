@@ -6,5 +6,7 @@ interface TextBlockquoteProps {
 }
 
 export const TextBlockquote = ({ author, quote }: TextBlockquoteProps) => (
-  <Blockquote author={author} quote={quote} />
+  <div className="page-content-block">
+    <Blockquote author={author} quote={quote} />
+  </div>
 )

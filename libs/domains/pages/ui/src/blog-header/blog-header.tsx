@@ -47,7 +47,7 @@ export const BlogHeader: FC<BlogHeaderProps> = ({
             <ZigZagAccent className="fill-primary-300 w-[175px] my-8" />
           </div>
         </div>
-        <div className="md:col-span-2 relative h-full z-[100]">
+        <div className="md:col-span-2 relative h-full z-[100] max-md:page-content-block pointer-events-none">
           <AleciaCouchIllustration
             className={cn('w-full z-[100] md:absolute md:top-0 md:right-0 max-md:-mb-[50%]')}
           />
