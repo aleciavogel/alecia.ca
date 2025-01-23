@@ -7,7 +7,8 @@ export const textCtaQueryPartial = `
     link {
       ${internalLinkQueryPartial}
     }
-  }`
+  }
+`
 
 export const textAsideListQueryPartial = `
   _type == 'text.aside-list' => {
