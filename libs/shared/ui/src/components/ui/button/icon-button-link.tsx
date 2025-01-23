@@ -11,7 +11,7 @@ import { buttonVariants } from './button'
 
 interface IconButtonLinkProps extends VariantProps<typeof buttonVariants> {
   iconName?: string | null
-  href?: string
+  href?: string | null
   children: ReactNode
 }
 
