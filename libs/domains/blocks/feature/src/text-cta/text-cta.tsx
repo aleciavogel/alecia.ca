@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import { PortableTextBlock } from 'next-sanity'
 
 import { IconButtonLink, Typography } from '@alecia/ui-kit'
@@ -36,7 +37,7 @@ export const TextCTA: FC<TextCTAProps> = ({
 
         {link ? (
           <IconButtonLink
-            href={link.slug ?? '#'}
+            href={stegaClean(link.slug) ?? '#'}
             variant="outline"
             size="lg"
             iconName={shouldUseLinkIcon ? linkIcon : icon?.name}

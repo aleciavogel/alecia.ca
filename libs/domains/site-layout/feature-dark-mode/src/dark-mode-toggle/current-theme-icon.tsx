@@ -1,11 +1,13 @@
 'use client'
 
-import { FC, useMemo } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { faAdjust, faMoon, faSunAlt } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTheme } from 'next-themes'
 
 export const CurrentThemeIcon: FC = () => {
+  const [isMounted, setIsMounted] = useState(false)
+
   const { theme } = useTheme()
   const themeIcon = useMemo(() => {
     if (theme === 'system') {
@@ -18,6 +20,14 @@ export const CurrentThemeIcon: FC = () => {
 
     return faMoon
   }, [theme])
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <FontAwesomeIcon
