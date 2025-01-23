@@ -45,7 +45,7 @@ export const blogIndexQuery = defineQuery(`
       'ogimage': image.asset->url + '?w=1200'
     }
   },
-  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && slug.current == $slug]._id))] | order(publishedAt desc) {
+  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id))] | order(publishDate desc) {
     ${blogArticleQueryPartial},
   }
 }`)

@@ -12,25 +12,20 @@ import { EmptyState } from '@alecia/site-layout-ui'
 import { PageContents } from '@alecia/site-navigation'
 
 interface BlogListPageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     category?: string
-  }
+  }>
 }
 
 export default async function BlogListPage({ searchParams }: BlogListPageProps) {
-  const hasCategory =
-    searchParams?.category &&
-    searchParams.category !== 'all' &&
-    searchParams.category !== 'all-posts'
+  const category = (await searchParams)?.category
+
+  const hasCategory = category && category !== 'all' && category !== 'all-posts'
 
   const { articles, page } = await getData<BlogIndexQueryResult>(
     blogIndexQuery,
-    { slug: hasCategory ? searchParams?.category : null },
-    [
-      hasCategory ? `blog.category:${searchParams?.category}` : 'page:blog',
-      'blog.category',
-      'blog.article',
-    ],
+    { slug: hasCategory ? category : null },
+    [hasCategory ? `blog.category:${category}` : 'page:blog', 'blog.category', 'blog.article'],
   )
 
   if (!page) {
