@@ -1,10 +1,10 @@
 import React from 'react'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import { Image as SanityImage } from 'sanity'
 
 import { BlogPortableText, BlogPostBlock } from '@alecia/blog'
-import { ArticleInfo, BlogComments } from '@alecia/blog-ui'
 import { Routes, SITE_BASE_URL } from '@alecia/constants'
 import { HeroHeader } from '@alecia/pages-ui'
 import { articleSlugsQuery, blogArticlePageQuery, settingsQuery } from '@alecia/sanity-queries'
@@ -14,6 +14,9 @@ import { client, getData } from '@alecia/sanity-util/server'
 import { ReadingProgress, SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 import { buildRoute, getPlaceholderImage } from '@alecia/util'
+
+const ArticleInfo = dynamic(() => import('@alecia/blog-ui').then((mod) => mod.ArticleInfo))
+const BlogComments = dynamic(() => import('@alecia/blog-ui').then((mod) => mod.BlogComments))
 
 interface ArticlePageProps {
   params: {
