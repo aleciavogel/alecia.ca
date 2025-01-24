@@ -2,11 +2,11 @@
 
 import type { ComponentPropsWithoutRef, ElementRef } from 'react'
 import { forwardRef } from 'react'
-import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import { clsx } from 'clsx'
 
 import { cn } from '@alecia/util'
 
+import * as HoverCardPrimitive from '../popper/hover-card'
 import { HoverCardArrow } from './hover-card-arrow'
 
 export const HoverCardContent = forwardRef<
@@ -18,7 +18,7 @@ export const HoverCardContent = forwardRef<
     align={align}
     sideOffset={sideOffset}
     className={cn(
-      'z-10 w-[400px]',
+      'z-30 w-[400px]',
       'rounded-md',
       'bg-white dark:bg-gray-900 text-primary-800',
       'text-primary-800 dark:text-primary-300',
