@@ -36,7 +36,6 @@ export async function generateStaticParams() {
   )
 }
 
-// Combine settings data and project data to generate metadata
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const [article, settings] = await Promise.all([
     getData<BlogArticlePageQueryResult>(

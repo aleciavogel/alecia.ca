@@ -1,16 +1,20 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Image } from 'next-sanity/image'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes, ThumbnailDimensions } from '@alecia/constants'
+import { Routes, SITE_BASE_URL, ThumbnailDimensions } from '@alecia/constants'
 import { RenderedBlocks } from '@alecia/pages'
 import { ProjectHeader } from '@alecia/pages-ui'
 import { ProjectPreFooter } from '@alecia/projects-ui'
-import { projectPageQuery, projectSlugsQuery } from '@alecia/sanity-queries'
-import { AllProjectsQueryResult, ProjectPageQueryResult } from '@alecia/sanity-types'
-import { getCroppedImageSrc } from '@alecia/sanity-util'
+import { projectPageQuery, projectSlugsQuery, settingsQuery } from '@alecia/sanity-queries'
+import {
+  AllProjectsQueryResult,
+  ProjectPageQueryResult,
+  SettingsQueryResult,
+} from '@alecia/sanity-types'
+import { getCroppedImageSrc, urlForOpenGraphImage } from '@alecia/sanity-util'
 import { client, getData } from '@alecia/sanity-util/server'
-import { processMetadata } from '@alecia/settings-data-access/server'
 import { SiteWrapper } from '@alecia/site-layout'
 import { PageContents } from '@alecia/site-navigation'
 import { ExtendedImage } from '@alecia/types'
@@ -41,20 +45,78 @@ export async function generateStaticParams() {
   )
 }
 
-// Combine settings data and project data to generate metadata
-export async function generateMetadata({ params }: ProjectPageProps) {
-  const project = await getData<ProjectPageQueryResult>(projectPageQuery, params, [
-    `project:${params.slug}`,
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const [page, settings] = await Promise.all([
+    getData<ProjectPageQueryResult>(
+      projectPageQuery,
+      params,
+      [`project:${params.slug}`, 'project'],
+      { stega: false },
+    ),
+    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
   ])
-  if (!project) notFound()
-  const meta = await processMetadata({
-    metadata: project.metadata,
-    slug: buildRoute(Routes.Projects.Project, params),
-    fallbackTitle: project.title,
-  })
+
+  if (!page) {
+    return {}
+  }
+
+  const projectTags =
+    page.tags?.map((tag) => tag.label).filter((cat) => cat !== null && cat !== undefined) ?? []
+  const pageKeywords = page.metadata?.keywords ?? []
+  const combinedKeywords = [
+    'edmonton',
+    'web development',
+    'full-stack developer',
+    'portfolio',
+    ...pageKeywords,
+    ...projectTags,
+  ]
 
   return {
-    ...meta,
+    metadataBase: new URL('https://' + SITE_BASE_URL),
+    title: page.metadata?.title ?? page.title,
+    description: page.metadata?.description,
+    applicationName: settings?.title,
+    generator: 'Next.js',
+    keywords: combinedKeywords,
+    openGraph: {
+      type: 'website',
+      url:
+        'https://' +
+        SITE_BASE_URL +
+        buildRoute(Routes.Projects.Project, { slug: page.metadata?.slug?.current ?? '/' }),
+      title: page.metadata?.title ?? page.title ?? undefined,
+      description: page.metadata?.description ?? undefined,
+      // TODO: iterate through image blocks to retrieve image URLs
+      images: page.metadata?.image
+        ? [
+            {
+              url: urlForOpenGraphImage(page.metadata.image as SanityImage) ?? '',
+              width: 1200,
+              height: 627,
+              alt: page.metadata?.title || page.title || '',
+            },
+          ]
+        : page.mainImage
+        ? [
+            {
+              url: urlForOpenGraphImage(page.mainImage as SanityImage) ?? '',
+              width: 1200,
+              height: 627,
+              alt: page.mainImage.alt || page.title || '',
+            },
+          ]
+        : settings?.ogimage
+        ? [
+            {
+              url: urlForOpenGraphImage(settings?.ogimage as SanityImage) ?? '',
+              width: 1200,
+              height: 627,
+              alt: page.metadata?.title || page.title || '',
+            },
+          ]
+        : undefined,
+    },
   }
 }
 

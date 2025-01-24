@@ -15,7 +15,7 @@ export const homePageQuery = defineQuery(`
 }`)
 
 export const pageQuery =
-  defineQuery(`*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{
+  defineQuery(`*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{
     ...,
     'headerImageSrc': headerImage.asset->url,
     'headerImageAlt': headerImage.alt,
