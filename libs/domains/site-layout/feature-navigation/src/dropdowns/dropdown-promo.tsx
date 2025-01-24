@@ -1,5 +1,3 @@
-import type { FC } from 'react'
-
 import { ListItem, TeleportListItem } from '@alecia/site-layout-ui'
 import type { InternalLinkProps } from '@alecia/types'
 import {
@@ -18,7 +16,7 @@ interface DropdownPromoProps {
   links: InternalLinkProps[] | null
 }
 
-export const DropdownPromo: FC<DropdownPromoProps> = ({ label, links }) => (
+const DropdownPromo = ({ label, links }: DropdownPromoProps) => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
     <NavigationMenuContent className="bg-primary-900">
@@ -67,3 +65,5 @@ export const DropdownPromo: FC<DropdownPromoProps> = ({ label, links }) => (
     </NavigationMenuContent>
   </NavigationMenuItem>
 )
+
+export default DropdownPromo

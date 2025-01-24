@@ -17,15 +17,13 @@ const ICONS: string[] = [
 
 const FRAME_LENGTH = 50
 
-export type AnimationDirection = 'forward' | 'backward' | 'none'
-
-export const useTeleportAnimation = (animationDirection: Omit<AnimationDirection, 'none'>) => {
+const useTeleportAnimation = (shouldAnimate: boolean) => {
   const [currentIcon, setCurrentIcon] = useState<number>(0)
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null
 
-    if (animationDirection === 'forward') {
+    if (shouldAnimate) {
       interval = setInterval(() => {
         setCurrentIcon((prev) => {
           if (prev !== ICONS.length - 1) {
@@ -37,7 +35,7 @@ export const useTeleportAnimation = (animationDirection: Omit<AnimationDirection
           return prev
         })
       }, FRAME_LENGTH)
-    } else if (animationDirection === 'backward') {
+    } else {
       interval = setInterval(() => {
         setCurrentIcon((prev) => {
           if (prev !== 0) {
@@ -56,9 +54,11 @@ export const useTeleportAnimation = (animationDirection: Omit<AnimationDirection
         clearInterval(interval)
       }
     }
-  }, [animationDirection])
+  }, [shouldAnimate])
 
   return {
     teleportIcon: ICONS[currentIcon] as IconName,
   }
 }
+
+export default useTeleportAnimation

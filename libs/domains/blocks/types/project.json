@@ -1,9 +1,0 @@
-{
-  "name": "blocks-types",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/blocks/types/src",
-  "projectType": "library",
-  "tags": ["scope:blocks", "type:types"],
-  "// targets": "to see all targets run: nx show project blocks-types --web",
-  "targets": {}
-}

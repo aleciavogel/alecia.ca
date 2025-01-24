@@ -2,16 +2,17 @@ import * as React from 'react'
 import dynamic from 'next/dynamic'
 import type { PortableTextBlock } from 'next-sanity'
 
-const AccordionList = dynamic(() => import('@alecia/blocks').then((mod) => mod.AccordionList))
-const CourseList = dynamic(() => import('@alecia/blocks').then((mod) => mod.CourseList))
-const GalleryPets = dynamic(() => import('@alecia/blocks').then((mod) => mod.GalleryPets))
-const NavCard = dynamic(() => import('@alecia/blocks').then((mod) => mod.NavCard))
-const NavIcons = dynamic(() => import('@alecia/blocks').then((mod) => mod.NavIcons))
-const TextAsideList = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextAsideList))
-const TextCTA = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextCTA))
-const TextIntro = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextIntro))
-const ImageBlock = dynamic(() => import('@alecia/blocks').then((mod) => mod.ImageWithText))
-const TextBlockquote = dynamic(() => import('@alecia/blocks').then((mod) => mod.TextBlockquote))
+const AccordionList = dynamic(() => import('./accordion-list'))
+const ArticleList = dynamic(() => import('./article-list'))
+const CourseList = dynamic(() => import('./course-list'))
+const GalleryPets = dynamic(() => import('./gallery-pets'))
+const NavCard = dynamic(() => import('./nav-card'))
+const NavIcons = dynamic(() => import('./nav-icons'))
+const TextAsideList = dynamic(() => import('./text-aside-list'))
+const TextCTA = dynamic(() => import('./text-cta'))
+const TextIntro = dynamic(() => import('./text-intro'))
+const ImageWithText = dynamic(() => import('./image-with-text'))
+const TextBlockquote = dynamic(() => import('./text-blockquote'))
 
 // TODO: attempt to fix the type later
 interface BlocksProps {
@@ -28,7 +29,7 @@ const RenderedBlocks = ({ modules }: BlocksProps) =>
       case 'gallery.pets':
         return <GalleryPets key={module._key} {...module} />
       case 'image-with-text':
-        return <ImageBlock key={module._key} {...module} />
+        return <ImageWithText key={module._key} {...module} />
       case 'nav.card':
         return <NavCard key={module._key} {...module} />
       case 'nav.icons':

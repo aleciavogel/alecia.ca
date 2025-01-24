@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import { IconName } from '@fortawesome/pro-light-svg-icons'
 import { faArrowRightLong } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,7 +15,7 @@ interface CourseProps extends SingleCourse {
   className?: string
 }
 
-export const CourseCard: FC<CourseProps> = ({
+const CourseCard = ({
   className,
   slug = '#',
   title = 'Untitled',
@@ -25,7 +24,7 @@ export const CourseCard: FC<CourseProps> = ({
   imageSrc,
   imageAlt,
   categories,
-}) => {
+}: CourseProps) => {
   return (
     <CardItem
       href={slug ?? '#'}
@@ -105,3 +104,5 @@ export const CourseCard: FC<CourseProps> = ({
     </CardItem>
   )
 }
+
+export default CourseCard
