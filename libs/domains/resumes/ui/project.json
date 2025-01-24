@@ -1,9 +1,0 @@
-{
-  "name": "resumes-ui",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/resumes/ui/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project resumes-ui --web",
-  "targets": {}
-}

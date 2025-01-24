@@ -18,7 +18,6 @@
     "paths/*": {
       "@alecia/algolia-constants/*": ["libs/vendors/algolia/constants/src/*"],
       "@alecia/animations/*": ["libs/domains/animations/feature/src/*"],
-      "@alecia/authors-data-access/*": ["libs/domains/authors/data-access/src/*"],
       "@alecia/blocks/*": ["libs/domains/blocks/feature/src/*"],
       "@alecia/blocks-types/*": ["libs/domains/blocks/types/src/*"],
       "@alecia/blocks-ui/*": ["libs/domains/blocks/ui/src/*"],

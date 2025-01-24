@@ -6,8 +6,6 @@ import { SANITY_TOKEN } from '@alecia/sanity-constants/server'
 
 import { client as rawClient } from './client'
 
-import 'server-only'
-
 const DEFAULT_PARAMS = {} as QueryParams
 const DEFAULT_TAGS = [] as string[]
 

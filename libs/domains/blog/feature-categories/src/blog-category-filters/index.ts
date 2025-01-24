@@ -1,1 +1,0 @@
-export { BlogCategoryFilters } from './filters'

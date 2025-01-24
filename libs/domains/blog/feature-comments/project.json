@@ -1,9 +1,0 @@
-{
-  "name": "blog-comments",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/blog/feature-comments/src",
-  "projectType": "library",
-  "tags": ["scope:blog", "type:feature", "domain:blog", "feature:comments"],
-  "// targets": "to see all targets run: nx show project blog-comments --web",
-  "targets": {}
-}

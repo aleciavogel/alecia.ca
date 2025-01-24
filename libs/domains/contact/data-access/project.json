@@ -1,9 +1,0 @@
-{
-  "name": "contact-data-access",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/contact/data-access/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project contact-data-access --web",
-  "targets": {}
-}

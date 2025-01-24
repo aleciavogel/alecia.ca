@@ -1,6 +1,0 @@
-export * from './footer-bio'
-export * from './footer-bottom'
-export * from './footer-illustration'
-export * from './footer-info'
-export * from './footer-nav'
-export * from './footer-social-links'
