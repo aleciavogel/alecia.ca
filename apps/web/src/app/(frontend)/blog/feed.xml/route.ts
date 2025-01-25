@@ -35,7 +35,7 @@ export async function GET() {
     meta.map((post) => {
       feed.item({
         title: post.title ?? 'Untitled',
-        description: post.description ?? 'No description',
+        description: post.description ?? 'No description available',
         url: `https://${SITE_BASE_URL}/blog/${post.url}`,
         categories: post.tags?.filter((tag) => tag !== null) || [],
         // TODO: Update if author field is added to blog articles
