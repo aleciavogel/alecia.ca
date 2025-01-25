@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 import { preview } from 'sanity-plugin-icon-picker'
 
-import { Illustrations } from '@alecia/constants'
+import { Illustrations } from '@alecia/constants/images'
 
 import { blockTypes, iconPickerOptions, linkableResourceFields } from '../fragments'
 

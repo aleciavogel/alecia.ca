@@ -1,7 +1,7 @@
-import { type FC } from 'react'
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from 'next-sanity'
 
-import { AnchorTag, Typography } from '@alecia/ui-kit'
+import AnchorTag from '@alecia/ui-kit/ui/anchor-tag'
+import Typography from '@alecia/ui-kit/ui/typography'
 
 interface AccordionPortableTextProps {
   value?: PortableTextBlock[]
@@ -27,6 +27,8 @@ const accordionPortableTextComponents = (): PortableTextComponents => ({
  * Accordion Portable Text component
  * For use with basic text content (no images, code snippets, etc.)
  */
-export const AccordionPortableText: FC<AccordionPortableTextProps> = ({ value = [] }) => (
+const AccordionPortableText = ({ value = [] }: AccordionPortableTextProps) => (
   <PortableText components={accordionPortableTextComponents()} value={value} />
 )
+
+export default AccordionPortableText

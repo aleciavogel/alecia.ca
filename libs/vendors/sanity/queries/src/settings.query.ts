@@ -5,12 +5,12 @@ import {
   blogDropdownQueryPartial,
   promoDropdownQueryPartial,
   quoteDropdownQueryPartial,
-} from './dropdown.query'
+} from './nav/dropdown.query'
 import {
   internalLinkQueryPartial,
   linkListQueryPartial,
   socialLinkQueryPartial,
-} from './links.query'
+} from './nav/links.query'
 
 export const settingsQuery = defineQuery(`
   *[_type == 'settings'][0]{

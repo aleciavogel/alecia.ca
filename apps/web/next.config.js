@@ -20,7 +20,6 @@ const nextConfig = {
       fullUrl: true,
     },
   },
-  swcMinify: true,
   productionBrowserSourceMaps: true,
 }
 

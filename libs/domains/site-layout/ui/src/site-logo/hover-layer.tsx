@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import Link from 'next/link'
 
-import { AleciaLogo } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import AleciaLogo from '@alecia/graphics/brand/alecia-logo'
+import { cn } from '@alecia/util/styles'
 
 /**
  * Site logo component shown in the header when hovered.
@@ -10,7 +10,7 @@ import { cn } from '@alecia/util'
  * it shows as one color when transitioning between two differently colored
  * sections (purple bg to white, for example.
  */
-export const SiteLogoHoverLayer: FC = () => (
+const SiteLogoHoverLayer: FC = () => (
   <Link
     href="/"
     title="Home"
@@ -23,3 +23,5 @@ export const SiteLogoHoverLayer: FC = () => (
     <AleciaLogo className="h-10 md:h-14 w-auto" />
   </Link>
 )
+
+export default SiteLogoHoverLayer

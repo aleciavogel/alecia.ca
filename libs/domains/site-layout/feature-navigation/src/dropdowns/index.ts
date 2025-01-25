@@ -1,4 +1,6 @@
-export * from './dropdown-about'
-export * from './dropdown-blog'
-export * from './dropdown-promo'
-export * from './dropdown-quote'
+import DropdownAbout from './about'
+import DropdownBlog from './blog'
+import DropdownPromo from './promo'
+import DropdownQuote from './quote'
+
+export { DropdownAbout, DropdownBlog, DropdownPromo, DropdownQuote }

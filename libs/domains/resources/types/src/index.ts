@@ -1,4 +1,4 @@
-import { ResourcesIndexQueryResult } from '@alecia/sanity-types'
+import { ResourcesIndexQueryResult } from '@alecia/sanity-types/sanity.types'
 
 /**
  * Type definition of a single resource category.

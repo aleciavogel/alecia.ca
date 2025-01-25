@@ -1,8 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@alecia/ui-kit'
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardRoot as Card,
+  CardTitle,
+} from '@alecia/ui-kit/ui/card'
 
-import { SubmissionSuccess } from '..'
+import SubmissionSuccess from '..'
 
 const meta: Meta<typeof SubmissionSuccess> = {
   title: 'Features/Contact/Submission Success',

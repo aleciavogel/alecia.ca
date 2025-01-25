@@ -3,23 +3,30 @@ import { notFound } from 'next/navigation'
 import { Image } from 'next-sanity/image'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes, SITE_BASE_URL, ThumbnailDimensions } from '@alecia/constants'
-import { RenderedBlocks } from '@alecia/pages'
-import { ProjectHeader } from '@alecia/pages-ui'
-import { ProjectPreFooter } from '@alecia/projects-ui'
-import { projectPageQuery, projectSlugsQuery, settingsQuery } from '@alecia/sanity-queries'
+import RenderedBlocks from '@alecia/blocks/rendered'
+import { ThumbnailDimensions } from '@alecia/constants/images'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import ProjectHeader from '@alecia/pages-ui/project-header'
+import ProjectPreFooter from '@alecia/projects-ui/prefooter'
+import { projectPageQuery, projectSlugsQuery } from '@alecia/sanity-queries/projects/projects.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
 import {
   AllProjectsQueryResult,
   ProjectPageQueryResult,
   SettingsQueryResult,
-} from '@alecia/sanity-types'
-import { getCroppedImageSrc, urlForOpenGraphImage } from '@alecia/sanity-util'
-import { client, getData } from '@alecia/sanity-util/server'
-import { SiteWrapper } from '@alecia/site-layout'
-import { PageContents } from '@alecia/site-navigation'
-import { ExtendedImage } from '@alecia/types'
-import { Typography } from '@alecia/ui-kit'
-import { buildRoute, getPlaceholderImage } from '@alecia/util'
+} from '@alecia/sanity-types/sanity.types'
+import {
+  getCroppedImageSrc,
+  urlForOpenGraphImage,
+} from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { client } from '@alecia/sanity-util/server-utils/client'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
+import { ExtendedImage } from '@alecia/types/images'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { getPlaceholderImage } from '@alecia/util/images'
+import { buildRoute } from '@alecia/util/routes'
 
 type SingleProject = AllProjectsQueryResult[number]
 

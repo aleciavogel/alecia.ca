@@ -1,15 +1,10 @@
-import type { FC } from 'react'
+import { NavCardBlockType } from '@alecia/block-types'
 
-import { CenteredNavLink } from '..'
+import CenteredNavLink from './centered-nav-link'
 
-export interface NavCardLinkProps {
-  _id?: string
-  label?: string
-  subtitle?: string
-  slug?: string | null
-}
+type NavCardLink = NonNullable<NavCardBlockType['links']>[number]
 
-export const NavCardListItem: FC<NavCardLinkProps> = ({ slug, label, subtitle }) => (
+export const NavCardListItem = ({ slug, label, subtitle }: NavCardLink) => (
   <li>
     <CenteredNavLink href={slug ?? '#'} title={label ?? ''} description={subtitle ?? ''} />
   </li>

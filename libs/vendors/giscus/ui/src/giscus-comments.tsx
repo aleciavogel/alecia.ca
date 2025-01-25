@@ -1,7 +1,7 @@
 'use client'
 
-import React, { type FC } from 'react'
 import Giscus from '@giscus/react'
+import { stegaClean } from 'next-sanity'
 import { useTheme } from 'next-themes'
 
 import { GITHUB_CATEGORY_ID, GITHUB_REPO_ID, GITHUB_REPO_NAME } from '@alecia/giscus-constants'
@@ -11,8 +11,8 @@ interface GiscusCommentsProps {
   category?: string
 }
 
-export const GiscusComments: FC<GiscusCommentsProps> = ({ title, category = 'Blog Comments' }) => {
-  const { theme } = useTheme()
+const GiscusComments = ({ title, category = 'Blog Articles' }: GiscusCommentsProps) => {
+  const { resolvedTheme } = useTheme()
 
   return (
     <Giscus
@@ -21,13 +21,15 @@ export const GiscusComments: FC<GiscusCommentsProps> = ({ title, category = 'Blo
       category={category}
       categoryId={GITHUB_CATEGORY_ID}
       mapping="specific"
-      term={title}
+      term={stegaClean(title)}
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme={theme === 'dark' ? 'transparent_dark' : 'light'}
+      theme={resolvedTheme === 'dark' ? 'transparent_dark' : 'light'}
       lang="en"
       loading="lazy"
     />
   )
 }
+
+export default GiscusComments

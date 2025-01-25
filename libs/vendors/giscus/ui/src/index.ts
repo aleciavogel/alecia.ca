@@ -1,1 +1,3 @@
-export * from './giscus-comments'
+import GiscusComments from './giscus-comments'
+
+export default GiscusComments

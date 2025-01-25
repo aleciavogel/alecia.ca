@@ -1,12 +1,10 @@
 import { draftMode } from 'next/headers'
 import { FilteredResponseQueryOptions, type QueryParams } from 'next-sanity'
 
-import { IS_PRODUCTION_MODE } from '@alecia/constants'
+import { IS_PRODUCTION_MODE } from '@alecia/constants/env'
 import { SANITY_TOKEN } from '@alecia/sanity-constants/server'
 
 import { client as rawClient } from './client'
-
-import 'server-only'
 
 const DEFAULT_PARAMS = {} as QueryParams
 const DEFAULT_TAGS = [] as string[]

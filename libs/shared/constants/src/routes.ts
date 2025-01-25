@@ -17,7 +17,10 @@ export const Routes = {
     },
     Newsletters: {
       // TODO: create this route for buttondown
-      Subscribe: '/newsletter/subscribe',
+      Subscribe: '/api/newsletter/subscribe',
+    },
+    Sanity: {
+      DisableDraft: '/api/sanity/disable-draft',
     },
   },
   Home: '/',

@@ -2,7 +2,7 @@ import { faListDropdown } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { count } from '@alecia/sanity-util'
+import { count } from '@alecia/sanity-util/client-utils/sanity-text-utils'
 
 export const mainMenu = defineType({
   name: 'menu.main',

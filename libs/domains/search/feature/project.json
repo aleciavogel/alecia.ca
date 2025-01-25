@@ -1,9 +1,0 @@
-{
-  "name": "search",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/search/feature/src",
-  "projectType": "library",
-  "tags": ["scope:search", "type:feature"],
-  "// targets": "to see all targets run: nx show project search --web",
-  "targets": {}
-}

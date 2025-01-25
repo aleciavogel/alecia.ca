@@ -1,5 +1,0 @@
-export * from './alecia-couch'
-export * from './alecia-idea'
-export * from './alecia-laying'
-export * from './alecia-sit'
-export * from './alecia-wave'

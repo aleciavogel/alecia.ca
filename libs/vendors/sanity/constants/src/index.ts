@@ -1,4 +1,4 @@
-import { assertValue } from '@alecia/util'
+import { assertValue } from '@alecia/util/assert-value'
 
 /**
  * The dataset name in Sanity.io

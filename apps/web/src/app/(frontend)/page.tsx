@@ -1,19 +1,21 @@
 import { Metadata } from 'next'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes, SITE_BASE_URL } from '@alecia/constants'
-import { RenderedBlocks } from '@alecia/pages'
-import { WavyHeader } from '@alecia/pages-ui'
-import { pageQuery, settingsQuery } from '@alecia/sanity-queries'
-import { PageQueryResult, SettingsQueryResult } from '@alecia/sanity-types'
-import { urlForOpenGraphImage } from '@alecia/sanity-util'
-import { getData } from '@alecia/sanity-util/server'
-import { SiteWrapper } from '@alecia/site-layout'
-import { PageContents } from '@alecia/site-navigation'
+import RenderedBlocks from '@alecia/blocks/rendered'
+import { Illustrations } from '@alecia/constants/images'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import WavyHeader from '@alecia/pages-ui/wavy-header'
+import { homePageQuery } from '@alecia/sanity-queries/pages.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
+import { HomePageQueryResult, SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
+import { urlForOpenGraphImage } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([
-    getData<PageQueryResult>(pageQuery, { slug: 'index' }, [`page:index`], {
+    getData<HomePageQueryResult>(homePageQuery, {}, [`page:index`], {
       stega: false,
     }),
     getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
@@ -62,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const data = await getData<PageQueryResult>(pageQuery, { slug: 'index' }, [`page:index`])
+  const data = await getData<HomePageQueryResult>(homePageQuery, {}, [`page:index`])
 
   return (
     <SiteWrapper>
@@ -70,6 +72,7 @@ export default async function HomePage() {
         title={data?.title ?? "I'm Alecia Vogel"}
         pretitle={data?.pretitle ?? 'Oh, hey!'}
         subtitle={data?.subtitle ?? 'Welcome to my little corner of the internet.'}
+        headerIllustration={(data?.headerIllustration as Illustrations) ?? 'none'}
       />
       <PageContents className="pb-48">
         <RenderedBlocks modules={data?.modules} />

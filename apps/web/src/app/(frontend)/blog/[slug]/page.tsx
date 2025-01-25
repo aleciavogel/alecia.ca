@@ -2,21 +2,32 @@ import React from 'react'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
+import { PortableTextBlock } from 'next-sanity'
 import { Image as SanityImage } from 'sanity'
 
-import { BlogPortableText, BlogPostBlock } from '@alecia/blog'
-import { Routes, SITE_BASE_URL } from '@alecia/constants'
-import { HeroHeader } from '@alecia/pages-ui'
-import { articleSlugsQuery, blogArticlePageQuery, settingsQuery } from '@alecia/sanity-queries'
-import { BlogArticlePageQueryResult, SettingsQueryResult } from '@alecia/sanity-types'
-import { getCroppedImageSrc, urlForOpenGraphImage } from '@alecia/sanity-util'
-import { client, getData } from '@alecia/sanity-util/server'
-import { ReadingProgress, SiteWrapper } from '@alecia/site-layout'
-import { PageContents } from '@alecia/site-navigation'
-import { buildRoute, getPlaceholderImage } from '@alecia/util'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import HeroHeader from '@alecia/pages-ui/hero-header'
+import {
+  articleSlugsQuery,
+  blogArticlePageQuery,
+} from '@alecia/sanity-queries/blog/blog-article.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
+import { BlogArticlePageQueryResult, SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
+import {
+  getCroppedImageSrc,
+  urlForOpenGraphImage,
+} from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { client } from '@alecia/sanity-util/server-utils/client'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import ReadingProgress from '@alecia/scroll/components/reading-progress'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
+import { getPlaceholderImage } from '@alecia/util/images'
+import { buildRoute } from '@alecia/util/routes'
 
-const ArticleInfo = dynamic(() => import('@alecia/blog-ui').then((mod) => mod.ArticleInfo))
-const BlogComments = dynamic(() => import('@alecia/blog-ui').then((mod) => mod.BlogComments))
+const ArticleInfo = dynamic(() => import('@alecia/blog-ui/article-info'))
+const BlogComments = dynamic(() => import('@alecia/blog/comments'))
+const BlogPortableText = dynamic(() => import('@alecia/blog/blog-portable-text'))
 
 interface ArticlePageProps {
   params: {
@@ -159,7 +170,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           // are components that I want to style differently. For now this works...
           className="flex flex-col gap-6 drop-cap page-content-block"
         >
-          <BlogPortableText value={article.body as BlogPostBlock[] | undefined} />
+          <BlogPortableText value={article.body as PortableTextBlock[] | undefined} />
         </div>
         <BlogComments title={article.title} />
       </PageContents>

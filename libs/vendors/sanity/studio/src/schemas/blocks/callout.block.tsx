@@ -2,7 +2,7 @@ import { faMagnifyingGlass } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { getBlockText } from '@alecia/sanity-util'
+import { getBlockText } from '@alecia/sanity-util/client-utils/sanity-text-utils'
 
 export const callout = defineType({
   name: 'callout',

@@ -1,23 +1,24 @@
-import * as React from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes, SITE_BASE_URL } from '@alecia/constants'
-import { RenderedBlocks } from '@alecia/pages'
-import { SimpleHeader } from '@alecia/pages-ui'
-import { Resources } from '@alecia/resources'
-import { pageQuery, resourcesIndexQuery, settingsQuery } from '@alecia/sanity-queries'
+import RenderedBlocks from '@alecia/blocks/rendered'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import SimpleHeader from '@alecia/pages-ui/simple-header'
+import ResourcesList from '@alecia/resources/resources-list'
+import { pageQuery } from '@alecia/sanity-queries/pages.query'
+import { resourcesIndexQuery } from '@alecia/sanity-queries/resources/resources.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
 import {
   PageQueryResult,
   ResourcesIndexQueryResult,
   SettingsQueryResult,
-} from '@alecia/sanity-types'
-import { urlForOpenGraphImage } from '@alecia/sanity-util'
-import { getData } from '@alecia/sanity-util/server'
-import { SiteWrapper } from '@alecia/site-layout'
-import { EmptyState } from '@alecia/site-layout-ui'
-import { PageContents } from '@alecia/site-navigation'
+} from '@alecia/sanity-types/sanity.types'
+import { urlForOpenGraphImage } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import EmptyState from '@alecia/site-layout-ui/states/empty'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([
@@ -88,7 +89,7 @@ export default async function ProjectsPage() {
         headerIllustration={page.headerIllustration ?? 'none'}
       />
       <PageContents className="pt-56 lg:pb-36">
-        {noLinks ? <EmptyState /> : <Resources resources={resources} />}
+        {noLinks ? <EmptyState /> : <ResourcesList resources={resources} />}
         <RenderedBlocks modules={page.modules} />
       </PageContents>
     </SiteWrapper>

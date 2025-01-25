@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 export const pageVariants = cva(
   cn(

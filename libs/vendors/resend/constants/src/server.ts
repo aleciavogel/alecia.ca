@@ -1,4 +1,4 @@
-import { assertValue } from '@alecia/util'
+import { assertValue } from '@alecia/util/assert-value'
 
 export const RESEND_API_KEY = assertValue(
   process.env['RESEND_API_KEY'],

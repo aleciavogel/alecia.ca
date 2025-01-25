@@ -1,9 +1,0 @@
-{
-  "name": "code-snippets",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/code-snippets/feature/src",
-  "projectType": "library",
-  "tags": ["scope:code-snippets", "type:feature", "domain:code-snippets"],
-  "// targets": "to see all targets run: nx show project code-snippets --web",
-  "targets": {}
-}

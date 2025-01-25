@@ -4,11 +4,12 @@ import { JSDOM } from 'jsdom'
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-import { Routes } from '@alecia/constants'
+import { Routes } from '@alecia/constants/routes'
 import { ContactFormValues } from '@alecia/contact-types'
-import { ContactFormConfirmationEmail, ContactFormSubmissionEmail } from '@alecia/email-templates'
+import ContactFormConfirmationEmail from '@alecia/email-templates/templates/contact-form/confirmation'
+import ContactFormSubmissionEmail from '@alecia/email-templates/templates/contact-form/submission'
 import { RESEND_API_KEY } from '@alecia/resend-constants/server'
-import { api } from '@alecia/util'
+import { api } from '@alecia/util/api'
 
 const resend = new Resend(RESEND_API_KEY)
 

@@ -1,7 +1,7 @@
-import { SimpleHeader } from '@alecia/pages-ui'
-import { SiteWrapper } from '@alecia/site-layout'
-import { EmptyState } from '@alecia/site-layout-ui'
-import { PageContents } from '@alecia/site-navigation'
+import SimpleHeader from '@alecia/pages-ui/simple-header'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import EmptyState from '@alecia/site-layout-ui/states/empty'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
 
 export default function NotFound() {
   return (

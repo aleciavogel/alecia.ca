@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from '@alecia/ui-kit'
-import { getPlaceholderImage } from '@alecia/util'
+import { getPlaceholderImage } from '@alecia/util/styles'
 
-import { ExperimentDialog } from '../experiment-dialog'
+import { ExperimentDialog } from '../index'
 
 const meta: Meta<typeof ExperimentDialog> = {
   title: 'Features/Experiments/Experiment Dialog',

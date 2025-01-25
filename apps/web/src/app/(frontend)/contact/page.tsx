@@ -2,18 +2,20 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Image as SanityImage } from 'sanity'
 
-import { CalendlyScheduleButton } from '@alecia/calendly-ui'
-import { Routes, SITE_BASE_URL } from '@alecia/constants'
-import { ContactFormCard } from '@alecia/contact'
-import { RenderedBlocks } from '@alecia/pages'
-import { FormHeader } from '@alecia/pages-ui'
-import { pageQuery, settingsQuery } from '@alecia/sanity-queries'
-import { PageQueryResult, SettingsQueryResult } from '@alecia/sanity-types'
-import { urlForOpenGraphImage } from '@alecia/sanity-util'
-import { getData } from '@alecia/sanity-util/server'
-import { SiteWrapper } from '@alecia/site-layout'
-import { FooterSocialLinks, PageContents } from '@alecia/site-navigation'
-import { Typography } from '@alecia/ui-kit'
+import RenderedBlocks from '@alecia/blocks/rendered'
+import CalendlyScheduleButton from '@alecia/calendly-ui/schedule-button'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import ContactFormCard from '@alecia/contact/components/contact-form-card'
+import FormHeader from '@alecia/pages-ui/form-header'
+import { pageQuery } from '@alecia/sanity-queries/pages.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
+import { PageQueryResult, SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
+import { urlForOpenGraphImage } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import FooterSocialLinks from '@alecia/site-navigation/footer-nav/bottom/social-links'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
+import Typography from '@alecia/ui-kit/ui/typography'
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([
@@ -81,7 +83,7 @@ export default async function ContactPage() {
         <ContactFormCard />
       </FormHeader>
       <PageContents className="pt-80 lg:pt-28 pb-32 lg:pb-48">
-        <div className="space-y-6 page-content max-lg:hidden">
+        <div className="space-y-6 page-content-block max-lg:hidden">
           <Typography variant="blockPretitle" className="text-primary-900">
             Connect with me
           </Typography>

@@ -2,7 +2,7 @@ import { faMessageQuote } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { count, getBlockText } from '@alecia/sanity-util'
+import { count, getBlockText } from '@alecia/sanity-util/client-utils/sanity-text-utils'
 
 /**
  * Testimonial list module

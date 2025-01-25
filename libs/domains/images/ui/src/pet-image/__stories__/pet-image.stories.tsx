@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { PetImage } from '..'
+import PetImage from '..'
 
 /**
  * Used in the PetGallery block and is a hover card that displays a pet's name, image,

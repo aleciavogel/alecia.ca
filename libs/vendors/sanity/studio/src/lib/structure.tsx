@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { StructureResolver } from 'sanity/structure'
 
-import { group, singleton } from '@alecia/sanity-util'
+import { group, singleton } from '@alecia/sanity-util/client-utils/sanity-structure-utils'
 
 export const structure: StructureResolver = (S) =>
   S.list()

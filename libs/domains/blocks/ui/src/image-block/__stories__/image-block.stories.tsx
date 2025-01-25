@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { getPlaceholderImage } from '@alecia/util'
+import { getPlaceholderImage } from '@alecia/util/styles'
 
 import { ImageBlock, ImageBlockLayout, ImageBlockSide } from '..'
 
