@@ -36,13 +36,17 @@ const FormHeader = ({
   >
     <div
       className={cn(
-        'page-container page-content-block',
+        'page-container md:page-content-block',
         'w-full text-white',
         'grid grid-cols-1 lg:grid-cols-2',
         'gap-10 pb-8',
       )}
     >
-      <div className={cn('relative h-full flex items-center max-lg:justify-center')}>
+      <div
+        className={cn(
+          'relative h-full flex items-center max-lg:justify-center max-md:page-content-block',
+        )}
+      >
         <div>
           {pretitle ? (
             <Typography variant="pretitle" className="mb-3 max-lg:text-center ">
