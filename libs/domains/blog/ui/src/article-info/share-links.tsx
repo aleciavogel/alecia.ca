@@ -21,12 +21,12 @@ const ShareLinks = () => {
   const pathname = usePathname()
   const subject = 'Check out this article 👩‍💻'
   const url = `https://${SITE_BASE_URL}/blog/${pathname}`
-  const encodedText = encodeURIComponent(`Hey! You should give this a read: ${url}`)
+  const encodedText = encodeURIComponent(`Hey!\n\nYou should give this a read: ${url}`)
 
   // Retrieve the current absolute url of the page for Next.js
 
   const shareableLink = encodeURIComponent(url)
-  const shareablePost = encodeURIComponent(`${subject} ${url}`)
+  const shareablePost = encodeURIComponent(`${subject}\n${url}`)
   const shareableSubject = encodeURIComponent(subject)
 
   return (
