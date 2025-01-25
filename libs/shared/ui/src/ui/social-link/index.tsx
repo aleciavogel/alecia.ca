@@ -16,7 +16,7 @@ interface SocialLinkProps extends Omit<SocialLinkType, '_key' | '_type'> {
   className?: string
 }
 
-const SocialLink = ({ url, label, className, ...props }: SocialLinkProps) => {
+const SocialLink = ({ url, className, ...props }: SocialLinkProps) => {
   const socialSite = url ?? ''
   const iconSource = new URL(socialSite).hostname.replace('www.', '').split('.')[0].toLowerCase()
   const iconName = SOCIAL_ICON_MAP[iconSource] as IconName
@@ -26,7 +26,7 @@ const SocialLink = ({ url, label, className, ...props }: SocialLinkProps) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <a
-            aria-label={label}
+            aria-label={props.label}
             target="_blank"
             rel="noreferrer"
             className={cn('text-current opacity-100 hover:opacity-80 transition-all', className)}
@@ -37,7 +37,7 @@ const SocialLink = ({ url, label, className, ...props }: SocialLinkProps) => {
           </a>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{label}</p>
+          <p>{props.label}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

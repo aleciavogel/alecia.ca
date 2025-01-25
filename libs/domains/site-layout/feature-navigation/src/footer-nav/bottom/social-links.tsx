@@ -19,7 +19,11 @@ const FooterSocialLinks = async ({ className, ...rest }: FooterSocialLinksProps)
   return (
     <div className={cn('space-x-6', className)} {...rest}>
       {data.social.map((social) => (
-        <SocialLink key={`footer-${social._key}`} url={stegaClean(social.url) ?? '#'} />
+        <SocialLink
+          key={`footer-${social._key}`}
+          url={stegaClean(social.url) ?? '#'}
+          label={stegaClean(social.label)}
+        />
       ))}
     </div>
   )
