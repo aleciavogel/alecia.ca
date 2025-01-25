@@ -3,7 +3,7 @@ import { PortableTextBlock } from 'next-sanity'
 import { Image } from 'next-sanity/image'
 
 // TODO: Replace?
-import BasicBlockContent from '@alecia/ui-kit/ui/portable-text/basic-block-content'
+import BasicPortableText from '@alecia/ui-kit/ui/portable-text/basic-portable-text'
 
 export enum ImageBlockLayout {
   Float = 'float',
@@ -100,10 +100,10 @@ export const ImageBlock = ({
             'md:flex md:flex-col md:justify-center': centeredText,
           })}
         >
-          <BasicBlockContent value={body ?? []} />
+          <BasicPortableText value={body ?? []} />
         </div>
       ) : (
-        <BasicBlockContent value={body ?? []} />
+        <BasicPortableText value={body ?? []} />
       )}
     </div>
   )
