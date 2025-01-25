@@ -100,10 +100,10 @@ export const ImageBlock = ({
             'md:flex md:flex-col md:justify-center': centeredText,
           })}
         >
-          <BasicPortableText value={body ?? []} />
+          <BasicPortableText value={body ?? []} changeOnDarkMode />
         </div>
       ) : (
-        <BasicPortableText value={body ?? []} />
+        <BasicPortableText value={body ?? []} changeOnDarkMode />
       )}
     </div>
   )
