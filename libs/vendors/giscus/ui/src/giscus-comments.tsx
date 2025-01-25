@@ -11,7 +11,7 @@ interface GiscusCommentsProps {
 }
 
 const GiscusComments = ({ title, category = 'Blog Comments' }: GiscusCommentsProps) => {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   return (
     <Giscus
@@ -24,7 +24,7 @@ const GiscusComments = ({ title, category = 'Blog Comments' }: GiscusCommentsPro
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme={theme === 'dark' ? 'transparent_dark' : 'light'}
+      theme={resolvedTheme === 'dark' ? 'transparent_dark' : 'light'}
       lang="en"
       loading="lazy"
     />
