@@ -34,7 +34,7 @@ const WavyText = ({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 300 37.5"
-      className={cn('w-full', className)}
+      className={cn('w-full pointer-events-none', className)}
       {...props}
     >
       <path
