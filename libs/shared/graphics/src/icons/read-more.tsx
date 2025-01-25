@@ -1,8 +1,6 @@
-import { type FC } from 'react'
+import type { VectorProps } from '@alecia/types/svg'
 
-import type { VectorProps } from '@alecia/types'
-
-export const ReadMoreArrowIcon: FC<VectorProps> = (props) => (
+const ReadMoreArrowIcon = (props: VectorProps) => (
   <svg
     fill="none"
     stroke="currentColor"
@@ -18,3 +16,5 @@ export const ReadMoreArrowIcon: FC<VectorProps> = (props) => (
     />
   </svg>
 )
+
+export default ReadMoreArrowIcon

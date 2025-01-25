@@ -1,7 +1,7 @@
 import ExperimentLink from '@alecia/experiments/experiment-link'
-import { ExperimentIndexQueryResult } from '@alecia/sanity-types/sanity.types'
+import { ExperimentsIndexQueryResult } from '@alecia/sanity-types/sanity.types'
 
-type ExperimentsResults = NonNullable<ExperimentIndexQueryResult['experiments']>
+type ExperimentsResults = NonNullable<ExperimentsIndexQueryResult['experiments']>
 
 interface ExperimentsListProps {
   experiments: ExperimentsResults

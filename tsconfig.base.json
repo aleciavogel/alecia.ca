@@ -78,7 +78,7 @@
       "@alecia/quizzes-ui": ["libs/domains/quizzes/ui/src/index.ts"],
       "@alecia/quizzes-ui/*": ["libs/domains/quizzes/ui/src/*"],
       "@alecia/quizzes/*": ["libs/domains/quizzes/feature/src/*"],
-      "@alecia/resend-constants/server": ["libs/domains/quizzes/ui/src/server.ts"],
+      "@alecia/resend-constants/server": ["libs/vendors/resend/constants/src/server.ts"],
       "@alecia/resources": ["libs/domains/resources/feature/src/index.ts"],
       "@alecia/resources-types": ["libs/domains/resources/types/src/index.ts"],
       "@alecia/resources-types/*": ["libs/domains/resources/types/src/*"],

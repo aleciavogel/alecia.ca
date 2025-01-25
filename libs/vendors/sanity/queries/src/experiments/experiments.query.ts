@@ -21,7 +21,7 @@ export const allExperimentsQuery = defineQuery(`
   }
 `)
 
-export const experimentIndexQuery = defineQuery(`
+export const experimentsIndexQuery = defineQuery(`
 {
   'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{
     ...,

@@ -4,7 +4,7 @@ import { animated } from '@react-spring/web'
 import classnames from 'classnames'
 import Link from 'next/link'
 
-import { ReadMoreArrowIcon } from '@alecia/graphics/icons/read-more'
+import ReadMoreArrowIcon from '@alecia/graphics/icons/read-more'
 import { useScrollListener } from '@alecia/scroll/hooks/use-scroll-listener'
 import { TagProps } from '@alecia/ui-kit/ui/tag'
 import { cn } from '@alecia/util/styles'

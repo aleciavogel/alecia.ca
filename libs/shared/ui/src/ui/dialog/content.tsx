@@ -6,8 +6,8 @@ import { Cross2Icon } from '@radix-ui/react-icons'
 
 import { cn } from '@alecia/util/styles'
 
-import { DialogOverlay } from './overlay'
-import { DialogPortal } from './portal'
+import DialogOverlay from './overlay'
+import DialogPortal from './portal'
 
 // Moving this out so I can do my own custom close button
 export const DefaultDialogClose = () => (

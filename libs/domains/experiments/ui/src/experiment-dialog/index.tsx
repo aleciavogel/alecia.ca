@@ -6,7 +6,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog'
 import Link from 'next/link'
 import { PortableTextBlock, stegaClean } from 'next-sanity'
 
-import { ExperimentIndexQueryResult } from '@alecia/sanity-types/sanity.types'
+import { ExperimentsIndexQueryResult } from '@alecia/sanity-types/sanity.types'
 import { DialogContent, DialogRoot as Dialog, DialogTrigger } from '@alecia/ui-kit/ui/dialog'
 import Tag from '@alecia/ui-kit/ui/tag'
 import { getPlaceholderImage } from '@alecia/util/images'
@@ -15,7 +15,7 @@ import { cn } from '@alecia/util/styles'
 import ExperimentPortableText from '../experiment-portable-text'
 import RepoLink from '../repo-link'
 
-type SingleExperimentResult = NonNullable<ExperimentIndexQueryResult['experiments']>[number]
+type SingleExperimentResult = NonNullable<ExperimentsIndexQueryResult['experiments']>[number]
 
 interface ExperimentDialogProps extends SingleExperimentResult {
   defaultOpen?: boolean

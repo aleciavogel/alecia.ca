@@ -1,4 +1,4 @@
-import type { VectorProps } from '@alecia/types'
+import type { VectorProps } from '@alecia/types/svg'
 
 const AleciaCouchIllustration = (props: VectorProps) => {
   return (

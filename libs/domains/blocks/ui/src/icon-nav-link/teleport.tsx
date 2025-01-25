@@ -1,13 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { ComponentPropsWithoutRef, useState } from 'react'
 
 import useTeleportAnimation from '@alecia/animations/hooks/use-teleport-animation'
+import { NavIconsBlockType } from '@alecia/block-types'
 
 import IconNavLink from '.'
-import { IconNavLinkProps } from './types'
 
-const TeleportNavLink = (props: IconNavLinkProps) => {
+type IconNavLinkType = NonNullable<NavIconsBlockType['links']>[number] &
+  ComponentPropsWithoutRef<'a'>
+
+const TeleportNavLink = (props: IconNavLinkType) => {
   const [isHovering, setIsHovering] = useState<boolean>(false)
   const { teleportIcon } = useTeleportAnimation(isHovering)
 

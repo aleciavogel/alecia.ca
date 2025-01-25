@@ -1,11 +1,14 @@
+import { ComponentPropsWithoutRef } from 'react'
 import type { IconName } from '@fortawesome/fontawesome-svg-core'
 import Link from 'next/link'
 import { stegaClean } from 'next-sanity'
 
+import { NavIconsBlockType } from '@alecia/block-types'
 import Icon from '@alecia/ui-kit/ui/icon'
 import { cn } from '@alecia/util/styles'
 
-import { IconNavLinkProps } from './types'
+type IconNavLinkType = NonNullable<NavIconsBlockType['links']>[number] &
+  ComponentPropsWithoutRef<'a'>
 
 // TODO: animate the transition
 const IconNavLink = ({
@@ -15,7 +18,7 @@ const IconNavLink = ({
   slug,
   className,
   ...rest
-}: IconNavLinkProps) => {
+}: IconNavLinkType) => {
   const iconName = stegaClean(icon)
 
   return (

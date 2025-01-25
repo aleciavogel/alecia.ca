@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ReadMoreArrowIcon } from '..'
+import ReadMoreArrowIcon from '../read-more'
 
 const meta: Meta<typeof ReadMoreArrowIcon> = {
   title: 'Vectors/Icons/Read More Icon',
