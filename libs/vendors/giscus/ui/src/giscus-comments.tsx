@@ -11,7 +11,7 @@ interface GiscusCommentsProps {
   category?: string
 }
 
-const GiscusComments = ({ title, category = 'Blog Comments' }: GiscusCommentsProps) => {
+const GiscusComments = ({ title, category = 'Blog Articles' }: GiscusCommentsProps) => {
   const { resolvedTheme } = useTheme()
 
   return (
