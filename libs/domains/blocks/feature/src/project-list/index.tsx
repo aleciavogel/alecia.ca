@@ -10,7 +10,7 @@ interface ProjectListProps {
 
 const ProjectList = ({ projects }: ProjectListProps) => {
   return (
-    <div className={cn('page-content-block grid grid-cols-1 gap-8 md:grid-cols-2 px-8 md:px-20')}>
+    <div className={cn('page-content-block grid grid-cols-1 gap-8 md:grid-cols-2')}>
       {projects?.map((project) => (
         <ProjectCard
           key={project._id}
