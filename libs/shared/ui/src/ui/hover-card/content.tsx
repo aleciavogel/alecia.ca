@@ -4,10 +4,10 @@ import type { ComponentPropsWithoutRef, ElementRef } from 'react'
 import { forwardRef } from 'react'
 import { clsx } from 'clsx'
 
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 import * as HoverCardPrimitive from '../popper/hover-card'
-import { HoverCardArrow } from './hover-card-arrow'
+import HoverCardArrow from './arrow'
 
 export const HoverCardContent = forwardRef<
   ElementRef<typeof HoverCardPrimitive.Content>,
