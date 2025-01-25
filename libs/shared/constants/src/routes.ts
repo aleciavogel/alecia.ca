@@ -1,10 +1,13 @@
+import { IS_PRODUCTION_MODE } from './env'
+
 /**
  * The base URL of the site, for use in generating absolute URLs
  */
-export const SITE_BASE_URL =
-  process.env['NEXT_PUBLIC_VERCEL_URL'] ??
-  process.env['NEXT_PUBLIC_BASE_URL'] ??
-  'alecia.local:3000'
+export const SITE_BASE_URL = IS_PRODUCTION_MODE
+  ? 'alecia.ca'
+  : process.env['NEXT_PUBLIC_VERCEL_URL'] ??
+    process.env['NEXT_PUBLIC_BASE_URL'] ??
+    'alecia.local:3000'
 
 /**
  * Non-webhook API Routes for the application

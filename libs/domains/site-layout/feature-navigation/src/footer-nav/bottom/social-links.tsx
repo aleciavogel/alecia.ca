@@ -1,12 +1,11 @@
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faRss, fas } from '@fortawesome/pro-solid-svg-icons'
+import { faRss } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { stegaClean } from 'next-sanity'
 
+import { SITE_BASE_URL } from '@alecia/constants/routes'
 import { settingsQuery } from '@alecia/sanity-queries/settings.query'
 import { SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
 import { getData } from '@alecia/sanity-util/server-utils/get-data'
-import Icon from '@alecia/ui-kit/ui/icon'
 import SocialLink from '@alecia/ui-kit/ui/social-link'
 import {
   TooltipContent,
@@ -36,19 +35,20 @@ const FooterSocialLinks = async ({ className, ...rest }: FooterSocialLinksProps)
         />
       ))}
       <TooltipProvider>
-        <Tooltip>
+        <Tooltip delayDuration={300}>
           <TooltipTrigger asChild>
             <a
               aria-label="Stay Updated"
+              aria-describedby="rss-tooltip"
               target="_blank"
               rel="noreferrer"
               className="text-current opacity-100 hover:opacity-80 transition-all"
-              href="https://alecia.ca/blog/feed.xml"
+              href={`https://${SITE_BASE_URL}/blog/feed.xml`}
             >
               <FontAwesomeIcon icon={faRss} />
             </a>
           </TooltipTrigger>
-          <TooltipContent>
+          <TooltipContent id="rss-tooltip" role="tooltip">
             <p>Stay Updated</p>
           </TooltipContent>
         </Tooltip>
