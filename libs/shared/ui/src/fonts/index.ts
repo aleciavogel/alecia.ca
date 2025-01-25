@@ -1,5 +1,22 @@
 import localFont from 'next/font/local'
 
+export const dankMono = localFont({
+  variable: '--font-dank-mono',
+  src: [
+    {
+      path: './dank-mono/DankMono-Regular.woff2',
+    },
+    {
+      path: './dank-mono/DankMono-Bold.woff2',
+      weight: 'bold',
+    },
+    {
+      path: './dank-mono/DankMono-Italic.woff2',
+      style: 'italic',
+    },
+  ],
+})
+
 export const eksellLarge = localFont({
   variable: '--font-eksell-large',
   src: './eksell/eksell-display-large-webfont.woff2',

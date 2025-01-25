@@ -2,6 +2,8 @@ import { type FC } from 'react'
 import classNames from 'classnames'
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from 'next-sanity'
 
+import { cn } from '@alecia/util/styles'
+
 import AnchorTag from '../anchor-tag'
 import Typography from '../typography'
 
@@ -114,6 +116,18 @@ const basicPortableTextComponents = (changeOnDarkMode = false): PortableTextComp
   marks: {
     link: ({ children, value }) => (
       <AnchorTag href={value.href as string | undefined}>{children}</AnchorTag>
+    ),
+    code: ({ children }) => (
+      <code
+        className={cn(
+          'relative px-2 whitespace-nowrap',
+          'after:bg-gradient-to-b after:from-primary-950 after:to-fuchsia-600',
+          'after:text-white',
+          'after:absolute after:inset-0 after:z-[-1] after:rounded-md',
+        )}
+      >
+        {children}
+      </code>
     ),
     ul: ({ children }) => <ul className="underline">{children}</ul>,
     em: ({ children }) => <em className="font-semibold">{children}</em>,
