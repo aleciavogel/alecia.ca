@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
-import { SiteWrapper } from '@alecia/site-layout'
-import { StickyNav } from '@alecia/site-navigation'
-import { calcWavyBorderMask } from '@alecia/util'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import StickyNav from '@alecia/site-navigation/sticky-nav'
+import { calcWavyBorderMask } from '@alecia/util/styles'
 
 const WAVY_BORDER_MASK = { mask: calcWavyBorderMask({ position: 'bottom' }) }
 
@@ -13,7 +13,6 @@ interface ExperimentPageProps {
   }
 }
 
-// TODO: implement this page
 export default async function ExperimentPageLayout({ children }: ExperimentPageProps) {
   return (
     <SiteWrapper showStaticNav={false}>

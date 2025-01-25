@@ -1,10 +1,9 @@
-import type { FC, ReactNode } from 'react'
-import React from 'react'
-import classnames from 'classnames'
+import type { ReactNode } from 'react'
 
-import { CalendlyScheduleButton } from '@alecia/calendly-ui'
-import { Typography, ZigZagAccent } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import CalendlyScheduleButton from '@alecia/calendly-ui/schedule-button'
+import ZigZagAccent from '@alecia/ui-kit/components/vectors/zigzags/zigzag-accent'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
 interface ContactHeaderProps {
   pretitle?: string | null
@@ -13,12 +12,12 @@ interface ContactHeaderProps {
   children: ReactNode
 }
 
-export const ContactHeader: FC<ContactHeaderProps> = ({
+const ContactHeader = ({
   pretitle = 'Pretitle',
   title = 'Untitled',
   subtitle,
   children,
-}) => (
+}: ContactHeaderProps) => (
   <header
     className={cn(
       'relative',
@@ -68,3 +67,5 @@ export const ContactHeader: FC<ContactHeaderProps> = ({
     </div>
   </header>
 )
+
+export default ContactHeader

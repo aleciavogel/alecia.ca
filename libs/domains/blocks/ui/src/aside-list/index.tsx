@@ -1,4 +1,4 @@
-import { Typography } from '@alecia/ui-kit'
+import Typography from '@alecia/ui-kit/ui/typography'
 
 interface AsideListProps {
   heading?: string | null

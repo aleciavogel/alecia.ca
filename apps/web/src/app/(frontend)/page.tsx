@@ -1,15 +1,16 @@
 import { Metadata } from 'next'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes, SITE_BASE_URL } from '@alecia/constants'
-import { RenderedBlocks } from '@alecia/pages'
-import { WavyHeader } from '@alecia/pages-ui'
-import { pageQuery, settingsQuery } from '@alecia/sanity-queries'
-import { PageQueryResult, SettingsQueryResult } from '@alecia/sanity-types'
-import { urlForOpenGraphImage } from '@alecia/sanity-util'
-import { getData } from '@alecia/sanity-util/server'
-import { SiteWrapper } from '@alecia/site-layout'
-import { PageContents } from '@alecia/site-navigation'
+import RenderedBlocks from '@alecia/blocks/rendered'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import { WavyHeader } from '@alecia/pages-ui/wavy-header'
+import { pageQuery } from '@alecia/sanity-queries/pages.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
+import { PageQueryResult, SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
+import { urlForOpenGraphImage } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([

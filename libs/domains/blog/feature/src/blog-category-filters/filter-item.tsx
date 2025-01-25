@@ -1,14 +1,15 @@
 'use client'
 
-import { type FC } from 'react'
 import { IconName } from '@fortawesome/pro-light-svg-icons'
 import { stegaClean } from '@sanity/client/stega'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
-import { buttonVariants, Icon } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import buttonVariants from '@alecia/ui-kit/ui/button/variants'
+import Icon from '@alecia/ui-kit/ui/icon'
+import { cn } from '@alecia/util/styles'
 
+// TODO: Replace with Sanity Type
 interface BlogCategoryFilterProps {
   name?: string | null
   iconName?: string | null
@@ -18,12 +19,12 @@ interface BlogCategoryFilterProps {
 
 const ALL_POSTS_SLUGS = ['all-posts', 'all']
 
-export const BlogCategoryFilterItem: FC<BlogCategoryFilterProps> = ({
+const BlogCategoryFilterItem = ({
   name = 'Untitled Category',
   iconName,
   href = '/blog',
   slug = '',
-}) => {
+}: BlogCategoryFilterProps) => {
   const params = useSearchParams()
   const cleanedSlug = stegaClean(slug ?? '')
   const currentCategory = params.get('category')
@@ -45,3 +46,5 @@ export const BlogCategoryFilterItem: FC<BlogCategoryFilterProps> = ({
     </Link>
   )
 }
+
+export default BlogCategoryFilterItem

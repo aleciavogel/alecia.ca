@@ -1,4 +1,4 @@
-import { courseListQueryPartial } from './courses.query'
+import { courseListQueryPartial } from '../courses/courses.query'
 import { galleryPetsQueryPartial } from './gallery-pets.query'
 import { imageWithTextQueryPartial } from './image-with-text.query'
 import { navCardQueryPartial, navIconsQueryPartial } from './nav.query'

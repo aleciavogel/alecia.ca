@@ -1,8 +1,8 @@
-import { ThumbnailDimensions } from '@alecia/constants'
-import { ProjectCard } from '@alecia/projects-ui'
-import type { AllProjectsQueryResult } from '@alecia/sanity-types'
-import { urlFor } from '@alecia/sanity-util'
-import { cn } from '@alecia/util'
+import { ThumbnailDimensions } from '@alecia/constants/images'
+import ProjectCard from '@alecia/projects-ui/card'
+import type { AllProjectsQueryResult } from '@alecia/sanity-types/sanity.types'
+import { urlFor } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { cn } from '@alecia/util/styles'
 
 interface ProjectListProps {
   projects?: AllProjectsQueryResult

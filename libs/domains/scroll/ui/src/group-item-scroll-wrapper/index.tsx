@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 const DEFAULT_DELAY = 0.07
 const DEFAULT_SPEED = 1

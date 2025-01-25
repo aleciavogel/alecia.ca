@@ -1,24 +1,14 @@
-import { IconNavList } from '@alecia/blocks-ui'
-import type { InternalLinkProps } from '@alecia/types'
-import { Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import { NavIconsBlockType } from '@alecia/block-types'
+import IconNavList from '@alecia/blocks-ui/icon-nav-list'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
-// TODO: Use SanityTypes over custom types
-interface NavCardProps {
-  _type: 'nav.card'
-  _key: string
-  title?: string
-  pretitle?: string
-  description?: string
-  links: InternalLinkProps[] | null
-}
-
-const Index = ({
+const NavIcons = ({
   title = 'Untitled',
   pretitle = 'Pretitle',
   description = '',
   links,
-}: NavCardProps) => {
+}: NavIconsBlockType) => {
   return (
     <div
       className={cn(
@@ -54,4 +44,4 @@ const Index = ({
   )
 }
 
-export default Index
+export default NavIcons

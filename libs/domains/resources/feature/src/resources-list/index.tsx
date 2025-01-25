@@ -1,5 +1,6 @@
-import { ResourcesGroup } from '@alecia/resources-ui'
-import { ResourcesIndexQueryResult } from '@alecia/sanity-types'
+import { ResourcesIndexQueryResult } from '@alecia/sanity-types/sanity.types'
+
+import ResourcesGroup from '../resources-group'
 
 type ResourcesGroups = NonNullable<ResourcesIndexQueryResult['resources']>
 

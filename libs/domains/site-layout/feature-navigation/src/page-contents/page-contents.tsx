@@ -1,9 +1,9 @@
-import type { FC, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 import classNames from 'classnames'
 
-import { pageVariants } from '@alecia/pages-constants'
-import { calcWavyBorderMask, cn } from '@alecia/util'
+import { pageVariants } from '@alecia/pages-constants/page-variants'
+import { calcWavyBorderMask, cn } from '@alecia/util/styles'
 
 import { StickyNav } from '../sticky-nav'
 
@@ -15,12 +15,7 @@ interface PageContentsProps extends VariantProps<typeof pageVariants> {
   isWavy?: boolean
 }
 
-export const PageContents: FC<PageContentsProps> = ({
-  children,
-  variant,
-  className,
-  isWavy = true,
-}) => (
+const PageContents = ({ children, variant, className, isWavy = true }: PageContentsProps) => (
   <main
     className={cn(
       'w-full',
@@ -48,3 +43,5 @@ export const PageContents: FC<PageContentsProps> = ({
     </div>
   </main>
 )
+
+export default PageContents

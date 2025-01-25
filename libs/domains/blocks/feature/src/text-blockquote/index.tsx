@@ -1,11 +1,7 @@
-import { Blockquote } from '@alecia/blocks-ui'
+import { TextBlockquoteBlockType } from '@alecia/block-types'
+import Blockquote from '@alecia/blocks-ui/blockquote'
 
-interface TextBlockquoteProps {
-  author?: string | null
-  quote?: string | null
-}
-
-const TextBlockquote = ({ author, quote }: TextBlockquoteProps) => (
+const TextBlockquote = ({ author, quote }: TextBlockquoteBlockType) => (
   <div className="page-content-block">
     <Blockquote author={author} quote={quote} />
   </div>

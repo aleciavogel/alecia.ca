@@ -2,7 +2,7 @@ import { HTMLProps } from 'react'
 import Link from 'next/link'
 
 import { AleciaLogo } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 import { InterceptedLogoText } from './intercepted-logo-text'
 

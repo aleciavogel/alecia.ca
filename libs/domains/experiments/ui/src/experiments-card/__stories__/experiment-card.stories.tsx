@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { getPlaceholderImage } from '@alecia/util'
+import { getPlaceholderImage } from '@alecia/util/styles'
 
-import { ExperimentCard } from '../experiments-card'
+import { ExperimentCard } from '../index'
 
 const meta: Meta<typeof ExperimentCard> = {
   title: 'Features/Experiments/Experiment Card',

@@ -8,7 +8,7 @@ import { Routes } from '@alecia/constants'
 import { ContactFormValues } from '@alecia/contact-types'
 import { ContactFormConfirmationEmail, ContactFormSubmissionEmail } from '@alecia/email-templates'
 import { RESEND_API_KEY } from '@alecia/resend-constants/server'
-import { api } from '@alecia/util'
+import { api } from '@alecia/util/styles'
 
 const resend = new Resend(RESEND_API_KEY)
 

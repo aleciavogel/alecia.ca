@@ -1,25 +1,28 @@
 import * as React from 'react'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import { Image as SanityImage } from 'sanity'
 
-import { BlogList } from '@alecia/blocks'
-import { BlogCategoryFilters } from '@alecia/blog-categories'
-import { Routes, SITE_BASE_URL } from '@alecia/constants'
-import { BlogHeader } from '@alecia/pages-ui'
-import { blogIndexQuery, settingsQuery } from '@alecia/sanity-queries'
-import { BlogIndexQueryResult, SettingsQueryResult } from '@alecia/sanity-types'
-import { urlForOpenGraphImage } from '@alecia/sanity-util'
-import { getData } from '@alecia/sanity-util/server'
-import { SiteWrapper } from '@alecia/site-layout'
-import { EmptyState } from '@alecia/site-layout-ui'
-import { PageContents } from '@alecia/site-navigation'
+import BlogList from '@alecia/blocks/article-list'
+import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import BlogHeader from '@alecia/pages-ui/blog-header'
+import { blogIndexQuery } from '@alecia/sanity-queries/blog/blog-article.query'
+import { settingsQuery } from '@alecia/sanity-queries/settings.query'
+import { BlogIndexQueryResult, SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
+import { urlForOpenGraphImage } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { getData } from '@alecia/sanity-util/server-utils/get-data'
+import SiteWrapper from '@alecia/site-layout/site-wrapper/site-wrapper'
+import EmptyState from '@alecia/site-layout-ui/states/empty'
+import PageContents from '@alecia/site-navigation/page-contents/page-contents'
 
 interface BlogListPageProps {
   searchParams?: Promise<{
     category?: string
   }>
 }
+
+const BlogCategoryFilters = dynamic(() => import('@alecia/blog/blog-category-filters'))
 
 export async function generateMetadata({ searchParams }: BlogListPageProps): Promise<Metadata> {
   const category = (await searchParams)?.category

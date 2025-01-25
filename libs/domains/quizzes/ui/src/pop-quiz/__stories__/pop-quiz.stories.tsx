@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { PopQuiz } from '../pop-quiz'
+import { PopQuiz } from '../index'
 
 const meta: Meta<typeof PopQuiz> = {
   title: 'Features/Quizzes/UI/Pop Quiz',

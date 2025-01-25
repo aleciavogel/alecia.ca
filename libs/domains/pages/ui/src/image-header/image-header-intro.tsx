@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 
 import { Typography, ZigZagAccent } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 export interface ImageHeaderIntroProps {
   pretitle?: string

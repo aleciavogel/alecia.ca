@@ -1,6 +1,7 @@
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from 'next-sanity'
 
-import { AnchorTag, Typography } from '@alecia/ui-kit'
+import AnchorTag from '@alecia/ui-kit/ui/anchor-tag'
+import Typography from '@alecia/ui-kit/ui/typography'
 
 interface AccordionPortableTextProps {
   value?: PortableTextBlock[]

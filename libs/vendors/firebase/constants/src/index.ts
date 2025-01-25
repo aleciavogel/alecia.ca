@@ -1,4 +1,4 @@
-import { assertValue } from '@alecia/util'
+import { assertValue } from '@alecia/util/styles'
 
 /**
  * Client-side Firebase API KEY

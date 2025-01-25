@@ -3,11 +3,10 @@
 import { IconName } from '@fortawesome/pro-regular-svg-icons'
 import { usePathname } from 'next/navigation'
 
-import { SITE_BASE_URL } from '@alecia/constants'
-import { SocialLinksItem } from '@alecia/site-layout-ui'
-import { cn } from '@alecia/util'
+import { SITE_BASE_URL } from '@alecia/constants/routes'
+import { cn } from '@alecia/util/styles'
 
-import { ShareLinkItem } from './share-link-item'
+import ShareLinkItem from './share-link-item'
 
 const FB_BASE = 'https://www.facebook.com/sharer/sharer.php?u='
 const TW_BASE = 'https://twitter.com/intent/tweet?url='
@@ -16,10 +15,10 @@ const FB_LABEL = 'Share on Facebook'
 const TW_LABEL = 'Share on X'
 const EMAIL_LABEL = 'Share via Email'
 
-export const ShareLinks = () => {
+const ShareLinks = () => {
   // const data = await getPost()
   // const title = data?.title ?? ''
-  const title = 'TODO: FIX THIS'
+  const title = 'Check out this article on Alecia.ca'
 
   // Retrieve the current absolute url of the page for Next.js
   const pathname = usePathname()
@@ -41,3 +40,5 @@ export const ShareLinks = () => {
     </div>
   )
 }
+
+export default ShareLinks

@@ -1,4 +1,4 @@
-import { assertValue } from '@alecia/util'
+import { assertValue } from '@alecia/util/assert-value'
 
 /**
  * The token used to read from the Sanity API

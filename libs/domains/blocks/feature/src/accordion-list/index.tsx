@@ -1,20 +1,18 @@
 import { PortableTextBlock } from 'next-sanity'
 
-import { BlogPortableText } from '@alecia/blog'
-import type { AccordionList as AccordionListProps } from '@alecia/sanity-types'
+import { AccordionListBlockType } from '@alecia/block-types'
+import { BlogPortableText } from '@alecia/blog/blog-portable-text'
 import {
-  Accordion,
   AccordionContent,
   AccordionItem,
+  AccordionRoot as Accordion,
   AccordionTrigger,
-  Typography,
-} from '@alecia/ui-kit'
+} from '@alecia/ui-kit/ui/accordion'
+import { Typography } from '@alecia/ui-kit/ui/typography'
 
-import { AccordionPortableText } from './accordion-portable-text'
+// TODO: Add different layouts for the accordion list (centered, next to text, etc)
 
-// TODO: Add different layouts for the accordion list
-
-const AccordionList = ({ pretitle, heading, intro, items }: AccordionListProps) => {
+const AccordionList = ({ pretitle, heading, intro, items }: AccordionListBlockType) => {
   return (
     <div className="max-w-screen-sm page-content-padding box-content mx-auto space-y-10">
       <div className="text-center space-y-6">
@@ -34,11 +32,11 @@ const AccordionList = ({ pretitle, heading, intro, items }: AccordionListProps) 
         ) : null}
       </div>
       <Accordion type="single" collapsible className="w-full">
-        {items?.map((item, index) => (
+        {items?.map((item) => (
           <AccordionItem key={item._key} value={item._key}>
             <AccordionTrigger className="text-base">{item.trigger}</AccordionTrigger>
             <AccordionContent className="">
-              <AccordionPortableText value={item.content as PortableTextBlock[]} />
+              <BlogPortableText value={item.content as PortableTextBlock[]} />
             </AccordionContent>
           </AccordionItem>
         ))}

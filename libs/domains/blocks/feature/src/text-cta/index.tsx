@@ -1,14 +1,11 @@
 import { stegaClean } from '@sanity/client/stega'
 import { PortableTextBlock } from 'next-sanity'
 
-import { BlogPortableText } from '@alecia/blog'
-import { PageQueryResult } from '@alecia/sanity-types'
-import { IconButtonLink, Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
-
-type Modules = NonNullable<PageQueryResult>['modules']
-type SingleModule = NonNullable<Modules>[number]
-type TextCtaModule = Extract<SingleModule, { _type: 'text.cta' }>
+import { TextCTABlockType } from '@alecia/block-types'
+import { BlogPortableText } from '@alecia/blog/blog-portable-text'
+import { IconButtonLink } from '@alecia/ui-kit/ui/icon-button-link'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
 const TextCTA = ({
   title = 'Untitled',
@@ -18,7 +15,7 @@ const TextCTA = ({
   shouldUseLinkIcon,
   linkIcon,
   icon,
-}: TextCtaModule) => {
+}: TextCTABlockType) => {
   const cleanedLink = stegaClean(link)
 
   return (

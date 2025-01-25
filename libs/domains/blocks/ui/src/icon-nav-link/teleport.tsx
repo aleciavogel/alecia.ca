@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 
+import useTeleportAnimation from '@alecia/animations/hooks/use-teleport-animation'
+
 import IconNavLink from '.'
 import { IconNavLinkProps } from './types'
 
-const TeleportNavLink = ({}: IconNavLinkProps) => {
+const TeleportNavLink = (props: IconNavLinkProps) => {
   const [isHovering, setIsHovering] = useState<boolean>(false)
   const { teleportIcon } = useTeleportAnimation(isHovering)
 

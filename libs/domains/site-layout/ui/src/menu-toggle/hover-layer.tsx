@@ -1,14 +1,14 @@
-import { ComponentProps, FC } from 'react'
+import type { ComponentProps } from 'react'
 import { faBars } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 interface MenuHoverIconProps extends ComponentProps<'div'> {
   asChild?: boolean
 }
 
-export const MenuToggleHoverLayer: FC<MenuHoverIconProps> = ({ ref, className, ...props }) => (
+const MenuToggleHoverLayer = ({ ref, className, ...props }: MenuHoverIconProps) => (
   <div
     id="site-menu-icon"
     role="button"
@@ -26,3 +26,5 @@ export const MenuToggleHoverLayer: FC<MenuHoverIconProps> = ({ ref, className, .
     <FontAwesomeIcon icon={faBars} className="pointer-events-auto" />
   </div>
 )
+
+export default MenuToggleHoverLayer

@@ -1,7 +1,5 @@
-import React, { type FC } from 'react'
-
-import { Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
 export interface WavyHeaderIntroProps {
   pretitle: string
@@ -9,7 +7,7 @@ export interface WavyHeaderIntroProps {
   subtitle?: string
 }
 
-export const WavyHeaderIntro: FC<WavyHeaderIntroProps> = ({ title, subtitle, pretitle }) => (
+export const WavyHeaderIntro = ({ title, subtitle, pretitle }: WavyHeaderIntroProps) => (
   <div
     className={cn(
       'text-center md:text-left',

@@ -1,4 +1,4 @@
-import { assertValue } from '@alecia/util'
+import { assertValue } from '@alecia/util/styles'
 
 export const SESSION_COOKIE_NAME = '__session'
 

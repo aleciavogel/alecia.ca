@@ -1,0 +1,9 @@
+{
+  "name": "code-editor",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domains/code-editor/feature/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project code-editor --web",
+  "targets": {}
+}

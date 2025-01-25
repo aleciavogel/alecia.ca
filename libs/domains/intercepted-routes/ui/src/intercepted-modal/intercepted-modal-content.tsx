@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { RemoveScroll } from 'react-remove-scroll'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
-import { cn } from '@alecia/util'
+import { cn } from '@alecia/util/styles'
 
 import { InterceptedModalPortal } from './intercepted-modal-portal'
 

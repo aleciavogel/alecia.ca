@@ -1,22 +1,15 @@
-import { SinglePetImage } from '@alecia/image-types'
-import { PetImage, PetImageProps } from '@alecia/images-ui'
-import GalleryPetScrollWrapper from '@alecia/scroll-ui/group-item-scroll-wrapper'
-import { Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
-
-interface GalleryPetsProps {
-  _key: string
-  pretitle?: string
-  title?: string
-  images: SinglePetImage[] | null
-}
+import { GalleryPetsBlockType } from '@alecia/block-types'
+import PetImage from '@alecia/images-ui/pet-image'
+import GroupItemScrollWrapper from '@alecia/scroll-ui/group-item-scroll-wrapper'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
 const GalleryPets = ({
   _key,
   pretitle = 'Pretitle',
   title = 'Untitled',
   images = [],
-}: GalleryPetsProps) => (
+}: GalleryPetsBlockType) => (
   <div
     className={cn('mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4', 'page-content-block')}
   >
@@ -26,7 +19,7 @@ const GalleryPets = ({
         {title}
       </Typography>
     </div>
-    {images?.map((image: PetImageProps, index: number) => {
+    {images?.map((image, index: number) => {
       const key = `${_key}-${String(index)}`
 
       if (index === 1) {

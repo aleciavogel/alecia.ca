@@ -1,16 +1,11 @@
-import type { PortableTextBlock } from 'next-sanity'
+import { PortableTextBlock } from 'next-sanity'
 
-import { BlogPortableText } from '@alecia/blog'
-import { Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import { TextIntroBlockType } from '@alecia/block-types'
+import { BlogPortableText } from '@alecia/blog/blog-portable-text'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
-interface IntroTextProps {
-  _type: 'text.intro'
-  leadText?: string
-  body?: PortableTextBlock[]
-}
-
-const TextIntro = ({ leadText = 'Lead text will go here', body = [] }: IntroTextProps) => (
+const TextIntro = ({ leadText = 'Lead text will go here', body = [] }: TextIntroBlockType) => (
   <div
     className={cn(
       'flex items-center justify-items-center px-8 max-md:pt-20 md:px-20 page-container',
@@ -42,7 +37,7 @@ const TextIntro = ({ leadText = 'Lead text will go here', body = [] }: IntroText
         </div>
         <div className="hidden" />
         <div className="col-span-2">
-          <BlogPortableText value={body} />
+          <BlogPortableText value={body as PortableTextBlock[]} />
         </div>
       </div>
     </div>

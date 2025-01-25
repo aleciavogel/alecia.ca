@@ -2,8 +2,8 @@ import type { IconName } from '@fortawesome/fontawesome-svg-core'
 import Link from 'next/link'
 import { stegaClean } from 'next-sanity'
 
-import { Icon } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import Icon from '@alecia/ui-kit/ui/icon'
+import { cn } from '@alecia/util/styles'
 
 import { IconNavLinkProps } from './types'
 

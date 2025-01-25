@@ -1,19 +1,15 @@
 'use client'
 
-import React, { FC } from 'react'
-
-import { DarkModeToggleHoverLayer } from '@alecia/dark-mode'
-import {
-  MenuSheetTrigger,
-  MenuToggleHoverLayer,
-  SiteLogoHoverLayer,
-  StickyHeader,
-} from '@alecia/site-layout-ui'
-import { cn } from '@alecia/util'
+import { DarkModeToggleHoverLayer } from '@alecia/dark-mode/toggle'
+import MenuToggleHoverLayer from '@alecia/site-layout-ui/menu-toggle/hover-layer'
+import SiteLogoHoverLayer from '@alecia/site-layout-ui/site-logo/hover-layer'
+import StickyHeader from '@alecia/site-layout-ui/sticky-header'
+import MenuSheetTrigger from '@alecia/ui-kit/ui/menu-sheet/trigger'
+import { cn } from '@alecia/util/styles'
 
 import { StickyNavProps } from './sticky-nav'
 
-export const StickyNavHoverLayer: FC<StickyNavProps> = ({ className }) => {
+export const StickyNavHoverLayer = ({ className }: StickyNavProps) => {
   return (
     <StickyHeader isHoverLayer className={cn('z-[100]', className)}>
       <SiteLogoHoverLayer />
@@ -26,3 +22,5 @@ export const StickyNavHoverLayer: FC<StickyNavProps> = ({ className }) => {
     </StickyHeader>
   )
 }
+
+export default StickyNavHoverLayer

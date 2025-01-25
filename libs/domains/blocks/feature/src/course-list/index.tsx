@@ -1,7 +1,7 @@
-import { CourseCard } from '@alecia/courses-ui'
-import type { CoursesByDifficultyQueryResult } from '@alecia/sanity-types'
-import { EmptyState } from '@alecia/site-layout-ui'
-import { cn } from '@alecia/util'
+import CourseCard from '@alecia/courses-ui/course-card'
+import type { CoursesByDifficultyQueryResult } from '@alecia/sanity-types/sanity.types'
+import EmptyState from '@alecia/site-layout-ui/states/empty'
+import { cn } from '@alecia/util/styles'
 
 interface CourseListProps {
   courses?: CoursesByDifficultyQueryResult

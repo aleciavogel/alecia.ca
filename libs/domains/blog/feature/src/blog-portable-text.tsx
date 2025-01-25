@@ -2,12 +2,13 @@ import { type FC } from 'react'
 import type { PortableTextBlock, PortableTextComponents } from 'next-sanity'
 import { PortableText } from 'next-sanity'
 
-import { BlogSeparator } from '@alecia/blog-ui'
-import { InteractiveCodeEditor } from '@alecia/code-snippets'
-import { ImageBox } from '@alecia/images-ui'
-import type { Code, CustomHtml, Sandpack } from '@alecia/sanity-types'
-import { ExtendedImage } from '@alecia/types'
-import { AnchorTag, Typography } from '@alecia/ui-kit'
+import InteractiveCodeEditor from '@alecia/code-editor/interactive-code-editor'
+import ImageBox from '@alecia/images/image-box'
+import type { Code, CustomHtml, Sandpack } from '@alecia/sanity-types/sanity.types'
+import { ExtendedImage } from '@alecia/types/images'
+import AnchorTag from '@alecia/ui-kit/ui/anchor-tag'
+import Separator from '@alecia/ui-kit/ui/separator'
+import Typography from '@alecia/ui-kit/ui/typography'
 
 // TODO: move to @alecia/ui-kit
 const portableTextComponents: PortableTextComponents = {
@@ -69,7 +70,7 @@ const portableTextComponents: PortableTextComponents = {
   },
 
   types: {
-    break: () => <BlogSeparator />,
+    break: () => <Separator />,
     image: ({ value }: { value: ExtendedImage }) => {
       return (
         <div className="space-y-2">
@@ -99,6 +100,8 @@ interface BlogPortableTextProps {
   value?: BlogPostBlock[]
 }
 
-export const BlogPortableText: FC<BlogPortableTextProps> = ({ value = [] }) => {
+const BlogPortableText: FC<BlogPortableTextProps> = ({ value = [] }) => {
   return <PortableText components={portableTextComponents} value={value} />
 }
+
+export default BlogPortableText

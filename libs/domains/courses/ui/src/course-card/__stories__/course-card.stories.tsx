@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { getPlaceholderImage } from '@alecia/util'
+import { getPlaceholderImage } from '@alecia/util/styles'
 
-import { CourseCard } from '../course-card'
+import { CourseCard } from '../index'
 
 const meta: Meta<typeof CourseCard> = {
   title: 'Features/Courses/UI/Course Card',

@@ -4,7 +4,7 @@ import type { PortableTextBlock } from 'next-sanity'
 import { ImageBlock, ImageBlockLayout, ImageBlockSide } from '@alecia/blocks-ui'
 import { getCroppedImageSrc } from '@alecia/sanity-util'
 import { ExtendedImage } from '@alecia/types'
-import { getPlaceholderImage } from '@alecia/util'
+import { getPlaceholderImage } from '@alecia/util/styles'
 
 export interface ImageWithTextProps {
   _type: 'image-with-text'

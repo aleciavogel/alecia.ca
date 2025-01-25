@@ -1,12 +1,12 @@
 import classNames from 'classnames'
 
-// TODO: Use SanityTypes over custom types
-import { NavLinksBlockProps } from '@alecia/blocks-types'
-import { NavCardImage, NavCardList } from '@alecia/blocks-ui'
-import { Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import { NavCardBlockType } from '@alecia/block-types'
+import NavCardImage from '@alecia/blocks-ui/nav-card-image'
+import NavCardList from '@alecia/blocks-ui/nav-card-list'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
-const NavCard = (props: NavLinksBlockProps) => {
+const NavCard = (props: NavCardBlockType) => {
   const { pretitle, title, image, links } = props
   const hasImage = image !== null
 

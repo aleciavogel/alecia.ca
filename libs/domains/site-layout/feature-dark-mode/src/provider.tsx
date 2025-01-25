@@ -5,7 +5,7 @@ interface ProvidersProps {
   children: ReactNode
 }
 
-export const DarkModeProvider = ({ children }: ProvidersProps) => (
+const DarkModeProvider = ({ children }: ProvidersProps) => (
   <ThemeProvider
     attribute="class"
     defaultTheme="system"
@@ -15,3 +15,5 @@ export const DarkModeProvider = ({ children }: ProvidersProps) => (
     {children}
   </ThemeProvider>
 )
+
+export default DarkModeProvider

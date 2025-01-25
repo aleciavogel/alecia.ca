@@ -1,7 +1,13 @@
 import { IconName } from '@fortawesome/pro-regular-svg-icons'
 
-import { Icon, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import Icon from '@alecia/ui-kit/ui/icon'
+import {
+  TooltipContent,
+  TooltipProvider,
+  TooltipRoot as Tooltip,
+  TooltipTrigger,
+} from '@alecia/ui-kit/ui/tooltip'
+import { cn } from '@alecia/util/styles'
 
 interface ShareLinkProps {
   href: string
@@ -9,7 +15,7 @@ interface ShareLinkProps {
   label: string
 }
 
-export const ShareLinkItem = ({ href, icon, label }: ShareLinkProps) => {
+const ShareLinkItem = ({ href, icon, label }: ShareLinkProps) => {
   return (
     <TooltipProvider>
       <Tooltip>
@@ -36,3 +42,5 @@ export const ShareLinkItem = ({ href, icon, label }: ShareLinkProps) => {
     </TooltipProvider>
   )
 }
+
+export default ShareLinkItem

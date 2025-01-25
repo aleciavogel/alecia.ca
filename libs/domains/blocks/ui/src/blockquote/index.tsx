@@ -1,5 +1,5 @@
-import { Typography } from '@alecia/ui-kit'
-import { cn } from '@alecia/util'
+import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
 interface BlockquoteProps {
   author?: string | null
