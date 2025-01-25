@@ -2,6 +2,7 @@
  * Icon names for Font Awesome 6 brand icons
  */
 export const SOCIAL_ICON_MAP: Record<string, string> = {
+  bsky: 'faBluesky',
   facebook: 'faFacebookF',
   dribbble: 'faDribbble',
   twitter: 'faXTwitter',
