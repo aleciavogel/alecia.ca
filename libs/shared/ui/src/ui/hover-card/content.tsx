@@ -9,7 +9,7 @@ import { cn } from '@alecia/util/styles'
 import * as HoverCardPrimitive from '../popper/hover-card'
 import HoverCardArrow from './arrow'
 
-export const HoverCardContent = forwardRef<
+const HoverCardContent = forwardRef<
   ElementRef<typeof HoverCardPrimitive.Content>,
   ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>
 >(({ className, align = 'start', sideOffset = 20, children, ...props }, ref) => (
@@ -43,3 +43,5 @@ export const HoverCardContent = forwardRef<
 ))
 
 HoverCardContent.displayName = 'HoverCardContent'
+
+export default HoverCardContent
