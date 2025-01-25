@@ -2,11 +2,11 @@
 
 import type { ComponentPropsWithoutRef, ElementRef } from 'react'
 import { forwardRef } from 'react'
-import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import { clsx } from 'clsx'
 
 import { cn } from '@alecia/util/styles'
 
+import * as HoverCardPrimitive from '../popper/hover-card'
 import HoverCardArrow from './arrow'
 
 const HoverCardContent = forwardRef<
