@@ -21,7 +21,11 @@ const ImageHeader = ({ imageSrc, imageAlt, ...props }: ImageHeaderProps) => (
       'after:bg-gradient-to-b after:from-primary-950 after:from-20% after:to-fuchsia-600',
     )}
   >
-    <div className={cn('flex items-center justify-items-center px-8 md:px-20 page-container')}>
+    <div
+      className={cn(
+        'flex items-center justify-items-center px-8 md:px-20 page-container page-content-block',
+      )}
+    >
       <div
         className={cn(
           'w-full text-white',

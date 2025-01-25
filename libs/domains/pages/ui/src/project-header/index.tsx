@@ -28,7 +28,7 @@ const ProjectHeader = ({
       'after:bg-gradient-to-b after:from-primary-950 after:to-fuchsia-600',
     )}
   >
-    <div className="page-container container page-content-block w-full text-white pb-8">
+    <div className="page-container page-content-block w-full text-white pb-8">
       <div className="text-center md:text-left">
         {pretitle && pretitleLink ? (
           <Link href={pretitleLink}>

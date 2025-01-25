@@ -71,7 +71,7 @@ const SimpleHeader = ({
     >
       <div
         className={cn(
-          'page-container',
+          'page-container page-content-block',
           'w-full text-white',
           classnames({ 'md:grid-cols-2': hasHeaderIllustration }),
           'grid grid-cols-1 ',

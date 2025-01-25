@@ -36,7 +36,7 @@ const FormHeader = ({
   >
     <div
       className={cn(
-        'page-container',
+        'page-container page-content-block',
         'w-full text-white',
         'grid grid-cols-1 lg:grid-cols-2',
         'gap-10 pb-8',
