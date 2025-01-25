@@ -1,7 +1,7 @@
+import HappyLittleBracketsLogo from '@alecia/graphics/brand/happy-little-brackets-logo'
 import ListItem from '@alecia/site-layout-ui/menu-items/list-item'
 import TeleportListItem from '@alecia/site-layout-ui/menu-items/teleport'
 import type { InternalLinkProps } from '@alecia/types/nav'
-import HappyLittleBracketsLogo from '@alecia/ui-kit/components/vectors/brand/happy-little-brackets-logo'
 import {
   NavigationMenuContent,
   NavigationMenuItem,

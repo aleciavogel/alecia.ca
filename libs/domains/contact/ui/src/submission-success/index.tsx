@@ -1,4 +1,4 @@
-import PhoebeLaptopIllustration from '@alecia/ui-kit/components/vectors/illustrations/phoebe/laptop'
+import PhoebeLaptopIllustration from '@alecia/graphics/illustrations/phoebe/laptop'
 
 const SubmissionSuccess = () => (
   <div className="space-y-6">

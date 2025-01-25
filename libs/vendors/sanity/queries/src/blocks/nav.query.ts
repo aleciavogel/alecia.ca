@@ -1,4 +1,4 @@
-import { linkableReferencePartial } from './links.query'
+import { linkableReferencePartial } from '../nav/links.query'
 
 export const navCardQueryPartial = `
   _type == 'nav.card' => {

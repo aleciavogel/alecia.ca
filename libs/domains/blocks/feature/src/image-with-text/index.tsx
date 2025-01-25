@@ -1,10 +1,10 @@
 import { stegaClean } from '@sanity/client/stega'
 import type { PortableTextBlock } from 'next-sanity'
 
-import { ImageBlock, ImageBlockLayout, ImageBlockSide } from '@alecia/blocks-ui'
-import { getCroppedImageSrc } from '@alecia/sanity-util'
-import { ExtendedImage } from '@alecia/types'
-import { getPlaceholderImage } from '@alecia/util/styles'
+import { ImageBlock, ImageBlockLayout, ImageBlockSide } from '@alecia/blocks-ui/image-block'
+import { getCroppedImageSrc } from '@alecia/sanity-util/client-utils/sanity-image-utils'
+import { ExtendedImage } from '@alecia/types/images'
+import { getPlaceholderImage } from '@alecia/util/images'
 
 export interface ImageWithTextProps {
   _type: 'image-with-text'

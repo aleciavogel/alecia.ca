@@ -2,7 +2,7 @@ import { faSquareChevronDown } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-import { getBlockText } from '@alecia/sanity-util'
+import { getBlockText } from '@alecia/sanity-util/client-utils/sanity-text-utils'
 
 /**
  * List of accordion items, each with a trigger and content

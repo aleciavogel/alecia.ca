@@ -1,7 +1,7 @@
 import { PortableTextBlock } from 'next-sanity'
 
 import { AccordionListBlockType } from '@alecia/block-types'
-import { BlogPortableText } from '@alecia/blog/blog-portable-text'
+import BlogPortableText from '@alecia/blog/blog-portable-text'
 import {
   AccordionContent,
   AccordionItem,

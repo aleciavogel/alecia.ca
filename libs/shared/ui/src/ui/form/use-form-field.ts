@@ -2,7 +2,7 @@
 
 import { type FieldError, type FieldValues, useFormContext } from 'react-hook-form'
 
-import useFormFieldContext from './fields/use-form-field-context'
+import useFormFieldContext from './field/use-form-field-context'
 import { useFormItemContext } from './item'
 
 interface UseFormField {

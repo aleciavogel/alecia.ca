@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import Link from 'next/link'
 
-import AleciaLogo from '@alecia/ui-kit/components/vectors/brand/alecia-logo'
+import AleciaLogo from '@alecia/graphics/brand/alecia-logo'
 import { cn } from '@alecia/util/styles'
 
 /**

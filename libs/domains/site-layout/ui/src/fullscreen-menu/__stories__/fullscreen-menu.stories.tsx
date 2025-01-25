@@ -2,10 +2,10 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { FullScreenMenuType } from '@alecia/settings-types'
-import { Button } from '@alecia/ui-kit'
+import Button from '@alecia/ui-kit/ui/button'
+import { MenuSheetRoot, MenuSheetTrigger } from '@alecia/ui-kit/ui/menu-sheet'
 
-import { MenuSheet, MenuSheetTrigger } from '../../'
-import { FullscreenMenu } from '..'
+import FullscreenMenu from '..'
 
 const DEFAULT_MENU_ITEMS = [
   {
@@ -89,12 +89,12 @@ const meta: Meta<typeof FullscreenMenu> = {
     const [open, setOpen] = useState(false)
 
     return (
-      <MenuSheet open={open} onOpenChange={setOpen}>
+      <MenuSheetRoot open={open} onOpenChange={setOpen}>
         <MenuSheetTrigger>
           <Button>Open</Button>
         </MenuSheetTrigger>
         <FullscreenMenu {...args} open={open} />
-      </MenuSheet>
+      </MenuSheetRoot>
     )
   },
 }

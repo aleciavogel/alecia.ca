@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { Image } from 'next-sanity/image'
 
 import { GalleryPetsBlockType } from '@alecia/block-types'
-import ZigZagAccent from '@alecia/ui-kit/components/vectors/zigzags/zigzag-accent'
+import ZigZagAccent from '@alecia/graphics/zigzags/zigzag-accent'
 import Typography from '@alecia/ui-kit/ui/typography'
 import { getPlaceholderImage } from '@alecia/util/images'
 

@@ -1,6 +1,6 @@
 import { HTMLProps } from 'react'
 
-import AleciaLogo from '@alecia/ui-kit/components/vectors/brand/alecia-logo'
+import AleciaLogo from '@alecia/graphics/brand/alecia-logo'
 
 /**
  * Site logo component shown in the header as the base level.

@@ -1,4 +1,4 @@
-import SadieAteMyWebsiteIllustration from '@alecia/ui-kit/components/vectors/illustrations/sadie/cookies'
+import SadieAteMyWebsiteIllustration from '@alecia/graphics/illustrations/sadie/ate-my-website'
 import Typography from '@alecia/ui-kit/ui/typography'
 import { cn } from '@alecia/util/styles'
 

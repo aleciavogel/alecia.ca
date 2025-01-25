@@ -1,4 +1,4 @@
-import AleciaSitIllustration from '@alecia/ui-kit/components/vectors/illustrations/alecia/sit'
+import AleciaSitIllustration from '@alecia/graphics/illustrations/alecia/sit'
 import { cn } from '@alecia/util/styles'
 
 const FooterIllustration = () => (

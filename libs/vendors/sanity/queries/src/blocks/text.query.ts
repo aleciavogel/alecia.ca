@@ -1,4 +1,4 @@
-import { internalLinkQueryPartial } from './links.query'
+import { internalLinkQueryPartial } from '../nav/links.query'
 
 export const textCtaQueryPartial = `
   _type == 'text.cta' => {

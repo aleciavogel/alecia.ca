@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import CalendlyScheduleButton from '@alecia/calendly-ui/schedule-button'
-import ZigZagAccent from '@alecia/ui-kit/components/vectors/zigzags/zigzag-accent'
+import ZigZagAccent from '@alecia/graphics/zigzags/zigzag-accent'
 import Typography from '@alecia/ui-kit/ui/typography'
 import { cn } from '@alecia/util/styles'
 

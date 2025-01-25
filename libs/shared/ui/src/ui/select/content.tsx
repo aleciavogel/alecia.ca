@@ -6,8 +6,8 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 
 import { cn } from '@alecia/util/styles'
 
-import { SelectScrollDownButton } from './scroll-down-button'
-import { SelectScrollUpButton } from './scroll-up-button'
+import SelectScrollDownButton from './scroll-down-button'
+import SelectScrollUpButton from './scroll-up-button'
 
 const SelectContent = forwardRef<
   ElementRef<typeof SelectPrimitive.Content>,

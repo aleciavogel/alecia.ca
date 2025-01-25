@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { PopupModal } from 'react-calendly'
 
 import { CALENDLY_URL, CalendlySchedules } from '@alecia/calendly-constants'
-import CalendlyIcon from '@alecia/ui-kit/components/vectors/icons/calendly'
+import CalendlyIcon from '@alecia/graphics/icons/calendly'
 import Button from '@alecia/ui-kit/ui/button'
 
 interface CalendlyScheduleButtonProps {

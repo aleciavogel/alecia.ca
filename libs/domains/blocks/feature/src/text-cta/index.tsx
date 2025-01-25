@@ -2,7 +2,7 @@ import { stegaClean } from '@sanity/client/stega'
 import { PortableTextBlock } from 'next-sanity'
 
 import { TextCTABlockType } from '@alecia/block-types'
-import { BlogPortableText } from '@alecia/blog/blog-portable-text'
+import BlogPortableText from '@alecia/blog/blog-portable-text'
 import { IconButtonLink } from '@alecia/ui-kit/ui/icon-button-link'
 import Typography from '@alecia/ui-kit/ui/typography'
 import { cn } from '@alecia/util/styles'

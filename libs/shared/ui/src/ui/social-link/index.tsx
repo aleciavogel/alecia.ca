@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from '../tooltip/index'
 
-interface SocialLinkProps extends SocialLinkType {
+interface SocialLinkProps extends Omit<SocialLinkType, '_key' | '_type'> {
   className?: string
 }
 

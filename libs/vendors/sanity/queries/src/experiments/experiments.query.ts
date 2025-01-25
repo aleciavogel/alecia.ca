@@ -1,6 +1,6 @@
 import { defineQuery } from 'next-sanity'
 
-import { modulesQueryPartial } from './modules.query'
+import { modulesQueryPartial } from '../blocks/modules.query'
 
 export const experimentQueryPartial = `
     ...,

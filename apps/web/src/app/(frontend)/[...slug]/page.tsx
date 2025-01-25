@@ -19,9 +19,23 @@ interface PageProps {
   params: { slug?: string[] }
 }
 
+export async function generateStaticParams() {
+  const slugs = await client.fetch(
+    pageSlugQuery,
+    {},
+    {
+      next: {
+        tags: ['page'],
+      },
+    },
+  )
+
+  return slugs.map((item: any) => ({ slug: item?.split('/') }))
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const [page, settings] = await Promise.all([
-    getData<PageQueryResult>(pageQuery, params, [`page:${params.slug}`], {
+    getData<PageQueryResult>(pageQuery, { slug: params.slug?.join('/') }, [`page:${params.slug}`], {
       stega: false,
     }),
     getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
@@ -69,21 +83,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export async function generateStaticParams() {
-  return await client.fetch(
-    pageSlugQuery,
-    {},
-    {
-      next: {
-        tags: ['page'],
-      },
-    },
-  )
-}
-
-const Page = async ({ params }: PageProps) => {
+export default async function Page({ params }: PageProps) {
   const slug = params.slug?.join('/') ?? '404'
-  const page = await getData<PageQueryResult>(pageQuery, params, [`page:${params.slug}`])
+  const page = await getData<PageQueryResult>(pageQuery, { slug }, [`page:${params.slug}`])
 
   if (!page || slug === '404') notFound()
 
@@ -96,5 +98,3 @@ const Page = async ({ params }: PageProps) => {
     </SiteWrapper>
   )
 }
-
-export default Page

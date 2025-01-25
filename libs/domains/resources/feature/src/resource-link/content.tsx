@@ -1,6 +1,6 @@
 import { PortableTextBlock } from 'next-sanity'
 
-import { BlogPortableText } from '@alecia/blog/blog-portable-text'
+import BlogPortableText from '@alecia/blog/blog-portable-text'
 import { ResourcesIndexQueryResult } from '@alecia/sanity-types/sanity.types'
 
 type SingleResourceCategory = NonNullable<ResourcesIndexQueryResult['resources']>[number]

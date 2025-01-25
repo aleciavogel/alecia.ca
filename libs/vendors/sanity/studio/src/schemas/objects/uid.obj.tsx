@@ -1,6 +1,6 @@
 import { defineType } from 'sanity'
 
-import { SanityUIDInput } from '@alecia/sanity-ui'
+import SanityUIDInput from '@alecia/sanity-ui/sanity-uid-input'
 
 export const uid = defineType({
   name: 'uid',

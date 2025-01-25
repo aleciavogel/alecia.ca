@@ -1912,7 +1912,1280 @@ export type AllSanitySchemaTypes =
   | MuxTrack
   | IconPicker
 export declare const internalGroqTypeReferenceTo: unique symbol
-// Source: ../../../../../libs/vendors/sanity/queries/src/blog-article.query.ts
+// Source: ../../../../../libs/vendors/sanity/queries/src/pages.query.ts
+// Variable: pageQuery
+// Query: *[_type == 'page' && metadata.slug.current == $slug][0]{    ...,    'headerImageSrc': headerImage.asset->url,    'headerImageAlt': headerImage.alt,    modules[]{        ...,    _type == 'nav.icons' => {    ...,      links[]->{    _id,    _type,    "label": coalesce(metadata.title, title),    "subtitle": subtitle,    "slug": select(      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,      _type == 'page' => '/' + metadata.slug.current,      null    ),    "icon": icon.name  }  },    _type == 'nav.card' => {    ...,      links[]->{    _id,    _type,    "label": coalesce(metadata.title, title),    "subtitle": subtitle,    "slug": select(      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,      _type == 'page' => '/' + metadata.slug.current,      null    ),    "icon": icon.name  },    'image': image.asset->url,    'alt': image.alt  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,      additionalInfo    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[],  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  },    _type == 'image-with-text' => {        ...,    image {      ...,      'imageSrc': asset->url,      alt,      caption,      'dimensions': asset->metadata.dimensions,      'bgColor': asset->metadata.palette.dominant.background    }  },    _type == 'text.blockquote' => {    ...  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  }
+export type PageQueryResult = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  subtitle?: string
+  icon?: IconPicker
+  pretitle?: string
+  headerBorder?: 'angled-inverse' | 'angled' | 'chevron' | 'rectangular'
+  headerIllustration?:
+    | 'AleciaCouchIllustration'
+    | 'AleciaIdeaIllustration'
+    | 'AleciaLayingIllustration'
+    | 'AleciaSitIllustration'
+    | 'AleciaWaveIllustration'
+    | 'HammondScienceIllustration'
+    | 'HammondSleepingIllustration'
+    | 'none'
+    | 'PhoebeLaptopIllustration'
+    | 'PhoebeSleepingIllustration'
+    | 'PhoebeYarnIllustration'
+    | 'SadieAteMyWebsiteIllustration'
+    | 'SadieHammondCookiesIllustration'
+  headerImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  modules: Array<
+    | {
+        _key: string
+        _type: 'accordion-list'
+        pretitle?: string
+        heading?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        items?: Array<{
+          trigger?: string
+          content?: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: 'bullet' | 'number'
+            markDefs?: Array<{
+              href?: string
+              _type: 'link'
+              _key: string
+            }>
+            level?: number
+            _type: 'block'
+            _key: string
+          }>
+          open?: boolean
+          _key: string
+        }>
+        layout?: 'horizontal' | 'vertical'
+        uid?: Uid
+      }
+    | {
+        _key: string
+        _type: 'blog-frontpage'
+        mainPost?: 'featured' | 'recent'
+        showFeaturedPostsFirst?: boolean
+      }
+    | {
+        _key: string
+        _type: 'blog-list'
+        heading?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        layout?: 'carousel' | 'grid'
+        displayFilters?: boolean
+        limit?: number
+        filteredCategory?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'blog.category'
+        }
+      }
+    | {
+        _key: string
+        _type: 'callout'
+        content?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        ctas?: Array<
+          {
+            _key: string
+          } & Cta
+        >
+      }
+    | {
+        _key: string
+        _type: 'course-list'
+        heading: string | null
+        intro: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }> | null
+        layout: 'carousel' | 'grid' | null
+        displayFilters: boolean | null
+        limit: number | null
+        difficulty: 'advanced' | 'beginner' | null
+        filteredCategory?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'course.category'
+        }
+        courses: Array<{
+          _id: string
+          _type: 'course'
+          _createdAt: string
+          _updatedAt: string
+          _rev: string
+          title: string | null
+          subtitle: string | null
+          previewText: string | null
+          video?: MuxVideo
+          mainImage?: {
+            asset?: {
+              _ref: string
+              _type: 'reference'
+              _weak?: boolean
+              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+            }
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          }
+          body?: Array<
+            | ({
+                _key: string
+              } & CustomHtml)
+            | ({
+                _key: string
+              } & Sandpack)
+            | {
+                children?: Array<{
+                  marks?: Array<string>
+                  text?: string
+                  _type: 'span'
+                  _key: string
+                }>
+                style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+                listItem?: 'bullet' | 'number'
+                markDefs?: Array<{
+                  href?: string
+                  _type: 'link'
+                  _key: string
+                }>
+                level?: number
+                _type: 'block'
+                _key: string
+              }
+            | {
+                asset?: {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+                }
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                caption?: string
+                alt?: string
+                source?: string
+                loading?: 'eager' | 'lazy'
+                _type: 'image'
+                _key: string
+              }
+          >
+          chapters?: Array<{
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            _key: string
+            [internalGroqTypeReferenceTo]?: 'course.chapter'
+          }>
+          difficulty: 'advanced' | 'beginner' | null
+          categories: Array<{
+            _key: null
+            title: string | null
+            slug: string | null
+            icon: string | null
+          }> | null
+          publishDate: string | null
+          featured: boolean | null
+          repoUrl?: string
+          metadata: {
+            title: string | null
+            description: string | null
+            image: {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+            } | null
+          } | null
+          numChapters: number | null
+          slug: string | null
+          imageSrc: string | null
+          imageAlt: string | null
+        }>
+      }
+    | {
+        _key: string
+        _type: 'custom-html'
+        uid?: Uid
+        className?: string
+        html?: Code
+      }
+    | {
+        _key: string
+        _type: 'gallery.pets'
+        pretitle?: string
+        title?: string
+        images: Array<{
+          asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          name?: string
+          alt?: string
+          additionalInfo: Array<string> | null
+          _type: 'image'
+          _key: string
+          imageSrc: string | null
+          imageAlt: string | null
+        }> | null
+      }
+    | {
+        _key: string
+        _type: 'image-with-text'
+        image: {
+          asset?: {
+            _ref: string
+            _type: 'reference'
+            _weak?: boolean
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+          }
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt: string | null
+          caption: string | null
+          _type: 'image'
+          imageSrc: string | null
+          dimensions: SanityImageDimensions | null
+          bgColor: string | null
+        } | null
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        layout?: 'column' | 'float'
+        side?: 'left' | 'right'
+        centeredText?: boolean
+        reverseMargin?: boolean
+      }
+    | {
+        _key: string
+        _type: 'logo-list'
+        pretitle?: string
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        logos?: Array<{
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          _key: string
+          [internalGroqTypeReferenceTo]?: 'logo'
+        }>
+        logoType?: 'dark' | 'default' | 'light'
+        autoScroll?: boolean
+      }
+    | {
+        _key: string
+        _type: 'nav.card'
+        pretitle?: string
+        title?: string
+        image: string | null
+        links: Array<
+          | {
+              _id: string
+              _type: 'blog.category'
+              label: string | null
+              subtitle: string | null
+              slug: string | null
+              icon: string | null
+            }
+          | {
+              _id: string
+              _type: 'page'
+              label: string | null
+              subtitle: string | null
+              slug: string | null
+              icon: string | null
+            }
+        > | null
+        alt: string | null
+      }
+    | {
+        _key: string
+        _type: 'nav.icons'
+        pretitle?: string
+        title?: string
+        description?: string
+        links: Array<
+          | {
+              _id: string
+              _type: 'blog.category'
+              label: string | null
+              subtitle: string | null
+              slug: string | null
+              icon: string | null
+            }
+          | {
+              _id: string
+              _type: 'page'
+              label: string | null
+              subtitle: string | null
+              slug: string | null
+              icon: string | null
+            }
+        > | null
+      }
+    | {
+        _key: string
+        _type: 'sandpack'
+        title?: string
+        template?:
+          | 'angular'
+          | 'astro'
+          | 'nextjs'
+          | 'node'
+          | 'react-ts'
+          | 'react'
+          | 'solid'
+          | 'static'
+          | 'svelte'
+          | 'test-ts'
+          | 'vanilla-ts'
+          | 'vanilla'
+          | 'vite-preact-ts'
+          | 'vite-preact'
+          | 'vite-react-ts'
+          | 'vite-react'
+          | 'vite-svelte-ts'
+          | 'vite-svelte'
+          | 'vite-vue-ts'
+          | 'vite-vue'
+          | 'vite'
+          | 'vue-ts'
+          | 'vue'
+        files?: Array<
+          {
+            _key: string
+          } & SandpackFile
+        >
+        dependencies?: Array<{
+          name?: string
+          version?: string
+          _key: string
+        }>
+        devDependencies?: Array<{
+          name?: string
+          version?: string
+          _key: string
+        }>
+        options?: {
+          showTabs?: boolean
+          closeableTabs?: boolean
+          showLineNumbers?: boolean
+          showInlineErrors?: boolean
+          showRunButton?: boolean
+          wrapContent?: boolean
+          readOnly?: boolean
+          showReadOnly?: boolean
+          initMode?: 'immediate' | 'lazy' | 'user-visible'
+          staticResources?: Array<string>
+          showNavigator?: boolean
+          layout?: 'console' | 'preview' | 'tests'
+          editorHeight?: number
+          editorWidthPercentage?: number
+          autoRun?: boolean
+          autoReload?: boolean
+          resizablePanels?: boolean
+        }
+        showPreview?: boolean
+      }
+    | {
+        _key: string
+        _type: 'testimonial-list'
+        intro?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        testimonials?: Array<{
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          _key: string
+          [internalGroqTypeReferenceTo]?: 'testimonial'
+        }>
+        layout?: 'carousel' | 'grid'
+      }
+    | {
+        _key: string
+        _type: 'testimonial.featured'
+        testimonial?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'testimonial'
+        }
+      }
+    | {
+        _key: string
+        _type: 'text.aside-list'
+        heading?: string
+        listItems: Array<string> | null
+        text?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        reverse?: boolean
+      }
+    | {
+        _key: string
+        _type: 'text.blockquote'
+        quote?: string
+        author?: string
+      }
+    | {
+        _key: string
+        _type: 'text.cta'
+        layout?: 'left' | 'right'
+        pretitle?: string
+        title?: string
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        shouldUseLinkIcon?: boolean
+        icon?: IconPicker
+        link: {
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        } | null
+        linkIcon: string | null
+      }
+    | {
+        _key: string
+        _type: 'text.intro'
+        leadText?: string
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'text.rich'
+        content?: Array<
+          | ({
+              _key: string
+            } & TextBlockquote)
+          | {
+              children?: Array<{
+                marks?: Array<string>
+                text?: string
+                _type: 'span'
+                _key: string
+              }>
+              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+              listItem?: 'bullet' | 'number'
+              markDefs?: Array<{
+                href?: string
+                _type: 'link'
+                _key: string
+              }>
+              level?: number
+              _type: 'block'
+              _key: string
+            }
+          | {
+              asset?: {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+              }
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              caption?: string
+              alt?: string
+              source?: string
+              loading?: 'eager' | 'lazy'
+              _type: 'image'
+              _key: string
+            }
+        >
+      }
+  > | null
+  metadata: {
+    _type: 'metadata'
+    slug?: Slug
+    title?: string
+    description?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    keywords?: Array<string>
+    noIndex?: boolean
+    ogimage: string | null
+  } | null
+  headerImageSrc: string | null
+  headerImageAlt: string | null
+} | null
+// Variable: pageSlugQuery
+// Query: *[_type == 'page' && defined(metadata.slug.current)] {    'slug': metadata.slug.current  }
+export type PageSlugQueryResult = Array<{
+  slug: string | null
+}>
+
+// Source: ../../../../../libs/vendors/sanity/queries/src/settings.query.ts
+// Variable: settingsQuery
+// Query: *[_type == 'settings'][0]{    ...,    mainMenu{      items[]{          _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  },          _type == 'link.list' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },          _type == 'dropdown.about' => {    ...,    'image': image.asset->url,    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },          _type == 'dropdown.blog' => {    ...,    links[]{      _type == 'reference' => @->{        ...,        "slug": '/blog?category=' + metadata.slug.current,        "icon": icon.name      }    }  },          _type == 'dropdown.promo' => {    ...,    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },          _type == 'dropdown.quote' => {    ...,    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  }      }    },    secondaryMenu{      items[]{        ...,          _type == 'link.list' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },      }    },    'fullscreenMenu': fullscreenMenu[]{      ...,        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    },    social[] {        ...,    },    'ogimage': image.asset->url + '?w=1200'  }
+export type SettingsQueryResult = {
+  _id: string
+  _type: 'settings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  announcements?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'announcement'
+  }>
+  mainMenu: {
+    items: Array<
+      | {
+          _key: string
+          _type: 'dropdown.about'
+          label?: string
+          name?: string
+          subtitle?: string
+          image: string | null
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'dropdown.blog'
+          label?: string
+          links: Array<{
+            _id: string
+            _type: 'blog.category'
+            _createdAt: string
+            _updatedAt: string
+            _rev: string
+            title?: string
+            subtitle?: string
+            icon: string | null
+            metadata?: Metadata
+            slug: string | null
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'dropdown.promo'
+          label?: string
+          subtitle?: string
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'dropdown.quote'
+          label?: string
+          author?: string
+          quote?: string
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+      | {
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+          icon: string | null
+          slug: null | string
+        }
+    > | null
+  } | null
+  secondaryMenu: {
+    items: Array<
+      | {
+          _key: string
+          _type: 'link.external'
+          label?: string
+          url?: string
+        }
+      | {
+          _key: string
+          _type: 'link.internal'
+          label?: string
+          subtitle?: string
+          item?:
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'author'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.article'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'blog.category'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'course.chapter'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'experiment'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'page'
+              }
+            | {
+                _ref: string
+                _type: 'reference'
+                _weak?: boolean
+                [internalGroqTypeReferenceTo]?: 'project'
+              }
+          params?: string
+        }
+      | {
+          _key: string
+          _type: 'link.list'
+          label?: string
+          links: Array<{
+            _key: string
+            _type: 'link.internal'
+            label?: string
+            subtitle?: string
+            item?:
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'author'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.article'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'blog.category'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'course.chapter'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'experiment'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'page'
+                }
+              | {
+                  _ref: string
+                  _type: 'reference'
+                  _weak?: boolean
+                  [internalGroqTypeReferenceTo]?: 'project'
+                }
+            params?: string
+            icon: string | null
+            slug: null | string
+          }> | null
+        }
+    > | null
+  } | null
+  fullscreenMenu: Array<{
+    _key: string
+    _type: 'link.internal'
+    label?: string
+    subtitle?: string
+    item?:
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'author'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'blog.article'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'blog.category'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'course'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'course.chapter'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'experiment'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'page'
+        }
+      | {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'project'
+        }
+    params?: string
+    icon: string | null
+    slug: null | string
+  }> | null
+  wavyAdjectives?: Array<string>
+  social: Array<{
+    _key: string
+    _type: 'link.social'
+    label?: string
+    url?: string
+  }> | null
+  footerName?: string
+  footerBio?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  copyright?: string
+  ogimage: null
+} | null
+
+// Source: ../../../../../libs/vendors/sanity/queries/src/blocks/gallery-pets.query.ts
+// Variable: galleryPetsQuery
+// Query: *[_type == 'gallery.pets'] {      _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,      additionalInfo    }  }  }
+export type GalleryPetsQueryResult = Array<never>
+
+// Source: ../../../../../libs/vendors/sanity/queries/src/blog/blog-article.query.ts
 // Variable: allBlogArticlesQuery
 // Query: *[ _type == 'blog.article' ] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    }  }
 export type AllBlogArticlesQueryResult = Array<{
@@ -2011,7 +3284,7 @@ export type ArticleSlugsQueryResult = Array<{
   slug: string | null
 }>
 // Variable: blogIndexQuery
-// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{    pretitle,    title,    subtitle,    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id))] | order(publishedAt desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    },  }}
+// Query: {  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{    pretitle,    title,    subtitle,    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id))] | order(publishDate desc) {        _id,    title,    previewText,    mainImage,    'slug': '/blog/' + metadata.slug.current,    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),    categories[]-> {      _key,      title,      'slug': '/blog?category=' + metadata.slug.current,      'icon': icon.name    },    metadata {      ...,    },  }}
 export type BlogIndexQueryResult = {
   page: {
     pretitle: string | null
@@ -2188,7 +3461,7 @@ export type BlogArticlePageQueryResult = {
   estimatedReadingTime: number
 } | null
 
-// Source: ../../../../../libs/vendors/sanity/queries/src/blog-category.query.ts
+// Source: ../../../../../libs/vendors/sanity/queries/src/blog/blog-category.query.ts
 // Variable: blogCategoriesQuery
 // Query: *[ _type == 'blog.category' ] {    ...,    'slug': metadata.slug.current,    'href': '/blog?category=' + metadata.slug.current,    'icon': icon.name  }
 export type BlogCategoriesQueryResult = Array<{
@@ -2205,7 +3478,7 @@ export type BlogCategoriesQueryResult = Array<{
   href: string | null
 }>
 
-// Source: ../../../../../libs/vendors/sanity/queries/src/courses.query.ts
+// Source: ../../../../../libs/vendors/sanity/queries/src/courses/courses.query.ts
 // Variable: CoursesByDifficultyQuery
 // Query: *[_type == 'course' && difficulty == $difficulty] | order(publishedAt desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  },  }
 export type CoursesByDifficultyQueryResult = Array<{
@@ -2310,7 +3583,7 @@ export type CoursesByDifficultyQueryResult = Array<{
   imageAlt: string | null
 }>
 
-// Source: ../../../../../libs/vendors/sanity/queries/src/experiments.query.ts
+// Source: ../../../../../libs/vendors/sanity/queries/src/experiments/experiments.query.ts
 // Variable: allExperimentsQuery
 // Query: *[_type == 'experiment'] | order(publishedAt desc) {        ...,    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),    'imageSrc': coalesce(mainImage.asset->url, ''),    'imageAlt': coalesce(mainImage.alt, 'No alt text'),    tags[]-> {      ...,      label,      'slug': '/experiments?tag=' + slug.current,      'icon': icon.name    },  }
 export type AllExperimentsQueryResult = Array<{
@@ -3314,1521 +4587,7 @@ export type ExperimentPageQueryResult = {
   imageAlt: string | 'No alt text'
 } | null
 
-// Source: ../../../../../libs/vendors/sanity/queries/src/gallery-pets.query.ts
-// Variable: galleryPetsQuery
-// Query: *[_type == 'gallery.pets'] {      _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,      additionalInfo    }  }  }
-export type GalleryPetsQueryResult = Array<never>
-
-// Source: ../../../../../libs/vendors/sanity/queries/src/pages.query.ts
-// Variable: homePageQuery
-// Query: *[_type == 'page' && metadata.slug.current == 'index'][0]{  ...,  modules[]{      ...,    _type == 'nav.icons' => {    ...,      links[]->{    _id,    _type,    "label": coalesce(metadata.title, title),    "subtitle": subtitle,    "slug": select(      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,      _type == 'page' => '/' + metadata.slug.current,      null    ),    "icon": icon.name  }  },    _type == 'nav.card' => {    ...,      links[]->{    _id,    _type,    "label": coalesce(metadata.title, title),    "subtitle": subtitle,    "slug": select(      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,      _type == 'page' => '/' + metadata.slug.current,      null    ),    "icon": icon.name  },    'image': image.asset->url,    'alt': image.alt  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,      additionalInfo    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[],  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  },    _type == 'image-with-text' => {        ...,    image {      ...,      'imageSrc': asset->url,      alt,      caption,      'dimensions': asset->metadata.dimensions,      'bgColor': asset->metadata.palette.dominant.background    }  },    _type == 'text.blockquote' => {    ...  }  },  metadata {    ...,    'ogimage': image.asset->url + '?w=1200'  }}
-export type HomePageQueryResult = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  subtitle?: string
-  icon?: IconPicker
-  pretitle?: string
-  headerBorder?: 'angled-inverse' | 'angled' | 'chevron' | 'rectangular'
-  headerIllustration?:
-    | 'AleciaCouchIllustration'
-    | 'AleciaIdeaIllustration'
-    | 'AleciaLayingIllustration'
-    | 'AleciaSitIllustration'
-    | 'AleciaWaveIllustration'
-    | 'HammondScienceIllustration'
-    | 'HammondSleepingIllustration'
-    | 'none'
-    | 'PhoebeLaptopIllustration'
-    | 'PhoebeSleepingIllustration'
-    | 'PhoebeYarnIllustration'
-    | 'SadieAteMyWebsiteIllustration'
-    | 'SadieHammondCookiesIllustration'
-  headerImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  modules: Array<
-    | {
-        _key: string
-        _type: 'accordion-list'
-        pretitle?: string
-        heading?: string
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        items?: Array<{
-          trigger?: string
-          content?: Array<{
-            children?: Array<{
-              marks?: Array<string>
-              text?: string
-              _type: 'span'
-              _key: string
-            }>
-            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-            listItem?: 'bullet' | 'number'
-            markDefs?: Array<{
-              href?: string
-              _type: 'link'
-              _key: string
-            }>
-            level?: number
-            _type: 'block'
-            _key: string
-          }>
-          open?: boolean
-          _key: string
-        }>
-        layout?: 'horizontal' | 'vertical'
-        uid?: Uid
-      }
-    | {
-        _key: string
-        _type: 'blog-frontpage'
-        mainPost?: 'featured' | 'recent'
-        showFeaturedPostsFirst?: boolean
-      }
-    | {
-        _key: string
-        _type: 'blog-list'
-        heading?: string
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        layout?: 'carousel' | 'grid'
-        displayFilters?: boolean
-        limit?: number
-        filteredCategory?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'blog.category'
-        }
-      }
-    | {
-        _key: string
-        _type: 'callout'
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        ctas?: Array<
-          {
-            _key: string
-          } & Cta
-        >
-      }
-    | {
-        _key: string
-        _type: 'course-list'
-        heading: string | null
-        intro: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }> | null
-        layout: 'carousel' | 'grid' | null
-        displayFilters: boolean | null
-        limit: number | null
-        difficulty: 'advanced' | 'beginner' | null
-        filteredCategory?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'course.category'
-        }
-        courses: Array<{
-          _id: string
-          _type: 'course'
-          _createdAt: string
-          _updatedAt: string
-          _rev: string
-          title: string | null
-          subtitle: string | null
-          previewText: string | null
-          video?: MuxVideo
-          mainImage?: {
-            asset?: {
-              _ref: string
-              _type: 'reference'
-              _weak?: boolean
-              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-            }
-            hotspot?: SanityImageHotspot
-            crop?: SanityImageCrop
-            alt?: string
-            _type: 'image'
-          }
-          body?: Array<
-            | ({
-                _key: string
-              } & CustomHtml)
-            | ({
-                _key: string
-              } & Sandpack)
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs?: Array<{
-                  href?: string
-                  _type: 'link'
-                  _key: string
-                }>
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                asset?: {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-                }
-                hotspot?: SanityImageHotspot
-                crop?: SanityImageCrop
-                caption?: string
-                alt?: string
-                source?: string
-                loading?: 'eager' | 'lazy'
-                _type: 'image'
-                _key: string
-              }
-          >
-          chapters?: Array<{
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            _key: string
-            [internalGroqTypeReferenceTo]?: 'course.chapter'
-          }>
-          difficulty: 'advanced' | 'beginner' | null
-          categories: Array<{
-            _key: null
-            title: string | null
-            slug: string | null
-            icon: string | null
-          }> | null
-          publishDate: string | null
-          featured: boolean | null
-          repoUrl?: string
-          metadata: {
-            title: string | null
-            description: string | null
-            image: {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              _type: 'image'
-            } | null
-          } | null
-          numChapters: number | null
-          slug: string | null
-          imageSrc: string | null
-          imageAlt: string | null
-        }>
-      }
-    | {
-        _key: string
-        _type: 'custom-html'
-        uid?: Uid
-        className?: string
-        html?: Code
-      }
-    | {
-        _key: string
-        _type: 'gallery.pets'
-        pretitle?: string
-        title?: string
-        images: Array<{
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          name?: string
-          alt?: string
-          additionalInfo: Array<string> | null
-          _type: 'image'
-          _key: string
-          imageSrc: string | null
-          imageAlt: string | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'image-with-text'
-        image: {
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          alt: string | null
-          caption: string | null
-          _type: 'image'
-          imageSrc: string | null
-          dimensions: SanityImageDimensions | null
-          bgColor: string | null
-        } | null
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        layout?: 'column' | 'float'
-        side?: 'left' | 'right'
-        centeredText?: boolean
-        reverseMargin?: boolean
-      }
-    | {
-        _key: string
-        _type: 'logo-list'
-        pretitle?: string
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        logos?: Array<{
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          _key: string
-          [internalGroqTypeReferenceTo]?: 'logo'
-        }>
-        logoType?: 'dark' | 'default' | 'light'
-        autoScroll?: boolean
-      }
-    | {
-        _key: string
-        _type: 'nav.card'
-        pretitle?: string
-        title?: string
-        image: string | null
-        links: Array<
-          | {
-              _id: string
-              _type: 'blog.category'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-          | {
-              _id: string
-              _type: 'page'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-        > | null
-        alt: string | null
-      }
-    | {
-        _key: string
-        _type: 'nav.icons'
-        pretitle?: string
-        title?: string
-        description?: string
-        links: Array<
-          | {
-              _id: string
-              _type: 'blog.category'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-          | {
-              _id: string
-              _type: 'page'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-        > | null
-      }
-    | {
-        _key: string
-        _type: 'sandpack'
-        title?: string
-        template?:
-          | 'angular'
-          | 'astro'
-          | 'nextjs'
-          | 'node'
-          | 'react-ts'
-          | 'react'
-          | 'solid'
-          | 'static'
-          | 'svelte'
-          | 'test-ts'
-          | 'vanilla-ts'
-          | 'vanilla'
-          | 'vite-preact-ts'
-          | 'vite-preact'
-          | 'vite-react-ts'
-          | 'vite-react'
-          | 'vite-svelte-ts'
-          | 'vite-svelte'
-          | 'vite-vue-ts'
-          | 'vite-vue'
-          | 'vite'
-          | 'vue-ts'
-          | 'vue'
-        files?: Array<
-          {
-            _key: string
-          } & SandpackFile
-        >
-        dependencies?: Array<{
-          name?: string
-          version?: string
-          _key: string
-        }>
-        devDependencies?: Array<{
-          name?: string
-          version?: string
-          _key: string
-        }>
-        options?: {
-          showTabs?: boolean
-          closeableTabs?: boolean
-          showLineNumbers?: boolean
-          showInlineErrors?: boolean
-          showRunButton?: boolean
-          wrapContent?: boolean
-          readOnly?: boolean
-          showReadOnly?: boolean
-          initMode?: 'immediate' | 'lazy' | 'user-visible'
-          staticResources?: Array<string>
-          showNavigator?: boolean
-          layout?: 'console' | 'preview' | 'tests'
-          editorHeight?: number
-          editorWidthPercentage?: number
-          autoRun?: boolean
-          autoReload?: boolean
-          resizablePanels?: boolean
-        }
-        showPreview?: boolean
-      }
-    | {
-        _key: string
-        _type: 'testimonial-list'
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        testimonials?: Array<{
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          _key: string
-          [internalGroqTypeReferenceTo]?: 'testimonial'
-        }>
-        layout?: 'carousel' | 'grid'
-      }
-    | {
-        _key: string
-        _type: 'testimonial.featured'
-        testimonial?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'testimonial'
-        }
-      }
-    | {
-        _key: string
-        _type: 'text.aside-list'
-        heading?: string
-        listItems: Array<string> | null
-        text?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        reverse?: boolean
-      }
-    | {
-        _key: string
-        _type: 'text.blockquote'
-        quote?: string
-        author?: string
-      }
-    | {
-        _key: string
-        _type: 'text.cta'
-        layout?: 'left' | 'right'
-        pretitle?: string
-        title?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        shouldUseLinkIcon?: boolean
-        icon?: IconPicker
-        link: {
-          _type: 'link.internal'
-          label?: string
-          subtitle?: string
-          item?:
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'author'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.article'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.category'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course.chapter'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'experiment'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'page'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'project'
-              }
-          params?: string
-          icon: string | null
-          slug: null | string
-        } | null
-        linkIcon: string | null
-      }
-    | {
-        _key: string
-        _type: 'text.intro'
-        leadText?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-      }
-    | {
-        _key: string
-        _type: 'text.rich'
-        content?: Array<
-          | ({
-              _key: string
-            } & TextBlockquote)
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-              listItem?: 'bullet' | 'number'
-              markDefs?: Array<{
-                href?: string
-                _type: 'link'
-                _key: string
-              }>
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              caption?: string
-              alt?: string
-              source?: string
-              loading?: 'eager' | 'lazy'
-              _type: 'image'
-              _key: string
-            }
-        >
-      }
-  > | null
-  metadata: {
-    _type: 'metadata'
-    slug?: Slug
-    title?: string
-    description?: string
-    image?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-    keywords?: Array<string>
-    noIndex?: boolean
-    ogimage: string | null
-  } | null
-} | null
-// Variable: pageQuery
-// Query: *[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{    ...,    'headerImageSrc': headerImage.asset->url,    'headerImageAlt': headerImage.alt,    modules[]{        ...,    _type == 'nav.icons' => {    ...,      links[]->{    _id,    _type,    "label": coalesce(metadata.title, title),    "subtitle": subtitle,    "slug": select(      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,      _type == 'page' => '/' + metadata.slug.current,      null    ),    "icon": icon.name  }  },    _type == 'nav.card' => {    ...,      links[]->{    _id,    _type,    "label": coalesce(metadata.title, title),    "subtitle": subtitle,    "slug": select(      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,      _type == 'page' => '/' + metadata.slug.current,      null    ),    "icon": icon.name  },    'image': image.asset->url,    'alt': image.alt  },    _type == 'gallery.pets' => {        ...,    images[] {      ...,      _key,      'imageSrc': asset->url,      'imageAlt': alt,      additionalInfo    }  },    _type == 'text.cta' => {    ...,    'linkIcon': link.item->icon.name,    link {        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },    _type == 'text.aside-list' => {    ...,    'listItems': listItems[],  },    _type == 'course-list' => {      ...,  heading,  intro,  layout,  limit,  difficulty,  displayFilters,  'courses': *[_type == "course" && difficulty == ^.difficulty] | order(publishDate desc) {      ...,  title,  subtitle,  previewText,  "numChapters": count(chapters),  difficulty,  publishDate,  featured,  'slug': '/courses/' + metadata.slug.current,  'imageSrc': mainImage.asset->url,  'imageAlt': mainImage.alt,  categories[]-> {    _key,    title,    'slug': '/courses?category=' + slug.current,    'icon': icon.name  },  "metadata": metadata {    title,    description,    image  }  }  },    _type == 'image-with-text' => {        ...,    image {      ...,      'imageSrc': asset->url,      alt,      caption,      'dimensions': asset->metadata.dimensions,      'bgColor': asset->metadata.palette.dominant.background    }  },    _type == 'text.blockquote' => {    ...  }    },    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  }
-export type PageQueryResult = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  subtitle?: string
-  icon?: IconPicker
-  pretitle?: string
-  headerBorder?: 'angled-inverse' | 'angled' | 'chevron' | 'rectangular'
-  headerIllustration?:
-    | 'AleciaCouchIllustration'
-    | 'AleciaIdeaIllustration'
-    | 'AleciaLayingIllustration'
-    | 'AleciaSitIllustration'
-    | 'AleciaWaveIllustration'
-    | 'HammondScienceIllustration'
-    | 'HammondSleepingIllustration'
-    | 'none'
-    | 'PhoebeLaptopIllustration'
-    | 'PhoebeSleepingIllustration'
-    | 'PhoebeYarnIllustration'
-    | 'SadieAteMyWebsiteIllustration'
-    | 'SadieHammondCookiesIllustration'
-  headerImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-  modules: Array<
-    | {
-        _key: string
-        _type: 'accordion-list'
-        pretitle?: string
-        heading?: string
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        items?: Array<{
-          trigger?: string
-          content?: Array<{
-            children?: Array<{
-              marks?: Array<string>
-              text?: string
-              _type: 'span'
-              _key: string
-            }>
-            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-            listItem?: 'bullet' | 'number'
-            markDefs?: Array<{
-              href?: string
-              _type: 'link'
-              _key: string
-            }>
-            level?: number
-            _type: 'block'
-            _key: string
-          }>
-          open?: boolean
-          _key: string
-        }>
-        layout?: 'horizontal' | 'vertical'
-        uid?: Uid
-      }
-    | {
-        _key: string
-        _type: 'blog-frontpage'
-        mainPost?: 'featured' | 'recent'
-        showFeaturedPostsFirst?: boolean
-      }
-    | {
-        _key: string
-        _type: 'blog-list'
-        heading?: string
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        layout?: 'carousel' | 'grid'
-        displayFilters?: boolean
-        limit?: number
-        filteredCategory?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'blog.category'
-        }
-      }
-    | {
-        _key: string
-        _type: 'callout'
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        ctas?: Array<
-          {
-            _key: string
-          } & Cta
-        >
-      }
-    | {
-        _key: string
-        _type: 'course-list'
-        heading: string | null
-        intro: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }> | null
-        layout: 'carousel' | 'grid' | null
-        displayFilters: boolean | null
-        limit: number | null
-        difficulty: 'advanced' | 'beginner' | null
-        filteredCategory?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'course.category'
-        }
-        courses: Array<{
-          _id: string
-          _type: 'course'
-          _createdAt: string
-          _updatedAt: string
-          _rev: string
-          title: string | null
-          subtitle: string | null
-          previewText: string | null
-          video?: MuxVideo
-          mainImage?: {
-            asset?: {
-              _ref: string
-              _type: 'reference'
-              _weak?: boolean
-              [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-            }
-            hotspot?: SanityImageHotspot
-            crop?: SanityImageCrop
-            alt?: string
-            _type: 'image'
-          }
-          body?: Array<
-            | ({
-                _key: string
-              } & CustomHtml)
-            | ({
-                _key: string
-              } & Sandpack)
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs?: Array<{
-                  href?: string
-                  _type: 'link'
-                  _key: string
-                }>
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                asset?: {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-                }
-                hotspot?: SanityImageHotspot
-                crop?: SanityImageCrop
-                caption?: string
-                alt?: string
-                source?: string
-                loading?: 'eager' | 'lazy'
-                _type: 'image'
-                _key: string
-              }
-          >
-          chapters?: Array<{
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            _key: string
-            [internalGroqTypeReferenceTo]?: 'course.chapter'
-          }>
-          difficulty: 'advanced' | 'beginner' | null
-          categories: Array<{
-            _key: null
-            title: string | null
-            slug: string | null
-            icon: string | null
-          }> | null
-          publishDate: string | null
-          featured: boolean | null
-          repoUrl?: string
-          metadata: {
-            title: string | null
-            description: string | null
-            image: {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              _type: 'image'
-            } | null
-          } | null
-          numChapters: number | null
-          slug: string | null
-          imageSrc: string | null
-          imageAlt: string | null
-        }>
-      }
-    | {
-        _key: string
-        _type: 'custom-html'
-        uid?: Uid
-        className?: string
-        html?: Code
-      }
-    | {
-        _key: string
-        _type: 'gallery.pets'
-        pretitle?: string
-        title?: string
-        images: Array<{
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          name?: string
-          alt?: string
-          additionalInfo: Array<string> | null
-          _type: 'image'
-          _key: string
-          imageSrc: string | null
-          imageAlt: string | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'image-with-text'
-        image: {
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          alt: string | null
-          caption: string | null
-          _type: 'image'
-          imageSrc: string | null
-          dimensions: SanityImageDimensions | null
-          bgColor: string | null
-        } | null
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        layout?: 'column' | 'float'
-        side?: 'left' | 'right'
-        centeredText?: boolean
-        reverseMargin?: boolean
-      }
-    | {
-        _key: string
-        _type: 'logo-list'
-        pretitle?: string
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        logos?: Array<{
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          _key: string
-          [internalGroqTypeReferenceTo]?: 'logo'
-        }>
-        logoType?: 'dark' | 'default' | 'light'
-        autoScroll?: boolean
-      }
-    | {
-        _key: string
-        _type: 'nav.card'
-        pretitle?: string
-        title?: string
-        image: string | null
-        links: Array<
-          | {
-              _id: string
-              _type: 'blog.category'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-          | {
-              _id: string
-              _type: 'page'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-        > | null
-        alt: string | null
-      }
-    | {
-        _key: string
-        _type: 'nav.icons'
-        pretitle?: string
-        title?: string
-        description?: string
-        links: Array<
-          | {
-              _id: string
-              _type: 'blog.category'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-          | {
-              _id: string
-              _type: 'page'
-              label: string | null
-              subtitle: string | null
-              slug: string | null
-              icon: string | null
-            }
-        > | null
-      }
-    | {
-        _key: string
-        _type: 'sandpack'
-        title?: string
-        template?:
-          | 'angular'
-          | 'astro'
-          | 'nextjs'
-          | 'node'
-          | 'react-ts'
-          | 'react'
-          | 'solid'
-          | 'static'
-          | 'svelte'
-          | 'test-ts'
-          | 'vanilla-ts'
-          | 'vanilla'
-          | 'vite-preact-ts'
-          | 'vite-preact'
-          | 'vite-react-ts'
-          | 'vite-react'
-          | 'vite-svelte-ts'
-          | 'vite-svelte'
-          | 'vite-vue-ts'
-          | 'vite-vue'
-          | 'vite'
-          | 'vue-ts'
-          | 'vue'
-        files?: Array<
-          {
-            _key: string
-          } & SandpackFile
-        >
-        dependencies?: Array<{
-          name?: string
-          version?: string
-          _key: string
-        }>
-        devDependencies?: Array<{
-          name?: string
-          version?: string
-          _key: string
-        }>
-        options?: {
-          showTabs?: boolean
-          closeableTabs?: boolean
-          showLineNumbers?: boolean
-          showInlineErrors?: boolean
-          showRunButton?: boolean
-          wrapContent?: boolean
-          readOnly?: boolean
-          showReadOnly?: boolean
-          initMode?: 'immediate' | 'lazy' | 'user-visible'
-          staticResources?: Array<string>
-          showNavigator?: boolean
-          layout?: 'console' | 'preview' | 'tests'
-          editorHeight?: number
-          editorWidthPercentage?: number
-          autoRun?: boolean
-          autoReload?: boolean
-          resizablePanels?: boolean
-        }
-        showPreview?: boolean
-      }
-    | {
-        _key: string
-        _type: 'testimonial-list'
-        intro?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        testimonials?: Array<{
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          _key: string
-          [internalGroqTypeReferenceTo]?: 'testimonial'
-        }>
-        layout?: 'carousel' | 'grid'
-      }
-    | {
-        _key: string
-        _type: 'testimonial.featured'
-        testimonial?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'testimonial'
-        }
-      }
-    | {
-        _key: string
-        _type: 'text.aside-list'
-        heading?: string
-        listItems: Array<string> | null
-        text?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        reverse?: boolean
-      }
-    | {
-        _key: string
-        _type: 'text.blockquote'
-        quote?: string
-        author?: string
-      }
-    | {
-        _key: string
-        _type: 'text.cta'
-        layout?: 'left' | 'right'
-        pretitle?: string
-        title?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        shouldUseLinkIcon?: boolean
-        icon?: IconPicker
-        link: {
-          _type: 'link.internal'
-          label?: string
-          subtitle?: string
-          item?:
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'author'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.article'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.category'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course.chapter'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'experiment'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'page'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'project'
-              }
-          params?: string
-          icon: string | null
-          slug: null | string
-        } | null
-        linkIcon: string | null
-      }
-    | {
-        _key: string
-        _type: 'text.intro'
-        leadText?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-      }
-    | {
-        _key: string
-        _type: 'text.rich'
-        content?: Array<
-          | ({
-              _key: string
-            } & TextBlockquote)
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-              listItem?: 'bullet' | 'number'
-              markDefs?: Array<{
-                href?: string
-                _type: 'link'
-                _key: string
-              }>
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              caption?: string
-              alt?: string
-              source?: string
-              loading?: 'eager' | 'lazy'
-              _type: 'image'
-              _key: string
-            }
-        >
-      }
-  > | null
-  metadata: {
-    _type: 'metadata'
-    slug?: Slug
-    title?: string
-    description?: string
-    image?: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-    keywords?: Array<string>
-    noIndex?: boolean
-    ogimage: string | null
-  } | null
-  headerImageSrc: string | null
-  headerImageAlt: string | null
-} | null
-// Variable: pageSlugQuery
-// Query: *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current
-export type PageSlugQueryResult = Array<string | null>
-
-// Source: ../../../../../libs/vendors/sanity/queries/src/projects.query.ts
+// Source: ../../../../../libs/vendors/sanity/queries/src/projects/projects.query.ts
 // Variable: allProjectsQuery
 // Query: *[_type == 'project'] | order(publishDate desc) {        ...,    'slug': '/projects/' + metadata.slug.current,    mainImage{      ...,      'src': asset->url,      'dimensions': asset->metadata.dimensions,      'bgColor': asset->metadata.palette.dominant.background    },    secondaryImage{      ...,      'src': asset->url,      'dimensions': asset->metadata.dimensions,      'bgColor': asset->metadata.palette.dominant.background    },    tags[]-> {      ...,      'slug': '/projects?tag=' + slug.current,      'icon': icon.name    },  }
 export type AllProjectsQueryResult = Array<{
@@ -6794,7 +6553,7 @@ export type ProjectSlugsQueryResult = Array<{
   slug: string | null
 }>
 
-// Source: ../../../../../libs/vendors/sanity/queries/src/resources.query.ts
+// Source: ../../../../../libs/vendors/sanity/queries/src/resources/resources.query.ts
 // Variable: resourcesIndexQuery
 // Query: {  'page': *[_type == 'page' && metadata.slug.current == 'resources'][0]{    ...,    pretitle,    title,    subtitle,    headerIllustration,    metadata {      ...,      'ogimage': image.asset->url + '?w=1200'    }  },  'resources': *[_type == 'resource.category'] | order(title asc) {    _id,    title,    description,    icon,    links[] {        _id,  label,  url,  content,  'image': image.asset->url,  'alt': image.alt,  featured,  layout    }  }}
 export type ResourcesIndexQueryResult = {
@@ -6951,537 +6710,28 @@ export type ResourcesIndexQueryResult = {
   }>
 }
 
-// Source: ../../../../../libs/vendors/sanity/queries/src/settings.query.ts
-// Variable: settingsQuery
-// Query: *[_type == 'settings'][0]{    ...,    mainMenu{      items[]{          _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  },          _type == 'link.list' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },          _type == 'dropdown.about' => {    ...,    'image': image.asset->url,    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },          _type == 'dropdown.blog' => {    ...,    links[]{      _type == 'reference' => @->{        ...,        "slug": '/blog?category=' + metadata.slug.current,        "icon": icon.name      }    }  },          _type == 'dropdown.promo' => {    ...,    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },          _type == 'dropdown.quote' => {    ...,    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  }      }    },    secondaryMenu{      items[]{        ...,          _type == 'link.list' => {    links[]{        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    }  },      }    },    'fullscreenMenu': fullscreenMenu[]{      ...,        _type == 'link.internal' => {    ...,    'icon': item->icon.name,    'slug': item->{      'slug': select(          _type == 'author' => '/authors/' + metadata.slug.current,          _type == 'blog.article' => '/blog/' + metadata.slug.current,          _type == 'blog.category' => '/blog?category=' + metadata.slug.current,          _type == 'course' => '/courses/' + metadata.slug.current,          _type == 'course.chapter' => {    'slug':      "/courses/" +      coalesce(        *[_type == "course" && references(^._id)][0].metadata.slug.current,        "unknown-course"      ) +      "/" + metadata.slug.current  }.slug,          _type == 'page' => '/' + metadata.slug.current,          _type == 'project' => '/projects/' + metadata.slug.current,          _type == 'experiment' => '/experiments/' + metadata.slug.current,        null      )    }.slug  }    },    social[] {        ...,    },    'ogimage': image.asset->url + '?w=1200'  }
-export type SettingsQueryResult = {
-  _id: string
-  _type: 'settings'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  announcements?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'announcement'
-  }>
-  mainMenu: {
-    items: Array<
-      | {
-          _key: string
-          _type: 'dropdown.about'
-          label?: string
-          name?: string
-          subtitle?: string
-          image: string | null
-          links: Array<{
-            _key: string
-            _type: 'link.internal'
-            label?: string
-            subtitle?: string
-            item?:
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'author'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.article'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.category'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course.chapter'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'experiment'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'page'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'project'
-                }
-            params?: string
-            icon: string | null
-            slug: null | string
-          }> | null
-        }
-      | {
-          _key: string
-          _type: 'dropdown.blog'
-          label?: string
-          links: Array<{
-            _id: string
-            _type: 'blog.category'
-            _createdAt: string
-            _updatedAt: string
-            _rev: string
-            title?: string
-            subtitle?: string
-            icon: string | null
-            metadata?: Metadata
-            slug: string | null
-          }> | null
-        }
-      | {
-          _key: string
-          _type: 'dropdown.promo'
-          label?: string
-          subtitle?: string
-          links: Array<{
-            _key: string
-            _type: 'link.internal'
-            label?: string
-            subtitle?: string
-            item?:
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'author'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.article'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.category'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course.chapter'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'experiment'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'page'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'project'
-                }
-            params?: string
-            icon: string | null
-            slug: null | string
-          }> | null
-        }
-      | {
-          _key: string
-          _type: 'dropdown.quote'
-          label?: string
-          author?: string
-          quote?: string
-          links: Array<{
-            _key: string
-            _type: 'link.internal'
-            label?: string
-            subtitle?: string
-            item?:
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'author'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.article'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.category'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course.chapter'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'experiment'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'page'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'project'
-                }
-            params?: string
-            icon: string | null
-            slug: null | string
-          }> | null
-        }
-      | {
-          _key: string
-          _type: 'link.internal'
-          label?: string
-          subtitle?: string
-          item?:
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'author'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.article'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.category'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course.chapter'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'experiment'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'page'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'project'
-              }
-          params?: string
-          icon: string | null
-          slug: null | string
-        }
-    > | null
-  } | null
-  secondaryMenu: {
-    items: Array<
-      | {
-          _key: string
-          _type: 'link.external'
-          label?: string
-          url?: string
-        }
-      | {
-          _key: string
-          _type: 'link.internal'
-          label?: string
-          subtitle?: string
-          item?:
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'author'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.article'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'blog.category'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'course.chapter'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'experiment'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'page'
-              }
-            | {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'project'
-              }
-          params?: string
-        }
-      | {
-          _key: string
-          _type: 'link.list'
-          label?: string
-          links: Array<{
-            _key: string
-            _type: 'link.internal'
-            label?: string
-            subtitle?: string
-            item?:
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'author'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.article'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'blog.category'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'course.chapter'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'experiment'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'page'
-                }
-              | {
-                  _ref: string
-                  _type: 'reference'
-                  _weak?: boolean
-                  [internalGroqTypeReferenceTo]?: 'project'
-                }
-            params?: string
-            icon: string | null
-            slug: null | string
-          }> | null
-        }
-    > | null
-  } | null
-  fullscreenMenu: Array<{
-    _key: string
-    _type: 'link.internal'
-    label?: string
-    subtitle?: string
-    item?:
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'author'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'blog.article'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'blog.category'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'course'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'course.chapter'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'experiment'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'page'
-        }
-      | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'project'
-        }
-    params?: string
-    icon: string | null
-    slug: null | string
-  }> | null
-  wavyAdjectives?: Array<string>
-  social: Array<{
-    _key: string
-    _type: 'link.social'
-    label?: string
-    url?: string
-  }> | null
-  footerName?: string
-  footerBio?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  copyright?: string
-  ogimage: null
-} | null
-
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
+    "\n  *[_type == 'page' && metadata.slug.current == $slug][0]{\n    ...,\n    'headerImageSrc': headerImage.asset->url,\n    'headerImageAlt': headerImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[],\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  }\n": PageQueryResult
+    "\n  *[_type == 'page' && defined(metadata.slug.current)] {\n    'slug': metadata.slug.current\n  }\n": PageSlugQueryResult
+    "\n  *[_type == 'settings'][0]{\n    ...,\n    mainMenu{\n      items[]{\n        \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n        \n  _type == 'dropdown.about' => {\n    ...,\n    'image': image.asset->url,\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n        \n  _type == 'dropdown.blog' => {\n    ...,\n    links[]{\n      _type == 'reference' => @->{\n        ...,\n        \"slug\": '/blog?category=' + metadata.slug.current,\n        \"icon\": icon.name\n      }\n    }\n  }\n,\n        \n  _type == 'dropdown.promo' => {\n    ...,\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n        \n  _type == 'dropdown.quote' => {\n    ...,\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n\n      }\n    },\n    secondaryMenu{\n      items[]{\n        ...,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n      }\n    },\n    'fullscreenMenu': fullscreenMenu[]{\n      ...,\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    },\n    social[] {\n      \n  ...,\n\n    },\n    'ogimage': image.asset->url + '?w=1200'\n  }\n": SettingsQueryResult
+    "\n  *[_type == 'gallery.pets'] {\n    \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  }\n  }": GalleryPetsQueryResult
     "\n  *[ _type == 'blog.article' ] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n\n  }": AllBlogArticlesQueryResult
     "\n  *[ _type == 'blog.article' && references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id) ] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n\n  }": BlogArticlesForCategoryQueryResult
     "\n  *[_type == 'blog.article' && defined(metadata.slug.current)]{\n    'slug': metadata.slug.current\n  }\n": ArticleSlugsQueryResult
-    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{\n    pretitle,\n    title,\n    subtitle,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id))] | order(publishedAt desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n,\n  }\n}": BlogIndexQueryResult
+    "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'blog'][0]{\n    pretitle,\n    title,\n    subtitle,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'articles': *[_type == 'blog.article' && (!defined($slug) || references(*[_type == 'blog.category' && metadata.slug.current == $slug]._id))] | order(publishDate desc) {\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n,\n  }\n}": BlogIndexQueryResult
     "\n  *[_type == 'blog.article' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    _id,\n    title,\n    previewText,\n    mainImage,\n    'slug': '/blog/' + metadata.slug.current,\n    'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180 ),\n    categories[]-> {\n      _key,\n      title,\n      'slug': '/blog?category=' + metadata.slug.current,\n      'icon': icon.name\n    },\n    metadata {\n      ...,\n    }\n\n  }\n": BlogArticlePageQueryResult
     "\n  *[ _type == 'blog.category' ] {\n    ...,\n    'slug': metadata.slug.current,\n    'href': '/blog?category=' + metadata.slug.current,\n    'icon': icon.name\n  }": BlogCategoriesQueryResult
     "\n  *[_type == 'course' && difficulty == $difficulty] | order(publishedAt desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n,\n  }\n": CoursesByDifficultyQueryResult
     "\n  *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n": AllExperimentsQueryResult
     "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'experiments'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    'imageSrc': mainImage.asset->url,\n    'imageAlt': mainImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[],\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'experiments': *[_type == 'experiment'] | order(publishedAt desc) {\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n}": ExperimentIndexQueryResult
     "\n  *[_type == 'experiment' && metadata.slug.current == $slug][0]{\n    ...,\n    \n    ...,\n    'slug': '/experiments/' + coalesce(metadata.slug.current, ''),\n    'imageSrc': coalesce(mainImage.asset->url, ''),\n    'imageAlt': coalesce(mainImage.alt, 'No alt text'),\n    tags[]-> {\n      ...,\n      label,\n      'slug': '/experiments?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n  }\n": ExperimentPageQueryResult
-    "\n  *[_type == 'gallery.pets'] {\n    \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  }\n  }": GalleryPetsQueryResult
-    "\n*[_type == 'page' && metadata.slug.current == 'index'][0]{\n  ...,\n  modules[]{\n    \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[],\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n  },\n  metadata {\n    ...,\n    'ogimage': image.asset->url + '?w=1200'\n  }\n}": HomePageQueryResult
-    "*[_type == 'page' && metadata.slug.current == $slug && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])][0]{\n    ...,\n    'headerImageSrc': headerImage.asset->url,\n    'headerImageAlt': headerImage.alt,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[],\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  }": PageQueryResult
-    "\n  *[_type == 'page' && defined(metadata.slug.current) && !(metadata.slug.current in ['index', '404', 'blog/*', 'courses/*', 'projects/*', 'experiments/*'])].metadata.slug.current": PageSlugQueryResult
     "\n  *[_type == 'project'] | order(publishDate desc) {\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n  }\n": AllProjectsQueryResult
     "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'projects'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[],\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n    },\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'projects': *[_type == 'project'] | order(publishDate desc) {\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n  }\n}": ProjectIndexQueryResult
     "\n  *[_type == 'project' && metadata.slug.current == $slug] | order(publishDate desc)[0]{\n    ...,\n    \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n,\n    modules[]{\n      \n  ...,\n  \n  _type == 'nav.icons' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n\n  }\n,\n  \n  _type == 'nav.card' => {\n    ...,\n    \n  links[]->{\n    _id,\n    _type,\n    \"label\": coalesce(metadata.title, title),\n    \"subtitle\": subtitle,\n    \"slug\": select(\n      _type == 'blog.category' => '/blog?category=' + metadata.slug.current,\n      _type == 'page' => '/' + metadata.slug.current,\n      null\n    ),\n    \"icon\": icon.name\n  }\n,\n    'image': image.asset->url,\n    'alt': image.alt\n  }\n,\n  \n  _type == 'gallery.pets' => {\n    \n    ...,\n    images[] {\n      ...,\n      _key,\n      'imageSrc': asset->url,\n      'imageAlt': alt,\n      additionalInfo\n    }\n\n  },\n  \n  _type == 'text.cta' => {\n    ...,\n    'linkIcon': link.item->icon.name,\n    link {\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n  \n  _type == 'text.aside-list' => {\n    ...,\n    'listItems': listItems[],\n  }\n,\n  \n  _type == 'course-list' => {\n    \n  ...,\n  heading,\n  intro,\n  layout,\n  limit,\n  difficulty,\n  displayFilters,\n  'courses': *[_type == \"course\" && difficulty == ^.difficulty] | order(publishDate desc) {\n    \n  ...,\n  title,\n  subtitle,\n  previewText,\n  \"numChapters\": count(chapters),\n  difficulty,\n  publishDate,\n  featured,\n  'slug': '/courses/' + metadata.slug.current,\n  'imageSrc': mainImage.asset->url,\n  'imageAlt': mainImage.alt,\n  categories[]-> {\n    _key,\n    title,\n    'slug': '/courses?category=' + slug.current,\n    'icon': icon.name\n  },\n  \"metadata\": metadata {\n    title,\n    description,\n    image\n  }\n\n  }\n\n  }\n,\n  \n  _type == 'image-with-text' => {\n    \n    ...,\n    image {\n      ...,\n      'imageSrc': asset->url,\n      alt,\n      caption,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    }\n\n  },\n  \n  _type == 'text.blockquote' => {\n    ...\n  }\n\n\n    },\n    \"prevProject\": coalesce(\n      *[_type == \"project\" && ^.publishDate > publishDate && _id != ^._id] | order(publishDate desc)[0]{\n        \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n      },\n      *[_type == \"project\" && _id != ^._id] | order(publishDate asc)[0]{\n        \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n      }\n    ),\n    \"nextProject\": coalesce(\n      *[_type == \"project\" && ^.publishDate < publishDate && _id != ^._id] | order(publishDate asc)[0]{\n        \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n      },\n      *[_type == \"project\" && _id != ^._id] | order(publishDate desc)[0]{\n        \n    ...,\n    'slug': '/projects/' + metadata.slug.current,\n    mainImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    secondaryImage{\n      ...,\n      'src': asset->url,\n      'dimensions': asset->metadata.dimensions,\n      'bgColor': asset->metadata.palette.dominant.background\n    },\n    tags[]-> {\n      ...,\n      'slug': '/projects?tag=' + slug.current,\n      'icon': icon.name\n    }\n\n      }\n    )\n  }\n": ProjectPageQueryResult
     "\n  *[_type == 'project' && defined(metadata.slug.current)]{\n    'slug': metadata.slug.current\n  }\n": ProjectSlugsQueryResult
     "\n{\n  'page': *[_type == 'page' && metadata.slug.current == 'resources'][0]{\n    ...,\n    pretitle,\n    title,\n    subtitle,\n    headerIllustration,\n    metadata {\n      ...,\n      'ogimage': image.asset->url + '?w=1200'\n    }\n  },\n  'resources': *[_type == 'resource.category'] | order(title asc) {\n    _id,\n    title,\n    description,\n    icon,\n    links[] {\n      \n  _id,\n  label,\n  url,\n  content,\n  'image': image.asset->url,\n  'alt': image.alt,\n  featured,\n  layout\n\n    }\n  }\n}": ResourcesIndexQueryResult
-    "\n  *[_type == 'settings'][0]{\n    ...,\n    mainMenu{\n      items[]{\n        \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n        \n  _type == 'dropdown.about' => {\n    ...,\n    'image': image.asset->url,\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n        \n  _type == 'dropdown.blog' => {\n    ...,\n    links[]{\n      _type == 'reference' => @->{\n        ...,\n        \"slug\": '/blog?category=' + metadata.slug.current,\n        \"icon\": icon.name\n      }\n    }\n  }\n,\n        \n  _type == 'dropdown.promo' => {\n    ...,\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n        \n  _type == 'dropdown.quote' => {\n    ...,\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n\n      }\n    },\n    secondaryMenu{\n      items[]{\n        ...,\n        \n  _type == 'link.list' => {\n    links[]{\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    }\n  }\n,\n      }\n    },\n    'fullscreenMenu': fullscreenMenu[]{\n      ...,\n      \n  _type == 'link.internal' => {\n    ...,\n    'icon': item->icon.name,\n    'slug': item->{\n      'slug': select(\n        \n  _type == 'author' => '/authors/' + metadata.slug.current\n,\n        \n  _type == 'blog.article' => '/blog/' + metadata.slug.current\n,\n        \n  _type == 'blog.category' => '/blog?category=' + metadata.slug.current\n,\n        \n  _type == 'course' => '/courses/' + metadata.slug.current\n,\n        \n  _type == 'course.chapter' => {\n    'slug':\n      \"/courses/\" +\n      coalesce(\n        *[_type == \"course\" && references(^._id)][0].metadata.slug.current,\n        \"unknown-course\"\n      ) +\n      \"/\" + metadata.slug.current\n  }.slug\n,\n        \n  _type == 'page' => '/' + metadata.slug.current\n,\n        \n  _type == 'project' => '/projects/' + metadata.slug.current\n,\n        \n  _type == 'experiment' => '/experiments/' + metadata.slug.current\n,\n        null\n      )\n    }.slug\n  }\n\n    },\n    social[] {\n      \n  ...,\n\n    },\n    'ogimage': image.asset->url + '?w=1200'\n  }\n": SettingsQueryResult
   }
 }

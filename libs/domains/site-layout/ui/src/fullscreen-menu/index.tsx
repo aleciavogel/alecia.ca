@@ -13,8 +13,8 @@ import {
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 
+import AleciaLayingIllustration from '@alecia/graphics/illustrations/alecia/laying'
 import { FullScreenMenuType, SocialLinksType } from '@alecia/settings-types'
-import AleciaLayingIllustration from '@alecia/ui-kit/components/vectors/illustrations/alecia/laying'
 import {
   MenuSheetClose,
   MenuSheetContent,

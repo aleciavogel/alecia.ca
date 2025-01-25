@@ -1,4 +1,4 @@
-import { assertValue } from '@alecia/util/styles'
+import { assertValue } from '@alecia/util/assert-value'
 
 export const TURNSTILE_SECRET = assertValue(
   process.env['CLOUDFLARE_TURNSTILE_SECRET'],

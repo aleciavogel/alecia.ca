@@ -6,7 +6,7 @@ import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 
 import { cn } from '@alecia/util/styles'
 
-import { NavigationMenuViewport } from './viewport'
+import NavigationMenuViewport from './viewport'
 
 const NavigationMenuRoot = forwardRef<
   ElementRef<typeof NavigationMenuPrimitive.Root>,

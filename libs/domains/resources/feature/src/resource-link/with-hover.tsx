@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import classNames from 'classnames'
 
-import ResourceLinkContent from '@alecia/resources-ui/resource-link/content'
 import { ResourcesIndexQueryResult } from '@alecia/sanity-types/sanity.types'
 import { urlFor } from '@alecia/sanity-util/client-utils/sanity-image-utils'
 import {
@@ -9,6 +8,8 @@ import {
   HoverCardRoot as HoverCard,
   HoverCardTrigger,
 } from '@alecia/ui-kit/ui/hover-card'
+
+import ResourceLinkContent from './content'
 
 type SingleResourceCategory = NonNullable<ResourcesIndexQueryResult['resources']>[number]
 type SingleResourceLink = NonNullable<SingleResourceCategory['links']>[number]
