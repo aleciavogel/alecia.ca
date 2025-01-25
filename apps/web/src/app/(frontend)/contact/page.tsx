@@ -83,7 +83,7 @@ export default async function ContactPage() {
         <ContactFormCard />
       </FormHeader>
       <PageContents className="pt-80 lg:pt-28 pb-32 lg:pb-48">
-        <div className="space-y-6 page-content max-lg:hidden">
+        <div className="space-y-6 page-content-block max-lg:hidden">
           <Typography variant="blockPretitle" className="text-primary-900">
             Connect with me
           </Typography>
