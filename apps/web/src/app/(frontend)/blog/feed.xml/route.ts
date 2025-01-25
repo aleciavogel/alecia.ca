@@ -31,19 +31,17 @@ export async function GET() {
     ttl: 60,
   })
 
-  if (meta) {
-    meta.map((post) => {
-      feed.item({
-        title: post.title ?? 'Untitled',
-        description: post.description ?? 'No description available',
-        url: `https://${SITE_BASE_URL}/blog/${post.url}`,
-        categories: post.tags?.filter((tag) => tag !== null) || [],
-        // TODO: Update if author field is added to blog articles
-        author: 'Alecia Vogel',
-        date: post.date ?? new Date(),
-      })
+  meta.map((post) => {
+    feed.item({
+      title: post.title ?? 'Untitled',
+      description: post.description ?? 'No description available',
+      url: `https://${SITE_BASE_URL}/blog/${post.url}`,
+      categories: post.tags?.filter((tag) => tag !== null) || [],
+      // TODO: Update if author field is added to blog articles
+      author: 'Alecia Vogel',
+      date: post.date ?? new Date(),
     })
-  }
+  })
 
   return new Response(feed.xml({ indent: true }), {
     headers: {
