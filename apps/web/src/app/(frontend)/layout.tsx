@@ -8,7 +8,7 @@ import { SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
 import VisualEditingControls from '@alecia/sanity-ui/visual-editing-controls'
 import { getData } from '@alecia/sanity-util/server-utils/get-data'
 import Providers from '@alecia/site-layout/providers'
-import { eksellLarge, eksellSmall, silka } from '@alecia/ui-kit/fonts'
+import { dankMono, eksellLarge, eksellSmall, silka } from '@alecia/ui-kit/fonts'
 
 import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import '@alecia/ui-kit/styles/global.css'
@@ -40,7 +40,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         id="root"
-        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} overscroll-none primary-violet accent-pink body-gray`}
+        className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${dankMono.variable} overscroll-none primary-violet accent-pink body-gray`}
       >
         <Providers settings={settings}>{children}</Providers>
         {isDraftMode ? <VisualEditingControls /> : null}

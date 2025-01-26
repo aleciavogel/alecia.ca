@@ -9,6 +9,7 @@ import { ExtendedImage } from '@alecia/types/images'
 import AnchorTag from '@alecia/ui-kit/ui/anchor-tag'
 import Separator from '@alecia/ui-kit/ui/separator'
 import Typography from '@alecia/ui-kit/ui/typography'
+import { cn } from '@alecia/util/styles'
 
 // TODO: move to @alecia/ui-kit
 const portableTextComponents: PortableTextComponents = {
@@ -67,6 +68,11 @@ const portableTextComponents: PortableTextComponents = {
         </AnchorTag>
       )
     },
+    code: ({ children }) => (
+      <code className={cn('relative px-1 font-mono', 'bg-primary-800', 'text-white')}>
+        {children}
+      </code>
+    ),
   },
 
   types: {
