@@ -20,7 +20,7 @@ const purify = DOMPurify(window)
 type TokenRequest = { token?: string | null }
 
 export async function POST(request: NextRequest) {
-  const body: ContactFormValues & { token: string } = await request.json()
+  const body: ContactFormValues & { recaptcha: string } = await request.json()
 
   // Sanitize the user input
   const sanitizedBody = {
@@ -30,11 +30,11 @@ export async function POST(request: NextRequest) {
     subject: purify.sanitize(body.subject),
     phone: purify.sanitize(body.phone),
     email: purify.sanitize(body.email),
-    token: purify.sanitize(body.token),
+    recaptcha: purify.sanitize(body.recaptcha),
   }
 
   // Verify that the captcha token is present and valid
-  if (!sanitizedBody.token) {
+  if (!sanitizedBody.recaptcha) {
     return NextResponse.json({ error: 'Invalid captcha' }, { status: 400 })
   }
 
