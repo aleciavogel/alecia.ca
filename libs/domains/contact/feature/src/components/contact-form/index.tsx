@@ -73,19 +73,16 @@ const ContactForm = ({ onSuccess, onError }: ContactFormProps) => {
   }, [])
 
   const handleSubmit = (data: ContactFormValues): void => {
-    submitForm(
-      { ...data, recaptcha: turnstile.getResponse() },
-      {
-        onSuccess: () => {
-          form.reset()
-          turnstile.reset()
-          onSuccess?.(data)
-        },
-        onError: (error) => {
-          onError?.(error)
-        },
+    submitForm(data, {
+      onSuccess: () => {
+        form.reset()
+        turnstile.reset()
+        onSuccess?.(data)
       },
-    )
+      onError: (error) => {
+        onError?.(error)
+      },
+    })
   }
 
   return (

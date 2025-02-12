@@ -5,10 +5,8 @@ import { Routes } from '@alecia/constants/routes'
 import type { ContactFormValues } from '@alecia/contact-types'
 import { api } from '@alecia/util/api'
 
-type FormWithRecaptcha = ContactFormValues & { recaptcha?: string | null }
-
 interface UseSendContactFormOptions
-  extends Omit<UseMutationOptions<object, Error, FormWithRecaptcha>, 'mutationFn'> {
+  extends Omit<UseMutationOptions<object, Error, ContactFormValues>, 'mutationFn'> {
   onSuccess?: () => void
   onError?: (error: Error) => void
 }
@@ -19,21 +17,29 @@ interface UseSendContactFormOptions
  */
 const useSendContactForm = (
   options: UseSendContactFormOptions = {},
-): UseMutationResult<object, Error, FormWithRecaptcha> => {
+): UseMutationResult<object, Error, ContactFormValues> => {
   const { onSuccess, onError, ...mutationOptions } = options
 
-  return useMutation<object, Error, FormWithRecaptcha>({
-    mutationFn: (payload) =>
-      new Promise((resolve, reject) => {
-        api.post<FormWithRecaptcha>(Routes.API.Contact.Send, payload).catch((error: unknown) => {
-          if (error instanceof Error) {
-            reject(error)
-            return error
-          }
-        })
-      }),
+  return useMutation<object, Error, ContactFormValues>({
+    mutationFn: async (payload) => {
+      try {
+        const response = await api.post<object>(Routes.API.Contact.Send, payload)
+
+        // If API returns a response with an error status, throw an error
+        if (!response || (response as any).status >= 400) {
+          throw new Error(`Server responded with error: ${(response as any).status}`)
+        }
+
+        return response // Ensure the promise resolves correctly
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          throw error // Properly propagate errors
+        }
+        throw new Error('An unknown error occurred')
+      }
+    },
     onSuccess: () => {
-      onSuccess?.()
+      onSuccess?.() // Ensure onSuccess is only called on actual success
     },
     onError,
     ...mutationOptions,

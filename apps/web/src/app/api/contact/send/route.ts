@@ -1,15 +1,13 @@
 import { render } from '@react-email/render'
 import DOMPurify from 'dompurify'
 import { JSDOM } from 'jsdom'
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import { Resend } from 'resend'
 
-import { Routes } from '@alecia/constants/routes'
 import { ContactFormValues } from '@alecia/contact-types'
 import ContactFormConfirmationEmail from '@alecia/email-templates/templates/contact-form/confirmation'
 import ContactFormSubmissionEmail from '@alecia/email-templates/templates/contact-form/submission'
 import { RESEND_API_KEY } from '@alecia/resend-constants/server'
-import { api } from '@alecia/util/api'
 
 const resend = new Resend(RESEND_API_KEY)
 
@@ -17,10 +15,8 @@ const resend = new Resend(RESEND_API_KEY)
 const window = new JSDOM('').window
 const purify = DOMPurify(window)
 
-type TokenRequest = { token?: string | null }
-
 export async function POST(request: NextRequest) {
-  const body: ContactFormValues & { recaptcha: string } = await request.json()
+  const body: ContactFormValues = await request.json()
 
   // Sanitize the user input
   const sanitizedBody = {
@@ -30,21 +26,6 @@ export async function POST(request: NextRequest) {
     subject: purify.sanitize(body.subject),
     phone: purify.sanitize(body.phone),
     email: purify.sanitize(body.email),
-    recaptcha: purify.sanitize(body.recaptcha),
-  }
-
-  // Verify that the captcha token is present and valid
-  if (!sanitizedBody.recaptcha) {
-    return NextResponse.json({ error: 'Invalid captcha' }, { status: 400 })
-  }
-
-  const response = await api.post<TokenRequest>(Routes.API.Captcha, {
-    token: sanitizedBody.recaptcha,
-  })
-
-  if (!response.ok) {
-    const data = await response.json()
-    return NextResponse.json({ error: data.message }, { status: response.status })
   }
 
   try {
