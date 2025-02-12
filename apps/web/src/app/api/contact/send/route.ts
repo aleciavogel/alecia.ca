@@ -38,7 +38,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid captcha' }, { status: 400 })
   }
 
-  const response = await api.post<TokenRequest>(Routes.API.Captcha, { token: sanitizedBody.token })
+  const response = await api.post<TokenRequest>(Routes.API.Captcha, {
+    token: sanitizedBody.recaptcha,
+  })
 
   if (!response.ok) {
     const data = await response.json()
