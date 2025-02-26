@@ -3,6 +3,7 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import type { Metadata, Viewport } from 'next'
 import { draftMode } from 'next/headers'
 
+import { SandPackCSS } from '@alecia/code-editor/sandpack-css'
 import { settingsQuery } from '@alecia/sanity-queries/settings.query'
 import { SettingsQueryResult } from '@alecia/sanity-types/sanity.types'
 import VisualEditingControls from '@alecia/sanity-ui/visual-editing-controls'
@@ -38,6 +39,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <SandPackCSS />
+      </head>
       <body
         id="root"
         className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${dankMono.variable} overscroll-none primary-violet accent-pink body-gray`}
