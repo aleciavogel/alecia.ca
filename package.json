@@ -1,14 +1,34 @@
 {
-  "name": "@alecia/source",
+  "name": "alecia",
   "description": "Personal portfolio of Alecia Vogel",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "tree": "tree . -I 'node_modules|dist|.git|.nx|.vscode|src' -d",
-    "build:web": "doppler run --command='nx build web'"
+    "tree": "tree . -I 'node_modules|dist|.git|.vscode|src' -d",
+    "dev": "doppler run --command='next dev --experimental-https'",
+    "storybook": "storybook dev --port 4400 --ci",
+    "sanity:start": "doppler run --command='cd src/vendors/sanity/studio && sanity start'",
+    "sanity:validate": "doppler run --command='cd src/vendors/sanity/studio && sanity schema validate'",
+    "sanity:extract": "doppler run --command='cd src/vendors/sanity/studio && sanity schema extract'",
+    "sanity:typegen": "doppler run --command='cd src/vendors/sanity/studio && sanity typegen generate --verbose'",
+    "build:web": "doppler run --command='next build'",
+    "lint-staged": "lint-staged"
   },
-  "private": true,
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.19.10",
     "@codesandbox/sandpack-themes": "^2.0.21",
@@ -73,13 +93,14 @@
     "firebase-admin": "^13.0.2",
     "framer-motion": "^11.18.0",
     "fs-extra": "^11.2.0",
+    "globals": "^16.1.0",
     "groq": "^3.69.0",
     "gsap": "^3.12.5",
     "input-otp": "^1.4.2",
     "locomotive-scroll": "^4.1.4",
     "lodash": "^4.17.21",
     "lucide-react": "^0.469.0",
-    "next": "^14.2.23",
+    "next": "^15.3.2",
     "next-intl": "^3.26.3",
     "next-sanity": "^9.8.35",
     "next-themes": "^0.4.4",
@@ -123,16 +144,7 @@
     "@eslint/compat": "^1.1.1",
     "@eslint/js": "^9.8.0",
     "@jest/globals": "^29.7.0",
-    "@nx/cypress": "20.3.1",
-    "@nx/devkit": "^20.3.1",
-    "@nx/eslint": "20.3.1",
-    "@nx/eslint-plugin": "^20.3.1",
-    "@nx/jest": "20.3.1",
-    "@nx/js": "20.3.1",
-    "@nx/next": "20.3.1",
-    "@nx/react": "20.3.1",
-    "@nx/storybook": "^20.3.1",
-    "@nx/workspace": "20.3.1",
+    "@next/eslint-plugin-next": "^15.3.2",
     "@storybook/addon-designs": "^8.0.4",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
@@ -151,6 +163,8 @@
     "@types/react-dom": "18.3.0",
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/rss": "^0.0.32",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
     "autoprefixer": "10.4.13",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",
@@ -164,6 +178,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-cypress": "^4.1.0",
     "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-jsx-a11y": "6.10.1",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
@@ -174,6 +189,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-environment-node": "^29.7.0",
     "jsonc-eslint-parser": "^2.4.0",
+    "lint-staged": "^15.5.2",
     "nx": "^20.3.2",
     "postcss": "8.4.38",
     "postcss-import": "^16.1.0",

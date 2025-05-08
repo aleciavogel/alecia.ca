@@ -1,9 +1,0 @@
-{
-  "name": "courses-ui",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domains/courses/ui/src",
-  "projectType": "library",
-  "tags": ["scope:courses", "type:ui"],
-  "// targets": "to see all targets run: nx show project courses-ui --web",
-  "targets": {}
-}
