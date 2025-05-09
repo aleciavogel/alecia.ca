@@ -38,9 +38,9 @@ interface RelatedProject extends SingleProject {
 }
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -56,13 +56,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params
   const [page, settings] = await Promise.all([
-    getData<ProjectPageQueryResult>(
-      projectPageQuery,
-      params,
-      [`project:${params.slug}`, 'project'],
-      { stega: false },
-    ),
+    getData<ProjectPageQueryResult>(projectPageQuery, params, [`project:${slug}`, 'project'], {
+      stega: false,
+    }),
     getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
   ])
 
@@ -131,8 +129,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params
   const project = await getData<ProjectPageQueryResult>(projectPageQuery, params, [
-    `project:${params.slug}`,
+    `project:${slug}`,
     'project',
   ])
 

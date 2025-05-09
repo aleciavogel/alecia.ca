@@ -33,9 +33,9 @@ const BlogComments = dynamic(() => import('@alecia/core/blog/components/comments
 const BlogPortableText = dynamic(() => import('@alecia/core/blog/components/blog-portable-text'))
 
 interface ArticlePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -51,11 +51,13 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const awaitedParams = await params
+
   const [article, settings] = await Promise.all([
     getData<BlogArticlePageQueryResult>(
       blogArticlePageQuery,
       params,
-      [`blog.article:${params.slug}`],
+      [`blog.article:${awaitedParams.slug}`],
       { stega: false },
     ),
     getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
@@ -139,8 +141,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params
   const article = await getData<BlogArticlePageQueryResult>(blogArticlePageQuery, params, [
-    `blog.article:${params.slug}`,
+    `blog.article:${slug}`,
     'blog.article',
   ])
 
