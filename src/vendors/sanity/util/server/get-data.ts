@@ -46,7 +46,7 @@ export const getData = async <T>(
   tags: string[] = [],
   options: FilteredResponseQueryOptions = {},
 ): Promise<T> => {
-  const isDraftMode = draftMode().isEnabled
+  const isDraftMode = (await draftMode()).isEnabled
 
   const fetcher = !IS_PRODUCTION_MODE || isDraftMode ? client.preview : client.fetch
 

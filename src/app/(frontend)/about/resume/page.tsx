@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Image as SanityImage } from 'sanity'
@@ -6,7 +5,10 @@ import { Image as SanityImage } from 'sanity'
 import { SITE_BASE_URL } from '@alecia/constants/routes'
 import RenderedBlocks from '@alecia/core/blocks/components/rendered'
 import PageContents from '@alecia/core/navigation/components/page-contents/page-contents'
+import FormHeader from '@alecia/core/pages/components/form-header'
 import SimpleHeader from '@alecia/core/pages/components/simple-header'
+import ResumeDownloadButton from '@alecia/core/resume/components/download-button'
+import ResumeTemplate from '@alecia/core/resume/components/resume-template'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { pageQuery, pageSlugQuery } from '@alecia/vendors/sanity/queries/pages.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
@@ -14,10 +16,6 @@ import { PageQueryResult, SettingsQueryResult } from '@alecia/vendors/sanity/typ
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
 import { client } from '@alecia/vendors/sanity/util/server/client'
 import { getData } from '@alecia/vendors/sanity/util/server/get-data'
-
-interface PageProps {
-  params: Promise<{ slug?: string[] }>
-}
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(
@@ -33,8 +31,8 @@ export async function generateStaticParams() {
   return slugs.map((item: any) => ({ slug: item?.split('/') }))
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params
+export async function generateMetadata(): Promise<Metadata> {
+  const slug = ['about', 'resume']
 
   const [page, settings] = await Promise.all([
     getData<PageQueryResult>(pageQuery, { slug: slug?.join('/') }, [`page:${slug}`], {
@@ -85,16 +83,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function Page({ params }: PageProps) {
-  const awaitedParams = await params
-  const slug = awaitedParams.slug?.join('/') ?? '404'
-  const page = await getData<PageQueryResult>(pageQuery, { slug }, [`page:${awaitedParams.slug}`])
+export default async function Page() {
+  const params = { slug: ['about', 'resume'] }
+  const slug = params.slug?.join('/') ?? '404'
+  const page = await getData<PageQueryResult>(pageQuery, { slug }, [`page:${params.slug}`])
 
   if (!page || slug === '404') notFound()
 
   return (
     <SiteWrapper>
-      <SimpleHeader {...page} />
+      <FormHeader {...page} buttons={<ResumeDownloadButton />}>
+        <ResumeTemplate />
+      </FormHeader>
       <PageContents className="pt-48">
         <RenderedBlocks modules={page.modules} />
       </PageContents>

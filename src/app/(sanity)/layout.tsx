@@ -17,7 +17,7 @@ const RootLayout = ({
 }: Readonly<{
   children: ReactNode
 }>): JSX.Element => (
-  <html lang="en">
+  <html lang="en" suppressHydrationWarning>
     <body>{children}</body>
   </html>
 )

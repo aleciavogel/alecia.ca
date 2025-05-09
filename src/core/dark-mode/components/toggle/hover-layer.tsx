@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTheme } from 'next-themes'
 
 import {
@@ -19,11 +19,20 @@ const DARK_MODE_TEXT = `Switch to light mode`
 const DarkModeToggleHoverLayer = () => {
   const { setTheme, resolvedTheme } = useTheme()
   const [isTooltipAllowed, setIsTooltipAllowed] = useState(false)
+  const [canHydrate, setCanHydrate] = useState(false)
 
   const toggleText = useMemo(() => {
     const isDarkMode: boolean = resolvedTheme === 'dark'
     return isDarkMode ? DARK_MODE_TEXT : LIGHT_MODE_TEXT
   }, [resolvedTheme])
+
+  useEffect(() => {
+    setCanHydrate(true)
+  }, [])
+
+  if (!canHydrate) {
+    return null
+  }
 
   return (
     <TooltipProvider>

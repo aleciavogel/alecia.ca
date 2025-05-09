@@ -1,5 +1,5 @@
-import type { GitHubRepoType } from '@alecia/giscus-types'
 import { assertValue } from '@alecia/util/assert-value'
+import type { GitHubRepoType } from '@alecia/vendors/giscus/types'
 
 export const GITHUB_REPO_NAME = assertValue(
   process.env['NEXT_PUBLIC_GITHUB_REPO_NAME'],

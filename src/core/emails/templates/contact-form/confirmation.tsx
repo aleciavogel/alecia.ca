@@ -13,7 +13,7 @@ import {
   Text,
 } from '@react-email/components'
 
-import { ContactFormValues } from '@alecia/contact-types'
+import { ContactFormValues } from '@alecia/core/contact/types'
 
 const ALECIA_IMG_SRC =
   'https://res.cloudinary.com/ddwbykwa4/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1737096490/img_ontsyt.png'

@@ -87,7 +87,6 @@ const HeroHeader = ({ title, subtitle, tag, coverImage }: HeroHeaderProps) => {
           {subtitle}
         </p>
       </div>
-
       <div className="absolute pb-4 bottom-[var(--triangle-height)] left-0 w-full pointer-events-none text-white">
         <ReadMoreArrowIcon className="animate-bounce h-6 w-6 text-white mx-auto" />
       </div>

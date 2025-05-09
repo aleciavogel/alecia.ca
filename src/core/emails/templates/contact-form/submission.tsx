@@ -14,7 +14,7 @@ import {
   Text,
 } from '@react-email/components'
 
-import { ContactFormValues } from '@alecia/contact-types'
+import { ContactFormValues } from '@alecia/core/contact/types'
 
 export const ContactFormSubmissionEmail = ({
   firstName,

@@ -2,7 +2,7 @@
 
 import { stegaClean } from '@sanity/client/stega'
 
-import GiscusComments from '@alecia/giscus-ui'
+import GiscusComments from '@alecia/vendors/giscus/components/giscus-comments'
 
 interface BlogCommentsProps {
   title?: string | null

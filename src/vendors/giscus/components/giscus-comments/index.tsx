@@ -4,7 +4,11 @@ import Giscus from '@giscus/react'
 import { stegaClean } from 'next-sanity'
 import { useTheme } from 'next-themes'
 
-import { GITHUB_CATEGORY_ID, GITHUB_REPO_ID, GITHUB_REPO_NAME } from '@alecia/giscus-constants'
+import {
+  GITHUB_CATEGORY_ID,
+  GITHUB_REPO_ID,
+  GITHUB_REPO_NAME,
+} from '@alecia/vendors/giscus/constants'
 
 interface GiscusCommentsProps {
   title: string

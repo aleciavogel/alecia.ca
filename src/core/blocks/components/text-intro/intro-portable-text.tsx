@@ -1,7 +1,8 @@
 import { type FC } from 'react'
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from 'next-sanity'
 
-import { AnchorTag, Typography } from '@alecia/common/ui'
+import AnchorTag from '@alecia/common/ui/anchor-tag'
+import { Typography } from '@alecia/common/ui/typography'
 
 interface IntroPortableTextProps {
   value: PortableTextBlock[]
