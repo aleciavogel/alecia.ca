@@ -8,7 +8,7 @@ import {
   CardRoot as Card,
   CardTitle,
 } from '@alecia/common/ui/card'
-import SubmissionSuccess from '@alecia/contact-ui/submission-success'
+import SubmissionSuccess from '@alecia/core/contact/components/submission-success'
 
 import ContactForm from '../contact-form'
 
