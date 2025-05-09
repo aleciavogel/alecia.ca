@@ -1,4 +1,4 @@
-import { StickyHeader } from '@alecia/core/layout/components'
+import StickyHeader from '@alecia/core/layout/components/sticky-header'
 
 import { InterceptedLogo } from '../intercepted-logo'
 
