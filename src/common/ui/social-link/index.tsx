@@ -1,7 +1,7 @@
 import { IconName } from '@fortawesome/pro-regular-svg-icons'
 
 import { SOCIAL_ICON_MAP } from '@alecia/constants/icons'
-import { SocialLinkType } from '@alecia/settings-types'
+import { SocialLinkType } from '@alecia/core/settings/types'
 import { cn } from '@alecia/util/styles'
 
 import Icon from '../icon'

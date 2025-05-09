@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from '@alecia/common/ui/button'
 import { MenuSheetRoot, MenuSheetTrigger } from '@alecia/common/ui/menu-sheet'
-import { FullScreenMenuType } from '@alecia/settings-types'
+import { FullScreenMenuType } from '@alecia/core/settings/types'
 
 import FullscreenMenu from '..'
 
