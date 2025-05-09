@@ -43,6 +43,7 @@
     "**/*.stories.jsx",
     "**/*.stories.ts",
     "**/*.stories.tsx",
+    "**/__stories__/**/*",
     "./src/test-helpers",
     ".storybook"
   ]

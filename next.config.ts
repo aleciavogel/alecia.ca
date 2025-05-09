@@ -1,4 +1,4 @@
-export default {
+const nextConfig = {
   reactStrictMode: false,
   experimental: {
     webpackMemoryOptimizations: true,
@@ -16,3 +16,5 @@ export default {
   },
   productionBrowserSourceMaps: true,
 }
+
+export default nextConfig
