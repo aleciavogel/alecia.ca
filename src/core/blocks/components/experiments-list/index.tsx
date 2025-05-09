@@ -1,4 +1,4 @@
-import ExperimentLink from '@alecia/experiments/experiment-link'
+import ExperimentLink from '@alecia/core/experiments/components/experiment-link'
 import { ExperimentsIndexQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 
 type ExperimentsResults = NonNullable<ExperimentsIndexQueryResult['experiments']>
