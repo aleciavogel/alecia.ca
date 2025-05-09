@@ -1,4 +1,4 @@
-import { ResourceLinkType } from '@alecia/resources-types'
+import { ResourceLinkType } from '@alecia/core/resources/types'
 
 import ResourceLinkWithHover from './with-hover'
 

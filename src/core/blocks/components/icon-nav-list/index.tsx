@@ -1,6 +1,6 @@
 import { stegaClean } from 'next-sanity'
 
-import { NavIconsBlockType } from '@alecia/block-types'
+import { NavIconsBlockType } from '@alecia/core/blocks/types'
 import { cn } from '@alecia/util/styles'
 
 import IconNavLink from '../icon-nav-link'

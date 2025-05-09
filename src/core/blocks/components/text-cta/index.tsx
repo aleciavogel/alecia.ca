@@ -1,9 +1,9 @@
 import { stegaClean } from '@sanity/client/stega'
 import { PortableTextBlock } from 'next-sanity'
 
-import { TextCTABlockType } from '@alecia/block-types'
 import { IconButtonLink } from '@alecia/common/ui/icon-button-link'
 import Typography from '@alecia/common/ui/typography'
+import { TextCTABlockType } from '@alecia/core/blocks/types'
 import BlogPortableText from '@alecia/core/blog/components/blog-portable-text'
 import { cn } from '@alecia/util/styles'
 

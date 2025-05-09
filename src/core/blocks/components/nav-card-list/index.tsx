@@ -1,4 +1,4 @@
-import { NavCardBlockType } from '@alecia/block-types'
+import { NavCardBlockType } from '@alecia/core/blocks/types'
 import { cn } from '@alecia/util/styles'
 
 import { NavCardListItem } from './nav-card-list-item'

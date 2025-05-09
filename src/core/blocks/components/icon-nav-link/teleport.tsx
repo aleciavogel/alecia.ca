@@ -2,8 +2,8 @@
 
 import { ComponentPropsWithoutRef, useState } from 'react'
 
-import { NavIconsBlockType } from '@alecia/block-types'
 import useTeleportAnimation from '@alecia/core/animations/hooks/use-teleport-animation'
+import { NavIconsBlockType } from '@alecia/core/blocks/types'
 
 import IconNavLink from '.'
 

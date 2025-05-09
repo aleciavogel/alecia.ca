@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 
-import { NavCardBlockType } from '@alecia/block-types'
 import Typography from '@alecia/common/ui/typography'
 import NavCardImage from '@alecia/core/blocks/components/nav-card-image'
 import NavCardList from '@alecia/core/blocks/components/nav-card-list'
+import { NavCardBlockType } from '@alecia/core/blocks/types'
 import { cn } from '@alecia/util/styles'
 
 const NavCard = (props: NavCardBlockType) => {

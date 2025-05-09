@@ -1,7 +1,7 @@
 import { PortableTextBlock } from 'next-sanity'
 
-import { TextIntroBlockType } from '@alecia/block-types'
 import Typography from '@alecia/common/ui/typography'
+import { TextIntroBlockType } from '@alecia/core/blocks/types'
 import BlogPortableText from '@alecia/core/blog/components/blog-portable-text'
 import { cn } from '@alecia/util/styles'
 

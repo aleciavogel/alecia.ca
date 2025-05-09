@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from '@alecia/common/ui'
-import { InterceptedModal, InterceptedModalTrigger } from '@alecia/intercepted-ui'
+import { Button } from '@alecia/common/ui/button'
+import {
+  InterceptedModal,
+  InterceptedModalTrigger,
+} from '@alecia/core/intercepted-routes/components/intercepted-modal'
 
 import { AnimatedInterceptedModal } from '..'
 

@@ -1,6 +1,5 @@
 import { PortableTextBlock } from 'next-sanity'
 
-import { AccordionListBlockType } from '@alecia/block-types'
 import {
   AccordionContent,
   AccordionItem,
@@ -9,6 +8,7 @@ import {
 } from '@alecia/common/ui/accordion'
 import BasicPortableText from '@alecia/common/ui/portable-text/basic-portable-text'
 import { Typography } from '@alecia/common/ui/typography'
+import { AccordionListBlockType } from '@alecia/core/blocks/types'
 
 // TODO: Add different layouts for the accordion list (centered, next to text, etc)
 

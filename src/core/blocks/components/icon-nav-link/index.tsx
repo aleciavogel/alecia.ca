@@ -3,8 +3,8 @@ import type { IconName } from '@fortawesome/fontawesome-svg-core'
 import Link from 'next/link'
 import { stegaClean } from 'next-sanity'
 
-import { NavIconsBlockType } from '@alecia/block-types'
 import Icon from '@alecia/common/ui/icon'
+import { NavIconsBlockType } from '@alecia/core/blocks/types'
 import { cn } from '@alecia/util/styles'
 
 type IconNavLinkType = NonNullable<NavIconsBlockType['links']>[number] &

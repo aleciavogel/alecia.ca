@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import { Image } from 'next-sanity/image'
 
-import { GalleryPetsBlockType } from '@alecia/block-types'
 import ZigZagAccent from '@alecia/common/graphics/zigzags/zigzag-accent'
 import Typography from '@alecia/common/ui/typography'
+import { GalleryPetsBlockType } from '@alecia/core/blocks/types'
 import { getPlaceholderImage } from '@alecia/util/images'
 
 type PetImageProps = NonNullable<GalleryPetsBlockType['images']>[number]

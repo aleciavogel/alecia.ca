@@ -1,7 +1,7 @@
 import { HTMLProps } from 'react'
 import Link from 'next/link'
 
-import { AleciaLogo } from '@alecia/common/ui'
+import AleciaLogo from '@alecia/common/graphics/brand/alecia-logo'
 import { cn } from '@alecia/util/styles'
 
 import { InterceptedLogoText } from './intercepted-logo-text'

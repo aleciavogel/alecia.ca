@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import type { PortableTextBlock } from 'next-sanity'
 
-import { TextAsideListBlockType } from '@alecia/block-types'
 import AsideList from '@alecia/core/blocks/components/aside-list'
+import { TextAsideListBlockType } from '@alecia/core/blocks/types'
 import BlogPortableText from '@alecia/core/blog/components/blog-portable-text'
 
 const TextAsideList = ({ reverse = false, text = [], ...rest }: TextAsideListBlockType) => (

@@ -1,4 +1,4 @@
-import { NavCardBlockType } from '@alecia/block-types'
+import { NavCardBlockType } from '@alecia/core/blocks/types'
 
 import CenteredNavLink from './centered-nav-link'
 

@@ -1,6 +1,6 @@
-import { NavIconsBlockType } from '@alecia/block-types'
 import Typography from '@alecia/common/ui/typography'
 import IconNavList from '@alecia/core/blocks/components/icon-nav-list'
+import { NavIconsBlockType } from '@alecia/core/blocks/types'
 import { cn } from '@alecia/util/styles'
 
 const NavIcons = ({

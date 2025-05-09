@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from '@alecia/common/ui'
+import { Button } from '@alecia/common/ui/button'
 
 import {
   InterceptedModal,

@@ -3,8 +3,11 @@
 import { ReactNode } from 'react'
 import { animated, config, useTransition } from '@react-spring/web'
 
-import { Button } from '@alecia/common/ui'
-import { InterceptedModalClose, InterceptedModalContent } from '@alecia/intercepted-ui'
+import { Button } from '@alecia/common/ui/button'
+import {
+  InterceptedModalClose,
+  InterceptedModalContent,
+} from '@alecia/core/intercepted-routes/components/intercepted-modal'
 
 interface AnimatedInterceptedModalProps {
   animationDuration?: number
