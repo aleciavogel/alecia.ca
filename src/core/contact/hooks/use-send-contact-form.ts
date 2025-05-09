@@ -2,7 +2,7 @@ import type { UseMutationOptions, UseMutationResult } from '@tanstack/react-quer
 import { useMutation } from '@tanstack/react-query'
 
 import { Routes } from '@alecia/constants/routes'
-import type { ContactFormValues } from '@alecia/contact-types'
+import type { ContactFormValues } from '@alecia/core/contact/types'
 import { api } from '@alecia/util/api'
 
 interface UseSendContactFormOptions

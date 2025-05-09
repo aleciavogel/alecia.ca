@@ -7,14 +7,14 @@ import { faSpinner } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { TURNSTILE_SITE_KEY } from '@alecia/cloudflare-constants'
 import Button from '@alecia/common/ui/button'
 import { CardContent, CardFooter } from '@alecia/common/ui/card'
 import Form from '@alecia/common/ui/form'
 import { SelectField, TextAreaField, TextField } from '@alecia/common/ui/form/fields'
 import { Routes } from '@alecia/constants/routes'
-import { ContactFormSchema, type ContactFormValues } from '@alecia/contact-types'
+import { ContactFormSchema, type ContactFormValues } from '@alecia/core/contact/types'
 import { cn } from '@alecia/util/styles'
+import { TURNSTILE_SITE_KEY } from '@alecia/vendors/cloudflare/constants'
 
 import useSendContactForm from '../../hooks/use-send-contact-form'
 
