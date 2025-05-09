@@ -8,8 +8,8 @@ import { type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@alecia/util/styles'
 
-import { SheetOverlay } from './overlay'
-import { SheetPortal } from './portal'
+import SheetOverlay from './overlay'
+import SheetPortal from './portal'
 import sheetVariants from './variants'
 
 interface SheetContentProps
