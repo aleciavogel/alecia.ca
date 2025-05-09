@@ -2,10 +2,10 @@ import { Text, View } from '@react-pdf/renderer'
 
 import ExperienceItem from '@alecia/core/resume/components/template/experience-item'
 import { styles, tw } from '@alecia/core/resume/constants'
-import type { ExperienceItem as ExperienceItemType } from '@alecia/core/resume/types'
+import type { ExperienceItemProps } from '@alecia/core/resume/types'
 
 interface Props {
-  experiences: ExperienceItemType[]
+  experiences: ExperienceItemProps[]
   showBorder?: boolean
 }
 

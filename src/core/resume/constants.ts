@@ -1,7 +1,7 @@
 import { createTw } from 'react-pdf-tailwind'
 import { StyleSheet } from '@react-pdf/renderer'
 
-import type { ExperienceItem, Skills } from './types'
+import type { ExperienceItemProps, Skills } from './types'
 
 export const COLORS = {
   pink: '#f472b6',
@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
 })
 
 // TODO: swap over to using Sanity for this
-export const WORK_EXPERIENCES: ExperienceItem[] = [
+export const WORK_EXPERIENCES: ExperienceItemProps[] = [
   {
     title: 'Freelance Full Stack Developer',
     company: 'Self-Employed',
@@ -189,7 +189,7 @@ export const WORK_EXPERIENCES: ExperienceItem[] = [
   },
 ]
 
-export const WORK_EXPERIENCES_CONTINUED: ExperienceItem[] = [
+export const WORK_EXPERIENCES_CONTINUED: ExperienceItemProps[] = [
   {
     title: 'Software Developer (Data Science)',
     company: 'Cybera',
