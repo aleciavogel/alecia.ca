@@ -7,9 +7,9 @@ import { calcWavyBorderMask } from '@alecia/util/styles'
 const WAVY_BORDER_MASK = { mask: calcWavyBorderMask({ position: 'bottom' }) }
 
 interface ExperimentPageProps extends PropsWithChildren {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function ExperimentPageLayout({ children }: ExperimentPageProps) {
