@@ -13,6 +13,7 @@
     "sanity:validate": "doppler run --command='cd src/vendors/sanity/studio && sanity schema validate'",
     "sanity:extract": "doppler run --command='cd src/vendors/sanity/studio && sanity schema extract'",
     "sanity:typegen": "doppler run --command='cd src/vendors/sanity/studio && sanity typegen generate --verbose'",
+    "sanity:update": "bun run sanity:validate && bun run sanity:extract && bun run sanity:typegen",
     "build:web": "doppler run --command='next build'",
     "lint-staged": "lint-staged"
   },

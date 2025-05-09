@@ -25,7 +25,7 @@ import {
   getCroppedImageSrc,
   urlForOpenGraphImage,
 } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { client } from '@alecia/vendors/sanity/util/server/client'
+import { sanityClient } from '@alecia/vendors/sanity/util/server/client'
 import { getData } from '@alecia/vendors/sanity/util/server/get-data'
 
 const ArticleInfo = dynamic(() => import('@alecia/core/blog/components/article-info'))
@@ -39,7 +39,7 @@ interface ArticlePageProps {
 }
 
 export async function generateStaticParams() {
-  return await client.fetch(
+  return await sanityClient.fetch(
     articleSlugsQuery,
     {},
     {

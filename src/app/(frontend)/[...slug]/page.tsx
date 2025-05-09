@@ -12,7 +12,7 @@ import { pageQuery, pageSlugQuery } from '@alecia/vendors/sanity/queries/pages.q
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import { PageQueryResult, SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { client } from '@alecia/vendors/sanity/util/server/client'
+import { sanityClient } from '@alecia/vendors/sanity/util/server/client'
 import { getData } from '@alecia/vendors/sanity/util/server/get-data'
 
 interface PageProps {
@@ -20,7 +20,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(
+  const slugs = await sanityClient.fetch(
     pageSlugQuery,
     {},
     {

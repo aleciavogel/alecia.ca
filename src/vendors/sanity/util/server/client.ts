@@ -7,7 +7,7 @@ import {
 } from '@alecia/vendors/sanity/constants'
 
 // TODO: Move to its own package potentially
-export const client: SanityClient = createClient({
+export const sanityClient: SanityClient = createClient({
   apiVersion: SANITY_API_VERSION,
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
