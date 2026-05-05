@@ -2,54 +2,39 @@ import { Metadata } from 'next'
 import { Image as SanityImage } from 'sanity'
 
 import { Illustrations } from '@alecia/constants/images'
-import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import { Routes } from '@alecia/constants/routes'
 import RenderedBlocks from '@alecia/core/blocks/components/rendered'
 import PageContents from '@alecia/core/navigation/components/page-contents/page-contents'
 import WavyHeader from '@alecia/core/pages/components/wavy-header'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { homePageQuery } from '@alecia/vendors/sanity/queries/pages.query'
-import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
 import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ data: page }, { data: settings }] = await Promise.all([
-    sanityFetch({ query: homePageQuery, stega: false }),
-    sanityFetch({ query: settingsQuery, stega: false }),
-  ])
+  const { data: page } = await sanityFetch({ query: homePageQuery, stega: false })
 
   if (!page) {
     return {}
   }
 
   const pageKeywords = page.metadata?.keywords ?? []
-  const combinedKeywords = ['edmonton', 'web development', 'full-stack developer', ...pageKeywords]
 
   return {
-    metadataBase: new URL('https://' + SITE_BASE_URL),
     title: page.metadata?.title ?? page.title,
     description: page.metadata?.description,
-    applicationName: settings?.title,
-    generator: 'Next.js',
-    keywords: combinedKeywords,
+    keywords: pageKeywords,
+    alternates: {
+      canonical: Routes.Home,
+    },
     openGraph: {
-      type: 'website',
-      url: 'https://' + SITE_BASE_URL + Routes.Home,
+      url: Routes.Home,
       title: page.metadata?.title ?? page.title ?? undefined,
       description: page.metadata?.description ?? undefined,
       images: page.metadata?.image
         ? [
             {
               url: urlForOpenGraphImage(page.metadata.image as SanityImage) ?? '',
-              width: 1200,
-              height: 627,
-              alt: page.metadata?.title || page.title || '',
-            },
-          ]
-        : settings?.ogimage
-        ? [
-            {
-              url: urlForOpenGraphImage(settings?.ogimage as SanityImage) ?? '',
               width: 1200,
               height: 627,
               alt: page.metadata?.title || page.title || '',

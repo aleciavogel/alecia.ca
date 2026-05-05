@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { PortableTextBlock } from 'next-sanity'
 import { Image as SanityImage } from 'sanity'
 
-import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import { Routes } from '@alecia/constants/routes'
 import PageContents from '@alecia/core/navigation/components/page-contents/page-contents'
 import HeroHeader from '@alecia/core/pages/components/hero-header'
 import ReadingProgress from '@alecia/core/scroll/components/reading-progress'
@@ -16,7 +16,6 @@ import {
   articleSlugsQuery,
   blogArticlePageQuery,
 } from '@alecia/vendors/sanity/queries/blog/blog-article.query'
-import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import {
   getCroppedImageSrc,
   urlForOpenGraphImage,
@@ -49,10 +48,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const awaitedParams = await params
 
-  const [{ data: article }, { data: settings }] = await Promise.all([
-    sanityFetch({ query: blogArticlePageQuery, params: awaitedParams, stega: false }),
-    sanityFetch({ query: settingsQuery, stega: false }),
-  ])
+  const { data: article } = await sanityFetch({
+    query: blogArticlePageQuery,
+    params: awaitedParams,
+    stega: false,
+  })
 
   if (!article) {
     return {}
@@ -61,14 +61,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const articleTags =
     article.categories?.map((category) => category.title).filter((cat) => cat !== null) ?? []
   const articleKeywords = article.metadata?.keywords ?? []
-  const combinedKeywords = [
-    'edmonton',
-    'web development',
-    'full-stack developer',
-    'blog',
-    ...articleKeywords,
-    ...articleTags,
-  ]
+  const articleUrl = buildRoute(Routes.Blog.Article, {
+    slug: article.metadata?.slug?.current ?? '/',
+  })
   const authors = [
     {
       // TODO: if I have guest authors, will need to make this dynamic
@@ -78,26 +73,23 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   ]
 
   return {
-    metadataBase: new URL('https://' + SITE_BASE_URL),
     title: article.metadata?.title ?? article.title,
     description: article.metadata?.description ?? article.previewText,
-    applicationName: settings?.title,
     authors,
-    generator: 'Next.js',
-    keywords: combinedKeywords,
+    keywords: ['blog', ...articleKeywords, ...articleTags],
+    alternates: {
+      canonical: articleUrl,
+    },
     openGraph: {
       authors: authors.map((author) => author.name),
       type: 'article',
       section: articleTags[0] ?? 'Uncategorized',
-      url:
-        'https://' +
-        SITE_BASE_URL +
-        buildRoute(Routes.Blog.Article, { slug: article.metadata?.slug?.current ?? '/' }),
+      url: articleUrl,
       publishedTime: article._createdAt,
       modifiedTime: article._updatedAt,
       title: article.metadata?.title ?? article.title ?? undefined,
       description: article.metadata?.description ?? article.previewText ?? undefined,
-      tags: combinedKeywords,
+      tags: ['blog', ...articleKeywords, ...articleTags],
       // TODO: iterate through image blocks to retrieve image URLs
       images: article.metadata?.image
         ? [
@@ -115,15 +107,6 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
               width: 1200,
               height: 627,
               alt: article.mainImage.alt || article.title || '',
-            },
-          ]
-        : settings?.ogimage
-        ? [
-            {
-              url: urlForOpenGraphImage(settings?.ogimage as SanityImage) ?? '',
-              width: 1200,
-              height: 627,
-              alt: article.metadata?.title || article.title || '',
             },
           ]
         : undefined,

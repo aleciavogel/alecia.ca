@@ -5,7 +5,7 @@ import { Image as SanityImage } from 'sanity'
 
 import Typography from '@alecia/common/ui/typography'
 import { ThumbnailDimensions } from '@alecia/constants/images'
-import { Routes, SITE_BASE_URL } from '@alecia/constants/routes'
+import { Routes } from '@alecia/constants/routes'
 import RenderedBlocks from '@alecia/core/blocks/components/rendered'
 import PageContents from '@alecia/core/navigation/components/page-contents/page-contents'
 import ProjectHeader from '@alecia/core/pages/components/project-header'
@@ -18,7 +18,6 @@ import {
   projectPageQuery,
   projectSlugsQuery,
 } from '@alecia/vendors/sanity/queries/projects/projects.query'
-import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import { AllProjectsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import {
   getCroppedImageSrc,
@@ -53,10 +52,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params
-  const [{ data: page }, { data: settings }] = await Promise.all([
-    sanityFetch({ query: projectPageQuery, params: { slug }, stega: false }),
-    sanityFetch({ query: settingsQuery, stega: false }),
-  ])
+  const { data: page } = await sanityFetch({
+    query: projectPageQuery,
+    params: { slug },
+    stega: false,
+  })
 
   if (!page) {
     return {}
@@ -65,28 +65,23 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const projectTags =
     page.tags?.map((tag) => tag.label).filter((cat) => cat !== null && cat !== undefined) ?? []
   const pageKeywords = page.metadata?.keywords ?? []
-  const combinedKeywords = [
-    'edmonton',
-    'web development',
-    'full-stack developer',
-    'portfolio',
-    ...pageKeywords,
-    ...projectTags,
-  ]
+  const projectUrl = buildRoute(Routes.Projects.Project, {
+    slug: page.metadata?.slug?.current ?? '/',
+  })
 
   return {
-    metadataBase: new URL('https://' + SITE_BASE_URL),
     title: page.metadata?.title ?? page.title,
-    description: page.metadata?.description,
-    applicationName: settings?.title,
-    generator: 'Next.js',
-    keywords: combinedKeywords,
+    description:
+      page.metadata?.description ??
+      `Explore ${
+        page.title ?? 'this project'
+      }, a web development project by Alecia Vogel, a senior full-stack developer based in Edmonton, AB.`,
+    keywords: ['portfolio', ...pageKeywords, ...projectTags],
+    alternates: {
+      canonical: projectUrl,
+    },
     openGraph: {
-      type: 'website',
-      url:
-        'https://' +
-        SITE_BASE_URL +
-        buildRoute(Routes.Projects.Project, { slug: page.metadata?.slug?.current ?? '/' }),
+      url: projectUrl,
       title: page.metadata?.title ?? page.title ?? undefined,
       description: page.metadata?.description ?? undefined,
       // TODO: iterate through image blocks to retrieve image URLs
@@ -106,15 +101,6 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
               width: 1200,
               height: 627,
               alt: page.mainImage.alt || page.title || '',
-            },
-          ]
-        : settings?.ogimage
-        ? [
-            {
-              url: urlForOpenGraphImage(settings?.ogimage as SanityImage) ?? '',
-              width: 1200,
-              height: 627,
-              alt: page.metadata?.title || page.title || '',
             },
           ]
         : undefined,
