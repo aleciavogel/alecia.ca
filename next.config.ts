@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
   typescript: {
     tsconfigPath: './tsconfig.build.json',
   },
-  productionBrowserSourceMaps: true,
 }
 
 export default nextConfig

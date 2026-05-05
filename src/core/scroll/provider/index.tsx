@@ -1,38 +1,16 @@
-'use client'
-
 import type { FC } from 'react'
-import React, { useRef } from 'react'
-import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
-import type LocomotiveScroll from 'locomotive-scroll'
-import { usePathname } from 'next/navigation'
+import type { ReactNode } from 'react'
 
 interface ScrollProviderProps {
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
+/**
+ * ScrollProvider is now a passthrough wrapper.
+ * Parallax effects are handled by the useParallax hook (GSAP ScrollTrigger).
+ */
 const ScrollProvider: FC<ScrollProviderProps> = ({ children }) => {
-  const pathname = usePathname()
-  const containerRef = useRef(null)
-
-  return (
-    <LocomotiveScrollProvider
-      options={{
-        smooth: false,
-      }}
-      watch={[]}
-      containerRef={containerRef}
-      location={pathname}
-      onLocationChange={(scroll: LocomotiveScroll) =>
-        scroll.scrollTo(0, { duration: 0, disableLerp: true })
-      } // If you want to reset the scroll position to 0 for example
-    >
-      <React.StrictMode>
-        <div data-scroll-container ref={containerRef}>
-          {children}
-        </div>
-      </React.StrictMode>
-    </LocomotiveScrollProvider>
-  )
+  return <>{children}</>
 }
 
 export default ScrollProvider

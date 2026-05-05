@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useLocomotiveScroll } from 'react-locomotive-scroll'
-import type LocomotiveScroll from 'locomotive-scroll'
 
 interface ScrollListenerParams {
   selector?: string // Selector for the container you want to track
@@ -11,13 +9,10 @@ export const useScrollListener = ({
   selector = '#site-wrapper',
   offset = 0,
 }: ScrollListenerParams) => {
-  const { scroll } = useLocomotiveScroll()
   const [scrollY, setScrollY] = useState(0)
   const [scrollYProgress, setScrollYProgress] = useState(0)
 
   useEffect(() => {
-    if (!scroll) return
-
     const container = document.querySelector(selector) as HTMLElement | null
 
     if (!container) {
@@ -25,28 +20,27 @@ export const useScrollListener = ({
       return
     }
 
-    const onScroll = (event: any) => {
+    const onScroll = () => {
       const containerTop = container.offsetTop
       const containerHeight = container.scrollHeight
-      const currentScroll = event.scroll.y
+      const currentScroll = window.scrollY
 
-      // Calculate the progress of scrolling inside the container
       const relativeScroll = currentScroll - containerTop
       const totalScrollable = containerHeight - offset - window.innerHeight
 
-      // Clamp the progress to the range [0, 100]
       const progress = Math.min(Math.max((relativeScroll / totalScrollable) * 100, 0), 100)
 
       setScrollY(currentScroll)
       setScrollYProgress(progress)
     }
 
-    scroll.on('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
 
     return () => {
-      scroll.off('scroll', onScroll)
+      window.removeEventListener('scroll', onScroll)
     }
-  }, [offset, scroll, selector])
+  }, [offset, selector])
 
   return {
     scrollY,

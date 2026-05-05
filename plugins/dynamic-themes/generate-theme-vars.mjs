@@ -1,4 +1,4 @@
-import { parseColor } from './parse-colors'
+import { parseColor } from './parse-colors.mjs'
 
 // Helper functions to identify if a value is a valid shade or color template
 const isShade = (value) =>

@@ -10,7 +10,6 @@ import VisualEditingControls from '@alecia/vendors/sanity/components/visual-edit
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import { sanityFetch, SanityLive } from '@alecia/vendors/sanity/util/server/live'
 
-import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import '@alecia/styles/global.css'
 import './global.css'
 config.autoAddCss = false

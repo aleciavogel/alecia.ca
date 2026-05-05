@@ -2,46 +2,35 @@
 
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
-import { useLocomotiveScroll } from 'react-locomotive-scroll'
-import type LocomotiveScroll from 'locomotive-scroll'
 
 import { cn } from '@alecia/util/styles'
 
 const ReadingProgress: FC = () => {
-  const loco = useLocomotiveScroll()
-  const scroll = loco.scroll as LocomotiveScroll | null
   const [readingProgress, setReadingProgress] = useState(0)
 
-  const scrollListener = (windowScrollTop: number): void => {
-    const progress = windowScrollTop - window.innerHeight
-    const blogPostHeight = document.getElementById('post-content')?.scrollHeight ?? 0
-    const percent = (progress / (blogPostHeight - 200)) * 100
-
-    if (progress <= 0) {
-      setReadingProgress(0)
-      return
-    }
-    if (percent >= 100) {
-      setReadingProgress(100)
-      return
-    }
-    setReadingProgress(percent)
-  }
-
   useEffect(() => {
-    if (scroll) {
-      scroll.on('scroll', (event) => {
-        scrollListener(event.scroll.y)
-      })
+    const onScroll = () => {
+      const progress = window.scrollY - window.innerHeight
+      const blogPostHeight = document.getElementById('post-content')?.scrollHeight ?? 0
+      const percent = (progress / (blogPostHeight - 200)) * 100
+
+      if (progress <= 0) {
+        setReadingProgress(0)
+        return
+      }
+      if (percent >= 100) {
+        setReadingProgress(100)
+        return
+      }
+      setReadingProgress(percent)
     }
-  }, [scroll])
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <div
-      data-scroll
-      data-scroll-sticky
-      data-scroll-target="#site-wrapper"
-      data-scroll-speed="1"
       id="reading-progress"
       className={cn('fixed w-full block top-0 z-[100] h-[6px] rounded-r-[2px]')}
     >

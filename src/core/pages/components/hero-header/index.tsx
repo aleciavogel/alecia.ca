@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import ReadMoreArrowIcon from '@alecia/common/graphics/icons/read-more'
 import { TagProps } from '@alecia/common/ui/tag'
+import { useParallax } from '@alecia/core/scroll/hooks/use-parallax'
 import { useScrollListener } from '@alecia/core/scroll/hooks/use-scroll-listener'
 import { cn } from '@alecia/util/styles'
 
@@ -21,10 +22,11 @@ interface HeroHeaderProps {
 
 const HeroHeader = ({ title, subtitle, tag, coverImage }: HeroHeaderProps) => {
   const { scrollYProgress } = useScrollListener({})
+  const bgRef = useParallax<HTMLDivElement>({ speed: -1.5 })
+  const contentRef = useParallax<HTMLDivElement>({ speed: 1 })
 
   return (
     <section
-      data-scroll-container
       className={cn(
         'relative z-0 flex items-center justify-items-center page-content-padding',
         'transition-colors duration-300 ease-in-out',
@@ -38,8 +40,7 @@ const HeroHeader = ({ title, subtitle, tag, coverImage }: HeroHeaderProps) => {
     >
       {coverImage ? (
         <animated.div
-          data-scroll
-          data-scroll-speed="-1.5"
+          ref={bgRef}
           className="absolute inset-0 h-full z-[-1] bg-cover bg-center"
           style={{
             backgroundImage: `url(${coverImage})`,
@@ -48,8 +49,7 @@ const HeroHeader = ({ title, subtitle, tag, coverImage }: HeroHeaderProps) => {
         />
       ) : null}
       <div
-        data-scroll
-        data-scroll-speed="1"
+        ref={contentRef}
         className={cn(
           'mx-auto space-y-2 md:space-y-4',
           'text-center lg:text-left',

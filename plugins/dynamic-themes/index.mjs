@@ -1,7 +1,7 @@
 import plugin from 'tailwindcss/plugin'
 
-import { DEFAULT_THEME, EXCLUDED_COLORS } from './constants'
-import { generateColorVars, resolveThemeColorsExtension } from './generate-theme-vars'
+import { DEFAULT_THEME, EXCLUDED_COLORS } from './constants.mjs'
+import { generateColorVars, resolveThemeColorsExtension } from './generate-theme-vars.mjs'
 
 /**
  * Tailwind CSS plugin that adds dynamic variables for each color in the theme to :root.

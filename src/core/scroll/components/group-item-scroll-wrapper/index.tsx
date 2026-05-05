@@ -1,8 +1,10 @@
+'use client'
+
 import type { ReactNode } from 'react'
 
+import { useParallax } from '@alecia/core/scroll/hooks/use-parallax'
 import { cn } from '@alecia/util/styles'
 
-const DEFAULT_DELAY = 0.07
 const DEFAULT_SPEED = 1
 
 interface GalleryPetScrollWrapperProps {
@@ -11,16 +13,14 @@ interface GalleryPetScrollWrapperProps {
   children: ReactNode
 }
 
-const GroupItemScrollWrapper = ({ children, className, index }: GalleryPetScrollWrapperProps) => (
-  <div
-    data-scroll
-    data-scroll-speed={DEFAULT_SPEED}
-    // TODO: Not sure if the delay actually makes any difference tbh
-    data-scroll-delay={((index + 1) * DEFAULT_DELAY).toFixed(2)}
-    className={cn(className)}
-  >
-    {children}
-  </div>
-)
+const GroupItemScrollWrapper = ({ children, className }: GalleryPetScrollWrapperProps) => {
+  const ref = useParallax<HTMLDivElement>({ speed: DEFAULT_SPEED })
+
+  return (
+    <div ref={ref} className={cn(className)}>
+      {children}
+    </div>
+  )
+}
 
 export default GroupItemScrollWrapper

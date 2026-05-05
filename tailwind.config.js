@@ -2,7 +2,7 @@ const { fuchsia, gray, violet } = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 const tailwindAnimate = require('tailwindcss-animate')
 
-const { dynamicTheme } = require('./plugins/dynamic-themes')
+const { dynamicTheme } = require('./plugins/dynamic-themes/index.mjs')
 const { join } = require('path')
 
 const colors = [
