@@ -11,19 +11,18 @@ import SimpleHeader from '@alecia/core/pages/components/simple-header'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { projectIndexQuery } from '@alecia/vendors/sanity/queries/projects/projects.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import {
-  ProjectIndexQueryResult,
-  SettingsQueryResult,
-} from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ page }, settings] = await Promise.all([
-    getData<ProjectIndexQueryResult>(projectIndexQuery, {}, [`page:projects`, 'project'], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [
+    {
+      data: { page },
+    },
+    { data: settings },
+  ] = await Promise.all([
+    sanityFetch({ query: projectIndexQuery, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -69,7 +68,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProjectsPage() {
-  const { page, projects } = await getData<ProjectIndexQueryResult>(projectIndexQuery)
+  const {
+    data: { page, projects },
+  } = await sanityFetch({ query: projectIndexQuery })
   const noProjects = !projects || (Array.isArray(projects) && projects.length === 0)
 
   if (!page) notFound()

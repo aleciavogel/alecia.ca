@@ -55,9 +55,9 @@ const ExperimentDialog = ({
         </div>
         <div className="pt-20 px-8 pb-8 h-full">
           <div className="flex flex-col gap-4 justify-end h-full">
-            <h3 className="font-serif transition-colors text-primary-900 ease-in duration-300 text-3xl">
+            <DialogPrimitive.Title className="font-serif transition-colors text-primary-900 ease-in duration-300 text-3xl">
               {title}
-            </h3>
+            </DialogPrimitive.Title>
             <ExperimentPortableText value={body as PortableTextBlock[]} />
             <Link
               href={stegaClean(slug) ?? '#'}

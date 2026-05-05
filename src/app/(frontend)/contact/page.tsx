@@ -13,16 +13,13 @@ import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapp
 import CalendlyScheduleButton from '@alecia/vendors/calendly/components/schedule-button'
 import { pageQuery } from '@alecia/vendors/sanity/queries/pages.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { PageQueryResult, SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [page, settings] = await Promise.all([
-    getData<PageQueryResult>(pageQuery, { slug: 'contact' }, [`page:contact`], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: page }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: pageQuery, params: { slug: 'contact' }, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -68,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage() {
-  const page = await getData<PageQueryResult>(pageQuery, { slug: 'contact' }, [`page:contact`])
+  const { data: page } = await sanityFetch({ query: pageQuery, params: { slug: 'contact' } })
 
   if (!page) notFound()
 

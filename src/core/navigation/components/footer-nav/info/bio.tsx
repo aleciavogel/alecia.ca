@@ -5,11 +5,10 @@ import { Typography } from '@alecia/common/ui/typography'
 import FooterPortableText from '@alecia/core/layout/components/footer/portable-text'
 import { cn } from '@alecia/util/styles'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 const FooterBio = async () => {
-  const data = await getData<SettingsQueryResult>(settingsQuery, {}, ['settings'])
+  const { data } = await sanityFetch({ query: settingsQuery })
   const footerName = data?.footerName ?? 'Alecia Vogel'
   const footerBio =
     (data?.footerBio as PortableTextBlock[] | undefined) ?? ([] as PortableTextBlock[])

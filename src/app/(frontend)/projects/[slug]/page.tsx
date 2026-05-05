@@ -19,17 +19,13 @@ import {
   projectSlugsQuery,
 } from '@alecia/vendors/sanity/queries/projects/projects.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import {
-  AllProjectsQueryResult,
-  ProjectPageQueryResult,
-  SettingsQueryResult,
-} from '@alecia/vendors/sanity/types/sanity.types'
+import { AllProjectsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import {
   getCroppedImageSrc,
   urlForOpenGraphImage,
 } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
 import { sanityClient } from '@alecia/vendors/sanity/util/server/client'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 type SingleProject = AllProjectsQueryResult[number]
 
@@ -57,11 +53,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params
-  const [page, settings] = await Promise.all([
-    getData<ProjectPageQueryResult>(projectPageQuery, params, [`project:${slug}`, 'project'], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: page }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: projectPageQuery, params: { slug }, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -130,10 +124,10 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
-  const project = await getData<ProjectPageQueryResult>(projectPageQuery, params, [
-    `project:${slug}`,
-    'project',
-  ])
+  const { data: project } = await sanityFetch({
+    query: projectPageQuery,
+    params: { slug },
+  })
 
   if (!project) notFound()
 

@@ -9,16 +9,13 @@ import WavyHeader from '@alecia/core/pages/components/wavy-header'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { homePageQuery } from '@alecia/vendors/sanity/queries/pages.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { HomePageQueryResult, SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [page, settings] = await Promise.all([
-    getData<HomePageQueryResult>(homePageQuery, {}, [`page:index`], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: page }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: homePageQuery, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -64,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const data = await getData<HomePageQueryResult>(homePageQuery, {}, [`page:index`])
+  const { data } = await sanityFetch({ query: homePageQuery })
 
   return (
     <SiteWrapper>

@@ -9,16 +9,13 @@ import ImageHeader from '@alecia/core/pages/components/image-header'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { pageQuery } from '@alecia/vendors/sanity/queries/pages.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { PageQueryResult, SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import { urlFor, urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [page, settings] = await Promise.all([
-    getData<PageQueryResult>(pageQuery, { slug: 'about' }, [`page:about`], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: page }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: pageQuery, params: { slug: 'about' }, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -64,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const page = await getData<PageQueryResult>(pageQuery, { slug: 'about' }, [`page:about`])
+  const { data: page } = await sanityFetch({ query: pageQuery, params: { slug: 'about' } })
 
   if (!page) notFound()
 

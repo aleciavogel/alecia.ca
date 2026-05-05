@@ -11,19 +11,18 @@ import SimpleHeader from '@alecia/core/pages/components/simple-header'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { experimentsIndexQuery } from '@alecia/vendors/sanity/queries/experiments/experiments.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import {
-  ExperimentsIndexQueryResult,
-  SettingsQueryResult,
-} from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ page }, settings] = await Promise.all([
-    getData<ExperimentsIndexQueryResult>(experimentsIndexQuery, {}, [`page:experiments`], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [
+    {
+      data: { page },
+    },
+    { data: settings },
+  ] = await Promise.all([
+    sanityFetch({ query: experimentsIndexQuery, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -75,11 +74,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ExperimentsIndexPage() {
-  const { page, experiments } = await getData<ExperimentsIndexQueryResult>(
-    experimentsIndexQuery,
-    {},
-    [`page:experiments`],
-  )
+  const {
+    data: { page, experiments },
+  } = await sanityFetch({ query: experimentsIndexQuery })
   const noExperiments = !experiments || (Array.isArray(experiments) && experiments.length === 0)
 
   if (!page) notFound()

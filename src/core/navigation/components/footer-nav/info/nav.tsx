@@ -4,11 +4,10 @@ import FooterLink from '@alecia/core/layout/components/footer/link'
 import FooterNavMenu from '@alecia/core/layout/components/footer/nav-menu'
 import { cn } from '@alecia/util/styles'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 const FooterNav = async () => {
-  const data = await getData<SettingsQueryResult>(settingsQuery, {}, ['settings'])
+  const { data } = await sanityFetch({ query: settingsQuery })
 
   if (!data?.secondaryMenu) return <div />
 

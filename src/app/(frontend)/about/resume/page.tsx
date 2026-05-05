@@ -12,10 +12,9 @@ import ResumeTemplate from '@alecia/core/resume/components/resume-template'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { pageQuery, pageSlugQuery } from '@alecia/vendors/sanity/queries/pages.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { PageQueryResult, SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
 import { sanityClient } from '@alecia/vendors/sanity/util/server/client'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateStaticParams() {
   const slugs = await sanityClient.fetch(
@@ -34,11 +33,9 @@ export async function generateStaticParams() {
 export async function generateMetadata(): Promise<Metadata> {
   const slug = ['about', 'resume']
 
-  const [page, settings] = await Promise.all([
-    getData<PageQueryResult>(pageQuery, { slug: slug?.join('/') }, [`page:${slug}`], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: page }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: pageQuery, params: { slug: slug?.join('/') }, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -84,11 +81,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const params = { slug: ['about', 'resume'] }
-  const slug = params.slug?.join('/') ?? '404'
-  const page = await getData<PageQueryResult>(pageQuery, { slug }, [`page:${params.slug}`])
+  const slug = 'about/resume'
+  const { data: page } = await sanityFetch({ query: pageQuery, params: { slug } })
 
-  if (!page || slug === '404') notFound()
+  if (!page) notFound()
 
   return (
     <SiteWrapper>

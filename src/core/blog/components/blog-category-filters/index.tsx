@@ -3,17 +3,14 @@ import { stegaClean } from '@sanity/client/stega'
 import Typography from '@alecia/common/ui/typography'
 import { cn } from '@alecia/util/styles'
 import { blogCategoriesQuery } from '@alecia/vendors/sanity/queries/blog/blog-category.query'
-import { BlogCategoriesQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 import BlogCategoryFilterItem from './filter-item'
 
 const ALL_POSTS_SLUGS = ['all-posts', 'all']
 
 const BlogCategoryFilters = async () => {
-  const categories = await getData<BlogCategoriesQueryResult>(blogCategoriesQuery, {}, [
-    'blog.category',
-  ])
+  const { data: categories } = await sanityFetch({ query: blogCategoriesQuery })
 
   if (!categories) return null
 

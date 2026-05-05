@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import Link from 'next/link'
-import { VisualEditing } from 'next-sanity'
+import { VisualEditing } from 'next-sanity/visual-editing'
 
 import { Routes } from '@alecia/constants/routes'
 

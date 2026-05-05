@@ -1,8 +1,7 @@
-const nextConfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
   reactStrictMode: false,
-  experimental: {
-    webpackMemoryOptimizations: true,
-  },
   images: {
     remotePatterns: [{ hostname: 'cdn.sanity.io' }, { hostname: 'source.unsplash.com' }],
   },

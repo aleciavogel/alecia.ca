@@ -2,13 +2,10 @@ import RSS from 'rss'
 
 import { SITE_BASE_URL } from '@alecia/constants/routes'
 import { rssMetadataQuery } from '@alecia/vendors/sanity/queries/blog/rss.query'
-import { RssMetadataQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function GET() {
-  const meta = await getData<RssMetadataQueryResult>(rssMetadataQuery, {}, [`blog.article`], {
-    stega: false,
-  })
+  const { data: meta } = await sanityFetch({ query: rssMetadataQuery, stega: false })
 
   if (!meta) {
     return new Response('Feed unavailable', {

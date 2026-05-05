@@ -12,12 +12,8 @@ import BlogHeader from '@alecia/core/pages/components/blog-header'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { blogIndexQuery } from '@alecia/vendors/sanity/queries/blog/blog-article.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import {
-  BlogIndexQueryResult,
-  SettingsQueryResult,
-} from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 interface BlogListPageProps {
   searchParams?: Promise<{
@@ -32,16 +28,14 @@ const BlogCategoryFilters = dynamic(
 export async function generateMetadata({ searchParams }: BlogListPageProps): Promise<Metadata> {
   const category = (await searchParams)?.category
 
-  const [{ page }, settings] = await Promise.all([
-    getData<BlogIndexQueryResult>(
-      blogIndexQuery,
-      { slug: category ?? null },
-      [`page:blog`, category ? `blog.category:${category}` : ''],
-      {
-        stega: false,
-      },
-    ),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [
+    {
+      data: { page },
+    },
+    { data: settings },
+  ] = await Promise.all([
+    sanityFetch({ query: blogIndexQuery, params: { slug: category ?? null }, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -97,11 +91,12 @@ export default async function BlogListPage({ searchParams }: BlogListPageProps) 
 
   const hasCategory = category && category !== 'all' && category !== 'all-posts'
 
-  const { articles, page } = await getData<BlogIndexQueryResult>(
-    blogIndexQuery,
-    { slug: hasCategory ? category : null },
-    [hasCategory ? `blog.category:${category}` : 'page:blog', 'blog.category', 'blog.article'],
-  )
+  const {
+    data: { articles, page },
+  } = await sanityFetch({
+    query: blogIndexQuery,
+    params: { slug: hasCategory ? category : null },
+  })
 
   if (!page) {
     notFound()

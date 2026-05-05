@@ -1,6 +1,6 @@
 import { getImageDimensions } from '@sanity/asset-utils'
-import createImageUrlBuilder from '@sanity/image-url'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@sanity/image-url'
+import { createImageUrlBuilder } from '@sanity/image-url'
 import type { Image, ImageUrlBuilder } from 'sanity'
 
 import { SANITY_DATASET, SANITY_PROJECT_ID } from '@alecia/vendors/sanity/constants'

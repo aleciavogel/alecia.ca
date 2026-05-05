@@ -61,6 +61,7 @@ export const SANITY_CONFIG = defineConfig({
     visionTool({ defaultApiVersion: SANITY_API_VERSION }),
 
     // Icon picker plugin
+    // @ts-expect-error - sanity-plugin-icon-picker v4 types reference sanity v3
     iconPicker(),
 
     // Mux video file inputs

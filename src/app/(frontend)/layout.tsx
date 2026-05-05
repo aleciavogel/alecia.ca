@@ -8,8 +8,7 @@ import Providers from '@alecia/core/theming/components/providers'
 import { dankMono, eksellLarge, eksellSmall, silka } from '@alecia/fonts'
 import VisualEditingControls from '@alecia/vendors/sanity/components/visual-editing-controls'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch, SanityLive } from '@alecia/vendors/sanity/util/server/live'
 
 import 'locomotive-scroll/dist/locomotive-scroll.min.css'
 import '@alecia/styles/global.css'
@@ -35,7 +34,7 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   const isDraftMode = (await draftMode()).isEnabled
-  const settings = await getData<SettingsQueryResult>(settingsQuery, {}, ['settings'])
+  const { data: settings } = await sanityFetch({ query: settingsQuery })
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -48,6 +47,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       >
         <Providers settings={settings}>{children}</Providers>
         {isDraftMode ? <VisualEditingControls /> : null}
+        <SanityLive />
       </body>
     </html>
   )

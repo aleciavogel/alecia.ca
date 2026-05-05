@@ -12,20 +12,13 @@ import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapp
 import { pageQuery } from '@alecia/vendors/sanity/queries/pages.query'
 import { resourcesIndexQuery } from '@alecia/vendors/sanity/queries/resources/resources.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import {
-  PageQueryResult,
-  ResourcesIndexQueryResult,
-  SettingsQueryResult,
-} from '@alecia/vendors/sanity/types/sanity.types'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [page, settings] = await Promise.all([
-    getData<PageQueryResult>(pageQuery, { slug: 'resources' }, [`page:resources`], {
-      stega: false,
-    }),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: page }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: pageQuery, params: { slug: 'resources' }, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!page) {
@@ -71,10 +64,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProjectsPage() {
-  const { page, resources } = await getData<ResourcesIndexQueryResult>(resourcesIndexQuery, {}, [
-    'page:resources',
-    'resource',
-  ])
+  const {
+    data: { page, resources },
+  } = await sanityFetch({ query: resourcesIndexQuery })
 
   const noLinks = !resources || (Array.isArray(resources) && resources.length === 0)
 

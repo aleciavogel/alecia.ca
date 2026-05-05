@@ -5,13 +5,12 @@ import {
 import NonDropdownLink from '@alecia/core/layout/components/menu-items/simple'
 import { cn } from '@alecia/util/styles'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
-import { SettingsQueryResult } from '@alecia/vendors/sanity/types/sanity.types'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 import { DropdownAbout, DropdownBlog, DropdownPromo, DropdownQuote } from '../dropdowns'
 
 const StaticNav = async () => {
-  const data = await getData<SettingsQueryResult>(settingsQuery, {}, ['settings'])
+  const { data } = await sanityFetch({ query: settingsQuery })
 
   if (!data?.mainMenu) return null
 

@@ -18,15 +18,11 @@ import {
 } from '@alecia/vendors/sanity/queries/blog/blog-article.query'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import {
-  BlogArticlePageQueryResult,
-  SettingsQueryResult,
-} from '@alecia/vendors/sanity/types/sanity.types'
-import {
   getCroppedImageSrc,
   urlForOpenGraphImage,
 } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
 import { sanityClient } from '@alecia/vendors/sanity/util/server/client'
-import { getData } from '@alecia/vendors/sanity/util/server/get-data'
+import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
 const ArticleInfo = dynamic(() => import('@alecia/core/blog/components/article-info'))
 const BlogComments = dynamic(() => import('@alecia/core/blog/components/comments'))
@@ -53,14 +49,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const awaitedParams = await params
 
-  const [article, settings] = await Promise.all([
-    getData<BlogArticlePageQueryResult>(
-      blogArticlePageQuery,
-      params,
-      [`blog.article:${awaitedParams.slug}`],
-      { stega: false },
-    ),
-    getData<SettingsQueryResult>(settingsQuery, {}, ['settings'], { stega: false }),
+  const [{ data: article }, { data: settings }] = await Promise.all([
+    sanityFetch({ query: blogArticlePageQuery, params: awaitedParams, stega: false }),
+    sanityFetch({ query: settingsQuery, stega: false }),
   ])
 
   if (!article) {
@@ -142,10 +133,10 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params
-  const article = await getData<BlogArticlePageQueryResult>(blogArticlePageQuery, params, [
-    `blog.article:${slug}`,
-    'blog.article',
-  ])
+  const { data: article } = await sanityFetch({
+    query: blogArticlePageQuery,
+    params: { slug },
+  })
 
   if (!article) {
     notFound()

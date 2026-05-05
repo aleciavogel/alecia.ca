@@ -6,13 +6,7 @@ import { calcWavyBorderMask } from '@alecia/util/styles'
 
 const WAVY_BORDER_MASK = { mask: calcWavyBorderMask({ position: 'bottom' }) }
 
-interface ExperimentPageProps extends PropsWithChildren {
-  params: Promise<{
-    slug: string
-  }>
-}
-
-export default async function ExperimentPageLayout({ children }: ExperimentPageProps) {
+export default async function ExperimentPageLayout({ children }: PropsWithChildren) {
   return (
     <SiteWrapper showStaticNav={false}>
       <div

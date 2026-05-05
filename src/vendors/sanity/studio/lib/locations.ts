@@ -6,9 +6,13 @@ const draftableTypes = ['page', 'blog.article', 'experiment', 'course', 'course.
 // TODO: Refactor this, it's a bit lost in the sauce :(
 export const locations: DocumentLocationResolver = (params, context) => {
   if (draftableTypes.includes(params.type)) {
-    const doc$ = context.documentStore.listenQuery(`*[_id == $id][0]{title,metadata}`, params, {
-      perspective: 'previewDrafts',
-    })
+    const doc$ = context.documentStore.listenQuery(
+      `*[_id == $id][0]{title,metadata}`,
+      { id: params.id, type: params.type },
+      {
+        perspective: 'previewDrafts',
+      },
+    )
 
     return doc$.pipe(
       map((doc) => {

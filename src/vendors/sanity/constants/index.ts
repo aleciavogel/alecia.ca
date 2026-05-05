@@ -23,12 +23,6 @@ export const SANITY_PROJECT_ID = assertValue(
 export const SANITY_API_VERSION = process.env['NEXT_PUBLIC_SANITY_API_VERSION'] ?? '2024-12-01'
 
 /**
- * The secret used to revalidate the cache
- * @see the app/api/revalidate/route.ts for how this is used
- */
-export const SANITY_REVALIDATE_SECRET = process.env['SANITY_REVALIDATE_SECRET']
-
-/**
  * Used to configure edit intent links, for Presentation Mode,
  * as well as to configure where the Studio is mounted in the router.
  */
