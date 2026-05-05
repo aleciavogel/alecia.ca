@@ -55,8 +55,8 @@ const HoverCard: React.FC<HoverCardProps> = (props: ScopedProps<HoverCardProps>)
     open: openProp,
     defaultOpen,
     onOpenChange,
-    openDelay = 700,
-    closeDelay = 300,
+    openDelay = 200,
+    closeDelay = 150,
   } = props
   const popperScope = usePopperScope(__scopeHoverCard)
   const openTimerRef = React.useRef(0)
