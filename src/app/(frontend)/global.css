@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   :root {
     --primary-950: theme('colors.indigo.950');
     --primary-900: theme('colors.indigo.900');
