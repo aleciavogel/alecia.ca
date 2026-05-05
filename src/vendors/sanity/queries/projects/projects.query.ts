@@ -61,7 +61,7 @@ export const projectPageQuery = defineQuery(`
       *[_type == "project" && ^.publishDate > publishDate && _id != ^._id] | order(publishDate desc)[0]{
         ${projectQueryPartial}
       },
-      *[_type == "project" && _id != ^._id] | order(publishDate asc)[0]{
+      *[_type == "project" && _id != ^._id] | order(publishDate desc)[0]{
         ${projectQueryPartial}
       }
     ),
@@ -69,7 +69,7 @@ export const projectPageQuery = defineQuery(`
       *[_type == "project" && ^.publishDate < publishDate && _id != ^._id] | order(publishDate asc)[0]{
         ${projectQueryPartial}
       },
-      *[_type == "project" && _id != ^._id] | order(publishDate desc)[0]{
+      *[_type == "project" && _id != ^._id] | order(publishDate asc)[0]{
         ${projectQueryPartial}
       }
     )
