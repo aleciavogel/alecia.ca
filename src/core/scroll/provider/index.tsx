@@ -17,7 +17,7 @@ const ScrollProvider: FC<ScrollProviderProps> = ({ children }) => {
   return (
     <LocomotiveScrollProvider
       options={{
-        smooth: true,
+        smooth: false,
       }}
       watch={[]}
       containerRef={containerRef}
