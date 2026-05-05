@@ -63,7 +63,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   const projectTags =
-    page.tags?.map((tag) => tag.label).filter((cat) => cat !== null && cat !== undefined) ?? []
+    page.tags
+      ?.map((tag: { label?: string }) => tag.label)
+      .filter((cat: string | undefined) => cat !== null && cat !== undefined) ?? []
   const pageKeywords = page.metadata?.keywords ?? []
   const projectUrl = buildRoute(Routes.Projects.Project, {
     slug: page.metadata?.slug?.current ?? '/',
