@@ -1,9 +1,9 @@
 'use client'
 
-// import { NextStudio } from 'next-sanity/studio'
-//
-// import sanityConfig from '@alecia/vendors/sanity/studio/sanity.config'
+import { NextStudio } from 'next-sanity/studio'
+
+import sanityConfig from '@alecia/vendors/sanity/studio/sanity.config'
 
 export default function StudioPage() {
-  return <div>Hello</div>
+  return <NextStudio config={sanityConfig} />
 }
