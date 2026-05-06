@@ -1,13 +1,78 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import Confetti from 'react-dom-confetti'
-import { faCheck, faXmark } from '@fortawesome/pro-solid-svg-icons'
+import { faCheck, faLightbulb, faXmark } from '@fortawesome/pro-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useGSAP } from '@gsap/react'
 import classNames from 'classnames'
+import gsap from 'gsap'
+import type { PortableTextBlock, PortableTextComponents } from 'next-sanity'
+import { PortableText } from 'next-sanity'
 
 import { RadioCardItem, RadioCardRoot } from '@alecia/common/ui/radio-cards'
 import Typography from '@alecia/common/ui/typography'
 import { cn } from '@alecia/util/styles'
+
+const explanationComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="text-sm leading-relaxed text-primary-200">{children}</p>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    code: ({ children }) => (
+      <code className="px-1 py-0.5 rounded bg-primary-700 text-accent-300 font-mono text-xs">
+        {children}
+      </code>
+    ),
+  },
+}
+
+const ExplanationReveal = ({ explanation }: { explanation: PortableTextBlock[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const el = containerRef.current
+      if (!el) return
+
+      gsap.set(el, { overflow: 'hidden' })
+      gsap.from(el, {
+        height: 0,
+        opacity: 0,
+        y: -12,
+        duration: 0.55,
+        ease: 'power3.out',
+        delay: 0.1,
+        onComplete: () => gsap.set(el, { clearProps: 'height,overflow,y' }),
+      })
+    },
+    { scope: containerRef },
+  )
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn(
+        'rounded-xl border-l-4 border-accent-500',
+        'bg-primary-900 dark:bg-primary-950',
+        'px-6 py-5',
+        'flex gap-4',
+      )}
+    >
+      <FontAwesomeIcon icon={faLightbulb} className="text-accent-400 mt-0.5 shrink-0 text-lg" />
+      <div className="space-y-2 min-w-0">
+        <Typography variant="h6" className="text-accent-300 uppercase tracking-wider text-xs">
+          Explanation
+        </Typography>
+        <PortableText value={explanation} components={explanationComponents} />
+      </div>
+    </div>
+  )
+}
 
 const CONFETTI_CONFIG = {
   angle: 90,
@@ -16,7 +81,7 @@ const CONFETTI_CONFIG = {
   dragFriction: 0.12,
   duration: 3000,
   stagger: 3,
-  colors: ['@/a864fd', '@/29cdff', '@/78ff44', '@/ff718d', '@/fdff6a'],
+  colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
 }
 
 // TODO: Use SanityTypes to define the props
@@ -27,6 +92,7 @@ interface QuizProps {
   nextSectionTitle: string
   nextSectionDescription: string
   href: string
+  explanation?: PortableTextBlock[] | null
   previousGuess?: number
   onAnswer?: (guess: number) => void
 }
@@ -35,6 +101,7 @@ export const PopQuiz = ({
   question,
   answers,
   correctAnswer,
+  explanation,
   previousGuess,
   onAnswer,
 }: QuizProps) => {
@@ -55,10 +122,14 @@ export const PopQuiz = ({
   )
 
   return (
-    <section id="quiz" className="max-w-screen-sm space-y-10">
+    <section id="quiz" className="relative w-full max-w-screen-lg mx-auto space-y-10">
+      {/* Confetti rendered here so it isn't clipped by the radio card overflow */}
+      <div className="absolute top-1/2 left-1/2 pointer-events-none">
+        <Confetti active={showConfetti} config={CONFETTI_CONFIG} />
+      </div>
       <div className="flex items-center space-x-5">
         <Typography as="h2" variant="mini-title" className="">
-          Unlock the next chapter
+          Test your knowledge
         </Typography>
         <div className="flex-grow block zigzag-base zigzag-bg-primary relative" />
       </div>
@@ -101,11 +172,14 @@ export const PopQuiz = ({
               checked={hasAnswered ? isGuess || isCorrectAnswer : false}
             >
               {answer}
-              {isCorrectAnswer ? <Confetti active={showConfetti} config={CONFETTI_CONFIG} /> : null}
             </RadioCardItem>
           )
         })}
       </RadioCardRoot>
+
+      {hasAnswered && explanation && explanation.length > 0 && (
+        <ExplanationReveal explanation={explanation} />
+      )}
     </section>
   )
 }

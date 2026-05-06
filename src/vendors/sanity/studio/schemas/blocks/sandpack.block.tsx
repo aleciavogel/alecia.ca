@@ -99,6 +99,12 @@ export const sandPack = defineType({
       group: 'options',
       fields: [
         defineField({
+          name: 'showPreview',
+          description: 'Show the preview panel, defaults to `true`',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
           name: 'showTabs',
           description: 'Show the tabs, defaults to `true`',
           type: 'boolean',
@@ -163,10 +169,17 @@ export const sandPack = defineType({
           of: [{ type: 'string' }],
         }),
         defineField({
+          name: 'showFileExplorer',
+          description: 'Show the file explorer sidebar, defaults to `false`',
+          type: 'boolean',
+          initialValue: false,
+        }),
+        defineField({
           name: 'showNavigator',
           description: 'Show the file navigator, defaults to `true`',
           type: 'boolean',
           initialValue: true,
+          hidden: ({ parent }) => parent?.showPreview === false,
         }),
         defineField({
           name: 'layout',
@@ -176,6 +189,7 @@ export const sandPack = defineType({
             layout: 'radio',
           },
           initialValue: 'preview',
+          hidden: ({ parent }) => parent?.showPreview === false,
         }),
         defineField({
           name: 'editorHeight',
@@ -188,6 +202,7 @@ export const sandPack = defineType({
           type: 'number',
           description: 'Width of the editor in percentage, defaults to `50`',
           initialValue: 50,
+          hidden: ({ parent }) => parent?.showPreview === false,
         }),
         defineField({
           name: 'autoRun',
@@ -195,6 +210,7 @@ export const sandPack = defineType({
             'When set to false, the bundling process will only start when triggered manually by the user.',
           type: 'boolean',
           initialValue: true,
+          hidden: ({ parent }) => parent?.showPreview === false,
         }),
         defineField({
           name: 'autoReload',
@@ -202,20 +218,16 @@ export const sandPack = defineType({
             'When set to true, the preview will automatically reload when the code changes.',
           type: 'boolean',
           initialValue: true,
+          hidden: ({ parent }) => parent?.showPreview === false,
         }),
         defineField({
           name: 'resizablePanels',
           description: 'Allow panels to be resized, defaults to `true`',
           type: 'boolean',
           initialValue: true,
+          hidden: ({ parent }) => parent?.showPreview === false,
         }),
       ],
-    }),
-    defineField({
-      name: 'showPreview',
-      type: 'boolean',
-      group: 'options',
-      initialValue: true,
     }),
   ],
   preview: {

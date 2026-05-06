@@ -8,6 +8,7 @@ import { SITE_BASE_URL } from '@alecia/constants/routes'
 import { SandPackCSS } from '@alecia/core/code-editor/components/sandpack-css'
 import Providers from '@alecia/core/theming/components/providers'
 import { dankMono, eksellLarge, eksellSmall, silka } from '@alecia/fonts'
+import { refreshAction } from '@alecia/vendors/sanity/actions/refresh'
 import VisualEditingControls from '@alecia/vendors/sanity/components/visual-editing-controls'
 import { settingsQuery } from '@alecia/vendors/sanity/queries/settings.query'
 import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-image-utils'
@@ -89,8 +90,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         className={`${eksellLarge.variable} ${eksellSmall.variable} ${silka.variable} ${dankMono.variable} overscroll-none primary-violet accent-pink body-gray`}
       >
         <Providers settings={settings}>{children}</Providers>
-        {isDraftMode ? <VisualEditingControls /> : null}
-        <SanityLive />
+        {isDraftMode ? (
+          <>
+            <VisualEditingControls />
+            <SanityLive revalidateSyncTags={refreshAction} />
+          </>
+        ) : null}
       </body>
     </html>
   )

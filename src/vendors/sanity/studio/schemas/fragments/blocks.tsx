@@ -49,6 +49,7 @@ export const limitedBlockTypes = [
   { type: 'block' },
   imageBlock,
   { type: 'code' },
+  { type: 'idea-callout' },
   { type: 'sandpack' },
   { type: 'custom-html' },
 ]
@@ -56,6 +57,7 @@ export const limitedBlockTypes = [
 export const chapterBlockTypes = [
   { type: 'chapter-section' },
   { type: 'callout' },
+  { type: 'idea-callout' },
   { type: 'image-with-text' },
   { type: 'sandpack' },
   { type: 'custom-html' },

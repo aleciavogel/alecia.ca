@@ -16,7 +16,7 @@ const FilenameBar = ({ title, className }: FilenameBarProps) => (
       'overflow-hidden',
       'py-0.5 px-[1em]',
       'w-full min-h-[25px]',
-      'grid grid-cols-3',
+      'grid grid-cols-[auto_1fr_auto]',
       className,
     )}
   >
@@ -29,7 +29,9 @@ const FilenameBar = ({ title, className }: FilenameBarProps) => (
         )}
       />
     </div>
-    <div>{title ? <span className="leading-relaxed font-mono">{title}</span> : null}</div>
+    <div className="min-w-0 overflow-hidden flex items-center justify-center">
+      {title ? <span className="leading-relaxed font-mono truncate block">{title}</span> : null}
+    </div>
     <div>{/*  Extra controls will go here */}</div>
   </div>
 )

@@ -1,6 +1,7 @@
 import type { PortableTextBlock, PortableTextComponents } from 'next-sanity'
 
 import AnchorTag from '@alecia/common/ui/anchor-tag'
+import IdeaCallout from '@alecia/common/ui/idea-callout'
 import Separator from '@alecia/common/ui/separator'
 import Typography from '@alecia/common/ui/typography'
 import CopyableCodeBlock from '@alecia/core/code-editor/components/copyable-code-block'
@@ -8,9 +9,14 @@ import InteractiveCodeEditor from '@alecia/core/code-editor/components/interacti
 import ImageBox from '@alecia/core/images/components/image-box'
 import { ExtendedImage } from '@alecia/types/images'
 import { cn } from '@alecia/util/styles'
-import type { Code, CustomHtml, Sandpack } from '@alecia/vendors/sanity/types/sanity.types'
+import type {
+  Code,
+  CustomHtml,
+  IdeaCallout as SanityIdeaCallout,
+  Sandpack,
+} from '@alecia/vendors/sanity/types/sanity.types'
 
-export type CourseBlock = PortableTextBlock | CustomHtml | Sandpack | Code
+export type CourseBlock = PortableTextBlock | CustomHtml | Sandpack | Code | SanityIdeaCallout
 
 export const coursePortableTextComponents: PortableTextComponents = {
   block: {
@@ -23,32 +29,32 @@ export const coursePortableTextComponents: PortableTextComponents = {
       </Typography>
     ),
     h1: ({ children }) => (
-      <Typography variant="h1" className="w-full max-w-screen-sm mx-auto mt-12">
+      <Typography variant="h1" className="w-full max-w-screen-sm mx-auto mt-16">
         {children}
       </Typography>
     ),
     h2: ({ children }) => (
-      <Typography variant="h2" className="w-full max-w-screen-sm mx-auto mt-10">
+      <Typography variant="h2" className="w-full max-w-screen-sm mx-auto mt-14">
         {children}
       </Typography>
     ),
     h3: ({ children }) => (
-      <Typography variant="h3" className="w-full max-w-screen-sm mx-auto mt-8">
+      <Typography variant="h3" className="w-full max-w-screen-sm mx-auto mt-12">
         {children}
       </Typography>
     ),
     h4: ({ children }) => (
-      <Typography variant="h4" className="w-full max-w-screen-sm mx-auto mt-6">
+      <Typography variant="h4" className="w-full max-w-screen-sm mx-auto mt-10">
         {children}
       </Typography>
     ),
     h5: ({ children }) => (
-      <Typography variant="h5" className="w-full max-w-screen-sm mx-auto mt-4">
+      <Typography variant="h5" className="w-full max-w-screen-sm mx-auto mt-8">
         {children}
       </Typography>
     ),
     h6: ({ children }) => (
-      <Typography variant="h6" className="w-full max-w-screen-sm mx-auto mt-4">
+      <Typography variant="h6" className="w-full max-w-screen-sm mx-auto mt-8">
         {children}
       </Typography>
     ),
@@ -120,9 +126,14 @@ export const coursePortableTextComponents: PortableTextComponents = {
       )
     },
     sandpack: ({ value }) => {
+      const hidePreview = value.options?.showPreview === false
       return (
-        <div className="container mx-auto my-10 px-20">
-          <div className="max-w-screen-lg mx-auto">
+        <div
+          className={
+            hidePreview ? 'w-full max-w-screen-sm mx-auto my-10' : 'container mx-auto my-10 px-20'
+          }
+        >
+          <div className={hidePreview ? undefined : 'max-w-screen-lg mx-auto'}>
             <InteractiveCodeEditor {...value} />
           </div>
         </div>
@@ -135,5 +146,22 @@ export const coursePortableTextComponents: PortableTextComponents = {
         <CopyableCodeBlock code={value.code} language={value.language} filename={value.filename} />
       )
     },
+    'custom-html': ({ value }: { value: CustomHtml }) => {
+      if (!value.html?.code) return null
+      return (
+        <div
+          id={value.uid}
+          className={value.className ?? undefined}
+          dangerouslySetInnerHTML={{ __html: value.html.code }}
+        />
+      )
+    },
+    'idea-callout': ({ value }: { value: SanityIdeaCallout }) => (
+      <div className="container mx-auto my-10 px-20">
+        <div className="max-w-screen-lg mx-auto">
+          <IdeaCallout label={value.label} content={value.content} />
+        </div>
+      </div>
+    ),
   },
 }

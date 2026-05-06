@@ -12,7 +12,6 @@ export const sanityClient: SanityClient = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   useCdn: true,
-  perspective: 'published',
   stega: {
     studioUrl: SANITY_STUDIO_URL,
   },

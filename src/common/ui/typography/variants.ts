@@ -11,11 +11,11 @@ import { cn } from '@alecia/util/styles'
 const typographyVariants = cva('font-normal leading-snug transition-dark-mode', {
   variants: {
     variant: {
-      h1: 'scroll-m-20 font-serif text-3xl md:text-6xl text-primary',
-      h2: 'scroll-m-20 font-serif text-2xl md:text-5xl text-primary',
-      h3: 'scroll-m-20 font-serif-small text-xl md:text-4xl text-primary',
-      h4: 'scroll-m-20 font-serif-small text-lg md:text-2xl text-primary',
-      h5: 'scroll-m-20 font-sans-serif font-bold text-base md:text-lg text-primary',
+      h1: 'scroll-m-20 font-serif text-3xl md:text-6xl text-primary-700 dark:text-primary-300',
+      h2: 'scroll-m-20 font-serif text-2xl md:text-5xl text-primary-700 dark:text-primary-300',
+      h3: 'scroll-m-20 font-serif-small text-xl md:text-4xl text-primary-700 dark:text-primary-300',
+      h4: 'scroll-m-20 font-serif-small text-lg md:text-2xl text-primary-700 dark:text-primary-300',
+      h5: 'scroll-m-20 font-sans-serif font-bold text-base md:text-lg text-primary-700 dark:text-primary-300',
       h6: 'scroll-m-20 font-sans-serif font-semibold text-sm md:text-base',
       p: 'text-sm md:text-base leading-relaxed text-body',
       blockquote: cn(

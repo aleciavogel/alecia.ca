@@ -65,12 +65,12 @@ export const courseChapterPageQuery = defineQuery(`
       ...,
       body,
       sectionQuiz,
-      nextSectionText,
       repoUrl,
       video,
       metadata {
         ...,
       },
+      'estimatedReadingTime': round(length(pt::text(body)) / 5 / 180),
     },
     'nextChapter': chapters[
       @._ref in *[_type == 'course.chapter']._id

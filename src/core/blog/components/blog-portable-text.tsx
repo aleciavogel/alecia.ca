@@ -3,6 +3,7 @@ import type { PortableTextBlock, PortableTextComponents } from 'next-sanity'
 import { PortableText } from 'next-sanity'
 
 import AnchorTag from '@alecia/common/ui/anchor-tag'
+import IdeaCallout from '@alecia/common/ui/idea-callout'
 import Separator from '@alecia/common/ui/separator'
 import Typography from '@alecia/common/ui/typography'
 import CopyableCodeBlock from '@alecia/core/code-editor/components/copyable-code-block'
@@ -10,7 +11,12 @@ import InteractiveCodeEditor from '@alecia/core/code-editor/components/interacti
 import ImageBox from '@alecia/core/images/components/image-box'
 import { ExtendedImage } from '@alecia/types/images'
 import { cn } from '@alecia/util/styles'
-import type { Code, CustomHtml, Sandpack } from '@alecia/vendors/sanity/types/sanity.types'
+import type {
+  Code,
+  CustomHtml,
+  IdeaCallout as SanityIdeaCallout,
+  Sandpack,
+} from '@alecia/vendors/sanity/types/sanity.types'
 
 // TODO: move to @alecia/common/ui
 const portableTextComponents: PortableTextComponents = {
@@ -122,9 +128,14 @@ const portableTextComponents: PortableTextComponents = {
       )
     },
     sandpack: ({ value }) => {
+      const hidePreview = value.options?.showPreview === false
       return (
-        <div className="container mx-auto my-10 px-20">
-          <div className="max-w-screen-lg mx-auto">
+        <div
+          className={
+            hidePreview ? 'w-full max-w-screen-sm mx-auto my-10' : 'container mx-auto my-10 px-20'
+          }
+        >
+          <div className={hidePreview ? undefined : 'max-w-screen-lg mx-auto'}>
             <InteractiveCodeEditor {...value} />
           </div>
         </div>
@@ -137,10 +148,17 @@ const portableTextComponents: PortableTextComponents = {
         <CopyableCodeBlock code={value.code} language={value.language} filename={value.filename} />
       )
     },
+    'idea-callout': ({ value }: { value: SanityIdeaCallout }) => (
+      <div className="container mx-auto my-10 px-20">
+        <div className="max-w-screen-lg mx-auto">
+          <IdeaCallout label={value.label} content={value.content} />
+        </div>
+      </div>
+    ),
   },
 }
 
-export type BlogPostBlock = PortableTextBlock | CustomHtml | Sandpack | Code
+export type BlogPostBlock = PortableTextBlock | CustomHtml | Sandpack | Code | SanityIdeaCallout
 
 interface BlogPortableTextProps {
   paragraphClasses?: string

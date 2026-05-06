@@ -2,7 +2,7 @@ import { faBookBookmark } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { chapterBlockTypes } from '../fragments'
+import { limitedBlockTypes } from '../fragments'
 
 /**
  * Course chapter
@@ -36,7 +36,7 @@ export const courseChapter = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: chapterBlockTypes,
+      of: limitedBlockTypes,
       group: 'content',
       options: {
         insertMenu: {
@@ -67,12 +67,6 @@ export const courseChapter = defineType({
       name: 'sectionQuiz',
       title: 'Section Quiz',
       type: 'pop-quiz',
-      group: 'nextSection',
-    }),
-    defineField({
-      name: 'nextSectionText',
-      description: 'Displays when the user has completed the quiz for the preceding section.',
-      type: 'string',
       group: 'nextSection',
     }),
     defineField({

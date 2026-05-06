@@ -5,6 +5,39 @@ const draftableTypes = ['page', 'blog.article', 'experiment', 'course', 'course.
 
 // TODO: Refactor this, it's a bit lost in the sauce :(
 export const locations: DocumentLocationResolver = (params, context) => {
+  // Course chapters need the parent course slug, so use a different query
+  if (params.type === 'course.chapter') {
+    const doc$ = context.documentStore.listenQuery(
+      `*[_id == $id][0]{
+        title,
+        metadata,
+        "courseSlug": *[_type == "course" && references(^._id)][0].metadata.slug.current
+      }`,
+      { id: params.id },
+      { perspective: 'previewDrafts' },
+    )
+
+    return doc$.pipe(
+      map((doc) => {
+        if (!doc?.metadata?.slug?.current || !doc.courseSlug) return null
+
+        const title =
+          (doc.title as string | undefined) ??
+          (doc.metadata.title as string | undefined) ??
+          'Untitled'
+
+        return {
+          locations: [
+            {
+              title,
+              href: `/courses/${doc.courseSlug}/${doc.metadata.slug.current}`,
+            },
+          ],
+        }
+      }),
+    )
+  }
+
   if (draftableTypes.includes(params.type)) {
     const doc$ = context.documentStore.listenQuery(
       `*[_id == $id][0]{title,metadata}`,
@@ -28,7 +61,6 @@ export const locations: DocumentLocationResolver = (params, context) => {
             segment = '/playground'
             break
           case 'course':
-          case 'course.chapter':
             segment = '/courses'
             break
           case 'project':

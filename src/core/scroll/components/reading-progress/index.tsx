@@ -5,13 +5,17 @@ import { useEffect, useState } from 'react'
 
 import { cn } from '@alecia/util/styles'
 
-const ReadingProgress: FC = () => {
+interface ReadingProgressProps {
+  contentId?: string
+}
+
+const ReadingProgress: FC<ReadingProgressProps> = ({ contentId = 'post-content' }) => {
   const [readingProgress, setReadingProgress] = useState(0)
 
   useEffect(() => {
     const onScroll = () => {
       const progress = window.scrollY - window.innerHeight
-      const blogPostHeight = document.getElementById('post-content')?.scrollHeight ?? 0
+      const blogPostHeight = document.getElementById(contentId)?.scrollHeight ?? 0
       const percent = (progress / (blogPostHeight - 200)) * 100
 
       if (progress <= 0) {

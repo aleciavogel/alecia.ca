@@ -9,12 +9,18 @@ interface SimpleHeaderProps {
   pretitleLink?: string
   pretitle?: string | null
   title?: string | null
+  lastUpdated?: string | null
+  timeToRead?: number | null
+  centered?: boolean
 }
 
 const ProjectHeader = ({
   pretitleLink,
   pretitle = 'Pretitle',
   title = 'Untitled',
+  lastUpdated,
+  timeToRead,
+  centered = false,
 }: SimpleHeaderProps) => (
   <header
     className={cn(
@@ -29,7 +35,7 @@ const ProjectHeader = ({
     )}
   >
     <div className="page-container page-content-block w-full text-white pb-8">
-      <div className="text-center md:text-left">
+      <div className={cn('text-center', { 'md:text-left': !centered })}>
         {pretitle && pretitleLink ? (
           <Link href={pretitleLink}>
             <Typography
@@ -46,7 +52,32 @@ const ProjectHeader = ({
           </Typography>
         ) : null}
         <h1 className="w-full font-serif text-5xl md:text-6xl lg:text-8xl mb-2">{title}</h1>
-        <ZigZagAccent className="fill-primary-300 w-[175px] my-8 mx-auto md:mx-0" />
+        <ZigZagAccent
+          className={cn('fill-primary-300 w-[175px] my-8 mx-auto', { 'md:mx-0': !centered })}
+        />
+        {(lastUpdated || timeToRead) && (
+          <p
+            className={cn('text-sm text-white text-center flex items-center gap-2 flex-wrap', {
+              'md:text-left': !centered,
+              'justify-center': centered,
+            })}
+          >
+            {lastUpdated && (
+              <span>
+                {'Last updated '}
+                <time dateTime={lastUpdated}>
+                  {new Date(lastUpdated).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </span>
+            )}
+            {lastUpdated && timeToRead ? <span>&middot;</span> : null}
+            {timeToRead ? <span>{timeToRead} min read</span> : null}
+          </p>
+        )}
       </div>
     </div>
   </header>

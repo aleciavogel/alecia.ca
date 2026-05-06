@@ -5,8 +5,10 @@ import { Image as SanityImage } from 'sanity'
 
 import { Routes } from '@alecia/constants/routes'
 import ChapterNavFooter from '@alecia/core/courses/components/chapter-nav-footer'
+import ChapterRepoBanner from '@alecia/core/courses/components/chapter-repo-banner'
 import PageContents from '@alecia/core/navigation/components/page-contents/page-contents'
 import ProjectHeader from '@alecia/core/pages/components/project-header'
+import ReadingProgress from '@alecia/core/scroll/components/reading-progress'
 import SiteWrapper from '@alecia/core/theming/components/site-wrapper/site-wrapper'
 import { buildRoute } from '@alecia/util/routes'
 import {
@@ -17,7 +19,10 @@ import { urlForOpenGraphImage } from '@alecia/vendors/sanity/util/client/sanity-
 import { sanityClient } from '@alecia/vendors/sanity/util/server/client'
 import { sanityFetch } from '@alecia/vendors/sanity/util/server/live'
 
-const ChapterBlocks = dynamic(() => import('@alecia/core/courses/components/chapter-blocks'))
+const CourseComments = dynamic(() => import('@alecia/core/courses/components/comments'))
+const CoursePortableText = dynamic(
+  () => import('@alecia/core/courses/components/course-portable-text'),
+)
 
 interface CourseChapterPageProps {
   params: Promise<{
@@ -112,9 +117,12 @@ export default async function CourseChapterPage({ params }: CourseChapterPagePro
       ? allChapters[currentIndex + 1]
       : null
 
+  const nextChapterNumber = currentIndex >= 0 ? currentIndex + 2 : null
   const nextChapter = nextChapterData
     ? {
-        title: nextChapterData.title ?? 'Next Chapter',
+        title: nextChapterNumber
+          ? `Chapter ${nextChapterNumber}`
+          : nextChapterData.title ?? 'Next Chapter',
         href: buildRoute(Routes.Courses.Chapter, {
           slug,
           chapter: nextChapterData.slug ?? '',
@@ -122,21 +130,36 @@ export default async function CourseChapterPage({ params }: CourseChapterPagePro
       }
     : null
 
-  const headerTitle = chapterNumber ? `Chapter ${chapterNumber}: ${ch.title}` : ch.title
+  const headerTitle = chapterNumber ? `${chapterNumber}. ${ch.title}` : ch.title
+
+  const estimatedReadingTime = (ch as any).estimatedReadingTime as number | null
 
   return (
     <SiteWrapper>
-      <ProjectHeader pretitle={data.courseTitle} title={headerTitle} pretitleLink={courseHref} />
-      <PageContents className="pt-48 md:pt-56 lg:pt-64 pb-48">
-        <div id="chapter-content" className="flex flex-col gap-6">
-          <ChapterBlocks blocks={ch.body} />
+      <ProjectHeader
+        pretitle={data.courseTitle}
+        title={headerTitle}
+        pretitleLink={courseHref}
+        lastUpdated={ch._updatedAt}
+        timeToRead={estimatedReadingTime}
+        centered
+      />
+      <ReadingProgress contentId="chapter-content" />
+      <PageContents variant="rectangular" className="pt-16 md:pt-20 lg:pt-24 pb-48">
+        <div
+          id="chapter-content"
+          className="flex flex-col gap-6 selection:bg-accent-200 selection:text-accent-900"
+        >
+          {ch.repoUrl && <ChapterRepoBanner repoUrl={ch.repoUrl} />}
+          <CoursePortableText value={ch.body as any} />
         </div>
 
-        <ChapterNavFooter
-          quiz={ch.sectionQuiz}
-          nextSectionText={ch.nextSectionText}
-          nextChapter={nextChapter}
-          courseHref={courseHref}
+        <ChapterNavFooter quiz={ch.sectionQuiz} nextChapter={nextChapter} courseHref={courseHref} />
+
+        <CourseComments
+          title={ch.title}
+          courseName={data.courseTitle}
+          chapterNumber={chapterNumber}
         />
       </PageContents>
     </SiteWrapper>

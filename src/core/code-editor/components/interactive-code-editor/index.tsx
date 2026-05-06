@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  SandpackCodeEditor,
+  SandpackFileExplorer,
   SandpackLayout,
   SandpackPreview,
   SandpackProvider,
@@ -18,6 +18,7 @@ import type {
 } from '@alecia/vendors/sanity/types/sanity.types'
 
 import FilenameBar from './filename-bar'
+import HighlightedEditor from './highlighted-editor'
 
 interface SandpackProps extends Omit<SanitySandpack, 'files' | 'devDependencies' | 'dependencies'> {
   files?: SandpackFile[]
@@ -49,16 +50,17 @@ function getProviderOptions(options?: SanityOptions) {
  * Extracts options for SandpackCodeEditor from Sanity options.
  */
 function getCodeEditorOptions(options?: SanityOptions) {
+  const readOnly = options?.readOnly ?? false
   return {
     showTabs: options?.showTabs,
-    showLineNumbers: options?.showLineNumbers,
+    // Force line numbers on when read-only (globally or per-file) unless explicitly disabled
+    showLineNumbers: options?.showLineNumbers ?? (readOnly ? true : undefined),
     showInlineErrors: options?.showInlineErrors,
     showRunButton: options?.showRunButton ?? false,
     wrapContent: options?.wrapContent,
     closableTabs: options?.closeableTabs,
     initMode: options?.initMode,
-    readOnly: options?.readOnly,
-    showReadOnly: options?.showReadOnly,
+    // readOnly is intentionally NOT included here — see HighlightedEditor for why
   }
 }
 
@@ -69,8 +71,8 @@ const InteractiveCodeEditor = ({
   options,
   dependencies,
   devDependencies,
-  showPreview = true,
 }: SandpackProps) => {
+  const showPreview = options?.showPreview ?? true
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -84,22 +86,42 @@ const InteractiveCodeEditor = ({
   const editorHeight = options?.editorHeight ?? 300
   const editorWidthPercentage = options?.editorWidthPercentage ?? 50
 
-  const sandpackFiles =
-    files?.reduce((acc, file) => {
-      if (!file.code?.filename) {
-        return acc
+  const { sandpackFiles, highlightedLinesMap, readOnlyFiles } = useMemo(() => {
+    const fileMap: Record<
+      string,
+      { code: string; hidden: boolean; readOnly: boolean; active: boolean }
+    > = {}
+    const linesMap: Record<string, number[]> = {}
+    const readOnlySet = new Set<string>()
+
+    for (const file of files ?? []) {
+      const rawFilename = stegaClean(file.code?.filename)
+      if (!rawFilename) continue
+      // Sandpack normalizes all paths to start with "/", so we must match that
+      // format here — otherwise lookups via sandpack.activeFile will miss.
+      const filename = rawFilename.startsWith('/') ? rawFilename : `/${rawFilename}`
+
+      // Never set readOnly in the file config — doing so triggers Sandpack's broken
+      // render path that hides line numbers. We handle it via a CodeMirror extension instead.
+      fileMap[filename] = {
+        code: stegaClean(file.code?.code) ?? '',
+        hidden: file.hidden ?? false,
+        readOnly: false,
+        active: file.active ?? true,
       }
 
-      return {
-        ...acc,
-        [stegaClean(file.code.filename)]: {
-          code: stegaClean(file.code.code),
-          hidden: file.hidden ?? false,
-          readOnly: file.readOnly ?? false,
-          active: file.active ?? true,
-        },
+      if (file.readOnly) {
+        readOnlySet.add(filename)
       }
-    }, {}) ?? {}
+
+      const lines = file.code?.highlightedLines
+      if (lines && lines.length > 0) {
+        linesMap[filename] = lines
+      }
+    }
+
+    return { sandpackFiles: fileMap, highlightedLinesMap: linesMap, readOnlyFiles: readOnlySet }
+  }, [files])
 
   const processDependencies = useCallback(
     (deps?: { name?: string; version?: string }[]): Record<string, string> => {
@@ -133,15 +155,14 @@ const InteractiveCodeEditor = ({
         options={providerOptions}
       >
         <SandpackLayout>
-          <SandpackCodeEditor
-            {...codeEditorOptions}
-            style={{
-              height: editorHeight,
-              flexGrow: editorWidthPercentage,
-              flexShrink: editorWidthPercentage,
-              flexBasis: 0,
-              overflow: 'hidden',
-            }}
+          {options?.showFileExplorer && <SandpackFileExplorer style={{ height: editorHeight }} />}
+          <HighlightedEditor
+            highlightedLinesMap={highlightedLinesMap}
+            readOnlyFiles={readOnlyFiles}
+            globalReadOnly={options?.readOnly ?? false}
+            editorOptions={codeEditorOptions}
+            height={editorHeight}
+            widthPercentage={editorWidthPercentage}
           />
           {showPreview && (
             <SandpackPreview
