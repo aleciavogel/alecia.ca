@@ -29,7 +29,7 @@ const FilenameBar = ({ title, className }: FilenameBarProps) => (
         )}
       />
     </div>
-    <div>{title ? <span className="leading-relaxed">{title}</span> : null}</div>
+    <div>{title ? <span className="leading-relaxed font-mono">{title}</span> : null}</div>
     <div>{/*  Extra controls will go here */}</div>
   </div>
 )

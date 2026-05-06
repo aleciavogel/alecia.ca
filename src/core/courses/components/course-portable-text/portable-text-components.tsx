@@ -1,6 +1,4 @@
-import { type FC } from 'react'
 import type { PortableTextBlock, PortableTextComponents } from 'next-sanity'
-import { PortableText } from 'next-sanity'
 
 import AnchorTag from '@alecia/common/ui/anchor-tag'
 import Separator from '@alecia/common/ui/separator'
@@ -12,8 +10,9 @@ import { ExtendedImage } from '@alecia/types/images'
 import { cn } from '@alecia/util/styles'
 import type { Code, CustomHtml, Sandpack } from '@alecia/vendors/sanity/types/sanity.types'
 
-// TODO: move to @alecia/common/ui
-const portableTextComponents: PortableTextComponents = {
+export type CourseBlock = PortableTextBlock | CustomHtml | Sandpack | Code
+
+export const coursePortableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
       <Typography
@@ -24,32 +23,32 @@ const portableTextComponents: PortableTextComponents = {
       </Typography>
     ),
     h1: ({ children }) => (
-      <Typography variant="h1" className="w-full max-w-screen-sm mx-auto">
+      <Typography variant="h1" className="w-full max-w-screen-sm mx-auto mt-12">
         {children}
       </Typography>
     ),
     h2: ({ children }) => (
-      <Typography variant="h2" className="w-full max-w-screen-sm mx-auto">
+      <Typography variant="h2" className="w-full max-w-screen-sm mx-auto mt-10">
         {children}
       </Typography>
     ),
     h3: ({ children }) => (
-      <Typography variant="h3" className="w-full max-w-screen-sm mx-auto">
+      <Typography variant="h3" className="w-full max-w-screen-sm mx-auto mt-8">
         {children}
       </Typography>
     ),
     h4: ({ children }) => (
-      <Typography variant="h4" className="w-full max-w-screen-sm mx-auto">
+      <Typography variant="h4" className="w-full max-w-screen-sm mx-auto mt-6">
         {children}
       </Typography>
     ),
     h5: ({ children }) => (
-      <Typography variant="h5" className="w-full max-w-screen-sm mx-auto">
+      <Typography variant="h5" className="w-full max-w-screen-sm mx-auto mt-4">
         {children}
       </Typography>
     ),
     h6: ({ children }) => (
-      <Typography variant="h6" className="w-full max-w-screen-sm mx-auto">
+      <Typography variant="h6" className="w-full max-w-screen-sm mx-auto mt-4">
         {children}
       </Typography>
     ),
@@ -90,7 +89,6 @@ const portableTextComponents: PortableTextComponents = {
   },
 
   marks: {
-    // code: ({ children }) => <code className="bg-gray-100 p-1 rounded">{children}</code>,
     link: ({ children, value }) => {
       const isExternal = !value.href.startsWith('/')
       const rel = isExternal ? 'noreferrer noopener' : undefined
@@ -139,16 +137,3 @@ const portableTextComponents: PortableTextComponents = {
     },
   },
 }
-
-export type BlogPostBlock = PortableTextBlock | CustomHtml | Sandpack | Code
-
-interface BlogPortableTextProps {
-  paragraphClasses?: string
-  value?: BlogPostBlock[]
-}
-
-const BlogPortableText: FC<BlogPortableTextProps> = ({ value = [] }) => {
-  return <PortableText components={portableTextComponents} value={value} />
-}
-
-export default BlogPortableText

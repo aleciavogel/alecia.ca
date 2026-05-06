@@ -2,7 +2,7 @@ import { faBookBookmark } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
 
-import { limitedBlockTypes } from '../fragments'
+import { chapterBlockTypes } from '../fragments'
 
 /**
  * Course chapter
@@ -36,8 +36,13 @@ export const courseChapter = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: limitedBlockTypes,
+      of: chapterBlockTypes,
       group: 'content',
+      options: {
+        insertMenu: {
+          views: [{ name: 'list' }],
+        },
+      },
     }),
     defineField({
       name: 'publishDate',

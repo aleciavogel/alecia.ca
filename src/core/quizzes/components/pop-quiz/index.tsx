@@ -28,9 +28,16 @@ interface QuizProps {
   nextSectionDescription: string
   href: string
   previousGuess?: number
+  onAnswer?: (guess: number) => void
 }
 
-export const PopQuiz = ({ question, answers, correctAnswer, previousGuess }: QuizProps) => {
+export const PopQuiz = ({
+  question,
+  answers,
+  correctAnswer,
+  previousGuess,
+  onAnswer,
+}: QuizProps) => {
   const [hasAnswered, setHasAnswered] = useState<boolean>(previousGuess !== undefined)
   const [guess, setGuess] = useState<number | undefined>(previousGuess)
   const isCorrect = useMemo(() => guess === correctAnswer, [guess, correctAnswer])
@@ -42,8 +49,9 @@ export const PopQuiz = ({ question, answers, correctAnswer, previousGuess }: Qui
       setGuess(newGuess)
       setHasAnswered(true)
       setShowConfetti(newGuess === correctAnswer)
+      onAnswer?.(newGuess)
     },
-    [correctAnswer],
+    [correctAnswer, onAnswer],
   )
 
   return (

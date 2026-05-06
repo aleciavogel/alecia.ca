@@ -48,8 +48,18 @@ export const blockTypes = [
 export const limitedBlockTypes = [
   { type: 'block' },
   imageBlock,
+  { type: 'code' },
   { type: 'sandpack' },
   { type: 'custom-html' },
+]
+
+export const chapterBlockTypes = [
+  { type: 'chapter-section' },
+  { type: 'callout' },
+  { type: 'image-with-text' },
+  { type: 'sandpack' },
+  { type: 'custom-html' },
+  { type: 'tip' },
 ]
 
 export const literallyJustTheDefaultTextBlocks = [{ type: 'block' }]
