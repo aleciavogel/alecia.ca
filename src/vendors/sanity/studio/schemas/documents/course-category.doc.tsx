@@ -1,7 +1,7 @@
 import { faFolderOpen } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { defineField, defineType } from 'sanity'
-import { preview } from 'sanity-plugin-icon-picker'
+import { preview } from 'sanity-plugin-icon-picker-v2'
 
 import { iconPickerField, iconPickerOptions } from '../fragments'
 

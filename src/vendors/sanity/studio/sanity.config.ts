@@ -4,7 +4,7 @@ import { defineConfig } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import { iconPicker } from 'sanity-plugin-icon-picker'
+import { iconPicker } from 'sanity-plugin-icon-picker-v2'
 import { muxInput } from 'sanity-plugin-mux-input'
 
 import {
@@ -61,7 +61,6 @@ export const SANITY_CONFIG = defineConfig({
     visionTool({ defaultApiVersion: SANITY_API_VERSION }),
 
     // Icon picker plugin
-    // @ts-expect-error - sanity-plugin-icon-picker v4 types reference sanity v3
     iconPicker(),
 
     // Mux video file inputs

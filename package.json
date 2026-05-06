@@ -127,7 +127,7 @@
     "rtl-detect": "^1.1.2",
     "sanity": "^5.23.0",
     "sanity-plugin-asset-source-unsplash": "^7.0.5",
-    "sanity-plugin-icon-picker": "^4.0.0",
+    "sanity-plugin-icon-picker-v2": "^1.0.4",
     "sanity-plugin-mux-input": "^2.18.0",
     "sonner": "^1.7.1",
     "storybook-dark-mode": "^4.0.2",
