@@ -1,7 +1,7 @@
 import type { PortableTextBlock, PortableTextComponents } from 'next-sanity'
 
 import AnchorTag from '@alecia/common/ui/anchor-tag'
-import IdeaCallout from '@alecia/common/ui/idea-callout'
+import IdeaCallout, { type IdeaCalloutProps } from '@alecia/common/ui/idea-callout'
 import Separator from '@alecia/common/ui/separator'
 import Typography from '@alecia/common/ui/typography'
 import CopyableCodeBlock from '@alecia/core/code-editor/components/copyable-code-block'
@@ -159,7 +159,7 @@ export const coursePortableTextComponents: PortableTextComponents = {
     'idea-callout': ({ value }: { value: SanityIdeaCallout }) => (
       <div className="container mx-auto my-10 px-20">
         <div className="max-w-screen-lg mx-auto">
-          <IdeaCallout label={value.label} content={value.content} />
+          <IdeaCallout label={value.label} content={value.content as IdeaCalloutProps['content']} />
         </div>
       </div>
     ),

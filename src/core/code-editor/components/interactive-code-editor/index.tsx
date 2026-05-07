@@ -17,11 +17,19 @@ import type {
   SandpackFile,
 } from '@alecia/vendors/sanity/types/sanity.types'
 
+/** Extend generated Options with fields present in the schema but missing from typegen */
+type Options = SanityOptions & {
+  showPreview?: boolean
+  showFileExplorer?: boolean
+}
+
 import FilenameBar from './filename-bar'
 import HighlightedEditor from './highlighted-editor'
 
-interface SandpackProps extends Omit<SanitySandpack, 'files' | 'devDependencies' | 'dependencies'> {
+interface SandpackProps
+  extends Omit<SanitySandpack, 'files' | 'devDependencies' | 'dependencies' | 'options'> {
   files?: SandpackFile[]
+  options?: Options
   dependencies?: {
     name?: string
     version?: string

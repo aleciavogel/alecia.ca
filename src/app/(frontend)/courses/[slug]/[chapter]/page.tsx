@@ -110,7 +110,7 @@ export default async function CourseChapterPage({ params }: CourseChapterPagePro
 
   // Find the next chapter from the chapters array
   const allChapters = data.nextChapter ?? []
-  const currentIndex = allChapters.findIndex((c) => c._id === ch._id)
+  const currentIndex = allChapters.findIndex((c: (typeof allChapters)[number]) => c._id === ch._id)
   const chapterNumber = currentIndex >= 0 ? currentIndex + 1 : null
   const nextChapterData =
     currentIndex >= 0 && currentIndex < allChapters.length - 1
